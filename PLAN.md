@@ -9,14 +9,13 @@
 - [x] Run brief 01, prior art - done and reviewed with Stav. `research/prior-art.md` +
       `research/feature-matrix.md`. One gap admitted in the file itself: public human style
       guides (Mailchimp, GOV.UK, Microsoft, Google) were not run down with real rigor.
-- [x] Run brief 02, Lemonade voice - done, **not yet reviewed with Stav**. Files exist:
-      `research/lemonade-voice.md`, `research/lemonade-guidelines.md`,
-      `research/lemonade-corpus.md` (gitignored, 61 excerpts). The brief targeted 150-200
-      excerpts; this pass reached 61 and says so on its own front page. `lemonade.com`
-      blocked direct fetches (HTTP 403) so landing/blog/help-centre content is reconstructed
-      from search-index snippets, not full reads. Three content types are thin-to-empty:
-      email/notifications, ads/video, and first-party failure copy. Treat as a strong first
-      pass, not final.
+- [x] Run brief 02, Lemonade voice. `research/lemonade-voice.md`,
+      `research/lemonade-guidelines.md`, `research/lemonade-corpus.md` (gitignored, 54
+      excerpts against a target of 150 - the files' own headers say 61, which is wrong).
+      `lemonade.com` blocked direct fetches (HTTP 403) so landing, blog and help-centre
+      content is reconstructed from search snippets, not full reads. Three content types are
+      thin to empty: email/notifications, ads/video, and first-party failure copy. A strong
+      first pass, not final.
 - [x] Review brief 02's output with Stav. Citations checked: every LEM id cited in the
       analysis and the guidelines exists in the corpus, none invented. Corpus header says 61
       excerpts, actual count is 54.
