@@ -21,10 +21,12 @@
       excerpts, actual count is 54.
 - [x] Write `RUBRIC.md` - six criteria, thresholds, calibration steps
 - [x] Fold both research briefs into `RESEARCH.md`. Approved by Stav before writing.
-- [ ] **Score the Lemonade corpus against `RUBRIC.md`.** Not started. Real Lemonade copy
-      should come out at 9-10. If it does not, the rubric is wrong, not the copy. Do this
-      before the rubric gates anything. Two people score 20 pieces independently first, then
-      fix the wording of any criterion where they disagree often.
+- [ ] **Validate the rubric.** Brief written: `research/briefs/03-rubric-validation.md`.
+      Runs as a fork. Scores ~38 real Lemonade excerpts plus 12 deliberately off-brand
+      twins, and reports whether the two populations separate. Real copy should average 9+,
+      off-brand 5 or below, with almost no overlap. Also produces a blind 20-item worksheet
+      so Stav can score by hand and be compared against the model. Nothing downstream should
+      trust the rubric until this comes back.
 - [x] Decided: no second research pass. Build with what we have.
 - [x] Decided: profile organised by content type, stakes as a layer inside each.
 - [x] Decided: two streams shipped deeply (product micro-copy, external comms / PR), a third
