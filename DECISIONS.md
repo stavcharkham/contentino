@@ -17,6 +17,8 @@ Format:
 ---
 
 ### 2026-08-12 - Build it as an open-source product, not a Lemonade demo
+> **Reversed later the same day.** See "Not open source. Internal product, built as if we worked at Lemonade." Kept here because the reasoning below is what the reversal argues against, and deleting it would hide the change of mind.
+
 **Category:** product
 **Decided:** Public repo, product-neutral name (Contentino). Lemonade ships as one example brand profile.
 **Rejected:** A Lemonade-branded, Lemonade-only tool.
@@ -86,3 +88,25 @@ Format:
 **Rejected:** Organizing the profile strictly by content type (the structure brief 02 was written around).
 **Why:** Content type predicts almost nothing about register on its own - marketing, UI, and chat surfaces all contain all three registers depending on what's being said in that specific sentence. A content-type playbook is still useful for defaults, but the switching rule itself has to travel with the sentence, not the channel.
 **Reversible:** yes - this is a first-pass read from 61 excerpts on one research run, not yet cross-checked
+
+### 2026-08-12 - Not open source. Internal product, built as if we worked at Lemonade.
+**Category:** product
+**Decided:** Reverses the 2026-08-12 decision "Build it as an open-source product, not a Lemonade demo". The product is internal: its user is an employee, not a customer. Lemonade is who we build for, not one example among many.
+**Rejected:** Shipping it public with Lemonade as one profile of several.
+**Why:** Open source bought generality we do not need and cost complexity we cannot afford in 5 days - a neutral example profile, a second brand to prove the point, contribution and licensing surface. Naming Lemonade as the customer also sharpens every product question, because "would a Lemonade content person use this on a Tuesday" has an answer and "would anyone" does not.
+**What survives the reversal:** the profile is still a folder. The old reason was portability for strangers. The new reason is better: an approved guideline has to graduate into a skill in the company plugin and a tool in the agent, and a settings row cannot graduate.
+**Reversible:** yes
+
+### 2026-08-12 - The product optimises time-to-approved, not time-to-draft
+**Category:** product
+**Decided:** Two goals, split by stakes. Low-stakes content is fully automated and publishes with no human. High-stakes content never auto-publishes; it arrives as a better draft and a person owns it.
+**Rejected:** "Generate content 10x faster" as the headline goal.
+**Why:** The prior-art research found the complaint cluster across every competitor is "needs heavy fact-checking and editing before publish", not "too slow to draft". Nobody is bottlenecked on writing. Optimising drafting produces more drafts queuing at the same review step. The split by stakes comes from the Lemonade research, which found the voice switches by risk of the moment rather than by content type - so the same axis that shapes the brand profile also decides what we are allowed to automate.
+**Reversible:** yes
+
+### 2026-08-12 - Six criteria, scored 0-2, nothing below 8 reaches a human
+**Category:** product
+**Decided:** `RUBRIC.md`. Register match, humour boundary, plain language calibration, direct address, mechanics, and compliance safety as a veto. 9-10 publishes, 8 gets a human, below 8 is regenerated. Any single 0 blocks. Same six criteria for every content type.
+**Rejected:** A rubric per content type. Also rejected: sending 5-7 to a human for editing.
+**Why:** Per-content-type rubrics inherit the assumption the research disproved - voice switches by stakes, and both registers can appear on one screen a sentence apart. A rubric keyed to content type would score that as one thing. On the threshold: a human editing a 6 into an 8 is the exact overhead the product exists to delete, and regeneration is cheaper than their attention. Criteria 1-3 exist because the research found those specific failure modes, not because they sounded measurable.
+**Reversible:** yes

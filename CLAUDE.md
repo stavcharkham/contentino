@@ -2,24 +2,32 @@
 
 ## What this is
 
-An open-source content generation tool built around a brand profile: a folder of markdown
-that defines how a company writes. The engine generates content, evaluates it against that
-profile, and feeds human edits back into the profile so it improves with use.
+An internal content tool built around a brand profile: a folder of markdown that defines how
+a company writes. The engine generates content, scores it against that profile, and feeds
+human edits back in so the profile improves with use.
 
-It is being built as the deliverable for a GenAI Lead challenge (brief in `interview/ASSIGNMENT.md`,
-gitignored), but it is a real open-source product, not a demo. Lemonade ships as one example
-brand profile, not as the product's identity.
+We build it as if we worked at Lemonade, for Lemonade's own people. It is the deliverable for
+a GenAI Lead challenge (brief in `interview/ASSIGNMENT.md`, gitignored).
+
+## What it is for
+
+Two goals, and they are not the same goal.
+
+1. **Remove overhead.** Low-stakes content should produce and publish itself with nobody
+   watching.
+2. **Make people faster on the work that matters.** Not faster at drafting. Faster to
+   *approved*. Drafting was never the bottleneck; review and the wait for someone senior to
+   say "that's not how we sound" is.
+
+The chain that makes both work: a guideline is written, scored, approved, and then graduates
+into a skill in the company plugin and a tool in the agent. The profile is a folder because
+it has to graduate. A settings row cannot.
 
 ## Who reads this repo
 
-Two audiences, and both change how we work.
-
-1. **The hiring team.** They are judging product thinking, not just working code. That makes
-   `README.md`, `PRD.md`, `DECISIONS.md`, and the commit history deliverables in their own
-   right. Small commits with real messages. No squashing history into one dump at the end.
-2. **Open-source users.** Anyone should be able to drop in their own brand profile and run
-   this. Generality is structural: a profile is a folder. It is never a settings screen,
-   a tenant model, or an auth system.
+**The hiring team.** They are judging product thinking, not just working code. That makes
+`README.md`, `PRD.md`, `DECISIONS.md`, and the commit history deliverables in their own
+right. Small commits with real messages. No squashing history into one dump at the end.
 
 ## Constraints that bound every decision
 
@@ -32,6 +40,8 @@ Two audiences, and both change how we work.
 - **No auth.** The hosted demo is public and pre-loaded.
 - **Ship where people already work.** Slack and an MCP server are the surfaces. A dashboard
   exists to show the system, not as the place work happens.
+- **Nothing ships unscored.** `RUBRIC.md` gates it. Below 8 out of 10 no human looks at it,
+  it gets regenerated.
 
 ## The docs
 
@@ -40,8 +50,10 @@ Two audiences, and both change how we work.
 | `RESEARCH.md` | discover | Prior art, brand voice findings, and questions for the Lemonade team each paired with the assumption made in its absence |
 | `PRD.md` | define | Problem, users, scope, non-goals, success metrics |
 | `DECISIONS.md` | design | Every product and build decision, with rejected options |
+| `RUBRIC.md` | design | The six scoring criteria, the thresholds, and what happens at each band |
 | `PLAN.md` | deliver | Task list with checkboxes, grouped by day |
 | `QUESTIONS.md` | - | Open items needing Stav's answer |
+| `PROCESS.md` | - | Running log of how the work went. Feeds the write-up alongside `DECISIONS.md` |
 | `README.md` | - | Public face. Written last. |
 
 The four phases mirror the brief's own words: discover, define, design, deliver.

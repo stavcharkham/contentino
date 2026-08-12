@@ -17,14 +17,20 @@
       from search-index snippets, not full reads. Three content types are thin-to-empty:
       email/notifications, ads/video, and first-party failure copy. Treat as a strong first
       pass, not final.
-- [ ] Review brief 02's output with Stav (next session's first job)
+- [x] Review brief 02's output with Stav. Citations checked: every LEM id cited in the
+      analysis and the guidelines exists in the corpus, none invented. Corpus header says 61
+      excerpts, actual count is 54.
+- [x] Write `RUBRIC.md` - six criteria, thresholds, calibration steps
+- [ ] **Score the Lemonade corpus against `RUBRIC.md`.** Real Lemonade copy should come out
+      at 9-10. If it does not, the rubric is wrong, not the copy. Do this before the rubric
+      is used to gate anything. Two people score 20 pieces independently first, then compare
+      wording on any criterion where they disagree often.
+- [ ] Fold both research briefs into `RESEARCH.md` (draft shown to Stav, awaiting sign-off)
 - [ ] Decide whether to run a second pass on brief 02 to close the three gaps above before
       relying on it, or proceed with what exists
-- [ ] Fold both into `RESEARCH.md` (still an empty template as of this handoff)
-- [ ] Decide the brand profile format from what the guidelines turned out to need. Early
-      signal from `lemonade-voice.md`: voice may split by **stakes** (low/medium/high) more
-      than by content type - worth weighing against the content-type structure the brief
-      assumed, before fixing the profile's file layout.
+- [ ] Decide the brand profile format. The open question is **stakes vs content type** as the
+      organising axis. `lemonade-voice.md` found the voice switches by stakes, sometimes
+      between adjacent sentences on one screen, which argues against content-type folders.
 
 ## Day 2 - Core engine
 
@@ -38,7 +44,10 @@
 
 ## Day 3 - Evaluation
 
-- [ ] <!-- how we score on-brand, and the test set that proves it -->
+- [ ] Implement criterion 5 (mechanics) as code. Free, no model, runs first
+- [ ] Implement criteria 1-3 as model-graded checks, pairwise against corpus examples of the
+      same stakes level rather than absolute 0-100 scoring
+- [ ] Model reproduces the human scores from the calibration set, or the rubric gets fixed
 
 ## Day 4 - Surfaces and the learning loop
 
