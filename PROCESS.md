@@ -99,3 +99,41 @@ no example does not go in. That constraint is doing real work - it makes the doc
 checkable line by line, and it stops a small model writing confident guidance it never found
 evidence for. We will rework the result, but we will be editing something evidenced rather
 than starting from a blank page.
+
+## 2026-08-12 - Session 2 close: both research briefs executed
+
+**What happened.** Brief 01 (prior art) ran to completion in this thread - `research/prior-art.md`
+and `research/feature-matrix.md`, reviewed with Stav in plain language twice (once too
+narrowly focused on the voice-definition finding alone, corrected on request to cover the
+full feature landscape, evaluation tooling, and markdown-as-config findings too). Brief 02
+(Lemonade voice) ran in a separate fork per the original plan and returned
+`research/lemonade-voice.md`, `research/lemonade-guidelines.md`, and the gitignored
+`research/lemonade-corpus.md` - but has not been reviewed with Stav yet. That review is the
+first item for next session.
+
+**The headline finding from brief 01, worth carrying into any product decision:** across
+every angle checked - vendor docs, the feature matrix, and user reviews - nobody in this
+market treats a brand voice as something the customer can see in full, version, or export.
+It lives as a workspace setting inside the vendor's product. Separately, people already
+solving this by hand are pasting a style guide into ChatGPT every session or manually
+re-syncing a Google Doc into a Custom GPT - unprompted, real evidence of demand for exactly
+what a git-backed profile would fix. Counter-signal worth remembering: a Jasper reviewer
+switched back to plain ChatGPT because it matched their brand voice better than Jasper's own
+brand-voice feature did. "We have a brand voice setting" is not enough on its own, and the review evidence shows
+people churn on that exact gap.
+
+**Brief 02 came back honest about its own limits, which is the right failure mode.** It hit
+61 of the 150-200 excerpt target and said so on its own front page rather than padding to
+hit the number. `lemonade.com` blocked direct fetches, so several content types lean on
+search-index snippets instead of full reads. Three content types - email/notifications,
+ads/video, first-party failure copy - are thin to empty. Despite that, the finding it did
+produce looks substantive: Lemonade's voice may split into three registers by **stakes**
+(low/medium/high risk of the moment) rather than by **content type**, and the clearest
+evidence is a single Maya chat modal where a punny feature pitch sits one sentence away from
+a hard legal disclaimer. If that holds up on review, it argues against organizing the brand
+profile by content-type folders and for organizing it by risk level instead - a real
+architectural fork that should get decided deliberately, not by default.
+
+**Not yet done, flagged rather than fudged:** RESEARCH.md is still the empty template from
+day one - neither brief's findings have been folded into it. That's the actual next step
+before Day 1 can be called closed.
