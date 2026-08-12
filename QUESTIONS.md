@@ -17,7 +17,21 @@
   content type - is a strong enough finding to react to now; a second pass can be scoped
   precisely once we know which gaps actually change a decision, instead of guessing.
 
-<!-- - **Question?** Context in one line. Options with a recommendation. -->
+- **Do we spend more time on research, or start building?** The Lemonade pass found 54 real
+  examples against a target of 150. Three kinds of content are missing: claim denials and
+  price increases, marketing email, and ads. The denial gap matters most, because that's the
+  highest-stakes writing an insurer does and we currently have none of it.
+  Options: (a) start building and close the gap later if it bites, (b) spend half a day on a
+  second pass aimed only at denial and rejection copy, (c) full second pass on all three gaps.
+  **Recommendation: (b).** One gap is load-bearing and the other two aren't. A full second
+  pass costs a day out of five for content types we may not even generate.
+
+- **How should the brand profile be organised: by stakes, or by content type?** The research
+  found Lemonade's voice switches with what's at risk, not with the channel, and both can
+  appear a sentence apart on one screen. That argues for folders by stakes level. Organising
+  by content type is the more conventional shape and easier for a person to navigate.
+  This decides the file structure of the profile, so it's worth deciding deliberately rather
+  than by default. Needs a proper conversation, not a yes/no.
 
 ## Answered
 

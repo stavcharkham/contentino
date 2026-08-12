@@ -21,16 +21,17 @@
       analysis and the guidelines exists in the corpus, none invented. Corpus header says 61
       excerpts, actual count is 54.
 - [x] Write `RUBRIC.md` - six criteria, thresholds, calibration steps
-- [ ] **Score the Lemonade corpus against `RUBRIC.md`.** Real Lemonade copy should come out
-      at 9-10. If it does not, the rubric is wrong, not the copy. Do this before the rubric
-      is used to gate anything. Two people score 20 pieces independently first, then compare
-      wording on any criterion where they disagree often.
-- [ ] Fold both research briefs into `RESEARCH.md` (draft shown to Stav, awaiting sign-off)
-- [ ] Decide whether to run a second pass on brief 02 to close the three gaps above before
-      relying on it, or proceed with what exists
+- [x] Fold both research briefs into `RESEARCH.md`. Approved by Stav before writing.
+- [ ] **Score the Lemonade corpus against `RUBRIC.md`.** Not started. Real Lemonade copy
+      should come out at 9-10. If it does not, the rubric is wrong, not the copy. Do this
+      before the rubric gates anything. Two people score 20 pieces independently first, then
+      fix the wording of any criterion where they disagree often.
+- [ ] Decide whether to run a second pass on brief 02 to close the three gaps
+      (denial/rejection/price-increase copy, email, ads) or proceed with what exists.
+      Waiting on Stav - see `QUESTIONS.md`.
 - [ ] Decide the brand profile format. The open question is **stakes vs content type** as the
-      organising axis. `lemonade-voice.md` found the voice switches by stakes, sometimes
-      between adjacent sentences on one screen, which argues against content-type folders.
+      organising axis. The research found the voice switches by stakes, sometimes between
+      adjacent sentences on one screen, which argues against content-type folders.
 
 ## Day 2 - Core engine
 
@@ -59,4 +60,15 @@
 
 ## Not doing
 
-<!-- Things consciously cut, moved here rather than deleted so the reasoning survives. -->
+Cut on 2026-08-12 after the prior-art research. These are the features the market sells to
+win deals, and we have one company and one set of guidelines.
+
+- Templates and template libraries
+- SEO scoring, keyword targeting, SERP analysis
+- Image generation
+- Plagiarism and AI-detection checks
+- Multi-brand support and tenant models
+- Seat-based collaboration, comments, roles
+- Performance analytics feeding back into generation
+
+Also cut: shipping this open source. Reversed on 2026-08-12, reasoning in `DECISIONS.md`.

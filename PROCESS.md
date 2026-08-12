@@ -137,3 +137,58 @@ architectural fork that should get decided deliberately, not by default.
 **Not yet done, flagged rather than fudged:** RESEARCH.md is still the empty template from
 day one - neither brief's findings have been folded into it. That's the actual next step
 before Day 1 can be called closed.
+
+## 2026-08-12 - Session 3: research reviewed, product reframed, rubric set
+
+**Reviewed both research passes.** The check that mattered was whether the Lemonade findings
+were real, since the in-app copy was transcribed from screenshots by a small model. Every
+LEM id cited across the analysis and the guidelines was verified against the corpus - 37
+citations in each, all present, none invented. Two flaws found and left in the record rather
+than quietly fixed: the corpus header claims 61 excerpts when there are 54, and around eight
+entries rest on search summaries rather than a confirmed source. The pass also refused to pad
+- asked for 10 rewrite pairs it delivered 5 and said why. That is the right failure mode and
+worth more than hitting the number would have been.
+
+**Dropped open source.** It bought generality we do not need and cost a neutral example
+profile, a second brand to prove the point, and licensing surface, inside a five-day budget.
+Naming Lemonade as the customer also sharpens every product question: "would a Lemonade
+content person use this on a Tuesday" has an answer, "would anyone" does not. The old
+decision is annotated as reversed rather than deleted, since the reasoning it argues against
+is the interesting part.
+
+What survives the reversal is the folder, for a better reason than before. The old argument
+was portability for strangers. The new one is that an approved guideline has to graduate into
+a skill in the company plugin and a tool in the agent, and a settings row cannot graduate.
+Stav's framing, and it is a better product idea than the one the project started with.
+
+**Argued against the 10x goal and won the point.** Stav wanted content produced 10x faster.
+The prior-art research says the complaint across every product in the market is the editing
+and checking still needed before publishing, not drafting speed. Nobody is bottlenecked on
+writing. Making drafting faster produces more drafts queuing in front of the same reviewer.
+Moved the 10x onto time-to-approved. This is the clearest case in the project so far of
+research changing a goal rather than decorating one.
+
+**The rubric.** Six criteria scored 0-2, with compliance as a veto. Three of them - register
+match, humour boundary, plain language calibration - exist because the research found those
+specific failure modes, not because they sounded measurable. Stav tightened the thresholds:
+below 8 nothing reaches a human at all. His reasoning is better than the original proposal,
+because a person editing a 6 into an 8 is the exact overhead the product exists to delete,
+and regenerating is cheaper than their attention.
+
+One design note worth keeping: the research said pairwise judging beats absolute scoring, and
+we have 54 real Lemonade excerpts. So the subjective criteria get judged against a real
+example at the same stakes level rather than scored in the abstract, and the corpus becomes
+the benchmark instead of research leftovers. It also gives a free validation: real Lemonade
+copy should score 9-10, and if it does not the rubric is wrong.
+
+**On writing RESEARCH.md.** Took four passes and the corrections were all the same
+correction. The first draft explained our reasoning to ourselves. Stav's note was that the
+document is written for people at Lemonade, and they should not have to read our process to
+understand our findings. He caught a line - "Read through one filter: the person using this
+works here" - that told the reader the method instead of just writing from it. Worth
+recording because the same failure will recur in the final write-up, where the temptation to
+narrate the thinking is strongest.
+
+**Verified, and not.** RESEARCH.md, RUBRIC.md and the doc reframe are written and committed.
+The rubric has not been tested against anything. Until the corpus is scored, it is a
+reasonable-looking document with no evidence it works.
