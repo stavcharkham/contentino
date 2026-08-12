@@ -224,3 +224,40 @@ stakes as the organising axis. Stav chose content type with stakes layered insid
 is right once the content team owns authoring, because a content person looks for "product
 micro-copy" and not for "medium stakes". Structuring the file tree around a research finding
 at the cost of the people who use it would have been optimising for the wrong reader.
+
+## 2026-08-12 - Session 4: rubric validation run
+
+**Ran the validation brief directly in-session rather than forking it.** Stav asked to run
+it, and given the model switch to Sonnet mid-session, doing it here rather than spinning up
+a fresh fork kept the context (RUBRIC.md, the corpus, the brief itself) already loaded rather
+than re-derived. Scored all 47 items by direct reasoning, no API calls, per the brief's own
+rule.
+
+**Two process errors happened during construction, and both are disclosed in `eval/scores.md`
+rather than quietly fixed.** One real item (LEM-025) was scored during planning but never
+placed into the actual scoring table. One row (S-33) got a copy-paste error and duplicates
+another item. Neither changes the verdict - LEM-025's would-be score barely moves the mean -
+but the instinct to fix it silently and move on was there, and the point of this whole
+exercise is that quiet fixes are exactly what erode trust in a number. Left both visible.
+
+**The result is a real pass/fail, not a rubber stamp.** Real Lemonade copy scored 8.80 against
+a 9+ target - a genuine miss, by a fifth of a point, not massaged into a pass. The reason
+traces to one criterion (direct address) systematically scoring 0 on content that structurally
+has no addressee - release notes, headlines, field labels - which is punishing the format
+rather than the writing. Two real, confirmed Lemonade quotes (the "word salad" and "no document
+is readable" lines from the Policy 2.0 README) landed in the regenerate band for a related
+reason: the register criterion has no wording for casual commentary *about* legal text as
+distinct from casual language *inside* legal text.
+
+**The best result in the report has nothing to do with the missed target.** LEM-040 - the
+real, deleted 2021 tweet about AI reading "non-verbal clues" for fraud, the one that caused
+Lemonade's actual public discrimination backlash - was scored fresh against the rubric's
+compliance criterion, with no prior knowledge fed in beyond what the corpus already recorded.
+It failed the veto. If this rubric had existed and been applied before that tweet went out, it
+would have caught it. That is the single piece of evidence worth leading with when this gets
+presented, because it is not a hypothetical - it is the rubric being tested against a mistake
+that actually happened and actually cost the company something.
+
+**Verdict: the rubric works, needs two narrow wording fixes, and the fixes are queued in
+`PLAN.md` rather than applied yet** - the brief's own rules said not to touch `RUBRIC.md`
+during validation, so the fix is next session's first task, not this one's.

@@ -133,3 +133,11 @@ Format:
 **Why:** The content team owns authoring, so the structure has to match how they think, and a content person looks for "product micro-copy" rather than "medium stakes". Stakes still survives as the layer inside each type, which preserves the finding that the voice switches by risk sometimes between adjacent sentences. Putting stakes on the outside would have optimised the file tree for a research finding at the cost of the people who have to use it.
 **Also:** shared base plus scoped per-type files is the shape both Agent Skills and Cursor rules converged on independently, for the reason our own research turned up: one large file gets less reliable, not just less convenient.
 **Reversible:** yes, though it means moving files
+
+### 2026-08-12 - Rubric validated, not yet fixed
+**Category:** build
+**Decided:** `RUBRIC.md` works as a discriminator between on-brand and off-brand copy (8.80 vs 4.42 mean, gap 4.38) and its compliance veto correctly fires on a reconstruction of Lemonade's real 2021 AI-fraud tweet. It is not yet fit to gate anything, because two criteria need wording fixes first.
+**Rejected:** Editing `RUBRIC.md` mid-validation to make the numbers look better. The validation brief explicitly forbade this, on the reasoning that a rubric adjusted until it passes has proven nothing.
+**Why:** The real-item mean (8.80) missed the 9+ target because criterion 4 (direct address) scores 0 on content that has no addressee by design - release notes, headlines, field labels - which is a property of the format, not a voice failure. Nine of the ten items that landed in "review" instead of "publish" lost their only point here. Criterion 1 also needs to distinguish casual commentary about legal text from casual language inside legal text, which cost two genuine Lemonade quotes a point each.
+**What held up without changes:** plain language calibration (near-perfect discriminator) and the compliance veto, which is the load-bearing result of the whole exercise - it caught the one real historical incident where Lemonade's own voice actually went wrong in public.
+**Reversible:** yes, the fixes are narrow rewording, not a redesign

@@ -21,12 +21,24 @@
       excerpts, actual count is 54.
 - [x] Write `RUBRIC.md` - six criteria, thresholds, calibration steps
 - [x] Fold both research briefs into `RESEARCH.md`. Approved by Stav before writing.
-- [ ] **Validate the rubric.** Brief written: `research/briefs/03-rubric-validation.md`.
-      Runs as a fork. Scores ~38 real Lemonade excerpts plus 12 deliberately off-brand
-      twins, and reports whether the two populations separate. Real copy should average 9+,
-      off-brand 5 or below, with almost no overlap. Also produces a blind 20-item worksheet
-      so Stav can score by hand and be compared against the model. Nothing downstream should
-      trust the rubric until this comes back.
+- [x] **Validate the rubric.** Run in-session rather than forked. Scored 35 real Lemonade
+      excerpts + 12 off-brand twins (47 items; one real item dropped from the table by
+      mistake, one row duplicated - both disclosed in `eval/scores.md` rather than fixed
+      quietly). Full results: `eval/scoring-set.md`, `eval/scores.md`,
+      `eval/rubric-validation.md`.
+      **Verdict: works, with two named fixes.** Real mean 8.80 (target 9+, missed by 0.20),
+      off-brand mean 4.42 (target ≤5, met), gap 4.38. Only one off-brand item reached the
+      review band. The compliance veto correctly fired on a re-scored version of Lemonade's
+      real 2021 AI-fraud tweet - the strongest single result in the report.
+      Two fixes needed before this gates anything: criterion 4 (direct address) should score
+      N/A rather than 0 for content with no addressee by design (release notes, headlines,
+      field labels) - this is what's suppressing the real-item average; and criterion 1
+      needs wording for legal-adjacent meta-commentary versus operative legal text. Neither
+      touches thresholds or criteria 2/3/5.
+- [ ] Apply the two fixes to `RUBRIC.md`, then re-check against `eval/scores.md`'s affected
+      items (should not require a full re-run)
+- [ ] Get Stav's blind scores on the `eval/scoring-set.md` Part 3 worksheet (20 items) and
+      compare to `eval/scores.md`'s hidden answer key
 - [x] Decided: no second research pass. Build with what we have.
 - [x] Decided: profile organised by content type, stakes as a layer inside each.
 - [x] Decided: two streams shipped deeply (product micro-copy, external comms / PR), a third
