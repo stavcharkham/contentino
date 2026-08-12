@@ -69,3 +69,33 @@ threw out insurance jargon for plain words. A quick check of the app shows plain
 and "Hurricane Deductible" sitting on a coverage screen. So the brief names that story and
 tells the researcher not to collect quotes that confirm it. Left alone, a small model with a
 tidy hypothesis will find evidence for it every time.
+
+**Second amendment - both briefs widened.** Stav pushed back on scope. Brief 01 was too
+narrow: it treated the whole space as a single question about how tools let you set a voice.
+That is our bet, but it is not the market. Rewritten into seven parts - map the space,
+a ~29-column feature matrix, four walked product flows, a sentiment pass, the voice
+mechanism in depth, evaluation tooling, markdown-as-config.
+
+The addition worth naming is the sentiment pass. Marketing pages describe the product
+someone hoped to build; reviews describe the one that shipped. So the brief sends the
+researcher to two- and three-star reviews, churn threads, and "why I cancelled" videos, and
+asks two questions we would not have got any other way: which features never come up in a
+single review (nobody uses those), and who is describing a manual workaround - a prompt
+document they paste in every time, a folder of examples, a custom GPT. Anyone doing that is
+describing our product before it exists, and they are the closest thing to proof of demand
+we can get without shipping.
+
+Brief 02 was reorganised from register to **content type**, thirteen of them, ten to fifteen
+examples each, 150-200 total. Register is still tagged, but content type is the axis a
+content team actually works along and the axis the guidelines have to be organised by.
+Mobbin dropped from being the backbone to being one source among many - the brief now sends
+the researcher to milled.com for marketing emails, the Wayback Machine for copy that has
+since been sanded down, and Reddit for screenshots of real claim denials, which is often the
+only public route to genuine failure copy.
+
+Brief 02 now also writes the guidelines itself rather than handing back raw findings. One
+rule governs that document: every rule carries examples, cited by corpus ID, and a rule with
+no example does not go in. That constraint is doing real work - it makes the document
+checkable line by line, and it stops a small model writing confident guidance it never found
+evidence for. We will rework the result, but we will be editing something evidenced rather
+than starting from a blank page.
