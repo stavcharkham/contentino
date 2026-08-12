@@ -41,3 +41,31 @@ where a regulated insurer has the least freedom.
 
 **Open at the end of this session.** Mobbin access, and whether a corpus of quoted Lemonade
 copy belongs in a public repo. Both in `QUESTIONS.md`.
+
+**Amendments after review.** Stav confirmed Mobbin access through MCP and chose to keep the
+raw corpus out of the public repo. Both went to `DECISIONS.md`.
+
+He also set a requirement for what comes after research: a full analysis and a brand
+guidelines document with a lot of examples for everything. That reshaped brief 02 more than
+it looks. The corpus target went from 40-60 excerpts to 120-150, because a guideline that
+says "keep sentences short" is worth nothing and one that carries six real openings is worth
+something - and those examples cannot be invented after the fact. Two new sections were
+added: contrast pairs, where Lemonade says the same thing in two registers, which isolates
+what actually changes with register while holding the subject still; and a pass that marks
+the best two or three examples of each pattern, so whoever writes the guidelines is not
+re-reading the whole corpus hunting for them.
+
+**A risk we accepted knowingly.** The Mobbin tools return screenshots, so every in-app string
+is transcribed from an image by a small model. That is the highest-probability place in this
+research for a fabricated quote, and a fabricated quote in the corpus becomes a rule in the
+brand profile. The brief handles it with verifiability rather than trust: every excerpt
+carries its `mobbin_url`, anything not plainly legible is marked `[unclear]`, and partial
+sentences may not be completed from context. Worth noting for the write-up, since the same
+problem - a generated artifact that looks authoritative and cannot be checked - is the one
+our own product exists to solve.
+
+**One thing added to the brief on purpose.** The obvious story about Lemonade is that they
+threw out insurance jargon for plain words. A quick check of the app shows plain "Deductible"
+and "Hurricane Deductible" sitting on a coverage screen. So the brief names that story and
+tells the researcher not to collect quotes that confirm it. Left alone, a small model with a
+tidy hypothesis will find evidence for it every time.

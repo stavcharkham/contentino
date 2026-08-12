@@ -41,14 +41,60 @@ Do not touch `RESEARCH.md`, `PRD.md`, `DECISIONS.md`, or `PLAN.md`.
   Find it and read it properly.
 - The Giveback pages and any transparency / annual report content
 
-**Tier 2 - product surfaces**
+**Tier 2 - product surfaces, via the Mobbin MCP server**
 
-- Mobbin (mobbin.com) - Lemonade's app screens. Look for the onboarding flow with **Maya**
-  (their conversational bot) and the claims flow with **AI Jim**. Capture the actual UI
-  strings: button labels, field labels, empty states, confirmations.
-  **Mobbin may require an account.** If you hit a login wall, stop, note it clearly in the
-  output, and continue with the other sources. Do not create an account, and do not guess
-  what the screens say.
+You have Mobbin access through MCP tools. Use them. The app is listed as **Lemonade
+Insurance** and the library is confirmed to hold the conversational onboarding with **Maya**
+and the claims flow. This is our only source for `ui-microcopy` and much of our `failure`
+copy, so give it real time.
+
+Tools available:
+
+- `search_screens` - single screens. Use `platform: "ios"`, `mode: "deep"`, and name the app
+  in the query.
+- `search_flows` - multi-step journeys. Better than `search_screens` when you want to see
+  how copy changes across the steps of one task.
+- `search_sections` - website sections, no platform parameter.
+
+Run **separate searches per flow**. Do not combine intents in one query - the tools are
+explicit that this degrades results. Suggested queries, and add your own:
+
+| Query | Platform | Looking for |
+|---|---|---|
+| `Lemonade Insurance onboarding chat with Maya assistant` | ios | conversational, ui-microcopy |
+| `Lemonade Insurance filing a claim step by step` | ios | conversational, failure |
+| `Lemonade Insurance quote and price summary with coverage options` | ios | ui-microcopy |
+| `Lemonade Insurance policy details and coverage explanation` | ios | support, legal |
+| `Lemonade Insurance payment and billing screens` | ios | ui-microcopy |
+| `Lemonade Insurance empty state or error message` | ios | failure |
+| `Lemonade Insurance settings and account management` | ios | ui-microcopy |
+| `Lemonade Insurance Giveback and charity selection` | ios | marketing |
+| `Lemonade insurance homepage hero with quote form` | web (sections) | marketing |
+| `Lemonade insurance pricing and plan comparison` | web (sections) | marketing |
+
+**Transcription discipline - read this twice.** These tools return *images*. You are reading
+copy off screenshots, which is the single most likely place in this whole brief for you to
+write down something that was never on the screen. Our brand profile is built from these
+strings, so an invented one poisons the product.
+
+- Transcribe only text you can actually read in the image. Character for character,
+  including capitalisation, punctuation, and ellipses.
+- If a string is cut off, too small, or ambiguous, mark it `[unclear]` and transcribe what
+  you can. Never complete a partial sentence from context.
+- Every screen excerpt must carry its `mobbin_url` so a human can open the screen and check
+  you. No URL, no excerpt.
+- Note capitalisation exactly as shown. Button and section-header casing is a real voice
+  signal and it is easy to normalise by accident.
+- Do not describe a screen from its metadata. Look at the image.
+
+**One warning against a lazy conclusion.** The obvious story about Lemonade is "they threw
+out insurance jargon and replaced it with plain words". There is counter-evidence to that
+sitting in the app. Do not assume the story and then collect quotes that fit it. Check which
+technical terms actually survive, where they survive, and what sits next to them when they
+do. If the real pattern is more mixed than the story, that is a better finding.
+
+**Also in tier 2**
+
 - App Store and Google Play listing copy, and the **release notes** - release notes are an
   unusually honest voice sample because nobody polishes them for a campaign.
 
@@ -85,13 +131,27 @@ when things go wrong, and it is where most generated content falls apart. Hunt f
 ### [register-tag] Short description
 > The excerpt. Keep it to a sentence or two.
 
-**Source:** URL
+**Source:** URL - for Mobbin screens this is the `mobbin_url`, always
 **Checked:** YYYY-MM-DD
 **Note:** anything about context - where on the page, what the user had just done.
 ```
 
-Aim for 40-60 excerpts spread across registers. Quantity matters less than spread: 10
-marketing excerpts and nothing else is a failed brief.
+**Volume target: 120-150 excerpts, with at least 8 in every register you can find.**
+
+That is deliberately a lot, and here is why. This corpus is not the deliverable - it is the
+raw material for a full brand guidelines document that has to carry worked examples for
+every rule it states. A guideline that says "keep sentences short" is worth nothing; one
+that says "keep sentences short - here are six real openings, here are three we rewrote to
+match" is worth something. Every rule we end up writing needs examples behind it, and we
+cannot invent those later. Collect generously now.
+
+Spread beats volume where the two conflict. 120 marketing excerpts and nothing else is a
+failed brief; 60 well spread across nine registers is a good one. If a register is genuinely
+thin in public sources, say so rather than padding it.
+
+Where you find the same move repeated - the same greeting shape, the same way of softening
+bad news - collect several instances rather than one. Repetition is the evidence that it is
+a pattern and not an accident, and the guidelines will need to show it.
 
 **Keep every excerpt short - a sentence or two.** Never paste whole pages, whole posts, or
 whole policy sections. Always include the URL. This is style analysis, not republication.
@@ -137,7 +197,22 @@ They are a regulated insurer in the US and Europe. Note any language that looks
 compliance-driven: disclaimers, hedged claims, things they conspicuously never promise.
 A brand profile that ignores this will generate content that cannot ship.
 
-### 7. What a generator would get wrong
+### 7. Contrast pairs
+Find places where Lemonade says **the same thing in two different registers** - a concept
+explained on the marketing site and again in the policy, or a number shown in the app and
+described in a help article. Line them up side by side.
+
+These pairs are the most useful single artifact you can hand us. They isolate what changes
+with register while holding the subject matter still, which is exactly the distinction the
+brand profile has to encode. Collect as many as you find, even imperfect ones.
+
+### 8. Worked examples for the guidelines
+For each significant pattern you identified in sections 2-6, name the **two or three
+excerpts that demonstrate it best** and say in one line why each is the clearest case. Do
+not write the guidelines - just mark the evidence, so whoever writes them is not re-reading
+the whole corpus to find the good examples again.
+
+### 9. What a generator would get wrong
 Your judgement: if a model were asked to "write like Lemonade" with no profile, what would
 it produce, and how would that differ from the real thing? Be concrete.
 

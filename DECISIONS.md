@@ -64,3 +64,18 @@ Format:
 **Rejected:** A generic docs layout.
 **Why:** The brief asks for "an end-to-end mini-product cycle: discover, define, design, deliver". Structuring the repo the same way makes the thinking legible to the people who wrote that sentence.
 **Reversible:** yes
+
+### 2026-08-12 - Raw research corpora stay out of the public repo
+**Category:** product
+**Decided:** `research/*-corpus.md` is gitignored. The analysis derived from a corpus is published; the quoted excerpts are not.
+**Rejected:** Publishing the Lemonade corpus with short attributed excerpts.
+**Why:** Short quotes for style analysis are ordinary research and would probably be fine, but the repo goes public and the corpus file is a page of another company's copy with no upside in shipping it. The analysis is our work and is the part worth reading. Gitignoring costs nothing and removes the question.
+**Reversible:** yes, though not once published
+
+### 2026-08-12 - Lemonade's in-app copy comes from Mobbin via MCP
+**Category:** research
+**Decided:** Pull `ui-microcopy`, `conversational`, and `failure` copy from Mobbin's screen library through its MCP server. Confirmed the Lemonade Insurance app is present, including the Maya onboarding and the claims flow.
+**Rejected:** Working from App Store screenshots and the web funnel only.
+**Why:** In-app copy is a distinct register and the only place we can see how the brand behaves when a user is mid-task or being told no. Losing it would leave the profile with marketing voice and little else.
+**Risk carried:** the tools return screenshots, so every string is transcribed from an image. The brief requires a `mobbin_url` on every excerpt and an `[unclear]` marker on anything not plainly legible, so a human can spot-check.
+**Reversible:** yes

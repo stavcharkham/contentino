@@ -1,6 +1,10 @@
 # Interview material. Never published.
 interview/
 
+# Raw research corpora. Quoted third-party copy, kept local.
+# The analysis derived from these is published; the raw excerpts are not.
+research/*-corpus.md
+
 # Secrets
 .env
 .env.*

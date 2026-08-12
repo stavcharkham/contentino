@@ -5,11 +5,22 @@
 
 ## Day 1 - Discover
 
-- [ ] <!-- research, brand profile, architecture decision -->
+- [x] Write the two research briefs (`research/briefs/`)
+- [ ] Run brief 01, prior art - forked, small model
+- [ ] Run brief 02, Lemonade voice - forked, small model
+- [ ] Review both results together, fold into `RESEARCH.md`
+- [ ] Full voice analysis and the Lemonade brand guidelines, worked examples for every rule
+- [ ] Decide the brand profile format from what the guidelines turned out to need
 
 ## Day 2 - Core engine
 
 - [ ] <!-- generation + brand profile format -->
+
+> Note on ordering: the guidelines get written before the profile format is fixed, not
+> after. Designing the file structure first and then filling it means inventing a shape and
+> forcing real content into it. Writing the guidelines first tells us what a profile has to
+> hold - and if Lemonade turns out to have several distinct voices, that changes the
+> structure rather than just the contents.
 
 ## Day 3 - Evaluation
 
