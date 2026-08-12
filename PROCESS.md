@@ -192,3 +192,35 @@ narrate the thinking is strongest.
 **Verified, and not.** RESEARCH.md, RUBRIC.md and the doc reframe are written and committed.
 The rubric has not been tested against anything. Until the corpus is scored, it is a
 reasonable-looking document with no evidence it works.
+
+## 2026-08-12 - Session 3 addendum: scope answered
+
+**Checked the shortlist against the brief before acting on it.** The plan was to pick the
+two or three content types with the most evidence. Reading the assignment's five named
+streams changed the answer: app store release notes are our second-best-evidenced type at 8
+solid excerpts and are not one of the five. Picking on evidence alone would have shipped a
+stream nobody asked for. Release notes stay in the corpus as material for the base voice.
+
+The overlap that matters: product micro-copy has ~27 excerpts and is named. External comms
+has 8 and is named. Customer email has zero, and we had just decided not to research further,
+so it is out. Those two also sit at opposite ends of the stakes axis, which means the two
+shipped streams demonstrate both product goals rather than the same one twice.
+
+**The reframe Stav made, which is larger than it looks.** We are not authoring Lemonade's
+guidelines. The content team is. Our job is the path that makes adding a content type safe
+and easy. That converts an obvious weakness into the argument: we ship two streams deeply and
+show that the third takes an afternoon and belongs to the people who own the copy. A tool
+whose coverage depends on us stops growing the day we stop working on it.
+
+It also adds a gate nobody had thought about. `RUBRIC.md` scores generated content. If the
+content team authors guidelines, something has to score the *guideline*. The check that falls
+out of it is neat: a new content type ships with real approved examples, those examples get
+scored against the rubric using their own guideline, and if genuine copy does not reach 9-10
+the guideline is wrong. Same trick as validating the rubric against the Lemonade corpus,
+pointed at a different target.
+
+**Content type won over stakes, and the reason is worth keeping.** The research pointed at
+stakes as the organising axis. Stav chose content type with stakes layered inside, and that
+is right once the content team owns authoring, because a content person looks for "product
+micro-copy" and not for "medium stakes". Structuring the file tree around a research finding
+at the cost of the people who use it would have been optimising for the wrong reader.

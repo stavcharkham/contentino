@@ -110,3 +110,26 @@ Format:
 **Rejected:** A rubric per content type. Also rejected: sending 5-7 to a human for editing.
 **Why:** Per-content-type rubrics inherit the assumption the research disproved - voice switches by stakes, and both registers can appear on one screen a sentence apart. A rubric keyed to content type would score that as one thing. On the threshold: a human editing a 6 into an 8 is the exact overhead the product exists to delete, and regeneration is cheaper than their attention. Criteria 1-3 exist because the research found those specific failure modes, not because they sounded measurable.
 **Reversible:** yes
+
+### 2026-08-12 - The content team authors guidelines. We build the machine that makes that safe.
+**Category:** product
+**Decided:** We do not author Lemonade's guidelines. We build the path that lets the content team add a content type, its guidelines, and its examples themselves, and we make that path enforce quality. We seed it with the two or three types we have evidence for.
+**Rejected:** Us writing a complete set of guidelines for all five content streams and shipping that as the product.
+**Why:** The content team understands their content better than we do, and a tool whose coverage depends on us authoring it stops growing the day we stop working on it. It also answers the obvious challenge to a partial build: we ship two or three streams deeply and show that adding the fourth takes an afternoon and belongs to the people who own the copy.
+**Consequence:** there are now two gates, not one. `RUBRIC.md` scores generated content. A second, lighter check scores whether a *guideline* is fit to graduate: does it carry real examples, are they specific, do those examples score 9-10 against the rubric. A guideline whose own examples fail is a wrong guideline.
+**Reversible:** yes
+
+### 2026-08-12 - Ship two content streams deeply, seed a third
+**Category:** product
+**Decided:** **Product micro-copy** as the anchor (~27 excerpts: UI strings, bot flows, failure states) and **external comms / PR** as the second (8 excerpts: blog, investor notes). **Internal comms** seeded as a third if time allows. Not shipping customer emails or creative marketing as authored streams.
+**Rejected:** Covering all five use cases from the brief. Also rejected: app store release notes, which is our second-best-evidenced content type but is not one of the five Lemonade named. Release notes stay in the corpus as evidence for the base voice.
+**Why:** Those two sit at opposite ends of the stakes axis, which is the whole architecture in one demo. Micro-copy is high volume and mostly automatable, so it carries goal one. PR is low volume and high stakes, so it carries goal two. Customer email has zero usable evidence and we chose not to research further; generating it would mean inventing a voice we never observed.
+**Reversible:** yes
+
+### 2026-08-12 - Profile is organised by content type, with stakes as a layer inside each
+**Category:** build
+**Decided:** A folder per content type. Inside each, guidance keyed by stakes level. A shared base holds the rules that apply everywhere: registers, mechanics, vocabulary.
+**Rejected:** Folders by stakes level, which is what the research alone would have suggested.
+**Why:** The content team owns authoring, so the structure has to match how they think, and a content person looks for "product micro-copy" rather than "medium stakes". Stakes still survives as the layer inside each type, which preserves the finding that the voice switches by risk sometimes between adjacent sentences. Putting stakes on the outside would have optimised the file tree for a research finding at the cost of the people who have to use it.
+**Also:** shared base plus scoped per-type files is the shape both Agent Skills and Cursor rules converged on independently, for the reason our own research turned up: one large file gets less reliable, not just less convenient.
+**Reversible:** yes, though it means moving files

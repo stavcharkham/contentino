@@ -25,22 +25,27 @@
       should come out at 9-10. If it does not, the rubric is wrong, not the copy. Do this
       before the rubric gates anything. Two people score 20 pieces independently first, then
       fix the wording of any criterion where they disagree often.
-- [ ] Decide whether to run a second pass on brief 02 to close the three gaps
-      (denial/rejection/price-increase copy, email, ads) or proceed with what exists.
-      Waiting on Stav - see `QUESTIONS.md`.
-- [ ] Decide the brand profile format. The open question is **stakes vs content type** as the
-      organising axis. The research found the voice switches by stakes, sometimes between
-      adjacent sentences on one screen, which argues against content-type folders.
+- [x] Decided: no second research pass. Build with what we have.
+- [x] Decided: profile organised by content type, stakes as a layer inside each.
+- [x] Decided: two streams shipped deeply (product micro-copy, external comms / PR), a third
+      seeded if time allows (internal comms). Not shipping customer email or creative
+      marketing. Reasoning in `DECISIONS.md`.
 
 ## Day 2 - Core engine
 
-- [ ] <!-- generation + brand profile format -->
+- [ ] Build the profile structure: shared base, one folder per content type, stakes layered
+      inside each
+- [ ] Write the base voice file from the research: registers, mechanics, vocabulary
+- [ ] Seed **product micro-copy** as the first content type, with its examples
+- [ ] Seed **external comms / PR** as the second
+- [ ] Generation reads the base plus the type, and resolves the stakes layer from the request
+- [ ] The path a content person takes to add a new type, end to end. This is the product, not
+      a nice-to-have. It has to be usable by someone who does not write code
 
 > Note on ordering: the guidelines get written before the profile format is fixed, not
 > after. Designing the file structure first and then filling it means inventing a shape and
 > forcing real content into it. Writing the guidelines first tells us what a profile has to
-> hold - and if Lemonade turns out to have several distinct voices, that changes the
-> structure rather than just the contents.
+> hold.
 
 ## Day 3 - Evaluation
 
@@ -48,6 +53,10 @@
 - [ ] Implement criteria 1-3 as model-graded checks, pairwise against corpus examples of the
       same stakes level rather than absolute 0-100 scoring
 - [ ] Model reproduces the human scores from the calibration set, or the rubric gets fixed
+- [ ] **The second gate: is a guideline fit to graduate?** A new content type ships with real
+      examples. Score those examples against the rubric using their own guideline. If real
+      approved copy does not reach 9-10, the guideline is wrong and the type is not ready.
+      This is what makes the content team owning authoring safe.
 
 ## Day 4 - Surfaces and the learning loop
 
