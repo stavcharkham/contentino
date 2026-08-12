@@ -79,3 +79,10 @@ Format:
 **Why:** In-app copy is a distinct register and the only place we can see how the brand behaves when a user is mid-task or being told no. Losing it would leave the profile with marketing voice and little else.
 **Risk carried:** the tools return screenshots, so every string is transcribed from an image. The brief requires a `mobbin_url` on every excerpt and an `[unclear]` marker on anything not plainly legible, so a human can spot-check.
 **Reversible:** yes
+
+### 2026-08-12 - Voice is organised by stakes, not by content type
+**Category:** research
+**Decided:** Provisionally treat the register-switching rule in the Lemonade brand profile as keyed to the stakes of the sentence (low/medium/high - performing/working/covering), not to which content type it appears in. Evidence: the same UI modal switches from an excited feature pitch straight into a flat liability disclaimer between two adjacent sentences.
+**Rejected:** Organizing the profile strictly by content type (the structure brief 02 was written around).
+**Why:** Content type predicts almost nothing about register on its own - marketing, UI, and chat surfaces all contain all three registers depending on what's being said in that specific sentence. A content-type playbook is still useful for defaults, but the switching rule itself has to travel with the sentence, not the channel.
+**Reversible:** yes - this is a first-pass read from 61 excerpts on one research run, not yet cross-checked
