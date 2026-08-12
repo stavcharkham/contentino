@@ -1,0 +1,17 @@
+# Interview material. Never published.
+interview/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies and build output
+node_modules/
+dist/
+build/
+.next/
+.vercel/
+
+# OS
+.DS_Store
