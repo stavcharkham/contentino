@@ -36,7 +36,7 @@ describe("Slack adapter", () => {
     expect(await adapter.collectFeedback("123.456")).toEqual([{ externalId: "123.457", who: "U1", said: "Use finish quote" }]);
   });
 
-  it("falls back to a thread emoji until the reaction scope is installed", async () => {
+  it("never posts an eyes reply when a reaction fails", async () => {
     const root = await mkdtemp(path.join(tmpdir(), "contentino-slack-ack-"));
     const api = {
       chat: { postMessage: vi.fn().mockResolvedValue({ ts: "123.457" }) },
@@ -44,8 +44,8 @@ describe("Slack adapter", () => {
       reactions: { add: vi.fn().mockRejectedValue(new Error("missing_scope")) },
     };
     const adapter = new SlackReviewAdapter(api, "C1", new LocalStorage(root));
-    await adapter.acknowledge("123.456");
-    expect(api.chat.postMessage).toHaveBeenCalledWith({ channel: "C1", thread_ts: "123.456", text: "👀" });
+    await expect(adapter.acknowledge("123.456")).rejects.toThrow("missing_scope");
+    expect(api.chat.postMessage).not.toHaveBeenCalled();
   });
 });
 

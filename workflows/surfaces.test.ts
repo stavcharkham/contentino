@@ -1,9 +1,9 @@
-import { cp, mkdtemp } from "node:fs/promises";
+import { cp, mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import type { ModelCall, ModelGateway, ModelRequest } from "@/lib/models";
-import { parseLedger } from "@/lib/ledger";
+import { parseLedger, serializeLedger } from "@/lib/ledger";
 import { LocalStorage } from "@/lib/storage";
 import type { WorkflowContext } from "./common";
 import { approveBrief, makeBrief } from "./brief";
@@ -35,6 +35,7 @@ async function context(): Promise<WorkflowContext> {
   const root = await mkdtemp(path.join(tmpdir(), "contentino-surfaces-"));
   await cp(path.join(process.cwd(), "profile"), path.join(root, "profile"), { recursive: true });
   await cp(path.join(process.cwd(), "metrics"), path.join(root, "metrics"), { recursive: true });
+  await writeFile(path.join(root, "metrics/ledger.csv"), serializeLedger([]));
   return { storage: new LocalStorage(root), models: new SurfaceGateway(), now: () => new Date("2026-08-14T09:00:00.000Z") };
 }
 

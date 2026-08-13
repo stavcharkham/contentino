@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
-import { cp, mkdtemp } from "node:fs/promises";
+import { cp, mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import type { ModelCall, ModelGateway, ModelRequest } from "@/lib/models";
-import { parseLedger } from "@/lib/ledger";
+import { parseLedger, serializeLedger } from "@/lib/ledger";
 import { LocalStorage } from "@/lib/storage";
 import { parseMarkdown } from "@/lib/artifacts";
 import { briefSchema } from "@/lib/schemas";
@@ -63,6 +63,7 @@ class DemoGateway implements ModelGateway {
 async function runDemo() {
   const root = await mkdtemp(path.join(tmpdir(), "contentino-demo-"));
   await Promise.all(["profile", "metrics"].map((folder) => cp(path.join(process.cwd(), folder), path.join(root, folder), { recursive: true })));
+  await writeFile(path.join(root, "metrics/ledger.csv"), serializeLedger([]));
   const context: WorkflowContext = { storage: new LocalStorage(root), models: new DemoGateway(), now: () => new Date("2026-08-14T09:00:00.000Z") };
 
   const drive = {

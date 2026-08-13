@@ -1,9 +1,9 @@
-import { cp, mkdtemp } from "node:fs/promises";
+import { cp, mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import type { ModelCall, ModelGateway, ModelRequest } from "@/lib/models";
-import { parseLedger } from "@/lib/ledger";
+import { parseLedger, serializeLedger } from "@/lib/ledger";
 import { LocalStorage } from "@/lib/storage";
 import { approveBrief, makeBrief } from "./brief";
 import { addContentType, validateContentType } from "./content-type";
@@ -65,6 +65,7 @@ async function testContext(): Promise<WorkflowContext> {
   const root = await mkdtemp(path.join(tmpdir(), "contentino-workflow-"));
   await cp(path.join(process.cwd(), "profile"), path.join(root, "profile"), { recursive: true });
   await cp(path.join(process.cwd(), "metrics"), path.join(root, "metrics"), { recursive: true });
+  await writeFile(path.join(root, "metrics/ledger.csv"), serializeLedger([]));
   return { storage: new LocalStorage(root), models: new PerfectGateway(), now: () => new Date("2026-08-14T09:00:00.000Z") };
 }
 

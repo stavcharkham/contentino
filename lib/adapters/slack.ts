@@ -37,11 +37,7 @@ export class SlackReviewAdapter implements ReviewAdapter {
   }
 
   async acknowledge(messageTs: string): Promise<void> {
-    try {
-      await this.api.reactions.add({ channel: this.channel, timestamp: messageTs, name: "eyes" });
-    } catch {
-      await this.api.chat.postMessage({ channel: this.channel, thread_ts: messageTs, text: "👀" });
-    }
+    await this.api.reactions.add({ channel: this.channel, timestamp: messageTs, name: "eyes" });
   }
 
   async presentDraft(draft: ReviewDraft): Promise<PresentedReview> {
