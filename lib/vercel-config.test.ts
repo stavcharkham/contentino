@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import nextConfig from "../next.config";
 
 describe("Vercel deployment configuration", () => {
   it("keeps the Drive sync within the Hobby daily cron limit", () => {
@@ -10,5 +11,9 @@ describe("Vercel deployment configuration", () => {
     expect(config.crons).toEqual([
       { path: "/api/cron/drive", schedule: "0 6 * * *" },
     ]);
+  });
+
+  it("lets Vercel package the Next.js output", () => {
+    expect(nextConfig.output).toBeUndefined();
   });
 });
