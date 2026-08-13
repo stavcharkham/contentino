@@ -6,6 +6,7 @@ import type { PresentedReview, ReviewAdapter, ReviewDraft, ReviewFeedback } from
 type SlackApi = {
   chat: { postMessage(args: Record<string, unknown>): Promise<{ ts?: string }> };
   conversations: { replies(args: Record<string, unknown>): Promise<{ messages?: Array<{ ts?: string; text?: string; user?: string; bot_id?: string }> }> };
+  reactions: { add(args: Record<string, unknown>): Promise<unknown> };
 };
 
 export function verifySlackSignature(input: {
@@ -33,6 +34,14 @@ export class SlackReviewAdapter implements ReviewAdapter {
 
   static fromToken(token: string, channel: string, storage: ContentStorage): SlackReviewAdapter {
     return new SlackReviewAdapter(new WebClient(token) as unknown as SlackApi, channel, storage);
+  }
+
+  async acknowledge(messageTs: string): Promise<void> {
+    try {
+      await this.api.reactions.add({ channel: this.channel, timestamp: messageTs, name: "eyes" });
+    } catch {
+      await this.api.chat.postMessage({ channel: this.channel, thread_ts: messageTs, text: "👀" });
+    }
   }
 
   async presentDraft(draft: ReviewDraft): Promise<PresentedReview> {

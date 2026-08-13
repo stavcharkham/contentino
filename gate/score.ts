@@ -109,7 +109,7 @@ export async function scoreDraft(input: {
     system: input.baseProfile,
     prompt: `Apply every compliance prohibition to this draft. A missing source, unsupported judgement claim, guarantee or contradiction fails.\n\n${scoringText}`,
     schema: complianceResult,
-    maxTokens: 240,
+    maxTokens: 600,
   });
   const coreCall = await input.models.complete({
     job: "judge",

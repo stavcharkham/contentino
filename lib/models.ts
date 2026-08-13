@@ -96,30 +96,52 @@ export class AnthropicGateway implements ModelGateway {
     const maxTokens = request.maxTokens ?? 1200;
     const estimatedInput = Math.ceil((request.system.length + request.prompt.length) / 3);
     const estimatedCost = calculateModelCost(model, { input_tokens: estimatedInput, output_tokens: maxTokens });
-    const release = this.budget.reserve(estimatedCost);
-    try {
-      const message = await this.client.messages.parse({
-        model,
-        max_tokens: maxTokens,
-        cache_control: { type: "ephemeral" },
-        system: [{ type: "text", text: request.system, cache_control: { type: "ephemeral" } }],
-        messages: [{ role: "user", content: request.prompt }],
-        output_config: { format: zodOutputFormat(request.schema) },
-      });
-      if (message.parsed_output === null) throw new Error(`Model ${model} returned no structured output`);
-      const usage = {
-        model,
-        input_tokens: message.usage.input_tokens,
-        output_tokens: message.usage.output_tokens,
-        cache_read_tokens: message.usage.cache_read_input_tokens ?? 0,
-        cache_write_tokens: message.usage.cache_creation_input_tokens ?? 0,
-        cost_usd: 0,
-      };
-      usage.cost_usd = calculateModelCost(model, usage);
-      this.budget.record(usage.cost_usd);
-      return { value: request.schema.parse(message.parsed_output), usage };
-    } finally {
-      release();
+    const usage = {
+      model,
+      input_tokens: 0,
+      output_tokens: 0,
+      cache_read_tokens: 0,
+      cache_write_tokens: 0,
+      cost_usd: 0,
+    };
+    let lastParseError = "unknown structured-output error";
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
+      const release = this.budget.reserve(estimatedCost);
+      try {
+        const message = await this.client.messages.create({
+          model,
+          max_tokens: maxTokens,
+          thinking: { type: "disabled" },
+          cache_control: { type: "ephemeral" },
+          system: [{ type: "text", text: request.system, cache_control: { type: "ephemeral" } }],
+          messages: [{ role: "user", content: request.prompt }],
+          output_config: { format: zodOutputFormat(request.schema) },
+        });
+        const callUsage = {
+          model,
+          input_tokens: message.usage.input_tokens,
+          output_tokens: message.usage.output_tokens,
+          cache_read_tokens: message.usage.cache_read_input_tokens ?? 0,
+          cache_write_tokens: message.usage.cache_creation_input_tokens ?? 0,
+          cost_usd: 0,
+        };
+        callUsage.cost_usd = calculateModelCost(model, callUsage);
+        this.budget.record(callUsage.cost_usd);
+        usage.input_tokens += callUsage.input_tokens;
+        usage.output_tokens += callUsage.output_tokens;
+        usage.cache_read_tokens += callUsage.cache_read_tokens;
+        usage.cache_write_tokens += callUsage.cache_write_tokens;
+        usage.cost_usd = Number((usage.cost_usd + callUsage.cost_usd).toFixed(6));
+        const output = message.content.filter((block) => block.type === "text").map((block) => block.text).join("");
+        try {
+          return { value: request.schema.parse(JSON.parse(output)), usage };
+        } catch (error) {
+          lastParseError = error instanceof Error ? error.message : String(error);
+        }
+      } finally {
+        release();
+      }
     }
+    throw new Error(`Model ${model} returned invalid structured output for ${request.job} twice: ${lastParseError}`);
   }
 }

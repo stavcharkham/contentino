@@ -13,6 +13,7 @@ oauth_config:
       - channels:history
       - groups:history
       - chat:write
+      - reactions:write
 settings:
   event_subscriptions:
     request_url: https://YOUR-VERCEL-DOMAIN/api/slack?x-vercel-protection-bypass=YOUR-VERCEL-AUTOMATION-BYPASS-SECRET

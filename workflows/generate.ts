@@ -48,7 +48,7 @@ export async function writeMicrocopy(input: {
       system: `${baseProfile}\n\n${type.guidelineBody}`,
       prompt: `Write one UI string for this request. Respect the declared character limit.\n\nRequest: ${input.request}${feedback}`,
       schema: microcopyOutput,
-      maxTokens: 240,
+      maxTokens: 600,
     });
     const metadata: Draft = {
       id: pieceId,

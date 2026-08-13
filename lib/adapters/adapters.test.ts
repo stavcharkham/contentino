@@ -25,12 +25,27 @@ describe("Slack adapter", () => {
         { ts: "123.456", text: "draft", bot_id: "bot" },
         { ts: "123.457", text: "Use finish quote", user: "U1" },
       ] }) },
+      reactions: { add: vi.fn().mockResolvedValue({ ok: true }) },
     };
     const adapter = new SlackReviewAdapter(api, "C1", storage);
+    await adapter.acknowledge("123.455");
+    expect(api.reactions.add).toHaveBeenCalledWith({ channel: "C1", timestamp: "123.455", name: "eyes" });
     const presented = await adapter.presentDraft({ path: "content/drafts/a.md", title: "Draft", content: "Copy", score: 9, outcome: "reviewed" });
     expect(presented.externalId).toBe("123.456");
     expect(await storage.read("content/surfaces/slack/123-456.json")).not.toBeNull();
     expect(await adapter.collectFeedback("123.456")).toEqual([{ externalId: "123.457", who: "U1", said: "Use finish quote" }]);
+  });
+
+  it("falls back to a thread emoji until the reaction scope is installed", async () => {
+    const root = await mkdtemp(path.join(tmpdir(), "contentino-slack-ack-"));
+    const api = {
+      chat: { postMessage: vi.fn().mockResolvedValue({ ts: "123.457" }) },
+      conversations: { replies: vi.fn() },
+      reactions: { add: vi.fn().mockRejectedValue(new Error("missing_scope")) },
+    };
+    const adapter = new SlackReviewAdapter(api, "C1", new LocalStorage(root));
+    await adapter.acknowledge("123.456");
+    expect(api.chat.postMessage).toHaveBeenCalledWith({ channel: "C1", thread_ts: "123.456", text: "👀" });
   });
 });
 

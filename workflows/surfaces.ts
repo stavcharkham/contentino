@@ -19,7 +19,7 @@ export type SlackEnvelope = {
 
 export async function handleSlackEnvelope(input: {
   context: WorkflowContext;
-  slack: Pick<SlackReviewAdapter, "postMessage" | "presentDraft" | "postRevision">;
+  slack: Pick<SlackReviewAdapter, "acknowledge" | "postMessage" | "presentDraft" | "postRevision">;
   envelope: SlackEnvelope;
 }): Promise<{ duplicate?: boolean; action: string }> {
   const event = input.envelope.event;
@@ -27,6 +27,7 @@ export async function handleSlackEnvelope(input: {
   const eventId = input.envelope.event_id ?? event.ts;
   if (!eventId) throw new Error("Slack event id is required");
   const result = await runOnce(input.context.storage, "slack", eventId, async () => {
+    if (event.ts) await input.slack.acknowledge(event.ts).catch(() => undefined);
     if (event.type === "app_mention") {
       const text = (event.text ?? "").replace(/<@[^>]+>/g, "").trim();
       const microcopy = text.match(/^microcopy:\s*([\s\S]+)/i);

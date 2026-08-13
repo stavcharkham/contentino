@@ -26,13 +26,21 @@ class PerfectGateway implements ModelGateway {
       not_saying: ["Do not claim autonomous driving eliminates risk."],
       sources: [{ label: "Transcript", url: "drive://call-1" }],
     };
-    else if (request.job === "generation") value = request.prompt.includes("one UI string")
-      ? { copy: "FINISH QUOTE", rationale: "Matches the established action verb." }
-      : { title: "A clearer price for autonomous miles", body: "Arizona drivers using Tesla FSD can now get a rate that reflects those miles. The launch follows the product announcement in the approved brief." };
+    else if (request.job === "generation") {
+      if (request.prompt.includes("one UI string")) {
+        expect(request.maxTokens).toBe(600);
+        value = { copy: "FINISH QUOTE", rationale: "Matches the established action verb." };
+      } else {
+        value = { title: "A clearer price for autonomous miles", body: "Arizona drivers using Tesla FSD can now get a rate that reflects those miles. The launch follows the product announcement in the approved brief." };
+      }
+    }
     else if (request.job === "stakes") value = { stakes: request.prompt.includes("Arizona") ? "high" : "low", reason: "Fixture stakes" };
-    else if (request.job === "compliance") value = request.prompt.includes("guaranteed to save money")
-      ? { pass: false, reason: "Unsupported guarantee" }
-      : { pass: true, reason: "Every claim is sourced" };
+    else if (request.job === "compliance") {
+      expect(request.maxTokens).toBe(600);
+      value = request.prompt.includes("guaranteed to save money")
+        ? { pass: false, reason: "Unsupported guarantee" }
+        : { pass: true, reason: "Every claim is sourced" };
+    }
     else if (request.job === "judge") value = { criteria: [
       { id: "register", score: 2, reason: "Matched" },
       { id: "humour", score: 2, reason: "Safe" },
