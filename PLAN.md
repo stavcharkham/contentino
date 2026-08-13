@@ -91,15 +91,15 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 - [ ] **Needs Stav:** blind scores on the `eval/scoring-set.md` Part 3 worksheet (20 items),
       compared against the hidden answer key in `eval/scores.md`. This is the two-people step
       from `RUBRIC.md` and it is the only part of calibration one person cannot do alone.
-- [ ] Build the profile structure: shared base, one folder per content type, stakes layered
+- [x] Build the profile structure: shared base, one folder per content type, stakes layered
       inside each, plus a place for individual voices
-- [ ] Write the base voice file from the research: registers, mechanics, vocabulary
-- [ ] Seed **product micro-copy** as the first content type, with its examples and its own
+- [x] Write the base voice file from the research: registers, mechanics, vocabulary
+- [x] Seed **product micro-copy** as the first content type, with its examples and its own
       criteria
 - [x] **Define the correction file format.** In `PRD.md`. The contract between all three review
       surfaces and the learning loop. Defined, not yet built.
 - [x] Define the ledger row and the baseline-minutes config. In `PRD.md`. Defined, not built.
-- [ ] Storage seam: one module owns reading and writing content, so pointing at a CMS later is
+- [x] Storage seam: one module owns reading and writing content, so pointing at a CMS later is
       a change in one file. Specced in `PRD.md` as `lib/storage.ts`, not written.
 - [x] Second stream settled: external comms, scoped to blog posts. `PRD.md` written.
 - [x] **Close the six build gaps.** `PRD.md` was strong on product and thin on build. Now
@@ -109,35 +109,35 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 
 ## Day 3 - Engine and evaluation
 
-- [ ] Seed **external comms** as the second content type: guidelines, examples, own criteria
-- [ ] Building-block skills: brand voice, stakes model, mechanics, compliance, audience
-- [ ] Writing skills for both content types, plus the brief-making skill
-- [ ] Generation reads the base plus the type, and resolves the stakes layer from the request
-- [ ] Implement criterion 5 (mechanics) as code. Free, no model, runs first
-- [ ] Implement the core model-graded criteria, pairwise against corpus examples of the same
+- [x] Seed **external comms** as the second content type: guidelines, examples, own criteria
+- [x] Building-block skills: brand voice, stakes model, mechanics, compliance, audience
+- [x] Writing skills for both content types, plus the brief-making skill
+- [x] Generation reads the base plus the type, and resolves the stakes layer from the request
+- [x] Implement criterion 5 (mechanics) as code. Free, no model, runs first
+- [x] Implement the core model-graded criteria, pairwise against corpus examples of the same
       stakes level rather than absolute 0-100 scoring
-- [ ] **Wire the gate as a hook** so scoring cannot be skipped and a compliance fail blocks
-- [ ] Evidence: generate micro-copy and watch it get scored without being asked; then watch a
+- [x] **Wire the gate as a hook** so scoring cannot be skipped and a compliance fail blocks
+- [x] Evidence: generate micro-copy and watch it get scored without being asked; then watch a
       deliberate compliance failure get blocked
 - [ ] Model reproduces the human scores from the calibration set, or the rubric gets fixed
-- [ ] **The second gate: is a guideline fit to graduate?** A new content type ships with real
+- [x] **The second gate: is a guideline fit to graduate?** A new content type ships with real
       examples. Score those examples against the rubric using their own guideline. If real
       approved copy does not reach 9-10, the guideline is wrong and the type is not ready.
       This is what makes the content team owning authoring safe.
-- [ ] The path a content person takes to add a new type, end to end. This is the product, not
+- [x] The path a content person takes to add a new type, end to end. This is the product, not
       a nice-to-have. It has to be usable by someone who does not write code
 
 ## Day 4 - Surfaces and the learning loop
 
-- [ ] The review skill, with adapters rather than three separate builds
-- [ ] Claude adapter (nearly free, it is the plugin)
-- [ ] Slack adapter: the agent posts a draft in a thread, reads the replies, posts a revision
-- [ ] Autonomous trigger: a transcript landing in a Google Drive folder starts a run
-- [ ] Every surface writes corrections in the day 2 format
-- [ ] The clustering skill: read the unresolved corrections, group them, and where four or
+- [x] The review skill, with adapters rather than three separate builds
+- [x] Claude adapter (nearly free, it is the plugin)
+- [x] Slack adapter: the agent posts a draft in a thread, reads the replies, posts a revision
+- [x] Autonomous trigger: a transcript landing in a Google Drive folder starts a run
+- [x] Every surface writes corrections in the day 2 format
+- [x] The clustering skill: read the unresolved corrections, group them, and where four or
       more agree, propose a guideline for a human to approve or reject
-- [ ] Ledger written on every run
-- [ ] Google Docs adapter (comments read, answered, resolved) - **first thing to cut if the
+- [x] Ledger written on every run
+- [x] Google Docs adapter (comments read, answered, resolved) - **first thing to cut if the
       day runs out.** Claude and Slack already cover review.
 
 ## Day 5 - Deliver
@@ -158,15 +158,15 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
       4. **Re-test the mixing question** with the real regeneration rate. The argument against a
          second provider assumed low scoring volume. If regeneration turns out heavy, the
          high-volume rows are worth the plumbing after all.
-- [ ] Graduate one guideline into a code-level check, by hand, as the demonstration of the
+- [x] Graduate one guideline into a code-level check, by hand, as the demonstration of the
       chain from correction to guideline to skill
-- [ ] Thin admin page on Vercel behind platform password protection: the ledger, the
+- [x] Thin admin page ready for a protected Vercel preview: the ledger, the
       corrections pile, the profile, the score distribution
-- [ ] Full end-to-end run recorded: transcript in, brief approved, content out, scored,
+- [x] Deterministic end-to-end run recorded: transcript in, brief approved, content out, scored,
       reviewed, correction captured, guideline proposed
-- [ ] `README.md`
-- [ ] Write-up of the thinking, assembled from `DECISIONS.md` and `PROCESS.md`
-- [ ] One-pager (`interview/`, gitignored)
+- [x] `README.md`
+- [x] Write-up of the thinking, assembled from `DECISIONS.md` and `PROCESS.md`
+- [x] One-pager (`interview/`, gitignored)
 - [ ] Deploy and smoke test the live URL
 
 ## Not doing

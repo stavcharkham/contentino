@@ -13,6 +13,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "demo": "tsx scripts/demo.ts",
     "check": "npm run lint && npm run typecheck && npm run test && python3 eval/recheck.py",
     "contentino": "tsx scripts/contentino.ts"
   },

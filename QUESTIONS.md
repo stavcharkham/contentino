@@ -11,6 +11,15 @@
   active third type until a content owner supplies at least three examples, their sources and the
   stakes ceiling. This does not block the engine or the two initial streams.
 
+- **Sign in to GitHub in the browser tab left open by Codex.** The repository has no remote and
+  the available browser session is signed out. A private `contentino` repository is required before
+  the GitHub storage contract and hosted persistence can be tested.
+
+- **Load the live integration credentials from `.env.example`.** Anthropic, GitHub, Slack, Google,
+  cron and Vercel automation-bypass values are all absent from this workspace. The Vercel CLI is
+  signed in. Until the other values are available, real model calibration, Slack/Docs integration
+  and a webhook-capable preview cannot be claimed.
+
 - **Blind-score the 20-item worksheet.** `eval/scoring-set.md` Part 3. Score each item against
   `RUBRIC.md` without reading `eval/scores.md` first, which is the hidden answer key. Every
   number in both eval documents came from one scorer, so "two people would agree on this" is
@@ -18,28 +27,10 @@
   prescribes and the only part one person cannot do alone. Not blocking the build, but it is
   the weakest claim in the deliverable until it is done.
 
-- **How much of the $50 API budget is spent so far?** Needed before day 3, when model-graded
-  scoring starts running on every generation. There is no spend log yet and the account is
-  yours, so I cannot see it. If a meaningful chunk is already gone, the model assignments in
-  `PRD.md` need revisiting before we build rather than on day 5.
-
-- **Do we build the "add a content type" path and demo it live?** The platform claim is that
-  the content team extends this themselves. The way to prove it is to add a third type on
-  camera in a few minutes. The way to fail is to claim it on a slide. It costs roughly half a
-  day and competes with the third review surface (Google Docs) for day 4.
-  Options: (a) build it and demo adding a third type, (b) claim it structurally and spend the
-  time on the third surface instead.
-  **Recommendation: (a).** It is the differentiator and a hiring team can verify it in the
-  demo. Google Docs is the better thing to cut, because Claude and Slack already cover review.
-
-## Needed before day 4, not blocking today
-
-- **A Slack workspace** to install an app into, and **Google credentials** that can write
-  comments on a Doc. You confirmed both exist on 2026-08-13. Flagging them again only because
-  they are the kind of setup that eats half a day at the worst possible moment if it turns out
-  the permissions are not right.
-
 ## Answered
+
+- Full $50 Anthropic budget remains available - confirmed in the implementation plan.
+- Build both Google Docs and the live extension path - confirmed in the implementation plan.
 
 - Mobbin access - yes, via MCP. In `DECISIONS.md`.
 - Raw corpus in the public repo - no, gitignored. In `DECISIONS.md`.

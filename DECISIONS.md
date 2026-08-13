@@ -478,3 +478,56 @@ things to write about.
 than "the CEO said it on an earnings call". It would cost a day and produce the least
 defensible output in the system.
 **Reversible:** yes
+
+### 2026-08-13 - Hosted artifacts use GitHub, not the Vercel filesystem
+**Category:** build
+**Decided:** `ContentStorage` has local and GitHub implementations. Hosted writes use expected
+blob SHAs and one Git commit per logical run.
+**Rejected:** Writing to a Vercel function's checked-out filesystem; adding a database for the
+prototype; making each artifact update a separate Git commit.
+**Why:** A Vercel function cannot provide durable local writes. Git already owns the profile and
+gives the hiring team an inspectable history. One storage seam marks the later move to a content
+platform without spreading persistence code through every workflow.
+**Reversible:** yes
+
+### 2026-08-13 - The hosted workflow uses deterministic application code
+**Category:** build
+**Decided:** Next.js routes call deterministic TypeScript workflows through the Anthropic SDK.
+The repository plugin remains the Claude surface, and a local project hook blocks direct writes
+to published content.
+**Rejected:** Embedding the Claude Agent SDK inside an ordinary Vercel function.
+**Why:** The deployed workflow is a short-lived web process, while the Agent SDK hosting model is a
+separate agent process or container. The safety rules belong in the storage and publish APIs so
+all surfaces share them.
+**Reversible:** yes
+
+### 2026-08-13 - The dashboard shows empty evidence honestly
+**Category:** product
+**Decided:** The evidence dashboard reads the real ledger, artifacts, corrections, profile and
+rubric report. When the live ledger is empty it shows an empty state and keeps fixture evidence
+separate.
+**Rejected:** Seeding attractive demonstration trends or sample run rows into the product data.
+**Why:** The dashboard is evidence for a hiring team. A polished invented trend would weaken the
+argument more than an empty live ledger. The verified 47-item rubric remains visible because it is
+real project evidence.
+**Reversible:** no
+
+### 2026-08-13 - New content types require real approved examples
+**Category:** product
+**Decided:** A new type remains draft until at least three approved examples each score 9–10 with
+no veto or zero. The internal-comms fixture proves the path in a temporary store, but the live
+profile waits for examples from a content owner.
+**Rejected:** Inventing plausible internal messages to make the third type look complete.
+**Why:** The extension gate exists to test whether genuine company copy survives its own guideline.
+Invented examples would make that circular and remove the content team's ownership.
+**Reversible:** no
+
+### 2026-08-13 - Preview protection stays at the hosting layer
+**Category:** build
+**Decided:** Use a revocable protected Vercel preview link. Slack and cron requests use Vercel's
+automation bypass mechanism in addition to their own signature or bearer-secret checks.
+**Rejected:** Custom login code; the password-protection add-on; leaving the evidence dashboard
+public.
+**Why:** The only UI is read-only and the prototype already has platform protection available.
+Custom authentication would add risk and no product evidence.
+**Reversible:** yes

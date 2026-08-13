@@ -321,3 +321,29 @@ caveat and a day 5 task re-opens it against the real ledger.
 **Nothing was built today.** Five documents changed, no code. That was the right call: three
 review surfaces and a learning loop all write into the same file formats, and changing a format
 after they exist means rewriting all of them.
+## 2026-08-13 - Session 6: the prototype build
+
+Built the plan as seven tested checkpoints: project and plugin foundation, Lemonade profile,
+artifact and storage contracts, scoring and publishing gate, seven workflows, three review
+surfaces, and the evidence dashboard. Each checkpoint has its own commit rather than one final
+dump.
+
+The implementation exposed two safety issues before deployment. Local event claims were correct
+when repeated serially but could race when two requests arrived together. Local storage now uses
+an atomic write lock and a regression test runs two creates concurrently. A reviewed edit could
+also introduce a compliance violation and still be labelled reviewed. Revisions now preserve a
+blocked result, change the artifact status to blocked and record zero time saved.
+
+The dashboard created a temptation to seed attractive data. We did not. The live ledger is empty,
+so the UI says that directly. It still shows the 47-item rubric evidence, the active profile and
+the system map because those are real. Desktop Chromium and mobile WebKit screenshots were
+inspected after the browser tests passed.
+
+The deterministic demo now runs the complete workflow in a temporary store. It records seven
+runs, five revisions, a Drive-sourced approved brief, Google Docs review, low-stakes publication,
+a compliance block, four matching corrections, an approved guideline and internal-comms type
+activation. The internal examples are marked fixtures in both output and documentation.
+
+The local build is complete. External proof stopped at account boundaries: no integration secrets
+are loaded, no Git remote exists, and the available GitHub browser session is signed out. The
+Vercel CLI is signed in. These are recorded as open checks rather than replaced with mocks.
