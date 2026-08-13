@@ -3,7 +3,9 @@ id: 2026-08-13-a-four-week-test-of-clearer-claims-status-wordin-5a88
 created: '2026-08-13T21:09:13.781Z'
 source: 'slack://C0BQ0KW7PU1/1786655339.140779'
 source_id: '1786655339.140779'
-status: draft
+status: approved
+approved_by: USMOKETEST
+approved_at: '2026-08-13T21:12:51.787Z'
 api_cost_usd: 0.030423
 ---
 # A four-week test of clearer claims-status wording starts 1 September
