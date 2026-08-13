@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-13-starting-1-september-a-small-test-of-clearer-cla-da31",
+  "source_hash": "3d13cded1d3abd65d3d4dc9c03c1e73b7f7671a7066b0178626f8b8d9354baa8",
+  "scored_at": "2026-08-13T21:13:03.461Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriately high-stakes and careful. It uses complete, measured sentences with contractions, avoids jokes and unsupported certainty, and classifies itself explicitly as a test rather than a promise. The direct address to readers and plain naming of limitations matches the covering register required when discussing claims processes and eligibility boundaries.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The draft correctly excludes jokes and dry wordplay because the stakes are high—it concerns claims decisions, eligibility and the potential for misunderstanding coverage outcomes. The single attributed quote from Maya is functional, not comedic.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The draft translates selectively and appropriately. It retains 'claim' and 'coverage' as necessary recognition terms, but explains the test's scope and limits in concrete language: 'the explanations customers see when checking on a claim,' 'can people tell what the next step is,' and 'the words on the screen.' It avoids both folksy substitutes for technical terms and unsupported reframing of what the test measures. The repetition of what is not changing ('Coverage, claim decisions, payments and eligibility don't change') follows the approved pattern of sourced, specific boundary-setting seen in LEM-051.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 1,
+      "reason": "sentence exceeds 28 words"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft is framed almost entirely in terms of what changes and doesn't change for the reader/customer: what they'll see, what stays the same for their coverage and claims, and who is and isn't included. It avoids internal program jargon and speaks to the reader's stake directly, consistent with the plain, reader-facing framing in approved examples like LEM-004.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 0,
+      "reason": "No brief or source list is provided or referenced for this draft, and the piece asserts multiple specific, central facts (the 1 September start date, the four-week duration, the 200-customer New York cohort, the exact research question, the promise that nothing else changes) with no traceable sourcing. Unlike LEM-050, LEM-051 and LEM-053, which are grounded in an identified transcript or launch source, this draft presents detailed factual claims with nothing to trace them to, which fails the central-claim sourcing requirement and triggers the compliance veto for missing sourcing on central claims.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 1,
+      "reason": "The piece states a concrete trigger date ('Starting 1 September') and explains the immediate purpose (a four-week test to learn if wording clarifies next steps), so the reader gets some sense of timing. However, it never explains why this test is happening now, what prompted it or why 1 September specifically, unlike LEM-053 or LEM-051 which tie their news to an external, dated cause (a product unveiling, an inflation trend). The date is stated but not motivated.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": 0,
+      "reason": "The draft includes an attributed quote from 'Maya' with no transcript or source material provided to verify it, and no indication in the brief that a quote was intended or deliberately omitted. This falls short of the standard set by LEM-050 and LEM-051, where attributed lines are explicitly tied to a named speaker's transcript source. Without a traceable source, the quote cannot be verified as faithful, so it fails fidelity rather than qualifying for N/A.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 6.25,
+  "compliance": {
+    "pass": false,
+    "reason": "The piece includes an attributed quote from 'Maya' in a product meeting, but no traceable source (title, role, transcript, or citation) is given, violating the prohibition on presenting an attributed quote without a traceable source. All other compliance checks (no outcome guarantee, no disclaimer removal, no unsupported judgement claim, no contradiction of known policy) pass, but this single unsourced attributed quote is sufficient to fail the piece."
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 483,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2462,
+      "cost_usd": 0.010989
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1606,
+      "output_tokens": 96,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002086
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 159,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2192,
+      "cost_usd": 0.007074
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2046,
+      "output_tokens": 378,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003936
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 690,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 3097,
+      "cost_usd": 0.014646
+    }
+  ],
+  "cost_usd": 0.069154
+}
