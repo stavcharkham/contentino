@@ -8,6 +8,8 @@ Format:
 ```markdown
 ### YYYY-MM-DD - Short title
 **Category:** product | build | research
+**The problem:** what forced a choice. Written so someone with no context understands why
+this came up at all.
 **Decided:** what we're doing.
 **Rejected:** what we considered and didn't do.
 **Why:** the reasoning, including which constraint drove it.
@@ -141,3 +143,260 @@ Format:
 **Why:** The real-item mean (8.80) missed the 9+ target because criterion 4 (direct address) scores 0 on content that has no addressee by design - release notes, headlines, field labels - which is a property of the format, not a voice failure. Nine of the ten items that landed in "review" instead of "publish" lost their only point here. Criterion 1 also needs to distinguish casual commentary about legal text from casual language inside legal text, which cost two genuine Lemonade quotes a point each.
 **What held up without changes:** plain language calibration (near-perfect discriminator) and the compliance veto, which is the load-bearing result of the whole exercise - it caught the one real historical incident where Lemonade's own voice actually went wrong in public.
 **Reversible:** yes, the fixes are narrow rewording, not a redesign
+
+---
+
+*Everything below came out of two conversations on 2026-08-13. The first was with Yuval,
+CEO of RiseUp, who built an AI PR system: a recorded interview with an expert becomes a
+brief, and the brief fans out to a press release, a LinkedIn post, and so on. The second was
+with Noam, who builds AI products and argued about how the system should be put together.
+Together they settled most of the open architecture questions. Where an entry below changes
+something decided on 2026-08-12, it says so.*
+
+### 2026-08-13 - One agent with many skills, not a team of agents
+**Category:** build
+**The problem:** Lemonade asked for one tool covering PR, internal comms, emails, marketing
+and product copy. The obvious design is a separate AI agent per job, with a manager agent
+directing them. We needed to know if that was right before building it.
+**Decided:** One agent. Everything it can do is a separate "skill" it picks up when needed.
+Writing a LinkedIn post is a skill. Writing a button label is a different skill. Scoring is a
+skill. The skills are bundled together as a plugin, grouped the way the company is grouped.
+**Rejected:** A main agent that calls other agents as tools.
+**Why:** Noam's argument: if there is only one thing producing content, splitting it into
+several agents buys nothing and costs us a whole layer of code that manages them talking to
+each other. We have 5 days. Every hour spent on agents coordinating each other is an hour not
+spent on the product. The bigger payoff is that the exact same skills serve two very
+different users: a person working in Claude, and the unattended agent that runs by itself.
+One build, both of our goals.
+**Reversible:** yes
+
+### 2026-08-13 - MCP is a delivery pipe, not the architecture
+**Category:** build
+**The problem:** We had been treating "should it be Slack or an MCP server" as a big
+architectural decision. It was blocking thinking about everything else.
+**Decided:** It was the wrong question. Skills are the thing we build. MCP is just one of the
+ways a skill reaches a tool, alongside a plain API call or a command line. Where the output
+appears is a separate, smaller question.
+**Rejected:** Framing the whole build as "an MCP server", which is how it was written on
+2026-08-12.
+**Why:** Once skills are the unit, the delivery question stops being architectural and
+becomes a choice of adapters. That freed us to say yes to several surfaces instead of
+picking one.
+**Reversible:** yes
+
+### 2026-08-13 - Scoring runs automatically, not when the model remembers to
+**Category:** build
+**The problem:** `CLAUDE.md` says nothing ships unscored. But if scoring is just another
+skill, the agent decides whether to use it, and sooner or later it won't.
+**Decided:** Scoring is not a skill. It is wired into the plumbing as a hook, which is a
+check the tool itself runs at a fixed moment, outside the model's control. When content gets
+written, the hook scores it, records the result, and blocks anything that fails the
+compliance check. The score then decides what happens next: publish, or hand to a person.
+**Rejected:** Scoring as a skill the agent chooses to call.
+**Why:** "Nothing ships unscored" has to be a fact, not a hope. A regulated insurer is
+exactly the wrong place to rely on an AI remembering a rule.
+**Consequence:** the unattended agent should be built on the Agent SDK rather than as a
+plain script calling the API, because hooks only exist inside that harness. Same enforcement
+in both modes.
+**Reversible:** yes
+
+### 2026-08-13 - Different content types get different scoring questions
+**Category:** product
+**The problem:** On 2026-08-12 we decided the same six questions score everything, and only
+the consequence changes by content type. Then the rubric validation run found criterion 4
+(direct address) scoring 0 on release notes, headlines and field labels, because those have
+nobody to address. Nine of the ten items that failed to reach "publish" lost their only point
+there. The rule was punishing content for its format.
+**Decided:** Reverses the "same six criteria for every content type" part of the 2026-08-12
+rubric decision. There is now a shared core that applies everywhere (register, humour
+boundary, plain language, compliance) plus extra questions belonging to each content type. A
+LinkedIn post gets asked whether its claim is sourced. Micro-copy gets asked whether it fits
+the character budget. Scores are converted to the same 10-point scale so they stay
+comparable.
+**Rejected:** Keeping one identical rubric and marking criteria "not applicable", which is
+the same thing with more bookkeeping.
+**Why:** Our own validation data forced it, and Noam made the same point independently: a
+LinkedIn post and a button label are different enough that pretending one set of questions
+fits both is dishonest. What does survive is the part worth keeping, the bands. 9-10
+publishes, 8 gets a person, below 8 is regenerated, any zero blocks, compliance vetoes. You
+still only have to remember one thing: what a number means.
+**Where it lives:** each content type's questions sit in that type's folder, next to its
+guidelines and examples. Same shape as the profile.
+**Reversible:** yes
+
+### 2026-08-13 - The profile holds individual people's voices, not just the company's
+**Category:** product
+**The problem:** A LinkedIn post published under the CEO's name does not sound like the help
+centre. Our profile only had one voice, the company's.
+**Decided:** The profile gets a place for individual voices alongside the company voice.
+**Rejected:** One company voice for everything.
+**Why:** Both conversations raised it without prompting. Yuval listed the spokesperson as one
+of the three things that determine whether a brief is any good. Noam raised it as an obvious
+requirement for LinkedIn. Two independent sources is enough to stop treating it as an open
+question.
+**Reversible:** yes
+
+### 2026-08-13 - "Publishes itself" means no second person, not no first person
+**Category:** product
+**The problem:** We had been describing low-stakes content as publishing "with nobody
+watching". That does not survive contact with reality. Nobody writes a button label at
+random. A designer adds a screen, and then asks for copy.
+**Decided:** Auto-publish means no reviewer, not no requester. A designer asks for copy, it
+scores 9.4, it ships without anyone senior signing it off. There are two ways work starts: a
+person asks, or an event fires (a transcript lands in a Google Drive folder, someone tags the
+agent in Slack, someone hands over a transcript or a screenshot of a screen).
+**Rejected:** The idea that automated content has no human trigger.
+**Why:** The overhead was never someone asking for copy. It was the wait for a senior content
+person to say whether it sounds like Lemonade. That wait is what we delete.
+**Reversible:** no, it is a definition rather than a choice
+
+### 2026-08-13 - For news-driven content, we approve the brief, not the output
+**Category:** product
+**The problem:** "Faster to approved" was a claim we had not actually earned. We still
+produced a finished piece and then let a human argue with it.
+**Decided:** For anything triggered by an event, the system first produces a brief: what the
+story is, why now, the evidence, the angle. A person approves the brief. Only then does it
+fan out into a LinkedIn post, a press release, an internal note, and so on.
+**Rejected:** Generating each piece of content directly from the source material.
+**Why:** Yuval's central finding after years of PR: the article is a by-product of a good
+brief. Journalists do not want your story, they want something usable. The product argument
+is stronger too: you approve once, upstream, instead of five times, downstream. And it is the
+cheapest shape against a $50 budget, one expensive model call for the brief, several cheap
+ones for the channels.
+**Reversible:** yes
+
+### 2026-08-13 - Three places to review, one review skill underneath
+**Category:** product
+**The problem:** Yuval's warning from experience: put a draft in Slack and it dies there,
+because you cannot edit 600 words inside a Slack message. But we also refuse to build a UI.
+**Decided:** Revises the 2026-08-12 "Surfaces are Slack and an MCP server" decision. One
+review skill, three ways to reach it. In Claude, where a person can talk to it directly. In a
+Slack thread, where the agent posts a draft and replies to comments in the thread. In a
+Google Doc, where the content team leaves normal Google Docs comments and the agent answers
+and resolves them. We build no interface of our own.
+**Rejected:** Building the `human-review` tool into the product. It runs a small web server
+on one person's laptop, which cannot be part of a hosted demo, and it means building a UI.
+**Why:** Google Docs comments are already anchored to a specific line, which is far better
+feedback than "make it less jokey", and the content team already lives there. We get the good
+version of the review experience without building any of it.
+**Consequence:** the format of a saved correction is the most important interface in the
+system, because all three surfaces write it and the learning loop reads it. Get it right
+before anything else is built, or we rewrite three surfaces.
+**Reversible:** yes
+
+### 2026-08-13 - The learning loop is a batch job someone runs, not a live system
+**Category:** product
+**The problem:** `CLAUDE.md` promises that human edits improve the profile over time. We had
+no idea what that actually meant mechanically, and the ambitious version (detect patterns as
+they happen, promote rules automatically) is a lot of machinery.
+**Decided:** Every time a person changes something, we save it as a small file: what changed,
+where, why, which content type, which criterion. Nothing clever happens at that moment. They
+just pile up. Separately there is a skill someone runs, by hand or on a schedule in their own
+Claude, that reads all the unresolved corrections, groups similar ones, and where four or
+more say the same thing, proposes a new guideline in plain language. A person approves or
+rejects it. Approved ones get written into the profile and the corrections are marked
+resolved.
+**Rejected:** Live pattern detection and automatic promotion of rules.
+**Why:** The point of the loop is that you fix "we don't say reach out" once instead of on
+every post forever. That works fine as a batch job, and the human approval step is the
+feature rather than the obstacle. Simplicity is what makes it real inside 5 days instead of a
+diagram on a slide.
+**Reversible:** yes
+
+### 2026-08-13 - Turning a guideline into a skill is done by hand
+**Category:** build
+**The problem:** `CLAUDE.md` says the whole reason the profile is a folder is that a
+guideline has to be able to graduate into a skill. But building an automatic promoter for
+that is real work.
+**Decided:** Do it by hand, once, for the demo. Show one guideline that has proven itself
+becoming part of a check that runs in code, for free, before any model is called.
+**Rejected:** Automating the promotion.
+**Why:** There are three levels and each costs more than the last. A correction is free to
+record and harmless if it turns out to be a one-off. A guideline costs context on every
+generation forever, so it should only exist if the thing keeps happening. A skill is free to
+run and catches things reliably, but it is expensive to build and rigid. That last promotion
+happens maybe twice a year. Automating something that rare is machinery for nothing.
+**Reversible:** yes
+
+### 2026-08-13 - We measure with one row per piece of content
+**Category:** product
+**The problem:** "Saves time" was a claim with no number behind it, and no way to argue with
+it.
+**Decided:** Every piece of content gets one row, updated as it moves: which skill ran, which
+content type, who triggered it, when, whether it was auto-published or reviewed, how many
+revisions it went through, its score, and what it cost in API spend. Separately, a config
+file holds an assumed manual baseline per content type, so the assumptions are visible and
+arguable. A LinkedIn post is worth 20 minutes; auto-published saves all 20; reviewed saves
+10; each revision takes 5 back.
+**Rejected:** A general event stream, which is more data and less answer.
+**Why:** It makes the value claim something a PM can push back on rather than a slogan. Two
+numbers fall out for free: cost per approved piece, which is what matters against $50, and
+revisions per piece, which goes down over time if the learning loop is actually working.
+**Honest limit:** in 5 days we can show the mechanism working across ten pieces, not a trend
+over months. Say that in the write-up rather than implying otherwise.
+**Reversible:** yes
+
+### 2026-08-13 - Git stays the store, with one clearly marked exit
+**Category:** build
+**The problem:** Noam pushed back on keeping all content in a git repo: a product repo
+filling up with generated drafts is pollution, and Lemonade already has content tools.
+**Decided:** Refines the 2026-08-12 "Git is the only store" decision rather than reversing
+it. The brand profile stays in git and that is not negotiable, because it is configuration
+that has to be versioned, reviewed and able to graduate into code. Generated output also goes
+to git for now, but all reading and writing of content goes through one module, so pointing
+it at a real content platform later is a change in one file.
+**Rejected:** Leaving "git is the only store" as a flat statement.
+**Why:** The two halves have different reasons for being in git, and only one of them is
+permanent. Being explicit about that is a stronger answer to a hiring team than pretending
+we did not notice.
+**Reversible:** yes, by design
+
+### 2026-08-13 - The two content types are LinkedIn posts and product micro-copy
+**Category:** product
+**The problem:** The 2026-08-12 decision picked micro-copy plus "external comms / PR". PR
+turned out to be an enormous job on its own: mapping publications, finding the right
+journalist, working out their angle, and it still cannot replace a PR person's relationships.
+**Decided:** Narrows the second stream from PR to LinkedIn posts. Micro-copy stays as the
+first.
+**Rejected:** Building the full PR path.
+**Why:** These two sit at opposite ends of everything. Micro-copy is short, high volume,
+started by a person, and auto-publishes. A LinkedIn post is long, event-driven, and never
+auto-publishes. That contrast is the entire architecture visible in one demo, and it shows
+both of our goals at once. LinkedIn also keeps the brief step, which is the interesting part
+of the PR path, without the outlet research that is not finishable in the time left.
+**Reversible:** yes
+
+### 2026-08-13 - The demo runs on real, public Lemonade material
+**Category:** build
+**The problem:** The event-driven path needs a real transcript to work from, and we do not
+have access to Lemonade's internal meetings.
+**Decided:** Use Lemonade's earnings calls and public talks. Lemonade is a public company, so
+these are published and transcribed.
+**Rejected:** Writing a fake internal meeting transcript.
+**Why:** Real input, publicly checkable, nothing invented. A demo built on fabricated source
+material proves nothing about a system whose main risk is making things up.
+**Reversible:** yes
+
+### 2026-08-13 - A thin admin dashboard, password-protected
+**Category:** product
+**The problem:** We decided to build no UI, but the hiring team still has to be able to see
+the system working. And the 2026-08-12 decision says the hosted demo has no authentication.
+**Decided:** Revises "No authentication on the hosted demo". One read-only page on Vercel
+showing the ledger, the corrections pile, the profile and the score distribution. It uses
+Vercel's built-in password protection, with one shared password handed to the hiring team.
+**Rejected:** A fully public page, and building any login of our own.
+**Why:** The original reason for no auth was that we did not want to write session handling
+and a user store. We still are not writing any: this is a platform switch, not code. The page
+is a window onto the system, not where work happens.
+**Reversible:** yes
+
+### 2026-08-13 - No trend scanner
+**Category:** product
+**The problem:** Noam suggested an idea generator that watches X and Reddit and proposes
+things to write about.
+**Decided:** Not building it, anywhere.
+**Rejected:** Any social listening or trend-spotting input.
+**Why:** For an insurer, "the internet suggested this" is a much weaker reason to publish
+than "the CEO said it on an earnings call". It would cost a day and produce the least
+defensible output in the system.
+**Reversible:** yes
