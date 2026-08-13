@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-13-cta-button-shown-after-a-customer-has-finished-e-e85f",
+  "source_hash": "73b1d05921e4516b65d9d69f5536cf1b7183e88c745e7f72da14c1702c0f4bf4",
+  "scored_at": "2026-08-13T20:14:01.847Z",
+  "content_type": "product-microcopy",
+  "stakes": "medium",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The all-caps button label with concrete verb 'SEE' is appropriate for low-stakes interface copy, matching the style of LEM-011 (GET DISCOUNTS, FINALIZE PAYMENT).",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The copy is straightforward action-oriented labeling appropriate for low-stakes moments.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "'PRICE' is a core term customers need to recognise and is appropriately retained without translation or folksy substitution.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The draft 'SEE YOUR PRICE' is a button/header string with no named subject (like a pet or person's name) available from the interface to address; 'your' is the generic second-person address already implied by the format, so there's no additional addressee to compare against.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this string, so fit cannot be assessed against a hard limit.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 1,
+      "reason": "'SEE' is a reasonable concrete verb for a button leading to a price reveal, consistent with LEM-011's short all-caps action style, but it's weaker than more common flow verbs like 'GET' or 'CHECK' seen in approved examples (LEM-009, LEM-011) for similar reveal/discovery actions, so it's serviceable but not a strong match to established verb conventions.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a short button-style label ('SEE YOUR PRICE') in all caps, consistent with mechanics for interface/section headers. It contains no promise of an outcome, no guarantee of claim payment, no removed disclaimer, no unsupported judgement claim about how Lemonade evaluates a customer, no contradiction of known policy on data, price, or eligibility, and no attributed quote or factual public claim requiring a source. It also does not touch the prohibited categories (claim denials, coverage rejections, renewal price-increase notices). It names a concrete action ('see your price') rather than a generic 'click here' label, satisfying the mechanics naming requirement. No compliance prohibition is triggered."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 209,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1889,
+      "cost_usd": 0.006816
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1210,
+      "output_tokens": 51,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001465
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 245,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1701,
+      "cost_usd": 0.006706
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1789,
+      "output_tokens": 155,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002564
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 313,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2717,
+      "cost_usd": 0.009926
+    }
+  ],
+  "cost_usd": 0.027477
+}
