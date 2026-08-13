@@ -49,8 +49,35 @@ const requiredBaseFiles = [
   "audience.md",
 ];
 
-function approvedExampleCount(markdown: string): number {
+export function approvedExampleCount(markdown: string): number {
   return [...markdown.matchAll(/^\*\*Approved:\*\* true$/gim)].length;
+}
+
+export function parseContentTypeFiles(
+  slug: string,
+  files: { guidelineRaw: string; criteriaRaw: string; examples: string },
+): ContentTypeProfile {
+  const guidelineFile = matter(files.guidelineRaw);
+  const criteriaFile = matter(files.criteriaRaw);
+  const guideline = guidelineSchema.parse(guidelineFile.data);
+  const criteria = criteriaFileSchema.parse(criteriaFile.data);
+  if (guideline.content_type !== slug || criteria.content_type !== slug) {
+    throw new Error(`Content type folder ${slug} does not match its frontmatter`);
+  }
+  if (guideline.mechanics.sentence_band[0] > guideline.mechanics.sentence_band[1]) {
+    throw new Error(`${slug} sentence band must be ordered`);
+  }
+  if (approvedExampleCount(files.examples) < 3) {
+    throw new Error(`${slug} needs at least three approved examples`);
+  }
+  return {
+    slug,
+    guideline,
+    criteria: criteria.criteria,
+    guidelineBody: guidelineFile.content.trim(),
+    criteriaBody: criteriaFile.content.trim(),
+    examples: files.examples,
+  };
 }
 
 export async function loadContentType(profileRoot: string, slug: string): Promise<ContentTypeProfile> {
@@ -60,27 +87,7 @@ export async function loadContentType(profileRoot: string, slug: string): Promis
     readFile(path.join(typeRoot, "criteria.md"), "utf8"),
     readFile(path.join(typeRoot, "examples.md"), "utf8"),
   ]);
-  const guidelineFile = matter(guidelineRaw);
-  const criteriaFile = matter(criteriaRaw);
-  const guideline = guidelineSchema.parse(guidelineFile.data);
-  const criteria = criteriaFileSchema.parse(criteriaFile.data);
-  if (guideline.content_type !== slug || criteria.content_type !== slug) {
-    throw new Error(`Content type folder ${slug} does not match its frontmatter`);
-  }
-  if (guideline.mechanics.sentence_band[0] > guideline.mechanics.sentence_band[1]) {
-    throw new Error(`${slug} sentence band must be ordered`);
-  }
-  if (approvedExampleCount(examples) < 3) {
-    throw new Error(`${slug} needs at least three approved examples`);
-  }
-  return {
-    slug,
-    guideline,
-    criteria: criteria.criteria,
-    guidelineBody: guidelineFile.content.trim(),
-    criteriaBody: criteriaFile.content.trim(),
-    examples,
-  };
+  return parseContentTypeFiles(slug, { guidelineRaw, criteriaRaw, examples });
 }
 
 export async function validateProfile(profileRoot: string): Promise<ContentTypeProfile[]> {

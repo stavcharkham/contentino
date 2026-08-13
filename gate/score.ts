@@ -70,20 +70,22 @@ function requireExactCriteria(
 export async function scoreDraft(input: {
   pieceId: string;
   content: string;
+  scoringText?: string;
   type: ContentTypeProfile;
   baseProfile: string;
   attempt: number;
   models: ModelGateway;
   now?: Date;
 }): Promise<Scorecard> {
+  const scoringText = input.scoringText ?? input.content;
   const stakesCall = await input.models.complete({
     job: "stakes",
     system: input.baseProfile,
-    prompt: `Classify the highest stakes touched by this draft as low, medium or high. Never lower stakes because the surrounding tone is casual.\n\n${input.content}`,
+    prompt: `Classify the highest stakes touched by this draft as low, medium or high. Never lower stakes because the surrounding tone is casual.\n\n${scoringText}`,
     schema: stakesResult,
     maxTokens: 180,
   });
-  const mechanics = checkMechanics(input.content, input.type.guideline, stakesCall.value.stakes);
+  const mechanics = checkMechanics(scoringText, input.type.guideline, stakesCall.value.stakes);
   if (mechanics.score === 0) {
     const score = normalizeScore([mechanics]);
     return scorecardSchema.parse({
@@ -105,21 +107,21 @@ export async function scoreDraft(input: {
   const complianceCall = await input.models.complete({
     job: "compliance",
     system: input.baseProfile,
-    prompt: `Apply every compliance prohibition to this draft. A missing source, unsupported judgement claim, guarantee or contradiction fails.\n\n${input.content}`,
+    prompt: `Apply every compliance prohibition to this draft. A missing source, unsupported judgement claim, guarantee or contradiction fails.\n\n${scoringText}`,
     schema: complianceResult,
     maxTokens: 240,
   });
   const coreCall = await input.models.complete({
     job: "judge",
     system: input.baseProfile,
-    prompt: criteriaPrompt(input.content, input.type.examples, coreCriteria),
+    prompt: criteriaPrompt(scoringText, input.type.examples, coreCriteria),
     schema: criteriaResult,
     maxTokens: 600,
   });
   const typeCall = await input.models.complete({
     job: "type-criteria",
     system: `${input.baseProfile}\n\n${input.type.guidelineBody}\n\n${input.type.criteriaBody}`,
-    prompt: criteriaPrompt(input.content, input.type.examples, input.type.criteria),
+    prompt: criteriaPrompt(scoringText, input.type.examples, input.type.criteria),
     schema: criteriaResult,
     maxTokens: 700,
   });

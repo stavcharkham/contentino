@@ -1,5 +1,6 @@
 import type { GuidelineConfig } from "@/lib/profile";
 import type { Scorecard } from "@/lib/schemas";
+import { promotedRules } from "./promoted-rules";
 
 const emojiPattern = /[\p{Extended_Pictographic}]/gu;
 
@@ -25,6 +26,9 @@ export function checkMechanics(
   const sentences = text.replace(/^#+\s.*$/gm, "").split(/[.!?]+/).map((sentence) => sentence.trim()).filter(Boolean);
   if (sentences.some((sentence) => sentence.split(/\s+/).length > maxWords)) {
     violations.push(`sentence exceeds ${maxWords} words`);
+  }
+  for (const rule of promotedRules) {
+    if (rule.violation(text)) violations.push(rule.message);
   }
   const score = violations.length === 0 ? 2 : violations.length === 1 ? 1 : 0;
   return {

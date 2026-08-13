@@ -82,4 +82,19 @@ describe("score gate", () => {
     expect(result.usage).toHaveLength(1);
     expect(result.criteria[0].id).toBe("mechanics");
   });
+
+  it("runs the hand-promoted action-label guideline for free", async () => {
+    const type = await loadContentType(path.join(process.cwd(), "profile"), "product-microcopy");
+    const models = new QueueGateway([{ stakes: "low", reason: "navigation" }]);
+    const result = await scoreDraft({
+      pieceId: "2026-08-14-click-here-c2d1",
+      content: "CLICK HERE!!",
+      type,
+      baseProfile: "profile",
+      attempt: 1,
+      models,
+    });
+    expect(result.criteria[0].reason).toContain("generic “click here”");
+    expect(result.usage).toHaveLength(1);
+  });
 });

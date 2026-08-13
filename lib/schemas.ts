@@ -13,6 +13,7 @@ export const briefSchema = z.object({
   status: z.enum(["draft", "approved", "rejected"]),
   approved_by: z.string().min(1).optional(),
   approved_at: isoDateSchema.optional(),
+  api_cost_usd: z.number().nonnegative().optional(),
 });
 
 export const draftSchema = z.object({

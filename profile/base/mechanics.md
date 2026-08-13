@@ -7,5 +7,7 @@
 - Prefer commas, colons and full stops to em dashes.
 - Ellipses mark a thought or process in progress, not general friendliness.
 - Use numerals for money and percentages.
+- Name the action. Never use a generic `click here` label. This guideline has been promoted into
+  the free mechanics check as the demonstration of guideline-to-code graduation.
 
 The content type supplies character and sentence-length limits.

@@ -6,6 +6,11 @@
 
 ## Waiting on an answer
 
+- **Three real, approved internal-comms examples for the live extension demo.** The extension
+  workflow is built to reject invented or unapproved examples, so internal comms cannot become an
+  active third type until a content owner supplies at least three examples, their sources and the
+  stakes ceiling. This does not block the engine or the two initial streams.
+
 - **Blind-score the 20-item worksheet.** `eval/scoring-set.md` Part 3. Score each item against
   `RUBRIC.md` without reading `eval/scores.md` first, which is the hidden answer key. Every
   number in both eval documents came from one scorer, so "two people would agree on this" is
