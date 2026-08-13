@@ -40,6 +40,15 @@ export class SlackReviewAdapter implements ReviewAdapter {
     await this.api.reactions.add({ channel: this.channel, timestamp: messageTs, name: "eyes" });
   }
 
+  private async post(args: Record<string, unknown>): Promise<{ ts?: string }> {
+    try {
+      return await this.api.chat.postMessage(args);
+    } catch {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      return this.api.chat.postMessage(args);
+    }
+  }
+
   private mappingPath(threadTs: string): string {
     return `content/surfaces/slack/${threadTs.replaceAll(".", "-")}.json`;
   }
@@ -72,7 +81,7 @@ export class SlackReviewAdapter implements ReviewAdapter {
   }
 
   async presentDraft(draft: ReviewDraft): Promise<PresentedReview> {
-    const message = await this.api.chat.postMessage({
+    const message = await this.post({
       channel: this.channel,
       text: `Review: ${draft.title}\nScore ${draft.score.toFixed(1)} · ${draft.outcome}`,
       blocks: [
@@ -87,7 +96,7 @@ export class SlackReviewAdapter implements ReviewAdapter {
 
   async presentDraftInThread(threadTs: string, draft: ReviewDraft): Promise<PresentedReview> {
     await this.mapDraft(threadTs, draft.path);
-    await this.api.chat.postMessage({
+    await this.post({
       channel: this.channel,
       thread_ts: threadTs,
       text: `*Draft ready for review*\nScore ${draft.score.toFixed(1)}\n*Needs review:* External communications always require approval.\n\n${draft.content}\n\nReply with feedback in this thread.`,
@@ -105,10 +114,10 @@ export class SlackReviewAdapter implements ReviewAdapter {
   }
 
   async postRevision(threadTs: string, content: string, message: string): Promise<void> {
-    await this.api.chat.postMessage({ channel: this.channel, thread_ts: threadTs, text: `${message}\n\n${content}` });
+    await this.post({ channel: this.channel, thread_ts: threadTs, text: `${message}\n\n${content}` });
   }
 
   async postMessage(text: string, threadTs?: string): Promise<void> {
-    await this.api.chat.postMessage({ channel: this.channel, thread_ts: threadTs, text });
+    await this.post({ channel: this.channel, thread_ts: threadTs, text });
   }
 }

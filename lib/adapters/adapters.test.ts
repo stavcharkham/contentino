@@ -73,6 +73,18 @@ describe("Slack adapter", () => {
     await expect(adapter.acknowledge("123.456")).rejects.toThrow("missing_scope");
     expect(api.chat.postMessage).not.toHaveBeenCalled();
   });
+
+  it("retries one failed Slack reply before surfacing an error", async () => {
+    const root = await mkdtemp(path.join(tmpdir(), "contentino-slack-retry-"));
+    const api = {
+      chat: { postMessage: vi.fn().mockRejectedValueOnce(new Error("transient")).mockResolvedValue({ ts: "123.459" }) },
+      conversations: { replies: vi.fn() },
+      reactions: { add: vi.fn() },
+    };
+    const adapter = new SlackReviewAdapter(api, "C1", new LocalStorage(root));
+    await expect(adapter.postMessage("Full brief", "123.456")).resolves.toBeUndefined();
+    expect(api.chat.postMessage).toHaveBeenCalledTimes(2);
+  });
 });
 
 describe("Google Docs adapter", () => {
