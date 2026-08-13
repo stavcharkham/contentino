@@ -40,6 +40,37 @@ export class SlackReviewAdapter implements ReviewAdapter {
     await this.api.reactions.add({ channel: this.channel, timestamp: messageTs, name: "eyes" });
   }
 
+  private mappingPath(threadTs: string): string {
+    return `content/surfaces/slack/${threadTs.replaceAll(".", "-")}.json`;
+  }
+
+  private async updateMapping(threadTs: string, values: { brief_path?: string; draft_path?: string }): Promise<void> {
+    const filePath = this.mappingPath(threadTs);
+    const existing = await this.storage.read(filePath);
+    const current = existing ? JSON.parse(existing.content) as Record<string, unknown> : {};
+    const content = `${JSON.stringify({
+      ...current,
+      thread_ts: threadTs,
+      channel: this.channel,
+      ...values,
+      posted_at: current.posted_at ?? new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    }, null, 2)}\n`;
+    if (existing) {
+      await this.storage.update(filePath, content, existing.version, `Update Slack thread ${threadTs}`);
+    } else {
+      await this.storage.create(filePath, content, `Map Slack thread ${threadTs}`);
+    }
+  }
+
+  async mapBrief(threadTs: string, briefPath: string): Promise<void> {
+    await this.updateMapping(threadTs, { brief_path: briefPath });
+  }
+
+  async mapDraft(threadTs: string, draftPath: string): Promise<void> {
+    await this.updateMapping(threadTs, { draft_path: draftPath });
+  }
+
   async presentDraft(draft: ReviewDraft): Promise<PresentedReview> {
     const message = await this.api.chat.postMessage({
       channel: this.channel,
@@ -50,12 +81,18 @@ export class SlackReviewAdapter implements ReviewAdapter {
       ],
     });
     if (!message.ts) throw new Error("Slack did not return a thread timestamp");
-    await this.storage.create(
-      `content/surfaces/slack/${message.ts.replaceAll(".", "-")}.json`,
-      `${JSON.stringify({ thread_ts: message.ts, channel: this.channel, draft_path: draft.path, posted_at: new Date().toISOString() }, null, 2)}\n`,
-      `Map Slack thread ${message.ts}`,
-    );
+    await this.mapDraft(message.ts, draft.path);
     return { surface: "slack", externalId: message.ts };
+  }
+
+  async presentDraftInThread(threadTs: string, draft: ReviewDraft): Promise<PresentedReview> {
+    await this.mapDraft(threadTs, draft.path);
+    await this.api.chat.postMessage({
+      channel: this.channel,
+      thread_ts: threadTs,
+      text: `*Draft ready for review*\nScore ${draft.score.toFixed(1)}\n*Needs review:* External communications always require approval.\n\n${draft.content}\n\nReply with feedback in this thread.`,
+    });
+    return { surface: "slack", externalId: threadTs };
   }
 
   async collectFeedback(threadTs: string): Promise<ReviewFeedback[]> {

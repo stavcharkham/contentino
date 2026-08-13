@@ -25,14 +25,21 @@ export async function POST(request: Request): Promise<Response> {
     const context = await createRuntime();
     const slack = SlackReviewAdapter.fromToken(config.SLACK_BOT_TOKEN as string, config.SLACK_CHANNEL_ID as string, context.storage);
     let terminalReplyPosted = false;
-    const trackedSlack: Pick<SlackReviewAdapter, "acknowledge" | "postMessage" | "presentDraft" | "postRevision"> = {
+    const trackedSlack: Pick<SlackReviewAdapter, "acknowledge" | "mapBrief" | "mapDraft" | "postMessage" | "presentDraft" | "presentDraftInThread" | "postRevision"> = {
       acknowledge: (messageTs) => slack.acknowledge(messageTs),
+      mapBrief: (threadTs, briefPath) => slack.mapBrief(threadTs, briefPath),
+      mapDraft: (threadTs, draftPath) => slack.mapDraft(threadTs, draftPath),
       postMessage: async (text, threadTs) => {
         await slack.postMessage(text, threadTs);
         terminalReplyPosted = true;
       },
       presentDraft: async (draft) => {
         const presented = await slack.presentDraft(draft);
+        terminalReplyPosted = true;
+        return presented;
+      },
+      presentDraftInThread: async (threadTs, draft) => {
+        const presented = await slack.presentDraftInThread(threadTs, draft);
         terminalReplyPosted = true;
         return presented;
       },

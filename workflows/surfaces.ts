@@ -33,18 +33,31 @@ export function formatMicrocopyResult(copy: string, scorecard: Scorecard): strin
   return `*${copy}*\nScore ${scorecard.score.toFixed(1)}\n${routing}`;
 }
 
+function formatMarkdownForSlack(markdown: string): string {
+  return markdown
+    .replace(/^# (.+)$/gm, "*$1*")
+    .replace(/^## (.+)$/gm, "*$1*")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1 ($2)");
+}
+
+type SlackThreadMapping = {
+  brief_path?: string;
+  draft_path?: string;
+};
+
 export async function handleSlackEnvelope(input: {
   context: WorkflowContext;
-  slack: Pick<SlackReviewAdapter, "acknowledge" | "postMessage" | "presentDraft" | "postRevision">;
+  slack: Pick<SlackReviewAdapter, "acknowledge" | "mapBrief" | "mapDraft" | "postMessage" | "presentDraft" | "presentDraftInThread" | "postRevision">;
   envelope: SlackEnvelope;
 }): Promise<{ duplicate?: boolean; action: string }> {
   const event = input.envelope.event;
   if (!event || event.bot_id) return { action: "ignored" };
-  const isMentionCommand = event.type === "app_mention"
-    || (event.type === "message" && !event.thread_ts && /<@[^>]+>/.test(event.text ?? ""));
-  const isThreadReply = event.type === "message" && Boolean(event.thread_ts && event.ts && event.text);
+  const isThreadReply = (event.type === "message" || event.type === "app_mention")
+    && Boolean(event.thread_ts && event.ts && event.text);
+  const isMentionCommand = !event.thread_ts && (event.type === "app_mention"
+    || (event.type === "message" && /<@[^>]+>/.test(event.text ?? "")));
   if (!isMentionCommand && !isThreadReply) return { action: "ignored" };
-  const eventId = isMentionCommand ? event.ts : (input.envelope.event_id ?? event.ts);
+  const eventId = event.ts;
   if (!eventId) throw new Error("Slack event id is required");
   const result = await runOnce(input.context.storage, "slack", eventId, async () => {
     if (event.ts) await input.slack.acknowledge(event.ts).catch(() => undefined);
@@ -54,13 +67,18 @@ export async function handleSlackEnvelope(input: {
       if (microcopy) {
         const generated = await writeMicrocopy({ context: input.context, request: microcopy[1], triggeredBy: event.user ?? "slack", trigger: "slack" });
         const copy = parseMarkdown(generated.content, draftSchema).body.replace(/^# Product micro-copy\s*/i, "").trim();
-        await input.slack.postMessage(formatMicrocopyResult(copy, generated.scorecard), event.thread_ts ?? event.ts);
+        const threadTs = event.ts as string;
+        await input.slack.mapDraft(threadTs, generated.path);
+        await input.slack.postMessage(formatMicrocopyResult(copy, generated.scorecard), threadTs);
         return "microcopy";
       }
       const briefRequest = text.match(/^brief:\s*([\s\S]+)/i);
       if (briefRequest) {
         const brief = await makeBrief({ context: input.context, transcript: briefRequest[1], source: `slack://${event.channel}/${event.ts}`, sourceId: eventId });
-        await input.slack.postMessage(`Brief ready for approval: ${brief.path}`, event.thread_ts ?? event.ts);
+        const threadTs = event.ts as string;
+        await input.slack.mapBrief(threadTs, brief.path);
+        const body = parseMarkdown(brief.content, briefSchema).body;
+        await input.slack.postMessage(`*Brief ready for approval*\n\n${formatMarkdownForSlack(body)}\n\nReply *approve* or *write it here* to generate the draft in this thread.`, threadTs);
         return "brief";
       }
       const approval = text.match(/^approve\s+(content\/briefs\/[a-z0-9-]+\.md)$/i);
@@ -70,19 +88,38 @@ export async function handleSlackEnvelope(input: {
         await input.slack.presentDraft({ path: generated.path, title: generated.pieceId, content: generated.content, score: generated.scorecard.score, outcome: generated.scorecard.outcome });
         return "approved-brief";
       }
-      await input.slack.postMessage("Use `microcopy: …`, `brief: …`, or `approve content/briefs/<id>.md`.", event.thread_ts ?? event.ts);
+      await input.slack.postMessage("Use `microcopy: …` or `brief: …`. After a brief appears, reply `approve` or `write it here` in its thread.", event.ts);
       return "help";
     }
     if (isThreadReply && event.thread_ts && event.ts && event.text) {
       const mapping = await input.context.storage.read(`content/surfaces/slack/${event.thread_ts.replaceAll(".", "-")}.json`);
       if (!mapping) return "unmapped-reply";
-      const { draft_path: draftPath } = JSON.parse(mapping.content) as { draft_path: string };
+      const { brief_path: briefPath, draft_path: draftPath } = JSON.parse(mapping.content) as SlackThreadMapping;
+      const reply = event.text.replace(/<@[^>]+>/g, "").trim();
+      if (briefPath && !draftPath) {
+        if (!/^(approve(?:d)?|write it(?: here)?|generate(?: it)?|go ahead)[.!]?$/i.test(reply)) {
+          await input.slack.postMessage("Reply `approve` or `write it here` to generate the draft in this thread.", event.thread_ts);
+          return "brief-awaiting-approval";
+        }
+        await approveBrief({ storage: input.context.storage, path: briefPath, approvedBy: event.user ?? "slack" });
+        const generated = await writeExternalComms({ context: input.context, briefPath, triggeredBy: event.user ?? "slack", trigger: "slack" });
+        const draft = parseMarkdown(generated.content, draftSchema);
+        await input.slack.presentDraftInThread(event.thread_ts, {
+          path: generated.path,
+          title: generated.pieceId,
+          content: formatMarkdownForSlack(draft.body),
+          score: generated.scorecard.score,
+          outcome: generated.scorecard.outcome,
+        });
+        return "approved-brief";
+      }
+      if (!draftPath) return "unmapped-reply";
       const corrections = await input.context.storage.list("content/corrections");
       if (corrections.some((file) => parseCorrection(file.content).external_id === `slack:${event.ts}`)) return "duplicate-feedback";
       const draftFile = await input.context.storage.read(draftPath);
       if (!draftFile) throw new Error(`Mapped draft not found: ${draftPath}`);
       const draft = parseMarkdown(draftFile.content, draftSchema);
-      const interpreted = await interpretFeedback({ models: input.context.models, draft: draft.body, said: event.text });
+      const interpreted = await interpretFeedback({ models: input.context.models, draft: draft.body, said: reply });
       if (interpreted.clarification_needed) {
         await input.slack.postMessage(interpreted.question ?? "What exact wording should change?", event.thread_ts);
         return "clarification";
@@ -95,7 +132,7 @@ export async function handleSlackEnvelope(input: {
         criterion: interpreted.criterion as string,
         was: interpreted.was as string,
         now: interpreted.now as string,
-        said: event.text,
+        said: reply,
         externalId: `slack:${event.ts}`,
       });
       const revised = await input.context.storage.read(draftPath);

@@ -36,6 +36,32 @@ describe("Slack adapter", () => {
     expect(await adapter.collectFeedback("123.456")).toEqual([{ externalId: "123.457", who: "U1", said: "Use finish quote" }]);
   });
 
+  it("keeps a brief and its generated draft mapped to the same readable thread", async () => {
+    const root = await mkdtemp(path.join(tmpdir(), "contentino-slack-thread-"));
+    const storage = new LocalStorage(root);
+    const api = {
+      chat: { postMessage: vi.fn().mockResolvedValue({ ts: "123.458" }) },
+      conversations: { replies: vi.fn() },
+      reactions: { add: vi.fn() },
+    };
+    const adapter = new SlackReviewAdapter(api, "C1", storage);
+    await adapter.mapBrief("200.100", "content/briefs/brief.md");
+    await adapter.presentDraftInThread("200.100", {
+      path: "content/drafts/draft.md",
+      title: "Draft",
+      content: "The full draft is visible here.",
+      score: 9,
+      outcome: "reviewed",
+    });
+    const mapping = JSON.parse((await storage.read("content/surfaces/slack/200-100.json"))?.content ?? "{}") as Record<string, string>;
+    expect(mapping).toMatchObject({ brief_path: "content/briefs/brief.md", draft_path: "content/drafts/draft.md" });
+    expect(api.chat.postMessage).toHaveBeenCalledWith(expect.objectContaining({
+      channel: "C1",
+      thread_ts: "200.100",
+      text: expect.stringContaining("The full draft is visible here."),
+    }));
+  });
+
   it("never posts an eyes reply when a reaction fails", async () => {
     const root = await mkdtemp(path.join(tmpdir(), "contentino-slack-ack-"));
     const api = {
