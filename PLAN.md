@@ -167,7 +167,9 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 - [x] `README.md`
 - [x] Write-up of the thinking, assembled from `DECISIONS.md` and `PROCESS.md`
 - [x] One-pager (`interview/`, gitignored)
-- [ ] Deploy and smoke test the live URL
+- [x] Deploy and smoke test the live URL. Production renders the GitHub-backed evidence report;
+      a signed Slack challenge returns 200, unsigned Slack returns 401, and the Drive cron rejects
+      requests without its bearer secret.
 
 ## Not doing
 

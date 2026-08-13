@@ -347,3 +347,20 @@ activation. The internal examples are marked fixtures in both output and documen
 The local build is complete. External proof stopped at account boundaries: no integration secrets
 are loaded, no Git remote exists, and the available GitHub browser session is signed out. The
 Vercel CLI is signed in. These are recorded as open checks rather than replaced with mocks.
+
+## 2026-08-13 - Session 7: production deployment
+
+Connected the private GitHub repository, replaced the Google service account with a user OAuth
+refresh-token flow and verified that the saved token can renew access to the Contentino Drive
+folder unattended. Added the Slack app manifest and verified Slack's signed URL challenge against
+both preview and production.
+
+The first Vercel attempt exposed three hosting assumptions. Hobby rejects a 15-minute cron, so the
+prototype sync now runs daily at 06:00 UTC. Vercel's Next.js adapter conflicted with the explicit
+self-hosted standalone output, so Vercel now owns packaging. Finally, hosted reads were falling
+back to the local filesystem; Vercel now always selects the GitHub storage adapter. Each failure
+was reproduced, fixed independently and covered by a regression test.
+
+Production at `contentino-seven.vercel.app` passed the live smoke test: the protected evidence
+dashboard rendered with its intended styles, the signed Slack challenge returned the exact value,
+an unsigned Slack request returned 401 and the Drive route returned 401 without `CRON_SECRET`.
