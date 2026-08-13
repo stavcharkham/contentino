@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-13-cta-button-shown-after-a-customer-has-finished-e-3139",
+  "source_hash": "575d9bca392a10d9a743e025ca780ed1a5794d169f3cc7c96e480431d536f84e",
+  "scored_at": "2026-08-13T20:40:32.531Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": "N/A",
+      "reason": "Draft is too minimal to evaluate tone appropriateness for stated stakes. No stakes level provided for comparison against approved examples.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": "N/A",
+      "reason": "No humour present in the draft. Cannot assess whether humour is appropriately absent given unknown stakes level.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The action verb 'GET' is concrete and direct. Uses all-caps button label following the established pattern (LEM-011, LEM-009). No specialized terms requiring translation.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The draft 'GET YOUR QUOTE' is a button label with no named subject or addressee context provided by the interface (unlike LEM-009's email or a pet's name), so there is nothing to compare against for personalized addressing.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this string, so fit cannot be assessed against a hard limit.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "'GET YOUR QUOTE' uses a concrete action verb ('get') consistent with approved examples like LEM-011's 'GET DISCOUNTS,' matching the established verb pattern for short all-caps action buttons in the product flow.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft consists solely of the isolated button/navigation label 'GET YOUR QUOTE'. It contains no promise of an outcome or guaranteed claim payment, no removed disclaimer, no unsupported judgement claim about how Lemonade evaluates a customer, no contradiction of known policy on data use, price, coverage or eligibility, and no attributed quote or factual public claim requiring a source. Per instructions, an isolated navigation or button label should not be failed for lacking surrounding copy, a source, or a disclaimer. Therefore no compliance prohibition is triggered."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 158,
+      "cache_read_tokens": 1833,
+      "cache_write_tokens": 120,
+      "cost_usd": 0.002251
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1260,
+      "output_tokens": 54,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.00153
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 206,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 106,
+      "cost_usd": 0.002658
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1788,
+      "output_tokens": 154,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002558
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 259,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 610,
+      "cost_usd": 0.00454
+    }
+  ],
+  "cost_usd": 0.013537
+}
