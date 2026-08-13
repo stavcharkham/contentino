@@ -45,8 +45,10 @@ function titleCase(value: string): string {
   return value.split("-").map((word) => `${word.slice(0, 1).toUpperCase()}${word.slice(1)}`).join(" ");
 }
 
-function rubricNumber(source: string, expression: RegExp, fallback: number): number {
-  return Number(source.match(expression)?.[1] ?? fallback);
+function rubricNumber(source: string, expression: RegExp, label: string): number {
+  const match = source.match(expression)?.[1];
+  if (!match) throw new Error(`The rubric evaluation is missing ${label}`);
+  return Number(match);
 }
 
 export async function buildDashboardData(storage: ContentStorage, now = new Date()): Promise<DashboardData> {
@@ -97,10 +99,10 @@ export async function buildDashboardData(storage: ContentStorage, now = new Date
   ].map((band) => ({ ...band, percentage: percentage(band.count, rows.length) }));
   const rubricSource = rubricFile.content;
   const rubric = {
-    realMean: rubricNumber(rubricSource, /Real Lemonade mean[^\n]*\*\*(\d+\.\d+)\*\*/, 9.49),
-    offBrandMean: rubricNumber(rubricSource, /Off-brand mean[^\n]*\*\*(\d+\.\d+)\*\*/, 4.5),
-    gap: rubricNumber(rubricSource, /\*\*Gap\*\*[^\n]*\*\*(\d+\.\d+)\*\*/, 4.99),
-    sampleSize: rubricNumber(rubricSource, /(\d+) of \d+ match/, 47),
+    realMean: rubricNumber(rubricSource, /Real Lemonade mean[^\n]*\*\*(\d+\.\d+)\*\*/, "the real-content mean"),
+    offBrandMean: rubricNumber(rubricSource, /Off-brand mean[^\n]*\*\*(\d+\.\d+)\*\*/, "the off-brand mean"),
+    gap: rubricNumber(rubricSource, /\*\*Gap\*\*[^\n]*\*\*(\d+\.\d+)\*\*/, "the score gap"),
+    sampleSize: rubricNumber(rubricSource, /(\d+) of \d+ match/, "the reproduced sample size"),
     disclosure: "Same 47-item set; human calibration and live model scoring remain outstanding.",
   };
   const reviewCount = rows.filter((row) => row.outcome === "reviewed").length;

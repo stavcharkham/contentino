@@ -37,6 +37,20 @@ describe("LocalStorage", () => {
     });
     expect(await storage.list("content/drafts")).toHaveLength(2);
   });
+
+  it("allows only one concurrent create for an idempotency marker", async () => {
+    const root = await mkdtemp(path.join(tmpdir(), "contentino-storage-race-"));
+    const first = new LocalStorage(root);
+    const second = new LocalStorage(root);
+    const results = await Promise.allSettled([
+      first.create("content/events/slack-one.json", "first"),
+      second.create("content/events/slack-one.json", "second"),
+    ]);
+    expect(results.filter((result) => result.status === "fulfilled")).toHaveLength(1);
+    const rejected = results.filter((result): result is PromiseRejectedResult => result.status === "rejected");
+    expect(rejected).toHaveLength(1);
+    expect(rejected[0].reason).toBeInstanceOf(StorageConflictError);
+  });
 });
 
 describe("GitHubStorage", () => {

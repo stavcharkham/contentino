@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from "node:crypto";
-import { mkdir, readFile, readdir, rename, rm, stat, unlink, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rename, rm, rmdir, stat, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { setTimeout as delay } from "node:timers/promises";
 import { Octokit } from "@octokit/rest";
 import type { ContentinoConfig } from "./config";
 
@@ -110,7 +111,31 @@ export class LocalStorage extends StorageConvenience {
     }));
   }
 
+  private async acquireWriteLock(): Promise<() => Promise<void>> {
+    await mkdir(this.root, { recursive: true });
+    const lockPath = path.join(this.root, ".contentino-write-lock");
+    for (let attempt = 0; attempt < 500; attempt += 1) {
+      try {
+        await mkdir(lockPath);
+        return async () => { await rmdir(lockPath); };
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
+        await delay(10);
+      }
+    }
+    throw new StorageConflictError("Timed out waiting for the local storage write lock");
+  }
+
   async commit(commit: StorageCommit): Promise<{ version: string }> {
+    const release = await this.acquireWriteLock();
+    try {
+      return await this.commitLocked(commit);
+    } finally {
+      await release();
+    }
+  }
+
+  private async commitLocked(commit: StorageCommit): Promise<{ version: string }> {
     if (!commit.changes.length) throw new Error("Storage commit needs at least one change");
     const changes = commit.changes.map((change) => ({ ...change, path: normaliseStoragePath(change.path) }));
     const originals = new Map<string, StoredFile | null>();

@@ -1,7 +1,7 @@
 import { parseMarkdown, renderMarkdown } from "@/lib/artifacts";
 import { createShortId } from "@/lib/ids";
 import { parseLedger, readBaselines, serializeLedger, upsertLedger, minutesSaved } from "@/lib/ledger";
-import { correctionSchema, draftSchema, scorecardSchema, type Correction } from "@/lib/schemas";
+import { correctionSchema, draftSchema, scorecardSchema, type Correction, type Scorecard } from "@/lib/schemas";
 import { contentHash, type StorageChange } from "@/lib/storage";
 import { scorePathFor } from "@/gate/publish";
 import { scoreArtifact, type WorkflowContext } from "./common";
@@ -39,7 +39,7 @@ export async function applyReview(input: {
   const occurrences = draft.body.split(input.was).length - 1;
   if (occurrences !== 1) throw new Error(`Review target must occur exactly once; found ${occurrences}`);
   const revisedBody = draft.body.replace(input.was, input.now);
-  const revisedContent = renderMarkdown({ ...draft.metadata, status: "review" }, revisedBody);
+  let revisedContent = renderMarkdown({ ...draft.metadata, status: "review" }, revisedBody);
   let score = await scoreArtifact({
     context: input.context,
     pieceId: draft.metadata.id,
@@ -48,7 +48,9 @@ export async function applyReview(input: {
     scoringText: revisedBody,
     attempt: 1,
   });
-  score = { ...score, outcome: "reviewed", source_hash: contentHash(revisedContent) };
+  const reviewOutcome: Scorecard["outcome"] = score.outcome === "blocked" ? "blocked" : "reviewed";
+  revisedContent = renderMarkdown({ ...draft.metadata, status: reviewOutcome === "blocked" ? "blocked" : "review" }, revisedBody);
+  score = { ...score, outcome: reviewOutcome, source_hash: contentHash(revisedContent) };
   const previousScore = scorecardSchema.parse(JSON.parse(scoreFile.content));
   const rows = parseLedger(ledgerFile.content);
   const previousRow = rows.find((row) => row.piece_id === draft.metadata.id);
@@ -58,10 +60,10 @@ export async function applyReview(input: {
   const nextRow = {
     ...previousRow,
     score: score.score,
-    outcome: "reviewed" as const,
+    outcome: reviewOutcome,
     revisions,
     api_cost_usd: Number((previousRow.api_cost_usd + score.cost_usd).toFixed(6)),
-    minutes_saved: minutesSaved(baseline, "reviewed", revisions),
+    minutes_saved: minutesSaved(baseline, reviewOutcome, revisions),
   };
   const correction: Correction = {
     id: createShortId(),

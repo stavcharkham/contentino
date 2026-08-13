@@ -3,6 +3,7 @@ import { parseMarkdown, renderMarkdown } from "@/lib/artifacts";
 import { createPieceId } from "@/lib/ids";
 import { loadBaseProfile, loadContentTypeFromStorage } from "@/lib/profile-storage";
 import { briefSchema, type Draft, type Scorecard } from "@/lib/schemas";
+import { contentHash } from "@/lib/storage";
 import { publishScoredDraft, recordScoredDraft } from "@/gate/publish";
 import { makeLedgerRow, scoreArtifact, workflowNow, type WorkflowContext } from "./common";
 
@@ -14,6 +15,7 @@ type GenerationResult = { pieceId: string; path: string; scorecard: Scorecard; c
 function statusFor(scorecard: Scorecard): Draft["status"] {
   if (scorecard.outcome === "blocked") return "blocked";
   if (scorecard.outcome === "reviewed") return "review";
+  if (scorecard.outcome === "auto-published") return "published";
   return "draft";
 }
 
@@ -63,8 +65,8 @@ export async function writeMicrocopy(input: {
     let scorecard = await scoreArtifact({ context: input.context, pieceId, contentType: metadata.content_type, artifact: content, scoringText: generation.value.copy, attempt });
     scorecard = withGenerationUsage(scorecard, generation.usage);
     content = renderMarkdown({ ...metadata, status: statusFor(scorecard) }, body);
-    if (scorecard.source_hash !== (await import("@/lib/storage")).contentHash(content)) {
-      scorecard = { ...scorecard, source_hash: (await import("@/lib/storage")).contentHash(content) };
+    if (scorecard.source_hash !== contentHash(content)) {
+      scorecard = { ...scorecard, source_hash: contentHash(content) };
     }
     const ledgerRow = await makeLedgerRow({ storage: input.context.storage, pieceId, created: metadata.created, skill: "write-microcopy", contentType: metadata.content_type, triggeredBy: input.triggeredBy, trigger: input.trigger, scorecard });
     await recordScoredDraft({ storage: input.context.storage, draftPath, content, scorecard, ledgerRow });
@@ -122,7 +124,7 @@ export async function writeExternalComms(input: {
     let scorecard = await scoreArtifact({ context: input.context, pieceId, contentType: metadata.content_type, artifact: content, scoringText: body, attempt });
     scorecard = withGenerationUsage(scorecard, generation.usage, brief.metadata.api_cost_usd ?? 0);
     content = renderMarkdown({ ...metadata, status: statusFor(scorecard) }, body);
-    scorecard = { ...scorecard, source_hash: (await import("@/lib/storage")).contentHash(content) };
+    scorecard = { ...scorecard, source_hash: contentHash(content) };
     const ledgerRow = await makeLedgerRow({ storage: input.context.storage, pieceId, created: metadata.created, skill: "write-external-comms", contentType: metadata.content_type, triggeredBy: input.triggeredBy, trigger: input.trigger, scorecard });
     await recordScoredDraft({ storage: input.context.storage, draftPath, content, scorecard, ledgerRow });
     if (scorecard.outcome !== "regenerated") return { pieceId, path: draftPath, scorecard, content };

@@ -30,7 +30,9 @@ class PerfectGateway implements ModelGateway {
       ? { copy: "FINISH QUOTE", rationale: "Matches the established action verb." }
       : { title: "A clearer price for autonomous miles", body: "Arizona drivers using Tesla FSD can now get a rate that reflects those miles. The launch follows the product announcement in the approved brief." };
     else if (request.job === "stakes") value = { stakes: request.prompt.includes("Arizona") ? "high" : "low", reason: "Fixture stakes" };
-    else if (request.job === "compliance") value = { pass: true, reason: "Every claim is sourced" };
+    else if (request.job === "compliance") value = request.prompt.includes("guaranteed to save money")
+      ? { pass: false, reason: "Unsupported guarantee" }
+      : { pass: true, reason: "Every claim is sourced" };
     else if (request.job === "judge") value = { criteria: [
       { id: "register", score: 2, reason: "Matched" },
       { id: "humour", score: 2, reason: "Safe" },
@@ -64,6 +66,7 @@ describe("content workflows", () => {
     const result = await writeMicrocopy({ context, request: "CTA to finish a quote", triggeredBy: "stav", trigger: "claude" });
     expect(result.path).toContain("content/published/");
     expect(result.scorecard.outcome).toBe("auto-published");
+    expect((await context.storage.read(result.path))?.content).toContain("status: published");
     const ledger = await context.storage.read("metrics/ledger.csv");
     expect(parseLedger(ledger?.content ?? "")).toEqual([expect.objectContaining({ minutes_saved: 20 })]);
   });
@@ -98,6 +101,26 @@ describe("content workflows", () => {
     expect((await context.storage.list("content/corrections"))).toHaveLength(1);
     const ledger = parseLedger((await context.storage.read("metrics/ledger.csv"))?.content ?? "");
     expect(ledger[0]).toEqual(expect.objectContaining({ revisions: 1, outcome: "reviewed" }));
+  });
+
+  it("blocks a reviewed revision that introduces a compliance violation", async () => {
+    const context = await testContext();
+    const brief = await makeBrief({ context, transcript: "This changes how risk is priced.", source: "drive://call-1", sourceId: "call-1" });
+    await approveBrief({ storage: context.storage, path: brief.path, approvedBy: "Stav", now: new Date("2026-08-14T10:00:00.000Z") });
+    const draft = await writeExternalComms({ context, briefPath: brief.path, triggeredBy: "drive", trigger: "drive" });
+    const reviewed = await applyReview({
+      context,
+      draftPath: draft.path,
+      surface: "claude",
+      who: "reviewer",
+      criterion: "compliance",
+      was: "can now get a rate that reflects those miles",
+      now: "are guaranteed to save money",
+      said: "Make the saving absolute.",
+    });
+    expect(reviewed.score.outcome).toBe("blocked");
+    expect((await context.storage.read(draft.path))?.content).toContain("status: blocked");
+    expect(parseLedger((await context.storage.read("metrics/ledger.csv"))?.content ?? "")[0]).toMatchObject({ outcome: "blocked", minutes_saved: 0 });
   });
 
   it("proposes and applies a guideline only from four corrections", async () => {
