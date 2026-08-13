@@ -53,14 +53,20 @@
 - [x] Two architecture conversations reviewed (the RiseUp PR system, and Noam on how to
       structure it). 16 decisions recorded in `DECISIONS.md`, three of which reverse or revise
       what was decided on 2026-08-12.
-- [ ] **Apply the two fixes to `RUBRIC.md`.** The criterion 4 fix is now subsumed by a larger
-      change: the rubric splits into a shared core (register, humour boundary, plain language,
-      compliance veto) plus questions belonging to each content type. Direct address moves out
-      of the core, which resolves the N/A problem structurally rather than by special-casing.
-      Criterion 1 still needs its own rewording, separating casual commentary *about* legal
-      text from casual language *inside* it.
-- [ ] Re-check against the affected items in `eval/scores.md`. Real Lemonade copy has to reach
-      9-10. A full re-run should not be needed.
+- [x] **Apply the fixes to `RUBRIC.md`.** Rewritten as a shared core (register, humour, plain
+      language, mechanics, compliance veto) plus questions belonging to each content type.
+      Direct address moved out of the core, which resolves the N/A problem structurally rather
+      than by special-casing. Criterion 1 now separates casual commentary *about* legal text
+      from casual language *inside* it. Third fix taken as well, which the validation had
+      flagged as lower priority: the veto now catches copy that contradicts known policy on
+      pricing, eligibility or data use. Both chosen streams touch that language.
+- [x] Re-check the fixes against `eval/scores.md`. **Real Lemonade copy now scores 9.49 (was
+      8.80, target 9+), off-brand 4.50, gap 4.99 (was 4.38).** No genuine Lemonade copy lands
+      in regenerate any more, and no off-brand item out-scores a real one. Direct address
+      roughly doubled its discriminating power once it stopped being asked of content with no
+      addressee. Report in `eval/rubric-recheck.md`, reproduce with `python3 eval/recheck.py`.
+      Caveat recorded in the report: this confirms the fixes do what they were designed to do,
+      it is not an independent re-validation, and the five new per-type criteria are untested.
 - [ ] **Needs Stav:** blind scores on the `eval/scoring-set.md` Part 3 worksheet (20 items),
       compared against the hidden answer key in `eval/scores.md`. This is the two-people step
       from `RUBRIC.md` and it is the only part of calibration one person cannot do alone.
