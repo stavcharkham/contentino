@@ -541,3 +541,12 @@ refresh token for the Google account that owns the watched folder.
 inside Drive rather than as a separate machine identity. The runtime keeps the same adapter and
 only exchanges the refresh token for short-lived access tokens.
 **Reversible:** yes
+
+### 2026-08-13 - Drive sync runs daily on the prototype host
+**Category:** build
+**Decided:** Run the hosted Drive transcript sync once daily at 06:00 UTC. Keep the authenticated
+route available for manual runs when a transcript needs processing sooner.
+**Rejected:** The original 15-minute schedule; upgrading Vercel solely for cron frequency.
+**Why:** Vercel Hobby rejects cron expressions that run more than once per day. Daily automation
+is enough to demonstrate the workflow without adding a hosting cost to the prototype.
+**Reversible:** yes
