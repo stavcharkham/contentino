@@ -31,7 +31,10 @@ export type ContentinoConfig = z.infer<typeof configSchema>;
 export function readConfig(
   source: Record<string, string | undefined> = process.env,
 ): ContentinoConfig {
-  const config = configSchema.parse(source);
+  const config = configSchema.parse({
+    ...source,
+    CONTENTINO_STORAGE: source.VERCEL === "1" ? "github" : source.CONTENTINO_STORAGE,
+  });
   if (config.CONTENTINO_STORAGE === "github") {
     const missing = ["GITHUB_TOKEN", "GITHUB_OWNER"].filter(
       (key) => !config[key as keyof ContentinoConfig],

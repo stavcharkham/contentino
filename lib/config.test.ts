@@ -29,4 +29,14 @@ describe("readConfig", () => {
     });
     expect(config.GOOGLE_REFRESH_TOKEN).toBe("refresh-token");
   });
+
+  it("uses GitHub storage on Vercel even when local development uses files", () => {
+    const config = readConfig({
+      VERCEL: "1",
+      CONTENTINO_STORAGE: "local",
+      GITHUB_TOKEN: "token",
+      GITHUB_OWNER: "stavcharkham",
+    });
+    expect(config.CONTENTINO_STORAGE).toBe("github");
+  });
 });
