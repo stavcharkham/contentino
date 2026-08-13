@@ -11,11 +11,6 @@
   active third type until a content owner supplies at least three examples, their sources and the
   stakes ceiling. This does not block the engine or the two initial streams.
 
-- **Load the live integration credentials from `.env.example`.** Anthropic, GitHub, Slack, Google,
-  cron and Vercel automation-bypass values are all absent from this workspace. GitHub and the
-  Vercel CLI are signed in. Until the values are available, real model calibration, Slack/Docs
-  integration and a webhook-capable preview cannot be claimed.
-
 - **Blind-score the 20-item worksheet.** `eval/scoring-set.md` Part 3. Score each item against
   `RUBRIC.md` without reading `eval/scores.md` first, which is the hidden answer key. Every
   number in both eval documents came from one scorer, so "two people would agree on this" is
@@ -24,6 +19,9 @@
   the weakest claim in the deliverable until it is done.
 
 ## Answered
+
+- Live integration credentials - configured locally and in Vercel. GitHub-backed production,
+  protected dashboard access, a signed Slack challenge and cron authorization were smoke-tested.
 
 - Full $50 Anthropic budget remains available - confirmed in the implementation plan.
 - Build both Google Docs and the live extension path - confirmed in the implementation plan.

@@ -77,7 +77,7 @@ npm run demo
 
 Current verified evidence:
 
-- 45 unit, contract, workflow and adapter tests pass.
+- 50 unit, contract, workflow and adapter tests pass.
 - 5 browser checks pass across desktop Chromium and mobile WebKit; one desktop-only mobile
   assertion is skipped by design.
 - The 47-item rubric re-check reproduces every encoded answer. Real Lemonade copy averages
@@ -138,15 +138,17 @@ Every required variable and model override is documented in [.env.example](.env.
 
 ## Remaining live evidence
 
-The implementation is complete locally. These checks require account access and are not claimed
-as done:
+The production dashboard and GitHub-backed storage are live. These checks are not claimed as done:
 
 - Real Anthropic scoring against the answer key and actual cost capture.
 - One installed Slack thread and one Google Drive/Docs round trip.
-- GitHub-backed hosted persistence and the protected Vercel preview.
+- A reachable action that creates a Google Docs review document. Comment processing is built, but
+  the entry action is not yet wired to a user surface.
 - Three real, approved internal-comms examples. Fixture examples prove the extension contract
   but are not allowed into the live profile.
 - Stav's blind 20-item human calibration.
+
+The manual acceptance sequence and evidence record are in [TEST-PLAN.md](TEST-PLAN.md).
 
 The product choices and rejected alternatives are in [DECISIONS.md](DECISIONS.md). The build
 record is in [PROCESS.md](PROCESS.md), and the final argument is in [WRITEUP.md](WRITEUP.md).

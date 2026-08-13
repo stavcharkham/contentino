@@ -171,6 +171,17 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
       a signed Slack challenge returns 200, unsigned Slack returns 401, and the Drive cron rejects
       requests without its bearer secret.
 
+## Acceptance and close
+
+- [ ] Wire a reachable action that creates a Google Docs review document and maps it to a draft.
+      Comment ingestion, revision, reply and resolution exist, but this entry action is missing.
+- [ ] Run the live acceptance tests in `TEST-PLAN.md` for Slack, Drive, Google Docs, Claude,
+      GitHub persistence, scoring, blocking and the learning loop.
+- [ ] Activate internal comms with three real owner-approved examples that score 9-10.
+- [ ] Complete the real Anthropic calibration, usage/cost review and Stav's blind 20-item scoring.
+- [ ] Run a fresh code and security review, record the complete live demo, reconcile the final docs
+      and close the project.
+
 ## Not doing
 
 Cut on 2026-08-12 after the prior-art research. These are the features the market sells to
