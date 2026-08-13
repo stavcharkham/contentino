@@ -38,11 +38,12 @@
       touches thresholds or criteria 2/3/5.
 - [x] Decided: no second research pass. Build with what we have.
 - [x] Decided: profile organised by content type, stakes as a layer inside each.
-- [x] Decided: two streams shipped deeply (product micro-copy, external comms / PR), a third
+- [x] Decided: two streams shipped deeply (product micro-copy, external comms), a third
       seeded if time allows (internal comms). Not shipping customer email or creative
       marketing. Reasoning in `DECISIONS.md`.
-      **Second stream reopened on 2026-08-13** - narrowed to LinkedIn, then found LinkedIn is
-      not one of the five named use cases. See `QUESTIONS.md`.
+      **Second stream reopened and closed on 2026-08-13** - narrowed to LinkedIn, then found
+      LinkedIn is not one of the five named use cases. Settled back to external comms, with
+      the journalist and outlet research cut.
 
 ## Day 2 - Foundations and core engine (2026-08-13)
 
@@ -74,12 +75,11 @@
       reviewed, revision count, score, API cost. Plus the baseline-minutes config.
 - [ ] Storage seam: one module owns reading and writing content, so pointing at a CMS later is
       a change in one file
-- [ ] Answer the second-stream question in `QUESTIONS.md` before day 3 starts
+- [x] Second stream settled: external comms. `SPEC.md` written.
 
 ## Day 3 - Engine and evaluation
 
-- [ ] Seed the second content type once the question is answered: guidelines, examples, own
-      criteria
+- [ ] Seed **external comms** as the second content type: guidelines, examples, own criteria
 - [ ] Building-block skills: brand voice, stakes model, mechanics, compliance, audience
 - [ ] Writing skills for both content types, plus the brief-making skill
 - [ ] Generation reads the base plus the type, and resolves the stakes layer from the request
