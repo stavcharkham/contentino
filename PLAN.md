@@ -16,7 +16,7 @@
 - [x] Implement model calls, mechanics, scoring, budget guard, ledger and publish gate
 - [x] Implement all seven skills and the correction-to-guideline learning loop
 - [x] Implement Claude, Slack and Google Drive/Docs review surfaces and triggers
-- [ ] Build the read-only evidence dashboard and verify it at desktop and mobile sizes
+- [x] Build the read-only evidence dashboard and verify it at desktop and mobile sizes
 - [ ] Run code and security reviews, demonstrate every acceptance criterion, deploy and close
 
 Two build decisions supersede details written earlier in this plan and are recorded formally at
