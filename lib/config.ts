@@ -22,6 +22,7 @@ export const configSchema = z.object({
   GOOGLE_PRIVATE_KEY: optionalSecret,
   GOOGLE_DRIVE_FOLDER_ID: optionalSecret,
   CRON_SECRET: optionalSecret,
+  VERCEL_AUTOMATION_BYPASS_SECRET: optionalSecret,
 });
 
 export type ContentinoConfig = z.infer<typeof configSchema>;

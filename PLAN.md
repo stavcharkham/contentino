@@ -15,7 +15,7 @@
 - [x] Implement the typed artifact schemas and local/GitHub storage seam
 - [x] Implement model calls, mechanics, scoring, budget guard, ledger and publish gate
 - [x] Implement all seven skills and the correction-to-guideline learning loop
-- [ ] Implement Claude, Slack and Google Drive/Docs review surfaces and triggers
+- [x] Implement Claude, Slack and Google Drive/Docs review surfaces and triggers
 - [ ] Build the read-only evidence dashboard and verify it at desktop and mobile sizes
 - [ ] Run code and security reviews, demonstrate every acceptance criterion, deploy and close
 
