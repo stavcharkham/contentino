@@ -81,7 +81,7 @@ export async function scoreDraft(input: {
   const stakesCall = await input.models.complete({
     job: "stakes",
     system: input.baseProfile,
-    prompt: `Classify the highest stakes touched by this draft as low, medium or high. Never lower stakes because the surrounding tone is casual.\n\n${scoringText}`,
+    prompt: `Classify the highest stakes touched by the wording itself as low, medium or high. Never lower stakes because the surrounding tone is casual. A navigation or button label that only opens, displays or continues to a quote, price, coverage or claim screen remains low stakes; it becomes high only when the wording makes or explains the actual financial, coverage, eligibility or claim decision.\n\n${scoringText}`,
     schema: stakesResult,
     maxTokens: 180,
   });
@@ -107,7 +107,7 @@ export async function scoreDraft(input: {
   const complianceCall = await input.models.complete({
     job: "compliance",
     system: input.baseProfile,
-    prompt: `Apply every compliance prohibition to this draft. A missing source, unsupported judgement claim, guarantee or contradiction fails.\n\n${scoringText}`,
+    prompt: `Apply every compliance prohibition to this draft. A missing source, unsupported judgement claim, guarantee or contradiction fails. Judge only claims present in the supplied text. Do not fail an isolated navigation or button label because surrounding copy, a source or a disclaimer is not included.\n\n${scoringText}`,
     schema: complianceResult,
     maxTokens: 600,
   });

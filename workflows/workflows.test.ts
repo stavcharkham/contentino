@@ -30,6 +30,7 @@ class PerfectGateway implements ModelGateway {
       if (request.prompt.includes("one UI string")) {
         expect(request.maxTokens).toBe(600);
         expect(request.prompt).toContain("do not replace quote with price");
+        expect(request.prompt).toContain("second-person “your”");
         value = { copy: "FINISH QUOTE", rationale: "Matches the established action verb." };
       } else {
         value = { title: "A clearer price for autonomous miles", body: "Arizona drivers using Tesla FSD can now get a rate that reflects those miles. The launch follows the product announcement in the approved brief." };

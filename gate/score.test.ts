@@ -7,8 +7,10 @@ import { normalizeScore, routeScore, scoreDraft } from "./score";
 const usage = { model: "mock", input_tokens: 10, output_tokens: 5, cache_read_tokens: 0, cache_write_tokens: 0, cost_usd: 0.001 };
 
 class QueueGateway implements ModelGateway {
+  readonly requests: ModelRequest<unknown>[] = [];
   constructor(private readonly values: unknown[]) {}
   async complete<T>(request: ModelRequest<T>): Promise<ModelCall<T>> {
+    this.requests.push(request as ModelRequest<unknown>);
     return { value: request.schema.parse(this.values.shift()), usage };
   }
 }
@@ -65,6 +67,8 @@ describe("score gate", () => {
     expect(result.score).toBe(10);
     expect(result.outcome).toBe("auto-published");
     expect(result.usage).toHaveLength(4);
+    expect(models.requests[0].prompt).toContain("button label that only opens, displays or continues to a quote");
+    expect(models.requests[1].prompt).toContain("Do not fail an isolated navigation or button label");
   });
 
   it("stops after the free mechanics check blocks the draft", async () => {
