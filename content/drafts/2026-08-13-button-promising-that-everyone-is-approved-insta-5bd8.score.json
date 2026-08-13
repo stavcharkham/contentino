@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-13-button-promising-that-everyone-is-approved-insta-5bd8",
+  "source_hash": "6c37033e15ba11f2aba3c90f7e8ad69734e3dd6c66306ea41774ff7b9c2ed59f",
+  "scored_at": "2026-08-13T20:43:10.642Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "Tone matches low-stakes interface copy. All-caps button label follows the mechanics guideline for buttons and interface section headers. 'Instant' is appropriate per vocabulary guidance for genuinely instant experiences.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present, which is correct for this low-stakes interface element. The copy is straightforward.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses concrete verb 'get' and plain language. 'Quote' is a retained term customers need to recognise in insurance context, and it's used appropriately without unnecessary explanation at the low-stakes button level.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The draft is a generic call-to-action button ('GET YOUR INSTANT QUOTE') with no named subject, person, pet, car or home provided by the interface to address, so there is no basis to score direct address.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit was provided alongside the draft, so fit against a hard limit cannot be assessed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "'Get' is a concrete verb consistent with the approved examples' action verbs (e.g., 'GET DISCOUNTS' in LEM-011), and 'instant quote' matches the pattern of short, concrete all-caps button labels naming the next action in the flow.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": false,
+    "reason": "The draft claims 'Our AI never judges you based on your background' / similar unsupported judgement claims are not shown here, but based on the supplied text alone: 'GET YOUR INSTANT QUOTE' is a button label with no financial promise, guarantee, judgement claim, disclaimer removal, or contradiction. However, per instructions, isolated navigation/button labels should not be failed for missing source or disclaimer. This text contains no compliance violation on its own. Re-evaluating: this should PASS since it's just a button label with no guarantee, judgement claim, or contradiction present in the text.', "
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 254,
+      "cache_read_tokens": 1833,
+      "cache_write_tokens": 113,
+      "cost_usd": 0.003193
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1262,
+      "output_tokens": 70,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001612
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 214,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 111,
+      "cost_usd": 0.00275
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1790,
+      "output_tokens": 171,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002645
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 4,
+      "output_tokens": 531,
+      "cache_read_tokens": 4829,
+      "cache_write_tokens": 615,
+      "cost_usd": 0.007821
+    }
+  ],
+  "cost_usd": 0.018021
+}
