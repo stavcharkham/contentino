@@ -116,11 +116,11 @@ npm run contentino -- publish --draft content/drafts/<id>.md
 
 Hosted workflows set `CONTENTINO_STORAGE=github` and provide a fine-grained GitHub token with
 contents access to one private repository. Slack requests require a valid signature and the
-configured channel. The Drive cron requires a bearer secret. Google service-account access is
-not implicit: the watched folder and review documents must be shared with that account.
+configured channel. The Drive cron requires a bearer secret. Google Drive and Docs use one user's
+OAuth refresh token so scheduled runs can continue after the initial consent.
 
-Vercel preview protection remains on. Slack and cron requests add Vercel's automation bypass
-header so protection does not disable the webhooks.
+Vercel preview protection remains on. Slack adds Vercel's automation bypass secret to its request
+URL because Slack cannot send a custom bypass header. The route still verifies Slack's signature.
 
 Every required variable and model override is documented in [.env.example](.env.example).
 

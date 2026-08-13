@@ -11,14 +11,10 @@
   active third type until a content owner supplies at least three examples, their sources and the
   stakes ceiling. This does not block the engine or the two initial streams.
 
-- **Sign in to GitHub in the browser tab left open by Codex.** The repository has no remote and
-  the available browser session is signed out. A private `contentino` repository is required before
-  the GitHub storage contract and hosted persistence can be tested.
-
 - **Load the live integration credentials from `.env.example`.** Anthropic, GitHub, Slack, Google,
-  cron and Vercel automation-bypass values are all absent from this workspace. The Vercel CLI is
-  signed in. Until the other values are available, real model calibration, Slack/Docs integration
-  and a webhook-capable preview cannot be claimed.
+  cron and Vercel automation-bypass values are all absent from this workspace. GitHub and the
+  Vercel CLI are signed in. Until the values are available, real model calibration, Slack/Docs
+  integration and a webhook-capable preview cannot be claimed.
 
 - **Blind-score the 20-item worksheet.** `eval/scoring-set.md` Part 3. Score each item against
   `RUBRIC.md` without reading `eval/scores.md` first, which is the hidden answer key. Every

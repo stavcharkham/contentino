@@ -4,12 +4,13 @@ import type { PresentedReview, ReviewAdapter, ReviewDraft, ReviewFeedback } from
 
 export type GoogleApis = { docs: docs_v1.Docs; drive: drive_v3.Drive };
 
-export function createGoogleApis(input: { clientEmail: string; privateKey: string }): GoogleApis {
-  const auth = new google.auth.JWT({
-    email: input.clientEmail,
-    key: input.privateKey.replaceAll("\\n", "\n"),
-    scopes: ["https://www.googleapis.com/auth/documents", "https://www.googleapis.com/auth/drive"],
-  });
+export function createGoogleApis(input: {
+  clientId: string;
+  clientSecret: string;
+  refreshToken: string;
+}): GoogleApis {
+  const auth = new google.auth.OAuth2(input.clientId, input.clientSecret);
+  auth.setCredentials({ refresh_token: input.refreshToken });
   return { docs: google.docs({ version: "v1", auth }), drive: google.drive({ version: "v3", auth }) };
 }
 

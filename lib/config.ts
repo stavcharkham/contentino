@@ -18,8 +18,9 @@ export const configSchema = z.object({
   SLACK_BOT_TOKEN: optionalSecret,
   SLACK_SIGNING_SECRET: optionalSecret,
   SLACK_CHANNEL_ID: optionalSecret,
-  GOOGLE_CLIENT_EMAIL: optionalSecret,
-  GOOGLE_PRIVATE_KEY: optionalSecret,
+  GOOGLE_CLIENT_ID: optionalSecret,
+  GOOGLE_CLIENT_SECRET: optionalSecret,
+  GOOGLE_REFRESH_TOKEN: optionalSecret,
   GOOGLE_DRIVE_FOLDER_ID: optionalSecret,
   CRON_SECRET: optionalSecret,
   VERCEL_AUTOMATION_BYPASS_SECRET: optionalSecret,
@@ -36,6 +37,17 @@ export function readConfig(
       (key) => !config[key as keyof ContentinoConfig],
     );
     if (missing.length) throw new Error(`GitHub storage requires ${missing.join(", ")}`);
+  }
+  const googleKeys = [
+    "GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET",
+    "GOOGLE_REFRESH_TOKEN",
+    "GOOGLE_DRIVE_FOLDER_ID",
+  ] as const;
+  const configuredGoogleKeys = googleKeys.filter((key) => config[key]);
+  if (configuredGoogleKeys.length > 0 && configuredGoogleKeys.length < googleKeys.length) {
+    const missing = googleKeys.filter((key) => !config[key]);
+    throw new Error(`Google OAuth requires ${missing.join(", ")}`);
   }
   return config;
 }

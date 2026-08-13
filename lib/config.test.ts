@@ -13,4 +13,20 @@ describe("readConfig", () => {
       "GitHub storage requires GITHUB_TOKEN, GITHUB_OWNER",
     );
   });
+
+  it("fails early when Google OAuth is incomplete", () => {
+    expect(() => readConfig({ GOOGLE_CLIENT_ID: "client-id" })).toThrow(
+      "Google OAuth requires GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN, GOOGLE_DRIVE_FOLDER_ID",
+    );
+  });
+
+  it("accepts a complete Google OAuth configuration", () => {
+    const config = readConfig({
+      GOOGLE_CLIENT_ID: "client-id",
+      GOOGLE_CLIENT_SECRET: "client-secret",
+      GOOGLE_REFRESH_TOKEN: "refresh-token",
+      GOOGLE_DRIVE_FOLDER_ID: "folder-id",
+    });
+    expect(config.GOOGLE_REFRESH_TOKEN).toBe("refresh-token");
+  });
 });

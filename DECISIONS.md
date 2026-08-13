@@ -531,3 +531,13 @@ public.
 **Why:** The only UI is read-only and the prototype already has platform protection available.
 Custom authentication would add risk and no product evidence.
 **Reversible:** yes
+
+### 2026-08-13 - Google access uses one user's OAuth grant
+**Category:** product
+**Decided:** Authenticate Drive and Docs with a web OAuth client and a securely stored offline
+refresh token for the Google account that owns the watched folder.
+**Rejected:** A Google service account with folders and review documents shared to it.
+**Why:** The project owner chose user authorization so Contentino works as the consenting person
+inside Drive rather than as a separate machine identity. The runtime keeps the same adapter and
+only exchanges the refresh token for short-lived access tokens.
+**Reversible:** yes
