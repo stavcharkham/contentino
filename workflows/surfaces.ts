@@ -37,7 +37,8 @@ export async function handleSlackEnvelope(input: {
       const microcopy = text.match(/^microcopy:\s*([\s\S]+)/i);
       if (microcopy) {
         const generated = await writeMicrocopy({ context: input.context, request: microcopy[1], triggeredBy: event.user ?? "slack", trigger: "slack" });
-        await input.slack.postMessage(`Generated ${generated.path}\nScore ${generated.scorecard.score.toFixed(1)} · ${generated.scorecard.outcome}`, event.thread_ts ?? event.ts);
+        const copy = parseMarkdown(generated.content, draftSchema).body.replace(/^# Product micro-copy\s*/i, "").trim();
+        await input.slack.postMessage(`*${copy}*\nScore ${generated.scorecard.score.toFixed(1)} · ${generated.scorecard.outcome}\n${generated.path}`, event.thread_ts ?? event.ts);
         return "microcopy";
       }
       const briefRequest = text.match(/^brief:\s*([\s\S]+)/i);

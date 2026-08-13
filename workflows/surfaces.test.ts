@@ -57,7 +57,8 @@ describe("surface orchestration", () => {
     const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), postMessage: vi.fn(), presentDraft: vi.fn(), postRevision: vi.fn() };
     const envelope = { event_id: "Ev3", event: { type: "message", text: "<@BOT> microcopy: CTA to finish a quote", user: "U1", ts: "2.1", channel: "C1" } };
     expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("microcopy");
-    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("Generated content/"), "2.1");
+    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("*FINISH QUOTE*"), "2.1");
+    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("content/published/"), "2.1");
   });
 
   it("creates one brief per Drive source id", async () => {
