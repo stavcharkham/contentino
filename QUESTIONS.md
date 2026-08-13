@@ -6,18 +6,35 @@
 
 ## Waiting on an answer
 
-- **Brief 02's research (Lemonade voice) landed thinner than asked - proceed or redo?** It
-  hit 61 of the 150-200 targeted excerpts, `lemonade.com` blocked direct page fetches so
-  marketing/blog/help-centre content comes from search snippets not full reads, and three
-  content types (email, ads/video, first-party failure copy) are close to empty. The
-  analysis and draft guidelines built from it are real and honestly caveated, not padded.
-  Options: (a) review what exists together and decide gap-by-gap whether each one matters,
-  (b) run a second research pass first, aimed only at the three gaps, before reviewing.
-  **Recommendation: (a).** What's there - the three-register split by stakes rather than by
-  content type - is a strong enough finding to react to now; a second pass can be scoped
-  precisely once we know which gaps actually change a decision, instead of guessing.
+- **Which content type sits opposite micro-copy?** On 2026-08-13 we narrowed the second
+  stream from "external comms / PR" to LinkedIn posts, on the reasoning that the full PR path
+  (mapping publications, finding the right journalist, working out their angle) is not
+  finishable in the time left. Reading the assignment afterwards showed the problem: it names
+  five content streams and LinkedIn is not cleanly one of them. The closest match is "social
+  captions", which it groups with performance ads and landing-page headers, so marketing
+  creative rather than thought leadership. We already rejected app store release notes on
+  exactly this basis, that they are not one of the five named.
+  Options: (a) **external comms** - keep the brief step, produce a press release or blog post,
+  cut only the journalist research; (b) **internal comms** - a Slack announcement built from a
+  transcript, which is named use case 1 and lands in a surface we are building anyway;
+  (c) keep LinkedIn and argue it as external comms.
+  **Recommendation: (a).** It is a named use case, it already has corpus evidence (8 excerpts:
+  blog, investor notes), and it keeps the brief-then-fan-out step, which is the interesting
+  part. The only thing we lose is the outlet research, which was never finishable. Nothing
+  else in the plan changes: same pipeline, different content-type folder.
 
-<!-- - **Question?** Context in one line. Options with a recommendation. -->
+- **Do we build the "add a content type" path and demo it live?** The platform claim is that
+  the content team extends this themselves. The way to prove it is to add a third type on
+  camera in a few minutes. The way to fail is to claim it on a slide. It costs roughly half a
+  day and competes with the third review surface (Google Docs).
+  Options: (a) build it and demo adding a third type, (b) claim it structurally and spend the
+  time on the third surface instead.
+  **Recommendation: (a).** It is the differentiator and a hiring team can verify it in the
+  demo. Google Docs is the better thing to cut, because Claude and Slack already cover review.
+
+- **How much of the $50 API budget is spent so far?** Needed before day 3, when model-graded
+  scoring starts running on every generation. There is no spend log yet and the account is
+  yours, so I cannot see it.
 
 ## Answered
 
@@ -29,3 +46,6 @@
   safe and easy. In `DECISIONS.md`.
 - Profile organised by stakes or content type - content type, with stakes as a layer inside
   each. In `DECISIONS.md`.
+- Brief 02 thinner than asked, proceed or redo - proceed. Covered by "more research, or start
+  building". The gap called load-bearing was denial and price-increase copy, and neither
+  chosen stream generates it. Revisit only if a chosen stream turns out to need it.
