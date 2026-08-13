@@ -90,6 +90,63 @@ whose corrections are saved as files. A batch job reads those corrections, finds
 keep repeating, and proposes new guidelines for the profile. That is the loop: a fix applied
 once instead of on every piece forever.
 
+## The stack
+
+TypeScript throughout, on Node. Next.js for the dashboard, deployed to Vercel, which was already
+the hosting decision. One `package.json`, one toolchain. The gate's hooks are Node scripts the
+harness invokes; the Slack and Google adapters use the official SDKs; the unattended runner is
+built on the Agent SDK so the same hooks apply in both modes.
+
+`eval/recheck.py` stays Python. It is a one-off analysis script, not part of the product.
+
+**Models.** `CLAUDE.md` sets the policy: small models for evaluation and judging, larger for
+generation. Left alone, Opus 5 is the default for everything; this is a deliberate departure for
+cost, which is a named project constraint.
+
+| Job | Model | Rate (per MTok) | Why |
+|---|---|---|---|
+| Brief-making | `claude-opus-5` | $5 / $25 | One call per event, lowest volume, highest-value artifact |
+| Content generation | `claude-sonnet-5` | $2 / $10 | On introductory pricing through 2026-08-31, which covers the whole project |
+| Scoring | `claude-haiku-4-5` | $1 / $5 | Runs on everything, including every regeneration. Cheapest by a wide margin |
+
+**Scoring on the cheapest model is a hypothesis, not a decision.** The prior-art research found
+small models cautioned against as judges, and nothing published covers small-model judging of
+brand voice specifically. We have a 47-item answer key, so we test it: if Haiku reproduces the
+human scores, it stays. If it misses the compliance veto cases in particular, that criterion
+moves to Sonnet 5 and the rest stays cheap. Evidence, not a guess.
+
+Three model gotchas worth writing down before anything is built:
+
+- **Haiku 4.5 rejects `effort`.** It is on the older thinking API. Passing `output_config.effort`
+  to it errors. Only the two larger models take it.
+- **Prompt caches are per model**, so each of the three keeps its own copy of the profile. Cache
+  reads cost about a tenth of input; writes cost 1.25x. This is the single biggest cost lever we
+  have, since the profile is identical on every call.
+- **Haiku 4.5 will not cache a prefix under 4096 tokens** (Opus 5 caches from 512). If the profile
+  is small, scoring silently pays full price on every call with no error to notice.
+
+Scoring uses structured outputs (`output_config.format` with a JSON schema) so a score parses
+reliably instead of being scraped out of prose.
+
+## Repo layout
+
+```
+profile/          the brand. Layout below
+skills/           one folder per skill. This is the plugin
+gate/             the hooks, and the mechanics checker that runs in code
+lib/
+  storage.ts      the one module that reads and writes content. The seam
+  score.ts        the gate's body
+  ledger.ts
+  adapters/       claude.ts, slack.ts, gdocs.ts
+app/              Next.js dashboard, and the routes below
+  api/cron/drive/ Vercel Cron target. Polls the watched folder
+  api/slack/      Slack events endpoint
+content/          briefs, drafts, published, corrections
+metrics/          kpis.md, ledger.csv, baselines.yml
+eval/             rubric validation and re-check
+```
+
 ## The layers
 
 ```
@@ -141,19 +198,84 @@ profile/
 Adding a content type means adding a folder with those three files. That is the whole
 extension mechanism, and it is why the profile is a folder rather than a settings table.
 
+Each type's `guideline.md` carries frontmatter, and one field in it is load-bearing:
+
+```yaml
+---
+content_type: product-microcopy
+max_autopublish_stakes: low     # low | medium | high | none
+mechanics:
+  max_chars: 60
+  sentence_band: [1, 12]
+---
+```
+
+## Who decides the stakes level
+
+This gates auto-publish, so a wrong answer is how something sensitive ships unreviewed.
+
+**The content type sets a ceiling; the model can only ever lower it.** Every type declares
+`max_autopublish_stakes` in its folder. Micro-copy is capped at `low`. External comms is capped at
+`none`, so it never auto-publishes at any score. The model still classifies each piece against
+`profile/base/stakes.md`, but that classification can only move a piece *toward* review, never away
+from it: a piece auto-publishes only when its classified stakes sit at or below its type's ceiling.
+
+The asymmetry is the point. A misjudgement downgrades a piece into human review, which costs
+someone a minute. It cannot promote a piece out of review, which is the failure that matters. The
+model's judgment gets used where it is useful, and is never the only thing standing between a
+sensitive sentence and publication.
+
 ## Skills
 
 Seven. The profile is data that skills read; there are no skills that only wrap a file.
 
-| Skill | What it does |
-|---|---|
-| `make-brief` | Turn a transcript into a brief: what the story is, why now, the evidence, the angle |
-| `write-external-comms` | Produce a press release or blog post from an **approved** brief |
-| `write-microcopy` | Produce UI strings for a described screen or state |
-| `score` | Score a draft. Also the body of the gate; exists as a skill for ad-hoc human use |
-| `review` | Show a draft, collect feedback, write corrections, request a revision |
-| `cluster-corrections` | Read unresolved corrections, group them, propose guidelines |
-| `add-content-type` | Walk a content person through adding a type, its examples and its criteria |
+| Skill | In | Out | Reads |
+|---|---|---|---|
+| `make-brief` | A transcript | A brief in `content/briefs/` | `base/`, `audience.md`, `voices/` |
+| `write-external-comms` | An **approved** brief | A draft in `content/drafts/` | `base/`, `types/external-comms/`, the named voice |
+| `write-microcopy` | A screen described, or a screenshot | Candidate strings as a draft | `base/`, `types/product-microcopy/` |
+| `score` | A draft | A score sidecar plus a ledger row | The type's `criteria.md`, `compliance.md`, examples at matching stakes |
+| `review` | A draft and a surface | Corrections, and a revision request | The draft, and prior corrections on the same piece |
+| `cluster-corrections` | Nothing (reads the pile) | A proposed guideline, for approval | `content/corrections/` where status is open |
+| `add-content-type` | A conversation with a content person | A new `types/<name>/` folder | An existing type, as the worked example |
+
+`score` exists as a skill for ad-hoc human use. The gate does not call it: the gate runs the same
+logic as infrastructure, so scoring cannot be skipped.
+
+## The brief
+
+The middle artifact for event-triggered content, and the thing a person approves. One file per
+brief in `content/briefs/`, with frontmatter carrying `id`, `created`, `source`, `status`
+(`draft` | `approved` | `rejected`), `approved_by` and `approved_at`.
+
+```markdown
+# Headline
+
+The change in the world, in the reader's terms. Not the product's name.
+
+**The story in one paragraph.** Who is doing what, and the two or three things it
+actually does for someone.
+
+## Why now
+The condition that makes this worth saying today rather than last quarter. Every
+factual claim carries a source and a link.
+
+## What changed
+What exists now that did not before, how it works, and what it replaces. Honest
+about what it does not do.
+
+## Quote
+Attributed to a named person, in their voice. A scene, not a slogan.
+
+## Not saying
+The claims we are deliberately not making, and why.
+```
+
+Structure adapted from a working PR system whose briefs are entirely generated. Two parts are
+doing real work. **Why now** carries cited external sources, because the evidence layer is what
+makes a brief usable rather than promotional. **Not saying** is ours: it carries compliance
+context forward into every piece that comes off the brief, so the fan-out inherits the boundary
+instead of rediscovering it.
 
 ## The gate
 
@@ -174,14 +296,16 @@ This is what makes "nothing ships unscored" a fact rather than a hope.
 
 Routing, from the score:
 
-| Score | Stakes | What happens |
+| Score | Stakes vs the type's ceiling | What happens |
 |---|---|---|
-| 9-10 | low | Published. No reviewer. Audit line to Slack |
-| 9-10 | medium or high | Review |
+| 9-10 | at or below | Published. No reviewer. Audit line to Slack |
+| 9-10 | above | Review |
 | 8 | any | Review |
 | below 8 | any | Regenerate |
 | compliance fail | any | Blocked, regardless of score |
 | any single 0 | any | Blocked |
+
+A type whose ceiling is `none` never reaches the first row. External comms is that type.
 
 **Regeneration is capped at 3 attempts**, then it escalates to a person with the scores
 attached. Uncapped regeneration is the obvious way to burn $50 on one stubborn string.
@@ -208,6 +332,23 @@ its own criteria. A guideline whose examples fail is a wrong guideline. This run
 is added and is what makes the content team owning authoring safe.
 
 ## The two flows
+
+### How a run actually starts
+
+Three entry points, two mechanisms, no daemon.
+
+**A transcript lands in the watched Drive folder.** A Vercel Cron job hits
+`app/api/cron/drive/` on a schedule. It lists the folder and, for any file with no brief already
+in `content/briefs/`, starts a run. **State comes from the repo, not from a cursor** — if a brief
+exists for that source, the file has been handled. Nothing to keep in sync, nothing to reset.
+
+**Someone tags the agent in Slack, or hands over a transcript or screenshot.** Slack's Events API
+posts to `app/api/slack/`, which starts the same run.
+
+**Someone asks in Claude.** The plugin invokes the skill directly. No route involved.
+
+**Piece ids** are `<date>-<slug>-<4 hex>`, so `2026-08-14-q2-results-a3f2`. Sortable, readable in
+a file listing, and unique without a counter to store.
 
 **Event-triggered, external comms.** A transcript lands in the watched Google Drive folder, or
 someone tags the agent in a Slack channel with one.

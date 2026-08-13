@@ -399,6 +399,47 @@ and a user store. We still are not writing any: this is a platform switch, not c
 is a window onto the system, not where work happens.
 **Reversible:** yes
 
+### 2026-08-13 - The content type caps what can auto-publish; the model can only lower it
+**Category:** product
+**The problem:** Auto-publishing needs to know how risky a piece is. Nothing said who decides
+that. If the model judges it and gets it wrong, a sensitive piece of writing publishes with nobody
+watching - the worst thing this system can do.
+**Decided:** Each content type declares the highest stakes it is allowed to auto-publish, in its
+own folder. Micro-copy is capped at low. External comms is capped at none, so it never
+auto-publishes at any score. The model still judges each individual piece, but that judgement can
+only ever move a piece *into* review, never out of it.
+**Rejected:** Letting the model classify with no ceiling, which is the flexible option and the one
+where a single wrong call is unrecoverable. Also rejected: making the person who asks for the copy
+declare the stakes, which puts the safety judgement on whoever knows least and will always pick
+whatever is fastest.
+**Why:** The two failure directions are not equally bad. Judging a piece as riskier than it is
+costs someone a minute of review. Judging it as safer than it is publishes something Lemonade has
+to retract. The design makes only the cheap mistake possible.
+**Reversible:** yes
+
+### 2026-08-13 - TypeScript throughout, three models by job
+**Category:** build
+**The problem:** No language, framework or model had been chosen. The scoring gate is a script in
+*something*; "hosted on Vercel" is not a framework.
+**Decided:** TypeScript on Node, with Next.js for the dashboard, all in one repo. Three models,
+picked by job: Opus 5 writes the brief (one call per event, the highest-value artifact), Sonnet 5
+writes the content, Haiku 4.5 does the scoring. The existing `eval/recheck.py` stays Python; it is
+an analysis script, not part of the product.
+**Rejected:** Python for the engine, which would have meant a second toolchain purely for the
+dashboard. Also rejected: Opus 5 for everything, which is the standing default and roughly five
+times the cost of Haiku on the work that runs most often.
+**Why:** Vercel was already the hosting decision and is TypeScript-native, so one language covers
+the dashboard, the hooks, the Slack and Google adapters, and the Anthropic SDK. On models, the
+project constraint in `CLAUDE.md` is explicit that model choice is a cost decision: small models
+for judging, larger for generation. Sonnet 5 is also on introductory pricing through 2026-08-31,
+which happens to cover the entire project.
+**The part that is not settled:** scoring on the cheapest model is a hypothesis. Our own prior-art
+research found small models cautioned against as judges, and found nothing published about
+small-model judging of brand voice specifically. We have a 47-item answer key, so we measure it: if
+Haiku reproduces the human scores it stays, and if it misses the compliance veto cases, that one
+criterion moves up a tier and the rest stays cheap.
+**Reversible:** yes
+
 ### 2026-08-13 - No trend scanner
 **Category:** product
 **The problem:** Noam suggested an idea generator that watches X and Reddit and proposes
