@@ -24,7 +24,15 @@ export async function POST(request: Request): Promise<Response> {
   after(async () => {
     const context = await createRuntime();
     const slack = SlackReviewAdapter.fromToken(config.SLACK_BOT_TOKEN as string, config.SLACK_CHANNEL_ID as string, context.storage);
-    await handleSlackEnvelope({ context, slack, envelope });
+    try {
+      await handleSlackEnvelope({ context, slack, envelope });
+    } catch (error) {
+      console.error("Slack workflow failed", error);
+      const threadTs = envelope.event?.thread_ts ?? envelope.event?.ts;
+      if (threadTs) {
+        await slack.postMessage("I saw this, but I couldn't finish the run. Please try once more.", threadTs).catch(() => undefined);
+      }
+    }
   });
   return Response.json({ ok: true });
 }

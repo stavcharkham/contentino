@@ -24,11 +24,15 @@ export async function handleSlackEnvelope(input: {
 }): Promise<{ duplicate?: boolean; action: string }> {
   const event = input.envelope.event;
   if (!event || event.bot_id) return { action: "ignored" };
-  const eventId = input.envelope.event_id ?? event.ts;
+  const isMentionCommand = event.type === "app_mention"
+    || (event.type === "message" && !event.thread_ts && /<@[^>]+>/.test(event.text ?? ""));
+  const isThreadReply = event.type === "message" && Boolean(event.thread_ts && event.ts && event.text);
+  if (!isMentionCommand && !isThreadReply) return { action: "ignored" };
+  const eventId = isMentionCommand ? event.ts : (input.envelope.event_id ?? event.ts);
   if (!eventId) throw new Error("Slack event id is required");
   const result = await runOnce(input.context.storage, "slack", eventId, async () => {
     if (event.ts) await input.slack.acknowledge(event.ts).catch(() => undefined);
-    if (event.type === "app_mention") {
+    if (isMentionCommand) {
       const text = (event.text ?? "").replace(/<@[^>]+>/g, "").trim();
       const microcopy = text.match(/^microcopy:\s*([\s\S]+)/i);
       if (microcopy) {
@@ -52,7 +56,7 @@ export async function handleSlackEnvelope(input: {
       await input.slack.postMessage("Use `microcopy: …`, `brief: …`, or `approve content/briefs/<id>.md`.", event.thread_ts ?? event.ts);
       return "help";
     }
-    if (event.type === "message" && event.thread_ts && event.ts && event.text) {
+    if (isThreadReply && event.thread_ts && event.ts && event.text) {
       const mapping = await input.context.storage.read(`content/surfaces/slack/${event.thread_ts.replaceAll(".", "-")}.json`);
       if (!mapping) return "unmapped-reply";
       const { draft_path: draftPath } = JSON.parse(mapping.content) as { draft_path: string };

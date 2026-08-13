@@ -46,9 +46,18 @@ describe("surface orchestration", () => {
     const envelope = { event_id: "Ev1", event: { type: "app_mention", text: "<@BOT> microcopy: CTA to finish a quote", user: "U1", ts: "1.1", channel: "C1" } };
     expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("microcopy");
     expect(slack.acknowledge).toHaveBeenCalledWith("1.1");
-    expect(await handleSlackEnvelope({ context: ctx, slack, envelope })).toEqual({ duplicate: true, action: "duplicate" });
+    const duplicateMessageEvent = { event_id: "Ev2", event: { ...envelope.event, type: "message" } };
+    expect(await handleSlackEnvelope({ context: ctx, slack, envelope: duplicateMessageEvent })).toEqual({ duplicate: true, action: "duplicate" });
     expect(slack.acknowledge).toHaveBeenCalledOnce();
     expect(parseLedger((await ctx.storage.read("metrics/ledger.csv"))?.content ?? "")).toHaveLength(1);
+  });
+
+  it("accepts a top-level mention delivered as a channel message event", async () => {
+    const ctx = await context();
+    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), postMessage: vi.fn(), presentDraft: vi.fn(), postRevision: vi.fn() };
+    const envelope = { event_id: "Ev3", event: { type: "message", text: "<@BOT> microcopy: CTA to finish a quote", user: "U1", ts: "2.1", channel: "C1" } };
+    expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("microcopy");
+    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("Generated content/"), "2.1");
   });
 
   it("creates one brief per Drive source id", async () => {

@@ -77,7 +77,7 @@ npm run demo
 
 Current verified evidence:
 
-- 53 unit, contract, workflow and adapter tests pass.
+- 54 unit, contract, workflow and adapter tests pass.
 - 5 browser checks pass across desktop Chromium and mobile WebKit; one desktop-only mobile
   assertion is skipped by design.
 - The 47-item rubric re-check reproduces every encoded answer. Real Lemonade copy averages
