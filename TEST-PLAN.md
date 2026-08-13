@@ -1,232 +1,139 @@
-# Acceptance test plan
+# Test Contentino
 
-> Run this against the production deployment and the private GitHub repository. Do not paste
-> secrets, tokens or bypass URLs into screenshots. Record the GitHub commit, dashboard screenshot
-> and Slack or Google link named under **Evidence** for each test.
+This is the test script for Stav. You do not need a terminal, a file path or GitHub.
 
-## What counts as a pass
+Use the Slack channel that contains Contentino and the protected production dashboard. When a test
+needs a system check, tell Codex to run it and report the result in product language.
 
-A test passes only when the visible result and its stored evidence agree. Every content run must
-leave a ledger row with its score, outcome, revision count, API cost and estimated minutes saved.
-Any content change must be traceable to one logical Git commit.
+## Before you start
 
-Use these statuses in the record below:
+- [ ] Contentino is in the Slack channel.
+- [ ] The production dashboard opens.
+- [ ] The [example transcript](https://docs.google.com/document/d/1e1u4b0QeYHyBHMStd_VH6fHFcJRj5s-6mfhRZqFJXpc/edit) opens in the watched Drive folder.
 
-- **Pass** - result and stored evidence both checked.
-- **Fail** - the result is wrong or its evidence is missing.
-- **Blocked** - a named dependency prevents the test from starting.
+## 1. Safe microcopy
 
-## Before testing
-
-- [ ] Open [the production dashboard](https://contentino-seven.vercel.app) through the protected
-      link. Confirm the page shows the Contentino flow and not a Vercel error.
-- [ ] In Slack Event Subscriptions, confirm the request URL starts with
-      `https://contentino-seven.vercel.app/api/slack` and shows **Verified**.
-- [ ] Confirm the Contentino app is installed and invited to the configured Slack channel.
-- [ ] Confirm the Google OAuth user can open the watched Drive folder and create, comment on and
-      edit documents there.
-- [ ] Keep the private GitHub repository open. It is the source of truth for briefs, drafts,
-      scorecards, corrections, guidelines and the ledger.
-
-## 1. Dashboard and evidence baseline
-
-1. Open the production dashboard.
-2. Select each node from Source through Guideline.
-3. Reload the page and check that its generated time changes.
-4. Narrow the browser to a phone width, then use Tab and Enter to move through the flow.
-
-**Pass when:** the selected node filters the evidence, real counts are shown without invented trend
-claims, the phone layout does not clip, focus is visible and every control works from the keyboard.
-
-**Evidence:** one desktop screenshot and one phone-width screenshot.
-
-## 2. Low-stakes micro-copy auto-publication
-
-In the configured Slack channel, send:
+Paste this in Slack:
 
 ```text
 @Contentino microcopy: CTA button shown after a customer has finished entering quote details. Keep it under 24 characters.
 ```
 
-**Pass when:** Slack replies in the thread with a path, score and outcome; a safe low-stakes result
-that clears 9 moves into `content/published`; the scorecard hash matches the published file; and the
-dashboard gains one run with cost and time saved.
+Pass when:
 
-If the model scores below 8, the system may regenerate up to three times. If it still cannot clear
-the gate, escalation to review is the correct result, not a test failure.
+- [ ] An eyes reaction appears on your message.
+- [ ] The actual copy is visible in its thread.
+- [ ] The score and decision are visible.
+- [ ] There is no `.md` path or instruction to open GitHub.
 
-**Evidence:** Slack thread, the GitHub commit, published file, scorecard and updated dashboard row.
+## 2. Compliance block
 
-## 3. Compliance veto
-
-Send:
+Paste this in Slack:
 
 ```text
 @Contentino microcopy: Button promising that everyone is approved instantly and that we never use personal data.
 ```
 
-**Pass when:** the piece is blocked, nothing is added to `content/published`, the scorecard records a
-failed compliance check, and the dashboard block count increases.
+Pass when:
 
-**Evidence:** Slack thread, blocked scorecard, ledger row and dashboard screenshot.
+- [ ] The result is visible in the thread.
+- [ ] The reply says **Blocked** and explains that the compliance gate stopped it.
+- [ ] The dashboard's blocked count increases after a refresh.
 
-## 4. Transcript to approved external draft
+## 3. Brief, approval and external draft
 
-Send this as one Slack mention:
-
-```text
-@Contentino brief: In the weekly product meeting, Maya said Lemonade is piloting a simpler claims status view with 200 invited customers in New York. The pilot begins 1 September. We are measuring whether people understand the next step without contacting support. Not saying: the feature is available to everyone, that it changes claim decisions, or that the pilot guarantees a launch.
-```
-
-1. Confirm Slack returns a brief path and does not generate a public-facing draft.
-2. Open the brief in GitHub. Check that the named claims and all three “Not saying” boundaries are
-   preserved and that approval is still required.
-3. Send `@Contentino approve content/briefs/<the returned id>.md`.
-
-**Pass when:** the approval names the Slack user, generation starts only after approval, and the
-external-comms draft is posted for review even if it scores 9 or 10. It must never auto-publish.
-
-**Evidence:** brief, approval commit, Slack review thread, draft, scorecard and ledger row.
-
-## 5. Slack review and ambiguity handling
-
-Run both checks in the external-draft review thread:
-
-1. Reply `Make it punchier.`
-2. Confirm Contentino asks what exact wording should change and does not create a correction yet.
-3. Reply with a concrete edit, for example:
-   `Replace “We are pleased to announce” with “Today, we’re piloting” because the opening should be direct.`
-
-**Pass when:** the second reply creates one correction containing the exact old text, new text,
-verbatim feedback, criterion, reviewer and Slack surface; the draft is revised and rescored; and the
-thread receives the revision. Re-delivering the same Slack event must not create a duplicate.
-
-**Evidence:** Slack thread, correction file, revised draft, new scorecard and ledger revision count.
-
-## 6. Drive transcript intake and idempotency
-
-1. Create a Google Doc in the watched folder named `Contentino test transcript` and paste the
-   transcript from test 4.
-2. Ask Codex to run the protected Drive sync now rather than waiting for the daily cron.
-3. Check GitHub for one new brief whose source id is the Google file id.
-4. Ask Codex to run the same sync again without changing the Drive file.
-
-**Pass when:** the first sync creates one brief, the second creates none, and no duplicate ledger or
-brief record appears.
-
-**Evidence:** Drive file link, both cron responses and the one GitHub brief commit.
-
-## 7. Claude review surface
-
-Ask Codex:
+Paste this as one Slack message:
 
 ```text
-Review <draft path>. Replace “<exact old text>” with “<new text>”. My verbatim feedback is: “<feedback>”. Use the most relevant rubric criterion.
+@Contentino brief: In the weekly claims product meeting on 12 August 2026, Maya Chen said Lemonade will test a simpler claims-status view with 200 invited renters-insurance customers in New York from 1 September. The test only changes how status and next steps are explained. It does not change coverage, claim decisions, payment timing or customer eligibility. The team will measure whether customers understand their next step without contacting support. Maya said: "The goal is to make the next step clear, not to make the claim look simpler than it is." Do not say the feature is available to everyone, that it speeds up claim decisions, that it guarantees fewer support contacts, or that the test will become a full launch.
 ```
 
-**Pass when:** the draft changes only after the exact old text is found, a correction is stored with
-surface `claude`, and the revision is rescored through the same gate used by Slack.
+Pass when:
 
-**Evidence:** correction, revised draft, scorecard and logical Git commit.
+- [ ] The full brief appears in the Slack thread.
+- [ ] The brief includes the facts, the quote and the **Not saying** boundaries.
+- [ ] No external draft appears before approval.
+- [ ] There is no `.md` path.
 
-## 8. Google Docs review surface
+Reply in the same thread:
 
-**Currently blocked:** the adapter can read anchored comments, apply a revision, reply and resolve
-the comment, but no user-facing action currently creates the review document and maps it to a draft.
-Complete that wiring before running this test.
+```text
+write it here
+```
 
-After it is wired:
+Pass when:
 
-1. Send an external draft to Google Docs review.
-2. Highlight exact text and leave `Make this warmer.` Confirm the system replies with a clarification
-   and leaves the comment open.
-3. Add a second anchored comment with an explicit replacement.
-4. Run the protected Drive/Docs sync.
+- [ ] The full external draft appears in that same thread.
+- [ ] The score is visible.
+- [ ] It says the draft needs review, even when the score is high.
 
-**Pass when:** the explicit comment produces one `gdocs` correction, updates the draft and document,
-posts a reply, resolves the processed comment and remains idempotent on a second sync.
+## 4. Slack feedback
 
-**Evidence:** Google Doc link, resolved comment, correction, revised draft and cron responses.
+In the external-draft thread, reply:
 
-## 9. Four corrections to one learned guideline
+```text
+Make it shorter
+```
 
-Create four open corrections on four drafts that express the same reusable rule and use the same
-content type and criterion. They may come from Claude, Slack and Google Docs.
+Pass when Contentino asks what exact wording should change. A vague request must not fail and must
+not silently edit the draft.
 
-1. Ask Codex to run the correction clustering skill.
-2. Inspect the proposed guideline and its four source correction ids.
-3. Approve it by name.
-4. Generate a new piece whose wording would previously have needed the same correction.
+Then copy one exact sentence from the visible draft and reply using this shape:
 
-**Pass when:** no proposal appears with fewer than four matching corrections; approval adds the rule
-to the versioned content-type guideline, resolves its source corrections, and later generation follows
-the rule.
+```text
+Replace “PASTE THE EXACT SENTENCE HERE” with “PASTE YOUR REPLACEMENT HERE” because the opening should be more direct.
+```
 
-**Evidence:** four corrections, proposal, named approval commit and before/after generation.
+Pass when:
 
-## 10. Add internal comms as a third type
+- [ ] The revised draft is visible in the thread.
+- [ ] Contentino says it applied and rescored the correction.
+- [ ] The dashboard shows the correction and one more revision.
 
-This needs three real examples approved by a content owner, with source links and an agreed stakes
-ceiling. Invented fixture copy is not acceptable.
+## 5. Drive transcript intake
 
-1. Give the examples and decisions to Codex and run the add-content-type skill.
-2. Inspect the generated `guideline.md`, `criteria.md` and `examples.md`.
-3. Run validation.
+1. Open the [ready-made example transcript](https://docs.google.com/document/d/1e1u4b0QeYHyBHMStd_VH6fHFcJRj5s-6mfhRZqFJXpc/edit). It is already in the watched folder.
+2. Tell Codex: `Run the Contentino Drive intake now, then run it a second time and report both results.`
 
-**Pass when:** the type remains draft if any example scores below 9, fails compliance or receives a
-zero criterion; all examples scoring 9-10 activates the type; and a later internal-comms generation
-loads the active files.
+Pass when the first run creates one brief and the second creates none. Codex should give you the
+brief's headline and source, not an internal file path.
 
-**Evidence:** example sources, three profile files, validation scores, activation commit and one later
-generation.
+## 6. Dashboard
 
-## 11. Technical and security checks run by Codex
+Open the production dashboard and check:
 
-Ask Codex to run this block and attach the raw results:
+- [ ] The runs from tests 1-5 appear under Recent pieces.
+- [ ] Scores, outcomes, revisions, cost and estimated time saved contain real values.
+- [ ] Selecting Source, Brief, Draft, Gate, Review/Publish, Correction and Guideline filters the evidence.
+- [ ] The page works at phone width and with the Tab and Enter keys.
+- [ ] There are no invented trend claims.
 
-- [ ] `npm run check`
-- [ ] `npm run test:e2e`
-- [ ] `npm run build`
-- [ ] `npm audit --audit-level=high`
-- [ ] Signed Slack challenge returns 200 with the exact challenge.
-- [ ] Unsigned Slack request returns 401.
-- [ ] Drive cron without its bearer secret returns 401.
-- [ ] A stale file hash, missing scorecard, compliance veto, zero criterion and ineligible stakes
-      ceiling each refuse publication.
-- [ ] A GitHub expected-SHA conflict refuses to overwrite newer content.
-- [ ] No secret appears in Git, build output, dashboard data, Slack messages or screenshots.
-- [ ] Actual model calls stop before the configured $50 project budget is exceeded.
+## Tests that are not ready for Stav yet
 
-**Pass when:** every command and protected-route check is green and the security review has no open
-high-severity finding.
+These are open product work, not setup you have missed:
 
-## 12. Calibration and cost evidence
+- Google Docs review-document creation has not been connected to a user-facing action.
+- Internal comms needs three real examples approved by a content owner before activation.
+- The real Anthropic calibration and Stav's blind 20-item scoring are still outstanding.
 
-1. Stav blind-scores the 20 items in Part 3 of `eval/scoring-set.md` before opening the answer key.
-2. Codex compares those scores with `eval/scores.md` and records disagreements.
-3. Codex runs the real Anthropic answer-key evaluation, including all compliance cases.
-4. Read actual cost per approved piece and regeneration rate from `metrics/ledger.csv`.
-5. Revisit the model allocation only from those results.
+Do not try to test those three until PLAN.md marks them complete.
 
-**Pass when:** human disagreement is disclosed, the model comparison is recorded rather than
-asserted, all compliance cases are caught, and model/cost decisions cite actual usage.
+## Ask Codex to run the technical checks
 
-**Evidence:** completed blind worksheet, evaluation report and ledger-based cost note.
+Copy this to Codex after the six tests above:
 
-## Final acceptance record
+```text
+Run Contentino's full technical acceptance now: code checks, production build, protected-route security, Slack signature verification, Drive idempotency, GitHub conflict protection, publication gate failures, secret scan and the $50 budget guard. Give me a pass/fail table and fix any failures before calling it done.
+```
 
-| Test | Status | Evidence link or commit | Notes |
-|---|---|---|---|
-| Dashboard |  |  |  |
-| Micro-copy publication |  |  |  |
-| Compliance veto |  |  |  |
-| Brief and external draft |  |  |  |
-| Slack review |  |  |  |
-| Drive idempotency |  |  |  |
-| Claude review |  |  |  |
-| Google Docs review | Blocked |  | Review-document creation is not wired |
-| Learned guideline |  |  |  |
-| Internal comms extension | Blocked |  | Needs three approved examples |
-| Technical and security |  |  |  |
-| Calibration and cost |  |  |  |
+## Test record
 
+| Test | Pass or fail | What happened |
+|---|---|---|
+| Safe microcopy |  |  |
+| Compliance block |  |  |
+| Brief and external draft |  |  |
+| Slack feedback |  |  |
+| Drive intake |  |  |
+| Dashboard |  |  |
+| Codex technical checks |  |  |

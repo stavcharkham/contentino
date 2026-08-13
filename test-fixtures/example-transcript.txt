@@ -1,0 +1,38 @@
+CONTENTINO TEST TRANSCRIPT
+Fictional acceptance-test material. Not a real Lemonade announcement.
+
+Meeting: Weekly claims product meeting
+Date: 12 August 2026
+Participants: Maya Chen, Claims Product Lead; Noah Green, Customer Experience; Priya Shah, Legal; Daniel Cole, Support Operations
+
+Maya Chen: We will test a simpler claims-status view with 200 invited renters-insurance customers in New York. The test starts on 1 September 2026 and runs for four weeks.
+
+Noah Green: What changes for those customers?
+
+Maya Chen: Only the way the existing claim status and next step are explained. It does not change coverage, claim decisions, payment timing or who is eligible. The goal is to make the next step clear, not to make the claim look simpler than it is.
+
+Daniel Cole: What will we measure?
+
+Maya Chen: First, whether invited customers can identify their next step without contacting support. Second, whether the new wording reduces repeat questions about status. A reduction is a goal, not a promised outcome.
+
+Priya Shah: We need to be precise in anything written outside the team. This is an invitation-only test, not a general launch. Do not say it speeds up decisions or payments. Do not imply that the view affects the outcome of a claim. Do not promise fewer support contacts. We have not decided whether the test will become a permanent feature.
+
+Noah Green: Can we call it a new claims experience?
+
+Priya Shah: No. Call it a simpler claims-status view. “New claims experience” is broader than what is changing.
+
+Maya Chen: Agreed. If we write about it, the useful story is that we are testing clearer explanations of status and next steps with a small invited group. The test will tell us what customers understand. It will not prove the idea before the results exist.
+
+Approved source facts:
+- 200 invited renters-insurance customers in New York
+- Test begins 1 September 2026 and runs for four weeks
+- The view explains existing claim status and next steps
+- The team will measure understanding and repeat status questions
+- Quote attributable to Maya Chen: “The goal is to make the next step clear, not to make the claim look simpler than it is.”
+
+Not saying:
+- The feature is available to everyone
+- The test changes coverage, eligibility, claim decisions or payment timing
+- The test speeds up claim decisions or payments
+- The test guarantees fewer support contacts
+- The test will become a permanent feature or full launch
