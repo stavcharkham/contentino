@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-13-cta-button-shown-after-a-customer-has-finished-e-2b73",
+  "source_hash": "eecf0e0a9b7432052820be364862f95f0322419536e249004c722e11fa98c45b",
+  "scored_at": "2026-08-13T20:35:27.846Z",
+  "content_type": "product-microcopy",
+  "stakes": "high",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The all-caps button label follows the approved pattern from LEM-011 (short all-caps actions) and LEM-009 (header casing). The tone is appropriate for low-stakes interface navigation.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. This is appropriate for a button label at low stakes where the rule requires humour only where nothing is at stake—but button labels should remain straightforward regardless.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The draft uses plain, direct language with a concrete verb ('see' for view/access). No technical insurance terms requiring translation are present. This matches the vocabulary preference for concrete verbs and direct communication.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "A button label with no named subject or addressee provided by the interface; there is no pet, person, or account name to reference here, consistent with how LEM-011's short action buttons omit direct address.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared character limit for this interface element is provided in the prompt, so fit cannot be assessed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 1,
+      "reason": "'SEE' is a plausible, concrete action verb for viewing a quote, but the approved examples favor stronger, more concrete verbs tied to outcomes (e.g., GET DISCOUNTS, FINALIZE PAYMENT, unlocked). 'SEE' is a bit generic compared to 'GET' or 'VIEW MY QUOTE' as a more decisive match to the flow's momentum, so it's serviceable but not the strongest verb choice.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9,
+  "compliance": {
+    "pass": false,
+    "reason": "The button label 'SEE MY QUOTE' itself is not evaluable for compliance issues (no factual claims, guarantees, judgement statements, or quotes to source), but it also violates the mechanics rule against generic, unnamed actions and lacks any content to verify against compliance prohibitions. More critically, per compliance.md, any presented claim, quote, or figure requires a traceable source and pricing/eligibility content is high-stakes; 'SEE MY QUOTE' implies a pricing/eligibility outcome (a quote) without any sourced context, disclaimer, or indication that the quote is non-binding or subject to underwriting. This risks implying a guaranteed or determined price/eligibility outcome, which fails the guarantee prohibition, and there is no traceable source or disclaimer carried forward as required by audience.md for reviewers. Given the ambiguity and absence of required disclaimers around quote/eligibility language, this fails compliance review rather than passing as safe low-stakes UI copy."
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 202,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1920,
+      "cost_usd": 0.006824
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1210,
+      "output_tokens": 63,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001525
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 344,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1700,
+      "cost_usd": 0.007694
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1789,
+      "output_tokens": 186,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002719
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 316,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2716,
+      "cost_usd": 0.009954
+    }
+  ],
+  "cost_usd": 0.028716
+}
