@@ -32,16 +32,24 @@ right. Small commits with real messages. No squashing history into one dump at t
 ## Constraints that bound every decision
 
 - **5 days.** Deadline is 2026-08-17. Depth on one path beats breadth across five.
-- **$50 of API budget.** Model choice is a real cost decision. Small models for evaluation
-  and judging, larger models for generation. Cache aggressively.
-- **Git is the only store.** No database. Content, brand profiles, and generated output are
-  markdown in git: versioned, diffable, reviewable. If state appears that git genuinely
-  cannot hold, SQLite is the next step, not a hosted DB.
-- **No auth.** The hosted demo is public and pre-loaded.
-- **Ship where people already work.** Slack and an MCP server are the surfaces. A dashboard
-  exists to show the system, not as the place work happens.
-- **Nothing ships unscored.** `RUBRIC.md` gates it. Below 8 out of 10 no human looks at it,
-  it gets regenerated.
+- **$50 of API budget.** Model choice is a real cost decision, settled per job in `PRD.md`:
+  Opus 5 for the brief, Sonnet 5 for content and the compliance veto, Haiku 4.5 for
+  classification and the other scored criteria, and no model at all for mechanics. Cache
+  aggressively - the profile is identical on every call and caches are per model.
+- **Git is the only store, with one marked exit.** The brand profile stays in git permanently
+  because it is configuration that has to be versioned, reviewed, and able to graduate into
+  code. Generated output is in git for now, and all reading and writing goes through one
+  module so pointing at a real content platform later is a change in one file.
+- **Ship where people already work. No UI.** Three surfaces, one review skill underneath:
+  Claude, a Slack thread, and comments on a Google Doc. MCP is a transport, not the
+  architecture. The only page we build is a read-only admin view of the system, on Vercel
+  behind its built-in password protection - so no auth code, but not public either.
+- **Nothing ships unscored.** `RUBRIC.md` gates it, wired in as a hook so it cannot be
+  skipped. Below 8 out of 10 no human looks at it, it gets regenerated, capped at three
+  attempts before it escalates to a person.
+- **Only the content type may raise the stakes ceiling.** Each type declares the highest
+  stakes it can auto-publish. The model classifies each piece, but that classification can
+  only ever move a piece into review, never out of it.
 
 ## The docs
 

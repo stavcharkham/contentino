@@ -75,13 +75,16 @@
 - [ ] Write the base voice file from the research: registers, mechanics, vocabulary
 - [ ] Seed **product micro-copy** as the first content type, with its examples and its own
       criteria
-- [ ] **Define the correction file format.** The contract between all three review surfaces
-      and the learning loop. The highest-cost thing on this page to get wrong.
-- [ ] Define the ledger row: skill, content type, who triggered, when, auto-published or
-      reviewed, revision count, score, API cost. Plus the baseline-minutes config.
+- [x] **Define the correction file format.** In `PRD.md`. The contract between all three review
+      surfaces and the learning loop. Defined, not yet built.
+- [x] Define the ledger row and the baseline-minutes config. In `PRD.md`. Defined, not built.
 - [ ] Storage seam: one module owns reading and writing content, so pointing at a CMS later is
-      a change in one file
+      a change in one file. Specced in `PRD.md` as `lib/storage.ts`, not written.
 - [x] Second stream settled: external comms, scoped to blog posts. `PRD.md` written.
+- [x] **Close the six build gaps.** `PRD.md` was strong on product and thin on build. Now
+      settled: who assigns stakes (the content type caps it, the model can only lower it), the
+      stack (TypeScript on Node, Next.js on Vercel), the model per job, the brief's structure,
+      each skill's inputs and outputs, the repo layout, piece ids, and how a run actually starts.
 
 ## Day 3 - Engine and evaluation
 
@@ -118,6 +121,22 @@
 
 ## Day 5 - Deliver
 
+- [ ] **Review the model choices against real usage.** Deliberately scheduled after the system
+      works, not before, because every number that should drive this decision only exists once
+      there is a ledger to read. Do all four:
+      1. **Score the answer key with the model.** Does `claude-haiku-4-5` reproduce the human
+         scores on the 47 items in `eval/scores.md`? If not, the rubric is suspect before the
+         model is. Separately, check the four compliance-veto cases: the veto currently sits on
+         `claude-sonnet-5` on purpose and only moves down to Haiku if Haiku catches all four.
+      2. **Read the real cost per approved piece** from `metrics/ledger.csv` and compare it to
+         what was spent. The $50 constraint makes this the number that matters, not per-token
+         rates.
+      3. **Re-check the non-Anthropic prices.** Every figure in the 2026-08-13 model decision
+         came from training data with a May 2026 cutoff and was never verified. Versions and
+         prices will have moved.
+      4. **Re-test the mixing question** with the real regeneration rate. The argument against a
+         second provider assumed low scoring volume. If regeneration turns out heavy, the
+         high-volume rows are worth the plumbing after all.
 - [ ] Graduate one guideline into a code-level check, by hand, as the demonstration of the
       chain from correction to guideline to skill
 - [ ] Thin admin page on Vercel behind platform password protection: the ledger, the

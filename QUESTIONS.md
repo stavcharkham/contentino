@@ -6,35 +6,33 @@
 
 ## Waiting on an answer
 
-- **Which content type sits opposite micro-copy?** On 2026-08-13 we narrowed the second
-  stream from "external comms / PR" to LinkedIn posts, on the reasoning that the full PR path
-  (mapping publications, finding the right journalist, working out their angle) is not
-  finishable in the time left. Reading the assignment afterwards showed the problem: it names
-  five content streams and LinkedIn is not cleanly one of them. The closest match is "social
-  captions", which it groups with performance ads and landing-page headers, so marketing
-  creative rather than thought leadership. We already rejected app store release notes on
-  exactly this basis, that they are not one of the five named.
-  Options: (a) **external comms** - keep the brief step, produce a press release or blog post,
-  cut only the journalist research; (b) **internal comms** - a Slack announcement built from a
-  transcript, which is named use case 1 and lands in a surface we are building anyway;
-  (c) keep LinkedIn and argue it as external comms.
-  **Recommendation: (a).** It is a named use case, it already has corpus evidence (8 excerpts:
-  blog, investor notes), and it keeps the brief-then-fan-out step, which is the interesting
-  part. The only thing we lose is the outlet research, which was never finishable. Nothing
-  else in the plan changes: same pipeline, different content-type folder.
+- **Blind-score the 20-item worksheet.** `eval/scoring-set.md` Part 3. Score each item against
+  `RUBRIC.md` without reading `eval/scores.md` first, which is the hidden answer key. Every
+  number in both eval documents came from one scorer, so "two people would agree on this" is
+  still an assumption rather than a finding. This is step 2 of the calibration `RUBRIC.md`
+  prescribes and the only part one person cannot do alone. Not blocking the build, but it is
+  the weakest claim in the deliverable until it is done.
+
+- **How much of the $50 API budget is spent so far?** Needed before day 3, when model-graded
+  scoring starts running on every generation. There is no spend log yet and the account is
+  yours, so I cannot see it. If a meaningful chunk is already gone, the model assignments in
+  `PRD.md` need revisiting before we build rather than on day 5.
 
 - **Do we build the "add a content type" path and demo it live?** The platform claim is that
   the content team extends this themselves. The way to prove it is to add a third type on
   camera in a few minutes. The way to fail is to claim it on a slide. It costs roughly half a
-  day and competes with the third review surface (Google Docs).
+  day and competes with the third review surface (Google Docs) for day 4.
   Options: (a) build it and demo adding a third type, (b) claim it structurally and spend the
   time on the third surface instead.
   **Recommendation: (a).** It is the differentiator and a hiring team can verify it in the
   demo. Google Docs is the better thing to cut, because Claude and Slack already cover review.
 
-- **How much of the $50 API budget is spent so far?** Needed before day 3, when model-graded
-  scoring starts running on every generation. There is no spend log yet and the account is
-  yours, so I cannot see it.
+## Needed before day 4, not blocking today
+
+- **A Slack workspace** to install an app into, and **Google credentials** that can write
+  comments on a Doc. You confirmed both exist on 2026-08-13. Flagging them again only because
+  they are the kind of setup that eats half a day at the worst possible moment if it turns out
+  the permissions are not right.
 
 ## Answered
 
@@ -46,6 +44,12 @@
   safe and easy. In `DECISIONS.md`.
 - Profile organised by stakes or content type - content type, with stakes as a layer inside
   each. In `DECISIONS.md`.
-- Brief 02 thinner than asked, proceed or redo - proceed. Covered by "more research, or start
-  building". The gap called load-bearing was denial and price-increase copy, and neither
-  chosen stream generates it. Revisit only if a chosen stream turns out to need it.
+- Brief 02 thinner than asked, proceed or redo - proceed. The gap called load-bearing was
+  denial and price-increase copy, and neither chosen stream generates it.
+- Which content type sits opposite micro-copy - external comms, scoped to blog posts. The
+  journalist and outlet research is cut. In `DECISIONS.md`.
+- Who assigns a piece's stakes level - the content type sets a ceiling and the model can only
+  lower it. In `DECISIONS.md`.
+- Which model does what - settled per job, recorded with an explicit caveat that the
+  non-Anthropic comparison is unverified. A day 5 task re-opens it against real usage.
+  In `DECISIONS.md`.

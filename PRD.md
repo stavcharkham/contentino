@@ -107,13 +107,25 @@ cost, which is a named project constraint.
 |---|---|---|---|
 | Brief-making | `claude-opus-5` | $5 / $25 | One call per event, lowest volume, highest-value artifact |
 | Content generation | `claude-sonnet-5` | $2 / $10 | On introductory pricing through 2026-08-31, which covers the whole project |
-| Scoring | `claude-haiku-4-5` | $1 / $5 | Runs on everything, including every regeneration. Cheapest by a wide margin |
+| Stakes classification | `claude-haiku-4-5` | $1 / $5 | A three-way call against a written rubric, and the ceiling catches a wrong answer |
+| Core criteria scoring | `claude-haiku-4-5` | $1 / $5 | Runs on everything, including every regeneration. A miss sends a piece to review |
+| **Compliance veto** | `claude-sonnet-5` | $2 / $10 | A miss publishes something Lemonade has to retract |
+| Per-type criteria | `claude-sonnet-5` | $2 / $10 | "Is this claim sourced" wants web search; the rest of the type's checks are code |
+| Clustering corrections | `claude-sonnet-5` | $2 / $10 | Batch, rare, and a person approves the output |
+| Unattended orchestration | `claude-sonnet-5` | $2 / $10 | Must be Claude — the hooks are a harness feature |
 
-**Scoring on the cheapest model is a hypothesis, not a decision.** The prior-art research found
-small models cautioned against as judges, and nothing published covers small-model judging of
-brand voice specifically. We have a 47-item answer key, so we test it: if Haiku reproduces the
-human scores, it stays. If it misses the compliance veto cases in particular, that criterion
-moves to Sonnet 5 and the rest stays cheap. Evidence, not a guess.
+**The veto does not start cheap.** The same asymmetry that shapes the stakes ceiling applies
+here: a veto that fires wrongly costs a minute of review, and a veto that fails to fire publishes
+an unsubstantiated claim about how Lemonade's AI judges a customer. That is the exact failure the
+validation caught in their real 2021 tweet. It gets proven *down* to Haiku by matching the veto
+cases in the answer key, not assumed up.
+
+**The other three model-graded criteria are a hypothesis.** The prior-art research found small
+models cautioned against as judges, and nothing published covers small-model judging of brand
+voice. We have a 47-item answer key, so we measure rather than guess.
+
+**The mechanics criterion uses no model at all.** It runs in code and goes first, so a draft that
+fails it never reaches a paid call. That is a third of the rubric for free.
 
 Three model gotchas worth writing down before anything is built:
 

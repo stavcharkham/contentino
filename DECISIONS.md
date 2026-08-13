@@ -417,28 +417,56 @@ costs someone a minute of review. Judging it as safer than it is publishes somet
 to retract. The design makes only the cheap mistake possible.
 **Reversible:** yes
 
-### 2026-08-13 - TypeScript throughout, three models by job
+### 2026-08-13 - TypeScript throughout
 **Category:** build
-**The problem:** No language, framework or model had been chosen. The scoring gate is a script in
-*something*; "hosted on Vercel" is not a framework.
-**Decided:** TypeScript on Node, with Next.js for the dashboard, all in one repo. Three models,
-picked by job: Opus 5 writes the brief (one call per event, the highest-value artifact), Sonnet 5
-writes the content, Haiku 4.5 does the scoring. The existing `eval/recheck.py` stays Python; it is
-an analysis script, not part of the product.
+**The problem:** No language or framework had been chosen. The scoring gate is a script in
+*something*, and "hosted on Vercel" is not a framework.
+**Decided:** TypeScript on Node, with Next.js for the dashboard, all in one repo. The existing
+`eval/recheck.py` stays Python; it is an analysis script, not part of the product.
 **Rejected:** Python for the engine, which would have meant a second toolchain purely for the
-dashboard. Also rejected: Opus 5 for everything, which is the standing default and roughly five
-times the cost of Haiku on the work that runs most often.
+dashboard.
 **Why:** Vercel was already the hosting decision and is TypeScript-native, so one language covers
-the dashboard, the hooks, the Slack and Google adapters, and the Anthropic SDK. On models, the
-project constraint in `CLAUDE.md` is explicit that model choice is a cost decision: small models
-for judging, larger for generation. Sonnet 5 is also on introductory pricing through 2026-08-31,
-which happens to cover the entire project.
-**The part that is not settled:** scoring on the cheapest model is a hypothesis. Our own prior-art
-research found small models cautioned against as judges, and found nothing published about
-small-model judging of brand voice specifically. We have a 47-item answer key, so we measure it: if
-Haiku reproduces the human scores it stays, and if it misses the compliance veto cases, that one
-criterion moves up a tier and the rest stays cheap.
+the dashboard, the hooks, the Slack and Google adapters, and the Anthropic SDK.
 **Reversible:** yes
+
+### 2026-08-13 - A model per job, and the veto does not start cheap
+**Category:** build
+**The problem:** Every action in the system that needs a model was going to get whatever the
+default was. With $50 total and scoring running on every single piece plus every regeneration,
+that is the difference between finishing and running out.
+**Decided:** Eleven distinct actions, each assigned a model by how often it runs and how bad a
+wrong answer is. Full table in `PRD.md`. The shape of it: Opus 5 writes the brief (rare, and a
+fabricated claim there poisons everything downstream), Sonnet 5 writes content, Haiku 4.5 handles
+stakes classification and the three subjective scoring criteria, and the mechanics criterion uses
+no model at all because it runs in code.
+**The one that changed on review:** the compliance veto starts on Sonnet 5, not Haiku. Same
+asymmetry that shapes the stakes ceiling: a veto that fires wrongly costs a minute of review, and
+a veto that fails to fire publishes an unsubstantiated claim about how the company's AI judges a
+customer. That is the exact failure our validation caught in Lemonade's real 2021 tweet. It gets
+proven *down* to the cheap tier by matching the answer key, not assumed up.
+**Rejected:** Opus 5 for everything, which is the standing default and roughly five times the
+cost of Haiku on the work that runs most often. Also rejected: mixing in a second provider for
+the high-volume scoring. The realistic saving is single-digit dollars, because mechanics runs
+free in code first and the profile is prompt-cached, while the cost is a second API key, a second
+SDK, a second set of rate limits, and a second cached copy of the profile with different cache
+semantics. Bad trade inside four days.
+**Why:** `CLAUDE.md` makes model choice an explicit cost decision - small models for judging,
+larger for generation. Sonnet 5 is on introductory pricing through 2026-08-31, which happens to
+cover the entire project.
+**A hard constraint worth writing down:** anything running inside the Claude Code or Agent SDK
+harness has to be Claude. The gate is a hook, hooks are a harness feature, and hooks are what make
+"nothing ships unscored" structurally true rather than a hope. Only the leaf calls - scoring,
+classification, generation-as-a-function - are ever swappable.
+**Caveat on the comparison:** the Anthropic model IDs and prices were checked against the current
+API reference. Every non-Anthropic figure came from training data with a May 2026 cutoff and was
+never verified, so versions and prices will have moved. Treat them as "the right tier at that
+provider", not as quotable numbers. A day 5 task re-checks all of this against real usage.
+**One procurement fact, not a technical judgement:** Lemonade is a US-listed regulated insurer.
+Any provider touching customer-adjacent content needs their security team's approval, and
+Chinese-hosted providers are realistically a non-starter for that review regardless of how the
+models perform. The open-weight ones can be self-hosted, which changes the answer, but
+self-hosting is a week of infrastructure we do not have.
+**Reversible:** yes, and deliberately scheduled to be revisited
 
 ### 2026-08-13 - No trend scanner
 **Category:** product

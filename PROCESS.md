@@ -261,3 +261,63 @@ that actually happened and actually cost the company something.
 **Verdict: the rubric works, needs two narrow wording fixes, and the fixes are queued in
 `PLAN.md` rather than applied yet** - the brief's own rules said not to touch `RUBRIC.md`
 during validation, so the fix is next session's first task, not this one's.
+
+---
+
+## 2026-08-13 - Session 5: two outside conversations, then the build spec
+
+**What we did.** Started from two recorded conversations rather than from the plan. Yuval, who
+built an AI PR system at RiseUp, and Noam, who builds AI products. Neither was about Contentino
+specifically, and both changed it.
+
+**What Yuval contributed.** A finding he arrived at independently: the article is a by-product of
+a good brief. His system generates a brief from a recorded interview with whoever actually knows
+the thing, then fans it out to a press release, a LinkedIn post, and so on. That gave us the
+middle artifact we were missing, and with it a much stronger version of "faster to approved" -
+you approve once, upstream, instead of five times downstream. He also warned, from experience,
+that output posted into Slack dies there, because you cannot edit six hundred words inside a Slack
+message. That killed Slack-only review before we built it.
+
+**What Noam contributed.** Structure. We were drifting toward a fleet of agents with a coordinator;
+he argued for one agent with many skills, and that skills - not MCP - are the unit of capability.
+MCP is a transport. That collapsed a question we had been treating as architectural into a choice
+of adapters, and it freed us to say yes to three review surfaces instead of picking one.
+
+**The thing we got wrong and fixed.** We narrowed the second content stream to LinkedIn posts,
+reasoning that the full PR path was not finishable. Then read the assignment properly and found
+LinkedIn is not one of the five named use cases - and that we had already rejected app store
+release notes on exactly that basis. Settled back to external comms, scoped to blog posts, which
+is a named use case, already has corpus evidence, and keeps the brief step. Only the journalist
+research got cut, and that was never finishable anyway.
+
+**The rubric fix, and what it cost.** The validation had named two fixes. Applying them turned out
+cheaper than expected: splitting the rubric into a shared core plus per-content-type questions
+resolved the direct-address problem structurally, so only one criterion needed real rewording. We
+also took the third fix the validation had flagged as lower priority - the veto now catches copy
+that contradicts known policy - because both chosen streams touch pricing and eligibility
+language. Real Lemonade copy went from 8.80 to 9.49; the gap from 4.38 to 4.99. Two disclosures
+went in the report rather than being smoothed over: this is not an independent re-validation, and
+the original report's off-brand mechanics mean does not reproduce from its own table.
+
+**Where the day actually went sideways, usefully.** Asked whether the PRD was buildable, the
+honest answer was no. Six things were missing, and one of them was a safety hole rather than a
+gap: nothing said who assigns a piece's stakes level, and stakes gates auto-publish. The fix -
+the content type sets a ceiling, the model can only lower it - is the same asymmetry argument we
+later applied to the compliance veto. Both come down to the same idea: make only the cheap mistake
+reachable.
+
+**On models.** Went through every action in the system that needs one and assigned a tier by how
+often it runs and how bad a wrong answer is. Reading the current API reference rather than working
+from memory caught three things that would have cost a debugging session: Haiku 4.5 rejects the
+effort parameter, will not cache a prefix under 4096 tokens and fails silently when it does not,
+and prompt caches are per model so each tier keeps its own copy of the profile. It also surfaced
+that Sonnet 5 is on introductory pricing through 2026-08-31, which covers the whole project.
+
+Deliberately did not settle it. The non-Anthropic comparison came from training data with a May
+2026 cutoff and was never verified, and the arguments against mixing providers all rest on
+assumptions about volume that we cannot check until something runs. So it is recorded with the
+caveat and a day 5 task re-opens it against the real ledger.
+
+**Nothing was built today.** Five documents changed, no code. That was the right call: three
+review surfaces and a learning loop all write into the same file formats, and changing a format
+after they exist means rewriting all of them.
