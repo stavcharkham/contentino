@@ -11,7 +11,7 @@
 
 - [x] Scaffold the TypeScript/Next.js project, validation command, environment contract and
       valid Contentino plugin manifest
-- [ ] Build the shared Lemonade profile, both initial content types and the validation contract
+- [x] Build the shared Lemonade profile, both initial content types and the validation contract
 - [ ] Implement the typed artifact schemas and local/GitHub storage seam
 - [ ] Implement model calls, mechanics, scoring, budget guard, ledger and publish gate
 - [ ] Implement all seven skills and the correction-to-guideline learning loop
