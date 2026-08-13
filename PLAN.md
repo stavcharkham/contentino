@@ -4,6 +4,27 @@
 > the 17th is submission day.
 > Checkboxes get ticked only after the work has been run and verified, never on "should work".
 
+## Build checkpoints
+
+> Approved 2026-08-13. These are the implementation checkpoints. Each one is tested and
+> committed before the next begins.
+
+- [x] Scaffold the TypeScript/Next.js project, validation command, environment contract and
+      valid Contentino plugin manifest
+- [ ] Build the shared Lemonade profile, both initial content types and the validation contract
+- [ ] Implement the typed artifact schemas and local/GitHub storage seam
+- [ ] Implement model calls, mechanics, scoring, budget guard, ledger and publish gate
+- [ ] Implement all seven skills and the correction-to-guideline learning loop
+- [ ] Implement Claude, Slack and Google Drive/Docs review surfaces and triggers
+- [ ] Build the read-only evidence dashboard and verify it at desktop and mobile sizes
+- [ ] Run code and security reviews, demonstrate every acceptance criterion, deploy and close
+
+Two build decisions supersede details written earlier in this plan and are recorded formally at
+handoff after verification. Hosted writes go through the same storage interface to a private
+GitHub repository because a Vercel function cannot persist its checked-out filesystem. Deployed
+workflows use deterministic application code and the Anthropic TypeScript SDK; the local Claude
+surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary Vercel function.
+
 ## Day 1 - Discover
 
 - [x] Write the two research briefs (`research/briefs/`)

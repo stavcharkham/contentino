@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cluster Corrections"
+  short_description: "Turn repeated corrections into guideline proposals."
+  default_prompt: "Find repeated Contentino corrections and propose guidelines."

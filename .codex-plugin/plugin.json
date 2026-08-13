@@ -1,0 +1,16 @@
+{
+  "name": "contentino",
+  "version": "0.1.0",
+  "description": "Generate, score, review and improve Lemonade content from a versioned brand profile.",
+  "author": { "name": "Contentino" },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Contentino",
+    "shortDescription": "Generate and gate on-brand content.",
+    "longDescription": "Contentino turns source material into scored content, captures review corrections and improves a versioned brand profile.",
+    "developerName": "Contentino",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Help me create or review content with Contentino."
+  }
+}

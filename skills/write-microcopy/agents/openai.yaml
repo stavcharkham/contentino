@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Microcopy"
+  short_description: "Generate and gate Lemonade product microcopy."
+  default_prompt: "Write product microcopy for this state or screenshot."

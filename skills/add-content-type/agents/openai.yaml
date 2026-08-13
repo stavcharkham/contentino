@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add Content Type"
+  short_description: "Create and validate a new Contentino content type."
+  default_prompt: "Add a new content type to the Contentino profile."

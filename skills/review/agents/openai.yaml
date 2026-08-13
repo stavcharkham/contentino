@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Content"
+  short_description: "Capture review feedback and revise a Contentino draft."
+  default_prompt: "Review this Contentino draft and capture my corrections."

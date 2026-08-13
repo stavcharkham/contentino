@@ -16,6 +16,10 @@ dist/
 build/
 .next/
 .vercel/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
 
 # OS
 .DS_Store

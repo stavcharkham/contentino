@@ -1,0 +1,4 @@
+interface:
+  display_name: "Score Content"
+  short_description: "Score a draft with the Contentino gate."
+  default_prompt: "Score this draft against the Contentino profile."

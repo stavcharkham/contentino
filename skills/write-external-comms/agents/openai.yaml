@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write External Comms"
+  short_description: "Write a scored external announcement from an approved brief."
+  default_prompt: "Write external comms from this approved Contentino brief."

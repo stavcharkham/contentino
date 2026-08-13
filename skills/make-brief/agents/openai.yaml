@@ -1,0 +1,4 @@
+interface:
+  display_name: "Make Brief"
+  short_description: "Turn a sourced transcript into an approval-ready brief."
+  default_prompt: "Create a Contentino brief from this transcript."
