@@ -1,3 +1,4 @@
 piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions,api_cost_usd,minutes_saved
 2026-08-13-cta-button-shown-after-a-customer-has-finished-e-b674,2026-08-13T20:00:35.780Z,write-microcopy,product-microcopy,U0BPV3QPDHB,slack,10,blocked,0,0.032571,0
 2026-08-13-cta-button-shown-after-a-customer-has-finished-e-e85f,2026-08-13T20:13:57.080Z,write-microcopy,product-microcopy,U0BPV3QPDHB,slack,9,reviewed,0,0.027477,10
+2026-08-13-cta-button-shown-after-a-customer-has-finished-e-35a3,2026-08-13T20:24:23.018Z,write-microcopy,product-microcopy,U0BPV3QPDHB,slack,9,blocked,0,0.015329,0
