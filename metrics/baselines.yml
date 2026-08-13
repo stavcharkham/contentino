@@ -1,0 +1,8 @@
+external-comms:
+  baseline_minutes: 75
+  reviewed_multiplier: 0.5
+  minutes_per_revision: 10
+product-microcopy:
+  baseline_minutes: 20
+  reviewed_multiplier: 0.5
+  minutes_per_revision: 5

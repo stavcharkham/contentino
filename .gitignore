@@ -20,6 +20,7 @@ coverage/
 playwright-report/
 test-results/
 *.tsbuildinfo
+*.contentino-tmp-*
 
 # OS
 .DS_Store
