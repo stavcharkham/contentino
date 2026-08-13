@@ -173,9 +173,9 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 
 ## Acceptance and close
 
-- [ ] Make Slack self-contained: show full briefs and drafts, support conversational approval and
+- [x] Make Slack self-contained: show full briefs and drafts, support conversational approval and
       feedback in the same thread, and keep internal artifact paths out of user replies.
-- [ ] Replace the developer-oriented acceptance plan with a copy-paste operator test kit and a
+- [x] Replace the developer-oriented acceptance plan with a copy-paste operator test kit and a
       ready-to-upload example transcript.
 - [ ] Wire a reachable action that creates a Google Docs review document and maps it to a draft.
       Comment ingestion, revision, reply and resolution exist, but this entry action is missing.

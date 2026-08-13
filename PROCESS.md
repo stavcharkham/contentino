@@ -364,3 +364,21 @@ was reproduced, fixed independently and covered by a regression test.
 Production at `contentino-seven.vercel.app` passed the live smoke test: the protected evidence
 dashboard rendered with its intended styles, the signed Slack challenge returned the exact value,
 an unsigned Slack request returned 401 and the Drive route returned 401 without `CRON_SECRET`.
+
+## 2026-08-13 - Session 8: Slack acceptance repair
+
+Live testing showed that Slack still exposed repository paths and treated replies such as “write
+it here” and “make it shorter” as failed commands. Thread mappings now connect a brief and its
+generated draft to the original message. The full brief, approval instruction, full external draft,
+score and review status are visible in that thread. Ordinary replies enter the same clarification
+and correction flow as the other review surfaces.
+
+The first production replay exposed one transient Slack delivery failure after the brief had been
+created and mapped. Reposting the identical text succeeded, so outgoing Slack replies now retry
+once before showing an error. The final production check returned the complete brief automatically,
+including its Not saying section, with no internal path. A second live thread approved a brief and
+displayed the full external draft with mandatory review status.
+
+The acceptance document was replaced with a six-part script Stav can run without a terminal or
+GitHub. A fictional transcript fixture was added to the repository and as a Google Doc in the
+watched folder.

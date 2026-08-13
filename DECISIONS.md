@@ -550,3 +550,13 @@ route available for manual runs when a transcript needs processing sooner.
 **Why:** Vercel Hobby rejects cron expressions that run more than once per day. Daily automation
 is enough to demonstrate the workflow without adding a hosting cost to the prototype.
 **Reversible:** yes
+
+### 2026-08-13 - Slack review stays inside one readable thread
+**Category:** product
+**Decided:** Show the full brief and full external draft in the original Slack thread. Approval and
+feedback use ordinary replies, while repository paths remain internal evidence.
+**Rejected:** Returning markdown file paths and asking a content person to open GitHub before they
+can read, approve or revise the work.
+**Why:** Slack is a review surface, not a notification pipe. A reviewer must be able to finish the
+job where it started without understanding the storage layout.
+**Reversible:** yes
