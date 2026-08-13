@@ -8,7 +8,7 @@ import { LocalStorage } from "@/lib/storage";
 import type { WorkflowContext } from "./common";
 import { approveBrief, makeBrief } from "./brief";
 import { writeExternalComms } from "./generate";
-import { handleSlackEnvelope, syncDriveTranscripts, syncGoogleDocReviews } from "./surfaces";
+import { formatMicrocopyResult, handleSlackEnvelope, syncDriveTranscripts, syncGoogleDocReviews } from "./surfaces";
 
 const usage = { model: "mock", input_tokens: 10, output_tokens: 5, cache_read_tokens: 0, cache_write_tokens: 0, cost_usd: 0.001 };
 
@@ -58,7 +58,28 @@ describe("surface orchestration", () => {
     const envelope = { event_id: "Ev3", event: { type: "message", text: "<@BOT> microcopy: CTA to finish a quote", user: "U1", ts: "2.1", channel: "C1" } };
     expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("microcopy");
     expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("*FINISH QUOTE*"), "2.1");
-    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("content/published/"), "2.1");
+    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("*Published automatically.*"), "2.1");
+    expect(slack.postMessage).not.toHaveBeenCalledWith(expect.stringContaining("content/"), "2.1");
+  });
+
+  it("explains blocked routing without exposing a storage path", () => {
+    const message = formatMicrocopyResult("SEE MY PRICE", {
+      piece_id: "piece",
+      source_hash: "hash",
+      scored_at: "2026-08-13T20:00:00.000Z",
+      content_type: "product-microcopy",
+      stakes: "medium",
+      ceiling: "low",
+      criteria: [{ id: "mechanics", name: "Mechanics", score: 2, reason: "Pass" }],
+      score: 9,
+      compliance: { pass: false, reason: "Pricing requires review" },
+      attempt: 1,
+      outcome: "blocked",
+      usage: [],
+      cost_usd: 0,
+    });
+    expect(message).toContain("*Blocked:* The compliance gate flagged this medium-stakes wording.");
+    expect(message).not.toContain("content/");
   });
 
   it("creates one brief per Drive source id", async () => {

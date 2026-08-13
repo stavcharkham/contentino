@@ -24,12 +24,29 @@ export async function POST(request: Request): Promise<Response> {
   after(async () => {
     const context = await createRuntime();
     const slack = SlackReviewAdapter.fromToken(config.SLACK_BOT_TOKEN as string, config.SLACK_CHANNEL_ID as string, context.storage);
+    let terminalReplyPosted = false;
+    const trackedSlack: Pick<SlackReviewAdapter, "acknowledge" | "postMessage" | "presentDraft" | "postRevision"> = {
+      acknowledge: (messageTs) => slack.acknowledge(messageTs),
+      postMessage: async (text, threadTs) => {
+        await slack.postMessage(text, threadTs);
+        terminalReplyPosted = true;
+      },
+      presentDraft: async (draft) => {
+        const presented = await slack.presentDraft(draft);
+        terminalReplyPosted = true;
+        return presented;
+      },
+      postRevision: async (threadTs, content, message) => {
+        await slack.postRevision(threadTs, content, message);
+        terminalReplyPosted = true;
+      },
+    };
     try {
-      await handleSlackEnvelope({ context, slack, envelope });
+      await handleSlackEnvelope({ context, slack: trackedSlack, envelope });
     } catch (error) {
       console.error("Slack workflow failed", error);
       const threadTs = envelope.event?.thread_ts ?? envelope.event?.ts;
-      if (threadTs) {
+      if (threadTs && !terminalReplyPosted) {
         await slack.postMessage("I saw this, but I couldn't finish the run. Please try once more.", threadTs).catch(() => undefined);
       }
     }

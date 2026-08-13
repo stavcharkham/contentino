@@ -3,7 +3,7 @@ import type { GoogleDocsReviewAdapter } from "@/lib/adapters/google";
 import type { GoogleDriveSource } from "@/lib/adapters/drive";
 import type { SlackReviewAdapter } from "@/lib/adapters/slack";
 import { runOnce } from "@/lib/idempotency";
-import { briefSchema, draftSchema } from "@/lib/schemas";
+import { briefSchema, draftSchema, type Scorecard } from "@/lib/schemas";
 import { parseCorrection } from "./review";
 import { approveBrief, makeBrief } from "./brief";
 import { writeExternalComms, writeMicrocopy } from "./generate";
@@ -16,6 +16,22 @@ export type SlackEnvelope = {
   challenge?: string;
   event?: { type?: string; subtype?: string; text?: string; user?: string; ts?: string; thread_ts?: string; channel?: string; bot_id?: string };
 };
+
+export function formatMicrocopyResult(copy: string, scorecard: Scorecard): string {
+  let routing: string;
+  if (scorecard.outcome === "auto-published") {
+    routing = "*Published automatically.*";
+  } else if (scorecard.outcome === "blocked") {
+    routing = `*Blocked:* The compliance gate flagged this ${scorecard.stakes}-stakes wording. Revise it before publishing.`;
+  } else if (scorecard.score < 9) {
+    routing = "*Needs review:* The score is below the 9.0 auto-publish threshold.";
+  } else if (scorecard.ceiling === "none") {
+    routing = "*Needs review:* This content type always requires review.";
+  } else {
+    routing = `*Needs review:* ${scorecard.stakes[0].toUpperCase()}${scorecard.stakes.slice(1)} stakes exceed this type's ${scorecard.ceiling}-stakes auto-publish ceiling.`;
+  }
+  return `*${copy}*\nScore ${scorecard.score.toFixed(1)}\n${routing}`;
+}
 
 export async function handleSlackEnvelope(input: {
   context: WorkflowContext;
@@ -38,7 +54,7 @@ export async function handleSlackEnvelope(input: {
       if (microcopy) {
         const generated = await writeMicrocopy({ context: input.context, request: microcopy[1], triggeredBy: event.user ?? "slack", trigger: "slack" });
         const copy = parseMarkdown(generated.content, draftSchema).body.replace(/^# Product micro-copy\s*/i, "").trim();
-        await input.slack.postMessage(`*${copy}*\nScore ${generated.scorecard.score.toFixed(1)} · ${generated.scorecard.outcome}\n${generated.path}`, event.thread_ts ?? event.ts);
+        await input.slack.postMessage(formatMicrocopyResult(copy, generated.scorecard), event.thread_ts ?? event.ts);
         return "microcopy";
       }
       const briefRequest = text.match(/^brief:\s*([\s\S]+)/i);

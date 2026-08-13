@@ -46,7 +46,7 @@ export async function writeMicrocopy(input: {
     const generation = await input.context.models.complete({
       job: "generation",
       system: `${baseProfile}\n\n${type.guidelineBody}`,
-      prompt: `Write one UI string for this request. Respect the declared character limit.\n\nRequest: ${input.request}${feedback}`,
+      prompt: `Write one UI string for this request. Respect the declared character limit. Preserve the requested action and object; do not replace quote with price, coverage, approval or another concept.\n\nRequest: ${input.request}${feedback}`,
       schema: microcopyOutput,
       maxTokens: 600,
     });

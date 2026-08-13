@@ -95,4 +95,31 @@ describe("GitHubStorage", () => {
     const storage = new GitHubStorage(api, "owner", "repo");
     await expect(storage.create("content/a.md", "new")).rejects.toBeInstanceOf(StorageConflictError);
   });
+
+  it("retries a logical commit when an unrelated GitHub write moves the branch", async () => {
+    const api = {
+      repos: { getContent: vi.fn() },
+      git: {
+        getRef: vi.fn()
+          .mockResolvedValueOnce({ data: { object: { sha: "head-1" } } })
+          .mockResolvedValueOnce({ data: { object: { sha: "head-2" } } }),
+        getCommit: vi.fn()
+          .mockResolvedValueOnce({ data: { tree: { sha: "tree-1" } } })
+          .mockResolvedValueOnce({ data: { tree: { sha: "tree-2" } } }),
+        getTree: vi.fn().mockResolvedValue({ data: { tree: [] } }),
+        createBlob: vi.fn().mockResolvedValue({ data: { sha: "blob" } }),
+        createTree: vi.fn().mockResolvedValue({ data: { sha: "next-tree" } }),
+        createCommit: vi.fn()
+          .mockResolvedValueOnce({ data: { sha: "commit-1" } })
+          .mockResolvedValueOnce({ data: { sha: "commit-2" } }),
+        updateRef: vi.fn()
+          .mockRejectedValueOnce(Object.assign(new Error("Reference update failed"), { status: 422 }))
+          .mockResolvedValueOnce({ data: {} }),
+      },
+    } as unknown as GitHubApi;
+    const storage = new GitHubStorage(api, "owner", "repo");
+    expect(await storage.commit({ message: "Record run", changes: [{ type: "write", path: "content/a.md", content: "new", expectedVersion: null }] }))
+      .toEqual({ version: "commit-2" });
+    expect(api.git.updateRef).toHaveBeenCalledTimes(2);
+  });
 });

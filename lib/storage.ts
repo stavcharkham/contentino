@@ -211,6 +211,20 @@ export class GitHubStorage extends StorageConvenience {
   }
 
   async commit(commit: StorageCommit): Promise<{ version: string }> {
+    for (let attempt = 1; attempt <= 4; attempt += 1) {
+      try {
+        return await this.commitAtHead(commit);
+      } catch (error) {
+        const status = (error as { status?: number }).status;
+        const refMoved = status === 409 || status === 422;
+        if (!refMoved) throw error;
+        if (attempt === 4) throw new StorageConflictError("GitHub branch changed during the logical commit");
+      }
+    }
+    throw new StorageConflictError("GitHub branch changed during the logical commit");
+  }
+
+  private async commitAtHead(commit: StorageCommit): Promise<{ version: string }> {
     if (!commit.changes.length) throw new Error("Storage commit needs at least one change");
     const changes = commit.changes.map((change) => ({ ...change, path: normaliseStoragePath(change.path) }));
     const ref = await this.api.git.getRef({ owner: this.owner, repo: this.repo, ref: `heads/${this.branch}` });
