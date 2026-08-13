@@ -48,10 +48,9 @@ right. Small commits with real messages. No squashing history into one dump at t
 | File | Phase | What goes in it |
 |---|---|---|
 | `RESEARCH.md` | discover | Prior art, brand voice findings, and questions for the Lemonade team each paired with the assumption made in its absence |
-| `PRD.md` | define | Problem, users, scope, non-goals, success metrics |
+| `PRD.md` | define | Problem, users, success metrics, and what we are building concretely: structures, formats, flows. No reasoning, that lives in `DECISIONS.md` |
 | `DECISIONS.md` | design | Every product and build decision, with rejected options |
 | `RUBRIC.md` | design | The scoring criteria, the thresholds, and what happens at each band |
-| `SPEC.md` | design | What we are building, concretely. Structures, formats, flows. No reasoning, that lives in `DECISIONS.md` |
 | `PLAN.md` | deliver | Task list with checkboxes, grouped by day |
 | `QUESTIONS.md` | - | Open items needing Stav's answer |
 | `PROCESS.md` | - | Running log of how the work went. Feeds the write-up alongside `DECISIONS.md` |

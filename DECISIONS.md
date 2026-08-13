@@ -210,8 +210,8 @@ there. The rule was punishing content for its format.
 **Decided:** Reverses the "same six criteria for every content type" part of the 2026-08-12
 rubric decision. There is now a shared core that applies everywhere (register, humour
 boundary, plain language, compliance) plus extra questions belonging to each content type. A
-LinkedIn post gets asked whether its claim is sourced. Micro-copy gets asked whether it fits
-the character budget. Scores are converted to the same 10-point scale so they stay
+blog post gets asked whether its central claim is sourced. Micro-copy gets asked whether it
+fits the character budget. Scores are converted to the same 10-point scale so they stay
 comparable.
 **Rejected:** Keeping one identical rubric and marking criteria "not applicable", which is
 the same thing with more bookkeeping.
@@ -326,8 +326,8 @@ it.
 content type, who triggered it, when, whether it was auto-published or reviewed, how many
 revisions it went through, its score, and what it cost in API spend. Separately, a config
 file holds an assumed manual baseline per content type, so the assumptions are visible and
-arguable. A LinkedIn post is worth 20 minutes; auto-published saves all 20; reviewed saves
-10; each revision takes 5 back.
+arguable. Say a blog post is worth 75 minutes; auto-published saves all 75; reviewed saves
+half; each revision takes 10 back.
 **Rejected:** A general event stream, which is more data and less answer.
 **Why:** It makes the value claim something a PM can push back on rather than a slogan. Two
 numbers fall out for free: cost per approved piece, which is what matters against $50, and
@@ -351,19 +351,28 @@ permanent. Being explicit about that is a stronger answer to a hiring team than 
 we did not notice.
 **Reversible:** yes, by design
 
-### 2026-08-13 - The two content types are LinkedIn posts and product micro-copy
+### 2026-08-13 - The two content types are product micro-copy and external comms, scoped to blog posts
 **Category:** product
-**The problem:** The 2026-08-12 decision picked micro-copy plus "external comms / PR". PR
-turned out to be an enormous job on its own: mapping publications, finding the right
-journalist, working out their angle, and it still cannot replace a PR person's relationships.
-**Decided:** Narrows the second stream from PR to LinkedIn posts. Micro-copy stays as the
-first.
-**Rejected:** Building the full PR path.
-**Why:** These two sit at opposite ends of everything. Micro-copy is short, high volume,
-started by a person, and auto-publishes. A LinkedIn post is long, event-driven, and never
-auto-publishes. That contrast is the entire architecture visible in one demo, and it shows
-both of our goals at once. LinkedIn also keeps the brief step, which is the interesting part
-of the PR path, without the outlet research that is not finishable in the time left.
+**The problem:** The 2026-08-12 decision picked micro-copy plus "external comms / PR". PR then
+turned out to be a much bigger job than "write a press release". A real PR agent has to work
+out which publications matter for this story, which reporter at each one covers the beat, and
+what angle makes it interesting to *their* readers rather than to us, because a journalist does
+not want your story, they want something usable. On top of that, PR is a relationships
+business: a person with contacts is not replaceable by an agent with a media list. None of that
+is finishable in the days remaining.
+**Decided:** Micro-copy stays as the first stream. The second stays external comms but is
+scoped to blog posts and written announcements. The brief step survives, because that is the
+part of the PR method that transfers. Outlet and reporter research is out.
+**Rejected:** Building the full PR path. Also rejected, after briefly deciding it earlier the
+same day: narrowing the second stream to LinkedIn posts. The assignment names five content
+streams and LinkedIn is not cleanly one of them; the nearest match is "social captions", which
+it groups with performance ads and landing-page headers, so marketing creative rather than
+thought leadership. We had already rejected app store release notes on exactly that basis.
+**Why:** The two streams sit at opposite ends of everything. Micro-copy is short, high volume,
+started by a person, and auto-publishes. External comms is long, event-driven, and never
+auto-publishes at any score. That contrast is the whole architecture visible in one demo, and
+it shows both product goals at once. External comms also already has corpus evidence behind it
+(8 excerpts: blog, investor notes), which LinkedIn did not.
 **Reversible:** yes
 
 ### 2026-08-13 - The demo runs on real, public Lemonade material

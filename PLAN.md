@@ -75,7 +75,7 @@
       reviewed, revision count, score, API cost. Plus the baseline-minutes config.
 - [ ] Storage seam: one module owns reading and writing content, so pointing at a CMS later is
       a change in one file
-- [x] Second stream settled: external comms. `SPEC.md` written.
+- [x] Second stream settled: external comms, scoped to blog posts. `PRD.md` written.
 
 ## Day 3 - Engine and evaluation
 
