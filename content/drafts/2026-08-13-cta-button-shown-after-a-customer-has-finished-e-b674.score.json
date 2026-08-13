@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-13-cta-button-shown-after-a-customer-has-finished-e-b674",
+  "source_hash": "d32033d1a358a6dddc278a5f6812fccf7726a23744f1814d01506322ba29ec0c",
+  "scored_at": "2026-08-13T20:00:40.769Z",
+  "content_type": "product-microcopy",
+  "stakes": "medium",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "All-caps button label matches low-stakes interface patterns (LEM-011). Tone is warm and confident as specified for performing moments without risk.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. The label is straightforward action text appropriate for low stakes where playfulness is permitted but not required.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses concrete verb 'see' and direct language. No insurance jargon or unnecessary translation. Consistent with vocabulary guidance to name the action and use direct language.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "A single button label 'SEE MY PRICE' has no named subject (e.g., pet or person name) supplied by the interface to address; it already uses first-person 'my' which is the standard direct-address pattern for buttons like LEM-011, so there's no additional named addressee to compare against.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No hard character limit is declared for this button string in the prompt, and the draft is short and comparable in length to approved button labels like 'GET DISCOUNTS' and 'FINALIZE PAYMENT', so there is no stated budget to check against.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "'SEE' is a concrete, consistent action verb matching the pattern of approved short all-caps button labels (GET, FINALIZE) and fits a flow step where the user is about to view a price, aligning with LEM-011's style.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": false,
+    "reason": "The draft consists solely of the button label 'SEE MY PRICE.' While the mechanics (all caps for buttons) are followed, there is insufficient context to verify compliance with the prohibitions listed: (1) no way to confirm it doesn't promise an outcome or guarantee a claim will be paid, (2) no disclaimer context to check if one was improperly removed, (3) no judgement claim present but also no surrounding context to verify one isn't implied elsewhere in the flow, (4) no way to confirm it doesn't contradict known policy about price, coverage, or eligibility, and (5) no attributed quote present but also no source context at all. Given the compliance rubric requires blocking when a piece 'contradicts known policy' or lacks traceability, and this fragment is presented with zero surrounding context, brief, or source to verify the price-related claim implied by 'SEE MY PRICE' is accurate, non-binding, and consistent with approved eligibility/pricing rules, it cannot be confirmed compliant. A price-related CTA touches High stakes territory (price/eligibility) and such copy should carry forward reviewer-verified boundaries per audience.md, which this isolated fragment cannot demonstrate."
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 208,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1889,
+      "cost_usd": 0.006807
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1210,
+      "output_tokens": 73,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001575
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 412,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1699,
+      "cost_usd": 0.008372
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1789,
+      "output_tokens": 152,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002549
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 4,
+      "output_tokens": 593,
+      "cache_read_tokens": 2715,
+      "cache_write_tokens": 2715,
+      "cost_usd": 0.013268
+    }
+  ],
+  "cost_usd": 0.032571
+}
