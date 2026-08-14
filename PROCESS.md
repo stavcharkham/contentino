@@ -382,3 +382,28 @@ displayed the full external draft with mandatory review status.
 The acceptance document was replaced with a six-part script Stav can run without a terminal or
 GitHub. A fictional transcript fixture was added to the repository and as a Google Doc in the
 watched folder.
+
+## 2026-08-14 - Session 9: the presentation brainstorm
+
+No code. Stav opened with a first-principles diagram and "I think we started developing too
+early". The review against the diagram found the opposite: the built system matches it box
+for box, and the real gap is the story layer. Three additive deltas were identified - a
+single entry skill so nobody needs to know skill names, trust computed from the ledger as
+cycles per approval and zero-feedback share, and the augmentation-before-automation
+narrative.
+
+The presentation plan settled into three parts. A `/lemonade-demo` skill in the plugin is
+the self-serve door: guided menu, real pipeline on our compute, all success, closing with
+the reviewer's own run visible in the dashboard ledger. One continuous recording carries
+Slack and Drive: a real earnings-call transcript to an approved draft, no cuts. The veto
+and the learning loop go in short narrated clips, and the new-content-type flow with a
+domain expert is the centerpiece of a deck that is read alone and built later.
+
+Two arguments worth keeping. The demo shows no failure: unattended, a compliance block
+reads as an error, and failure demos need a narrator - so the veto lives in the recordings.
+And time saved is never claimed as fact: the baseline is a config assumption, so the system
+shows the instrument and the assumption, and lets cycles per approval carry the trust
+argument.
+
+Next action is Stav running the operator test kit end to end and reporting results before
+anything new gets built.

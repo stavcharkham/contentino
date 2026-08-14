@@ -560,3 +560,89 @@ can read, approve or revise the work.
 **Why:** Slack is a review surface, not a notification pipe. A reviewer must be able to finish the
 job where it started without understanding the storage layout.
 **Reversible:** yes
+
+---
+
+*Everything below came out of a brainstorm on 2026-08-14, opened by Stav with a
+first-principles diagram: meet people where they already work, we are not the domain
+experts, skills not products, an evaluation loop on everything - and for content
+specifically, nondeterministic output means trust must be built, so augmentation comes
+before automation. The session was about presentation and the reviewer experience, and it
+started from "I think we started developing too early".*
+
+### 2026-08-14 - The build stands; the remaining work is the story layer
+**Category:** product
+**The problem:** The session opened with "we started developing too early" and a
+first-principles diagram of how each content loop should work: trigger, brief, routing to
+the right skills, an evaluation loop until approved, everything tracked. The question was
+whether to rebuild around it.
+**Decided:** No rebuild. The diagram and the built system match box for box - trigger,
+brief-first, skills, layered evaluation, ledger. What the diagram has and the build lacks
+is three additive things: a single entry point, trust surfaced as a number, and the
+augmentation-before-automation narrative. Those get built; nothing gets torn down.
+**Rejected:** Rebuilding the system to match the diagram.
+**Why:** Three days to deadline, and the gap is presentation, not architecture. Tearing
+down a working, deployed system to rebuild the same shape is the classic mistake.
+**Reversible:** yes
+
+### 2026-08-14 - One front door, not seven skill names
+**Category:** product
+**The problem:** The diagram has one entry point - you mention Contentino and it routes.
+The build has seven named skills, so in Claude the routing lives in the user's head.
+**Decided:** Add a single entry skill that takes a plain request, classifies it and routes
+to the right content skill. This is the diagram's "assign to the relevant content agent"
+box made real.
+**Rejected:** Keeping skill names as the user interface.
+**Why:** A content person should not need to know internal skill names. Slack and Drive
+already work by just talking; Claude should too.
+**Reversible:** yes
+
+### 2026-08-14 - Trust becomes a number on the dashboard
+**Category:** product
+**The problem:** The whole augmentation-before-automation argument claims trust is built
+over time, but nothing measured it. The ledger records every cycle; no metric read it.
+**Decided:** Compute and show two numbers from the existing ledger: cycles per approval,
+and the share of approvals that needed zero feedback. Time saved stays presented as an
+instrument - the number next to its stated baseline assumption - never as a measured fact.
+**Rejected:** Asserting "saves time" as a finding.
+**Why:** The baseline minutes are a config assumption and a GenAI lead will poke that in
+seconds. "Here is how we would know" is a stronger claim than "trust us". Cycles per
+approval trending down is the honest, measurable version of trust.
+**Reversible:** yes
+
+### 2026-08-14 - The demo is a guided skill running the real engine
+**Category:** product
+**The problem:** The reviewer must be able to activate and see the system entirely alone.
+Slack and Drive are bound to our accounts; the Claude plugin is the only surface that is
+genuinely self-serve.
+**Decided:** A `/lemonade-demo` skill in the plugin. It offers a small menu of prepared,
+well-tested inputs and runs the genuine pipeline on them, against production, on our
+compute and budget. The route is deterministic; the execution is real. It shows the eval
+reasoning behind the score, ends with the reviewer's own run appearing in the dashboard
+ledger, then lists the other skills and content types, then offers "bring your own
+content" for the curious. The demo shows only success: no compliance block in the tour.
+The veto is mentioned in the eval explanation and shown in a narrated recording instead.
+**Rejected:** A canned replay - a GenAI hiring team would sniff it out and it would cost
+more trust than a live wobble. A fully live unguided demo - at the mercy of latency and a
+score landing in the wrong band with no narrator. And scripting a compliance block into
+the tour - proposed and rejected, because unattended, a block reads as an error; failure
+demos need someone in the room to frame them.
+**Open check before it is trusted:** concurrent reviewer runs against the GitHub storage
+adapter, and a loud, graceful failure message when the backend is unreachable.
+**Reversible:** yes
+
+### 2026-08-14 - One main recording, one story, real material
+**Category:** product
+**The problem:** The surfaces that cannot be self-served (Slack, Drive) and the flows that
+need framing (the veto, the learning loop) have to be shown, not handed over.
+**Decided:** One continuous recording carries the system: a real Lemonade earnings-call
+transcript lands in Drive, becomes a brief in Slack, gets approved in the thread, the
+draft comes back scored, one piece of feedback produces a revision, approved. No cuts.
+Two short clips beside it: the learning loop from corrections to an approved guideline to
+the one hand-done graduation, and the compliance veto with narration. The
+new-content-type flow with a domain expert is saved for the deck, which is read alone,
+not presented, and gets built later.
+**Rejected:** A set of per-feature clips as the main artifact - a story is harder to
+dismiss than a feature list. Forcing a regeneration into the main recording - included
+only if a test run produces one naturally.
+**Reversible:** yes
