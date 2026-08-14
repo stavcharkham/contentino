@@ -1,0 +1,11 @@
+{
+  "name": "contentino",
+  "owner": { "name": "Stav Charkham" },
+  "plugins": [
+    {
+      "name": "contentino",
+      "source": "./",
+      "description": "Generate, score and review Lemonade content from Claude."
+    }
+  ]
+}

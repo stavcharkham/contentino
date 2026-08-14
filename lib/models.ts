@@ -112,7 +112,6 @@ export class AnthropicGateway implements ModelGateway {
           model,
           max_tokens: maxTokens,
           thinking: { type: "disabled" },
-          cache_control: { type: "ephemeral" },
           system: [{ type: "text", text: request.system, cache_control: { type: "ephemeral" } }],
           messages: [{ role: "user", content: request.prompt }],
           output_config: { format: zodOutputFormat(request.schema) },
