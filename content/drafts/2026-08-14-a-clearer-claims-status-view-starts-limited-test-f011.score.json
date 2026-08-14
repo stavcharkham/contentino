@@ -1,7 +1,7 @@
 {
   "piece_id": "2026-08-14-a-clearer-claims-status-view-starts-limited-test-f011",
-  "source_hash": "5029ff8e1f899071b51d99ffe333a75e205eb46a25a3d5b1acb90cd36e24bc4d",
-  "scored_at": "2026-08-14T20:23:55.227Z",
+  "source_hash": "5e19ca1d953a5c2dbafe1528fc01febda66e3a742f015664efdfd28894301ce1",
+  "scored_at": "2026-08-14T20:24:29.393Z",
   "content_type": "external-comms",
   "stakes": "medium",
   "ceiling": "none",
@@ -10,21 +10,21 @@
       "id": "register",
       "name": "Register match",
       "score": 2,
-      "reason": "The tone is appropriately formal and cautious for high-stakes content about claims processes. It matches the approved high-stakes examples (LEM-050, LEM-051) by using direct language with clear boundaries rather than marketing spin. The repetition of what isn't changing mirrors the careful financial language in LEM-051.",
+      "reason": "The tone appropriately shifts between medium stakes (feature announcement) and high stakes (coverage/eligibility clarification). Marketing language in the headline and opening drops into careful, complete sentences for legal boundaries. This matches the switching rule and approved pattern LEM-053.",
       "model": "claude-haiku-4-5"
     },
     {
       "id": "humour",
       "name": "Humour boundary",
       "score": 2,
-      "reason": "No humour is present. The stakes are high (claims, eligibility, coverage decisions), so this is correct. The draft avoids even dry jokes that would be appropriate at lower stakes, following the Covering register guidance.",
+      "reason": "No humour is used. The content involves claims and eligibility decisions where nothing is at stake humorously, so the absence of jokes is correct for high-stakes material.",
       "model": "claude-haiku-4-5"
     },
     {
       "id": "plain-language",
       "name": "Plain language calibration",
-      "score": 2,
-      "reason": "The draft retains 'deductible' is not used; 'claims', 'coverage', 'eligibility' and 'support' are kept as customers need to recognise them. No folksy substitutes are invented. Mechanics like 'status view' and 'next steps' are explained concretely in context rather than obscured. The attribution to Maya Chen and the dated source follow compliance requirements for sourced claims.",
+      "score": 1,
+      "reason": "The draft retains 'claims', 'coverage', 'eligibility' and 'claims-status view' without inline definition. While these are terms customers need to recognise per vocabulary guidelines, the phrase 'whether customers can understand their next step' could be clearer about what 'next step' means in claims context. The repeated negations ('This isn't...This doesn't...') are direct but become formulaic. Mostly compliant but slightly verbose for working register.",
       "model": "claude-haiku-4-5"
     },
     {
@@ -37,71 +37,71 @@
       "id": "direct-address",
       "name": "Direct address",
       "score": 2,
-      "reason": "The piece is framed around what changes and doesn't change for the reader ('what's actually being tried, and what isn't changing'), using concrete customer-facing terms like claims view, next step, support calls, rather than internal program names or company-centric language.",
+      "reason": "The draft is framed around what changes and doesn't change for customers (coverage, claim decisions, payment timing, eligibility, calls to support) rather than internal product-team language. It repeatedly translates the test into reader-facing consequences, consistent with the audience guidance to name what the reader can control and what a decision means to them.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "claim-sourced",
       "name": "Claim sourced",
-      "score": 2,
-      "reason": "Every factual claim (test date, 200 invited customers, New York renters-insurance scope, what changed and didn't, the quote) traces to the single cited source, the weekly claims product meeting on 12 August 2026, and the draft explicitly footnotes that source.",
+      "score": 1,
+      "reason": "Most claims (test date, scope of 200 invited NY renters customers, what changed/didn't change) are stated as fact but only one source is cited: the weekly claims product meeting on 12 August 2026, which is explicitly tied to the quote. It's plausible this meeting is also the source for the test's scope and parameters, but the draft doesn't make that traceability explicit for every factual claim (e.g., the September 1 start date, the 200-customer figure), so full sourcing isn't demonstrably clear beyond the quote itself.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "why-now",
       "name": "Why now",
       "score": 1,
-      "reason": "The date and start of testing is stated clearly, but the piece never explains why this test is launching now (e.g., what prompted it, why September 1, why this cohort), leaving the reader without a visible reason this is newsworthy today beyond the date itself.",
+      "reason": "The piece states the test starts September 1 and reiterates the date, which gestures at timeliness, but it never explains why this test is happening now (e.g., a claims-status pain point, prior customer feedback, or a strategic reason). The reason for saying this today is implied by the launch date alone rather than made visible as a rationale.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "quote-fidelity",
       "name": "Quote fidelity",
       "score": 2,
-      "reason": "The quote from Maya Chen is modest, specific to the claims-product test, attributed to a named source with a traceable meeting date, and reads like something a product team member would plausibly say rather than an inflated or promotional claim.",
+      "reason": "The quote is short, plausible, and consistent with the disciplined, boundary-setting tone the rest of the piece establishes. It's attributed to a named team member with a specific sourced meeting and date, matching the approved pattern of sourcing an attributed quote to a transcript-like source (LEM-050/051).",
       "model": "claude-sonnet-5"
     }
   ],
-  "score": 8.75,
+  "score": 7.5,
   "compliance": {
     "pass": true,
-    "reason": "The draft carries specific, attributed scope limits (200 invited NY renters customers, 1 Sept 2026 start) with a traceable source (weekly claims product meeting, 12 August 2026, attributed to Maya Chen). It explicitly disclaims that coverage, eligibility, claim decisions, and payment timing are unchanged, and it frames the support-call and comprehension goals as open questions rather than guarantees or outcome promises, avoiding any promise of a paid claim or guaranteed result. It does not remove any required disclaimer, does not make unsupported judgement claims about how Lemonade evaluates customers, and does not contradict known policy on data use, price, coverage, or eligibility. The quote is attributed with a specific date and meeting, satisfying the sourcing requirement for public claims. No claim denial, coverage rejection, or renewal price-increase notice is generated. All compliance prohibitions are satisfied."
+    "reason": "The draft attributes the quote to Maya Chen with a specific venue and date, and cites a matching source line, satisfying the traceable-source requirement. It explicitly disclaims guarantees (no promise of fewer calls, no promise of decisions), states coverage/eligibility/payment timing are unchanged rather than contradicting known policy, and does not claim a wider rollout is coming. No unsupported judgement claims about how Lemonade evaluates customers appear, and no claim denial, coverage rejection, or renewal price-increase notice is generated. All compliance prohibitions are satisfied."
   },
   "attempt": 1,
   "outcome": "reviewed",
   "usage": [
     {
       "model": "claude-haiku-4-5",
-      "input_tokens": 1677,
+      "input_tokens": 1674,
       "output_tokens": 99,
       "cache_read_tokens": 0,
       "cache_write_tokens": 0,
-      "cost_usd": 0.002172
+      "cost_usd": 0.002169
     },
     {
       "model": "claude-sonnet-5",
       "input_tokens": 2,
-      "output_tokens": 319,
-      "cache_read_tokens": 0,
-      "cache_write_tokens": 2310,
-      "cost_usd": 0.008969
+      "output_tokens": 208,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 658,
+      "cost_usd": 0.004058
     },
     {
       "model": "claude-haiku-4-5",
-      "input_tokens": 2117,
-      "output_tokens": 269,
+      "input_tokens": 2114,
+      "output_tokens": 361,
       "cache_read_tokens": 0,
       "cache_write_tokens": 0,
-      "cost_usd": 0.003462
+      "cost_usd": 0.003919
     },
     {
       "model": "claude-sonnet-5",
       "input_tokens": 2,
-      "output_tokens": 402,
-      "cache_read_tokens": 0,
-      "cache_write_tokens": 3215,
-      "cost_usd": 0.012061
+      "output_tokens": 569,
+      "cache_read_tokens": 2126,
+      "cache_write_tokens": 1082,
+      "cost_usd": 0.008824
     }
   ],
-  "cost_usd": 0.026664
+  "cost_usd": 0.01897
 }

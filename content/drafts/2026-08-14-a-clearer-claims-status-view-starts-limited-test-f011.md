@@ -27,7 +27,7 @@ Maya Chen, who works on the claims product team, put it this way at the team's w
 
 "The goal is to make the next step clear, not to make the claim look simpler than it is."
 
-WHAT THIS ISN'T
+What this isn't
 
 A few things worth being direct about:
 
