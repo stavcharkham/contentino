@@ -117,6 +117,30 @@ export class SlackReviewAdapter implements ReviewAdapter {
     await this.post({ channel: this.channel, thread_ts: threadTs, text: `${message}\n\n${content}` });
   }
 
+  async postBriefForApproval(input: { threadTs?: string; body: string; briefPath: string }): Promise<string> {
+    const chunks: string[] = [];
+    for (let start = 0; start < input.body.length; start += 2900) chunks.push(input.body.slice(start, start + 2900));
+    const message = await this.post({
+      channel: this.channel,
+      thread_ts: input.threadTs,
+      text: `Brief ready for approval\n\n${input.body}`,
+      blocks: [
+        { type: "section", text: { type: "mrkdwn", text: "*Brief ready for approval*" } },
+        ...chunks.slice(0, 8).map((chunk) => ({ type: "section", text: { type: "mrkdwn", text: chunk } })),
+        {
+          type: "actions",
+          elements: [
+            { type: "button", style: "primary", text: { type: "plain_text", text: "Approve and write the draft" }, action_id: "approve_brief", value: input.briefPath },
+          ],
+        },
+      ],
+    });
+    const threadTs = input.threadTs ?? message.ts;
+    if (!threadTs) throw new Error("Slack did not return a thread timestamp");
+    await this.mapBrief(threadTs, input.briefPath);
+    return threadTs;
+  }
+
   async postMessage(text: string, threadTs?: string): Promise<void> {
     await this.post({ channel: this.channel, thread_ts: threadTs, text });
   }

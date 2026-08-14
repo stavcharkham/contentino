@@ -10,7 +10,9 @@ import { makeLedgerRow, scoreArtifact, workflowNow, type WorkflowContext } from 
 const microcopyOutput = z.object({ copy: z.string().min(1), rationale: z.string().min(1) });
 const externalOutput = z.object({ title: z.string().min(1), body: z.string().min(1) });
 
-type GenerationResult = { pieceId: string; path: string; scorecard: Scorecard; content: string };
+type GenerationResult = { pieceId: string; path: string; scorecard: Scorecard; content: string; note?: string };
+
+const requestCompliance = z.object({ pass: z.boolean(), reason: z.string().min(1) });
 
 function statusFor(scorecard: Scorecard): Draft["status"] {
   if (scorecard.outcome === "blocked") return "blocked";
@@ -41,6 +43,14 @@ export async function writeMicrocopy(input: {
   const now = workflowNow(input.context);
   const pieceId = createPieceId(input.request, now);
   const draftPath = `content/drafts/${pieceId}.md`;
+  const requestCheck = await input.context.models.complete({
+    job: "compliance",
+    system: baseProfile,
+    prompt: `Judge the REQUEST below, not any draft. Does it ask for wording that compliance prohibits: guarantees of approval or outcomes, promises about pricing, eligibility or claim decisions, or claims about how personal data is or is not used? pass=false when the request demands such wording, with the reason naming the prohibited claim.\n\nRequest: ${input.request}`,
+    schema: requestCompliance,
+    maxTokens: 300,
+  });
+  const requestFlagged = !requestCheck.value.pass;
   let feedback = "";
   for (let attempt = 1; attempt <= 3; attempt += 1) {
     const generation = await input.context.models.complete({
@@ -64,17 +74,24 @@ export async function writeMicrocopy(input: {
     let content = renderMarkdown(metadata, body);
     let scorecard = await scoreArtifact({ context: input.context, pieceId, contentType: metadata.content_type, artifact: content, scoringText: generation.value.copy, attempt });
     scorecard = withGenerationUsage(scorecard, generation.usage);
+    scorecard = attempt === 1 ? withGenerationUsage(scorecard, requestCheck.usage) : scorecard;
+    if (requestFlagged && scorecard.outcome === "auto-published") {
+      scorecard = { ...scorecard, outcome: "reviewed" };
+    }
     content = renderMarkdown({ ...metadata, status: statusFor(scorecard) }, body);
     if (scorecard.source_hash !== contentHash(content)) {
       scorecard = { ...scorecard, source_hash: contentHash(content) };
     }
     const ledgerRow = await makeLedgerRow({ storage: input.context.storage, pieceId, created: metadata.created, skill: "write-microcopy", contentType: metadata.content_type, triggeredBy: input.triggeredBy, trigger: input.trigger, scorecard });
     await recordScoredDraft({ storage: input.context.storage, draftPath, content, scorecard, ledgerRow });
+    const note = requestFlagged
+      ? `The request asked for wording the policy does not allow (${requestCheck.value.reason}). This is a compliant alternative, held for your review.`
+      : undefined;
     if (scorecard.outcome === "auto-published") {
       const published = await publishScoredDraft(input.context.storage, draftPath);
       return { pieceId, path: published, scorecard, content };
     }
-    if (scorecard.outcome !== "regenerated") return { pieceId, path: draftPath, scorecard, content };
+    if (scorecard.outcome !== "regenerated") return { pieceId, path: draftPath, scorecard, content, note };
     feedback = `\n\nThe previous attempt failed:\n${scorecard.criteria.map((criterion) => `- ${criterion.name}: ${criterion.score} (${criterion.reason})`).join("\n")}`;
   }
   throw new Error("Microcopy regeneration loop ended unexpectedly");

@@ -216,9 +216,10 @@ export class GitHubStorage extends StorageConvenience {
         return await this.commitAtHead(commit);
       } catch (error) {
         const status = (error as { status?: number }).status;
-        const refMoved = status === 409 || status === 422;
-        if (!refMoved) throw error;
+        const retryable = status === 409 || status === 422 || (typeof status === "number" && status >= 500);
+        if (!retryable) throw error;
         if (attempt === 4) throw new StorageConflictError("GitHub branch changed during the logical commit");
+        await delay(200 * attempt + Math.floor(Math.random() * 150));
       }
     }
     throw new StorageConflictError("GitHub branch changed during the logical commit");

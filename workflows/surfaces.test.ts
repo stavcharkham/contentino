@@ -15,13 +15,22 @@ const usage = { model: "mock", input_tokens: 10, output_tokens: 5, cache_read_to
 class SurfaceGateway implements ModelGateway {
   async complete<T>(request: ModelRequest<T>): Promise<ModelCall<T>> {
     let value: unknown;
-    if (request.system.startsWith("Turn review feedback")) value = request.prompt.includes("Make it shorter")
-      ? { clarification_needed: true, question: "Which exact wording should be shorter?" }
-      : { clarification_needed: false, was: "Arizona drivers", now: "Drivers in Arizona", criterion: "direct-address" };
+    if (request.system.startsWith("Apply reviewer feedback")) value = request.prompt.includes("Make it shorter")
+      ? { mode: "rewrite", was: "the full draft", now: "a shorter draft", revised_body: "Drivers can now use a rate described in the approved brief.", criterion: "plain-language" }
+      : { mode: "replace", was: "Arizona drivers", now: "Drivers in Arizona", criterion: "direct-address" };
+    else if (request.system.startsWith("Revise the draft")) value = { revised_body: "Drivers can now use a rate described in the approved brief.", summary: "Shortened the draft" };
+    else if (request.system.startsWith("Route a message")) value = {
+      intent: request.prompt.toLowerCase().includes("drive folder") ? "drive-sync"
+        : request.prompt.toLowerCase().includes("button") || request.prompt.toLowerCase().includes("cta") ? "microcopy"
+        : request.prompt.toLowerCase().includes("announce") || request.prompt.toLowerCase().includes("meeting") ? "announcement" : "other",
+      request: request.prompt,
+    };
     else if (request.job === "brief") value = { headline: "Autonomous miles", story: "A sourced story.", why_now: "Available now.", what_changed: "Pricing changed.", not_saying: ["No guarantees."], sources: [{ label: "Source", url: "drive://one" }] };
     else if (request.job === "generation") value = request.prompt.includes("one UI string") ? { copy: "FINISH QUOTE", rationale: "Specific" } : { title: "Autonomous miles", body: "Arizona drivers can now use a rate described in the approved brief." };
     else if (request.job === "stakes") value = { stakes: request.prompt.includes("Arizona") ? "high" : "low", reason: "Fixture" };
-    else if (request.job === "compliance") value = { pass: true, reason: "Safe" };
+    else if (request.job === "compliance") value = request.prompt.startsWith("Judge the REQUEST")
+      ? { pass: !/approved instantly|never use personal data/i.test(request.prompt.split("Request:")[1] ?? ""), reason: "Request demands a prohibited promise" }
+      : { pass: true, reason: "Safe" };
     else if (request.job === "judge") value = { criteria: [
       { id: "register", score: 2, reason: "Matched" }, { id: "humour", score: 2, reason: "Safe" }, { id: "plain-language", score: 2, reason: "Plain" },
     ] };
@@ -44,7 +53,7 @@ async function context(): Promise<WorkflowContext> {
 describe("surface orchestration", () => {
   it("processes a Slack request once", async () => {
     const ctx = await context();
-    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn() };
+    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn(), postBriefForApproval: vi.fn(async (input) => input.threadTs ?? "9.9") };
     const envelope = { event_id: "Ev1", event: { type: "app_mention", text: "<@BOT> microcopy: CTA to finish a quote", user: "U1", ts: "1.1", channel: "C1" } };
     expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("microcopy");
     expect(slack.acknowledge).toHaveBeenCalledWith("1.1");
@@ -56,7 +65,7 @@ describe("surface orchestration", () => {
 
   it("accepts a top-level mention delivered as a channel message event", async () => {
     const ctx = await context();
-    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn() };
+    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn(), postBriefForApproval: vi.fn(async (input) => input.threadTs ?? "9.9") };
     const envelope = { event_id: "Ev3", event: { type: "message", text: "<@BOT> microcopy: CTA to finish a quote", user: "U1", ts: "2.1", channel: "C1" } };
     expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("microcopy");
     expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("*FINISH QUOTE*"), "2.1");
@@ -69,11 +78,14 @@ describe("surface orchestration", () => {
     const ctx = await context();
     const slack = {
       acknowledge: vi.fn().mockResolvedValue(undefined),
-      mapBrief: vi.fn(async (threadTs: string, briefPath: string) => {
-        await ctx.storage.create(`content/surfaces/slack/${threadTs.replaceAll(".", "-")}.json`, JSON.stringify({ thread_ts: threadTs, brief_path: briefPath }));
-      }),
+      mapBrief: vi.fn(),
       mapDraft: vi.fn(),
       postMessage: vi.fn(),
+      postBriefForApproval: vi.fn(async (input: { threadTs?: string; body: string; briefPath: string }) => {
+        const threadTs = input.threadTs ?? "9.9";
+        await ctx.storage.create(`content/surfaces/slack/${threadTs.replaceAll(".", "-")}.json`, JSON.stringify({ thread_ts: threadTs, brief_path: input.briefPath }));
+        return threadTs;
+      }),
       presentDraft: vi.fn(),
       presentDraftInThread: vi.fn(async (threadTs: string, draft: { path: string }) => {
         const mappingPath = `content/surfaces/slack/${threadTs.replaceAll(".", "-")}.json`;
@@ -85,9 +97,11 @@ describe("surface orchestration", () => {
     };
     const request = { event: { type: "app_mention", text: "<@BOT> brief: a sourced transcript", user: "U1", ts: "3.1", channel: "C1" } };
     expect((await handleSlackEnvelope({ context: ctx, slack, envelope: request })).action).toBe("brief");
-    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("*Autonomous miles*"), "3.1");
-    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("Reply *approve* or *write it here*"), "3.1");
-    expect(slack.postMessage).not.toHaveBeenCalledWith(expect.stringContaining("content/briefs/"), "3.1");
+    expect(slack.postBriefForApproval).toHaveBeenCalledWith(expect.objectContaining({
+      threadTs: "3.1",
+      body: expect.stringContaining("*Autonomous miles*"),
+      briefPath: expect.stringMatching(/^content\/briefs\//),
+    }));
 
     const approval = { event: { type: "app_mention", text: "<@BOT> write it here", user: "U1", ts: "3.2", thread_ts: "3.1", channel: "C1" } };
     expect((await handleSlackEnvelope({ context: ctx, slack, envelope: approval })).action).toBe("approved-brief");
@@ -99,14 +113,34 @@ describe("surface orchestration", () => {
 
   it("treats an ordinary reply to a generated piece as feedback instead of a failed command", async () => {
     const ctx = await context();
-    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn() };
+    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn(), postBriefForApproval: vi.fn(async (input) => input.threadTs ?? "9.9") };
     const brief = await makeBrief({ context: ctx, transcript: "Source", source: "drive://feedback", sourceId: "feedback" });
     await approveBrief({ storage: ctx.storage, path: brief.path, approvedBy: "Stav" });
     const generated = await writeExternalComms({ context: ctx, briefPath: brief.path, triggeredBy: "test", trigger: "slack" });
     await ctx.storage.create("content/surfaces/slack/4-1.json", JSON.stringify({ thread_ts: "4.1", draft_path: generated.path }));
     const feedback = { event: { type: "message", text: "Make it shorter", user: "U1", ts: "4.2", thread_ts: "4.1", channel: "C1" } };
-    expect((await handleSlackEnvelope({ context: ctx, slack, envelope: feedback })).action).toBe("clarification");
-    expect(slack.postMessage).toHaveBeenCalledWith("Which exact wording should be shorter?", "4.1");
+    expect((await handleSlackEnvelope({ context: ctx, slack, envelope: feedback })).action).toBe("reviewed");
+    expect(slack.postRevision).toHaveBeenCalledWith("4.1", expect.stringContaining("Drivers can now use a rate"), expect.stringContaining("rescored"));
+    expect(await ctx.storage.list("content/corrections")).toHaveLength(1);
+  });
+
+  it("routes a plain mention to the right skill without a prefix", async () => {
+    const ctx = await context();
+    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn(), postBriefForApproval: vi.fn(async (input: { threadTs?: string }) => input.threadTs ?? "9.9") };
+    const envelope = { event: { type: "app_mention", text: "<@BOT> I need a CTA button for the end of the quote flow", user: "U1", ts: "5.1", channel: "C1" } };
+    expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("microcopy");
+    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("*FINISH QUOTE*"), "5.1");
+  });
+
+  it("holds a compliant alternative for review when the request demands prohibited claims", async () => {
+    const ctx = await context();
+    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn(), postBriefForApproval: vi.fn(async (input: { threadTs?: string }) => input.threadTs ?? "9.9") };
+    const envelope = { event: { type: "app_mention", text: "<@BOT> microcopy: Button promising everyone is approved instantly", user: "U1", ts: "6.1", channel: "C1" } };
+    expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("microcopy");
+    const message = slack.postMessage.mock.calls[0][0] as string;
+    expect(message).toContain("held for your review");
+    expect(message).not.toContain("Published automatically");
+    expect(slack.mapDraft).toHaveBeenCalledWith("6.1", expect.stringMatching(/^content\/drafts\//));
   });
 
   it("explains blocked routing without exposing a storage path", () => {

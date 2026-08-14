@@ -2,7 +2,10 @@ import { after } from "next/server";
 import { readConfig } from "@/lib/config";
 import { SlackReviewAdapter, verifySlackSignature } from "@/lib/adapters/slack";
 import { createRuntime } from "@/workflows/runtime";
-import { handleSlackEnvelope, type SlackEnvelope } from "@/workflows/surfaces";
+import { handleSlackEnvelope, type SlackEnvelope, type SlackSurface } from "@/workflows/surfaces";
+import { buildDriveSync, recordSurfaceFailure } from "@/workflows/slack-support";
+
+export const maxDuration = 300;
 
 export async function POST(request: Request): Promise<Response> {
   const body = await request.text();
@@ -25,7 +28,7 @@ export async function POST(request: Request): Promise<Response> {
     const context = await createRuntime();
     const slack = SlackReviewAdapter.fromToken(config.SLACK_BOT_TOKEN as string, config.SLACK_CHANNEL_ID as string, context.storage);
     let terminalReplyPosted = false;
-    const trackedSlack: Pick<SlackReviewAdapter, "acknowledge" | "mapBrief" | "mapDraft" | "postMessage" | "presentDraft" | "presentDraftInThread" | "postRevision"> = {
+    const trackedSlack: SlackSurface = {
       acknowledge: (messageTs) => slack.acknowledge(messageTs),
       mapBrief: (threadTs, briefPath) => slack.mapBrief(threadTs, briefPath),
       mapDraft: (threadTs, draftPath) => slack.mapDraft(threadTs, draftPath),
@@ -47,15 +50,28 @@ export async function POST(request: Request): Promise<Response> {
         await slack.postRevision(threadTs, content, message);
         terminalReplyPosted = true;
       },
+      postBriefForApproval: async (input) => {
+        const threadTs = await slack.postBriefForApproval(input);
+        terminalReplyPosted = true;
+        return threadTs;
+      },
     };
-    try {
-      await handleSlackEnvelope({ context, slack: trackedSlack, envelope });
-    } catch (error) {
-      console.error("Slack workflow failed", error);
-      const threadTs = envelope.event?.thread_ts ?? envelope.event?.ts;
-      if (threadTs && !terminalReplyPosted) {
-        await slack.postMessage("I saw this, but I couldn't finish the run. Please try once more.", threadTs).catch(() => undefined);
+    const driveSync = buildDriveSync(context, trackedSlack);
+    let lastError: unknown;
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
+      try {
+        await handleSlackEnvelope({ context, slack: trackedSlack, envelope, driveSync });
+        return;
+      } catch (error) {
+        lastError = error;
+        console.error(`Slack workflow failed (attempt ${attempt})`, error);
+        if (terminalReplyPosted) break;
       }
+    }
+    const threadTs = envelope.event?.thread_ts ?? envelope.event?.ts;
+    await recordSurfaceFailure(context, "slack", envelope.event?.ts ?? "unknown", lastError);
+    if (threadTs && !terminalReplyPosted) {
+      await slack.postMessage("Something failed on my side while working on this - I logged the details. Try once more, and if it repeats, the log has what happened.", threadTs).catch(() => undefined);
     }
   });
   return Response.json({ ok: true });

@@ -15,6 +15,9 @@ oauth_config:
       - chat:write
       - reactions:write
 settings:
+  interactivity:
+    is_enabled: true
+    request_url: https://YOUR-VERCEL-DOMAIN/api/slack/interactive?x-vercel-protection-bypass=YOUR-VERCEL-AUTOMATION-BYPASS-SECRET
   event_subscriptions:
     request_url: https://YOUR-VERCEL-DOMAIN/api/slack?x-vercel-protection-bypass=YOUR-VERCEL-AUTOMATION-BYPASS-SECRET
     bot_events:

@@ -2,7 +2,10 @@ import { createGoogleApis, GoogleDocsReviewAdapter } from "@/lib/adapters/google
 import { GoogleDriveSource } from "@/lib/adapters/drive";
 import { readConfig } from "@/lib/config";
 import { createRuntime } from "@/workflows/runtime";
-import { syncDriveTranscripts, syncGoogleDocReviews } from "@/workflows/surfaces";
+import { announceBriefs, syncDriveTranscripts, syncGoogleDocReviews } from "@/workflows/surfaces";
+import { SlackReviewAdapter } from "@/lib/adapters/slack";
+
+export const maxDuration = 300;
 
 export async function GET(request: Request): Promise<Response> {
   const config = readConfig();
@@ -19,6 +22,10 @@ export async function GET(request: Request): Promise<Response> {
     refreshToken: config.GOOGLE_REFRESH_TOKEN,
   });
   const created = await syncDriveTranscripts({ context, drive: new GoogleDriveSource(api, config.GOOGLE_DRIVE_FOLDER_ID) });
+  if (created.length && config.SLACK_BOT_TOKEN && config.SLACK_CHANNEL_ID) {
+    const slack = SlackReviewAdapter.fromToken(config.SLACK_BOT_TOKEN, config.SLACK_CHANNEL_ID, context.storage);
+    await announceBriefs({ context, slack, briefPaths: created });
+  }
   const reviews = await syncGoogleDocReviews({ context, docs: new GoogleDocsReviewAdapter(api, config.GOOGLE_DRIVE_FOLDER_ID, context.storage) });
   return Response.json({ briefs_created: created, reviews });
 }

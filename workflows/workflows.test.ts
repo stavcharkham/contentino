@@ -38,10 +38,14 @@ class PerfectGateway implements ModelGateway {
     }
     else if (request.job === "stakes") value = { stakes: request.prompt.includes("Arizona") ? "high" : "low", reason: "Fixture stakes" };
     else if (request.job === "compliance") {
-      expect(request.maxTokens).toBe(600);
-      value = request.prompt.includes("guaranteed to save money")
-        ? { pass: false, reason: "Unsupported guarantee" }
-        : { pass: true, reason: "Every claim is sourced" };
+      if (request.prompt.startsWith("Judge the REQUEST")) {
+        value = { pass: true, reason: "Request is fine" };
+      } else {
+        expect(request.maxTokens).toBe(600);
+        value = request.prompt.includes("guaranteed to save money")
+          ? { pass: false, reason: "Unsupported guarantee" }
+          : { pass: true, reason: "Every claim is sourced" };
+      }
     }
     else if (request.job === "judge") value = { criteria: [
       { id: "register", score: 2, reason: "Matched" },

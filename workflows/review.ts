@@ -17,6 +17,8 @@ export function parseCorrection(source: string): Correction {
   return correctionSchema.parse({ ...parsed.metadata, was: field("Was") ?? "", now: field("Now") ?? "", said: field("Said") ?? "" });
 }
 
+export class ReviewTargetError extends Error {}
+
 export async function applyReview(input: {
   context: WorkflowContext;
   draftPath: string;
@@ -27,6 +29,7 @@ export async function applyReview(input: {
   now: string;
   said: string;
   externalId?: string;
+  revisedBody?: string;
 }): Promise<{ correction: Correction; score: ReturnType<typeof scorecardSchema.parse> }> {
   const [draftFile, scoreFile, ledgerFile, baselineFile] = await Promise.all([
     input.context.storage.read(input.draftPath),
@@ -36,9 +39,14 @@ export async function applyReview(input: {
   ]);
   if (!draftFile || !scoreFile || !ledgerFile || !baselineFile) throw new Error("Review requires a stored draft, score, ledger and baselines");
   const draft = parseMarkdown(draftFile.content, draftSchema);
-  const occurrences = draft.body.split(input.was).length - 1;
-  if (occurrences !== 1) throw new Error(`Review target must occur exactly once; found ${occurrences}`);
-  const revisedBody = draft.body.replace(input.was, input.now);
+  let revisedBody: string;
+  if (input.revisedBody !== undefined) {
+    revisedBody = input.revisedBody;
+  } else {
+    const occurrences = draft.body.split(input.was).length - 1;
+    if (occurrences !== 1) throw new ReviewTargetError(`Review target must occur exactly once; found ${occurrences}`);
+    revisedBody = draft.body.replace(input.was, input.now);
+  }
   let revisedContent = renderMarkdown({ ...draft.metadata, status: "review" }, revisedBody);
   let score = await scoreArtifact({
     context: input.context,
