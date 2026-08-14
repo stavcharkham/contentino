@@ -9,4 +9,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-14-cta-button-shown-after-a-customer-has-finished-e-b894,2026-08-14T06:14:30.052Z,write-microcopy,product-microcopy,U0BPV3QPDHB,slack,10,auto-published,0,0.026331,20
 2026-08-14-cta-button-shown-after-a-customer-has-finished-e-a838,2026-08-14T20:14:12.160Z,write-microcopy,product-microcopy,U0BPV3QPDHB,slack,10,auto-published,0,0.026729,20
 2026-08-14-button-promising-that-everyone-is-approved-insta-78c4,2026-08-14T20:14:59.387Z,write-microcopy,product-microcopy,U0BPV3QPDHB,slack,10,auto-published,0,0.018666,20
-2026-08-14-a-clearer-claims-status-view-starts-limited-test-f011,2026-08-14T20:17:59.758Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,8.13,reviewed,0,0.068557,37.5
+2026-08-14-a-clearer-claims-status-view-starts-limited-test-f011,2026-08-14T20:17:59.758Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,8.75,reviewed,1,0.095221,27.5

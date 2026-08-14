@@ -9,7 +9,7 @@ trigger: slack
 attempt: 1
 voice: company
 ---
-# A clearer claims-status view starts limited testing on 1 September
+# A clearer claims-status view starts limited testing on September 1
 
 Starting 1 September 2026, Lemonade is testing a simpler claims-status view with 200 invited renters-insurance customers in New York.
 
