@@ -3,7 +3,9 @@ id: 2026-08-14-a-clearer-claims-status-view-goes-into-limited-t-6782
 created: '2026-08-14T20:16:25.903Z'
 source: 'slack://C0BQ0KW7PU1/1786738574.071909'
 source_id: '1786738574.071909'
-status: draft
+status: approved
+approved_by: U0BPV3QPDHB
+approved_at: '2026-08-14T20:17:57.432Z'
 api_cost_usd: 0.031172
 ---
 # A clearer claims-status view goes into limited testing on 1 September
