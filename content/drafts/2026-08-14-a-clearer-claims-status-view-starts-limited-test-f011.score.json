@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-14-a-clearer-claims-status-view-starts-limited-test-f011",
+  "source_hash": "cbc43ee9ba05cd2ea557bede33e47ab420a0ab55378ea18f20f255958f0710cf",
+  "scored_at": "2026-08-14T20:18:07.508Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriately careful and precise for high-stakes testing communication. It uses the 'Covering' register with complete sentences, contractions, and unsupported certainty removed. Statements about what is and isn't changing are measured and exact, matching the stakes of a claims-related announcement.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is used. The draft contains no jokes, dry wit, or playful language. This is correct for high-stakes content about claims processes where nothing should be at stake in the delivery itself.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The draft retains 'deductible' and 'claim' as required insurance terms that customers need to recognise, but does not invent substitutes or over-translate. It explains what the test changes ('how status and next steps are explained') in concrete language without unnecessary jargon. The phrase 'claims-status view' is specific and necessary for product communication.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 1,
+      "reason": "sentence exceeds 28 words"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft frames the change in terms of what testers and customers will experience (claims view, next steps, support calls) rather than internal program names or company-centric language. It repeatedly translates back to reader impact, e.g. 'so it's worth being precise about what's actually being tried, and what isn't changing,' and the 'WHAT THIS ISN'T' section is entirely reader-facing.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 1,
+      "reason": "The piece attributes its central claims to a single source line, 'Weekly claims product meeting, 12 August 2026,' which covers the quote but is thin support for specific operational facts like the exact test date, the 200-customer count, and the New York-only scope. These read as plausible brief details, but the draft does not show distinct sourcing for each factual claim the way LEM-053's measurable claim or LEM-051's financial explanation are grounded in named, verifiable contexts. Without visibility into the brief itself, the single blanket citation is a plausible but not fully demonstrated chain of traceability for every fact (date, count, location, scope limits).",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The piece states plainly why this is timely: 'Starting 1 September 2026, Lemonade is testing...' and grounds the announcement in a specific date and a specific meeting where the goal was articulated. The reader knows this is being said now because the test is beginning on a stated date, not because of vague future plans.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": 1,
+      "reason": "The quote is attributed to a named person with a specific meeting and date, similar in form to LEM-050 and LEM-051, and it sounds plausible and in-register with a claims product professional. However, unlike the approved examples, which draw from an identifiable public transcript context (leadership remarks, press-style ambition statements), this quote's fidelity to an actual speaker's words in an internal weekly meeting is harder to verify as faithful rather than reconstructed, so it is credible but not fully confirmed as sourced verbatim.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 8.13,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft attributes the quote to a named individual with role, and provides a traceable source (weekly claims product meeting, 12 August 2026) matching the attribution. It explicitly disclaims outcome guarantees ('not a claim about the outcome', 'doesn't guarantee fewer calls'), avoids promising results, states no coverage/eligibility/claim-decision changes without contradicting known policy, and does not imply a wider rollout decision. No unsupported judgement claims about how Lemonade evaluates customers appear. No claim denial, coverage rejection, or renewal price-increase notice is generated. All compliance prohibitions are satisfied."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 637,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2471,
+      "cost_usd": 0.012552
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1678,
+      "output_tokens": 125,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002303
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 226,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 666,
+      "cost_usd": 0.004258
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2118,
+      "output_tokens": 246,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003348
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 688,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 3216,
+      "cost_usd": 0.014924
+    }
+  ],
+  "cost_usd": 0.068557
+}
