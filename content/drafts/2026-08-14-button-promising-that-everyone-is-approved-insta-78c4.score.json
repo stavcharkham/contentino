@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-14-button-promising-that-everyone-is-approved-insta-78c4",
+  "source_hash": "2eb2ff63b56998974f3e457b10c68ceeaa145a4b1e6147d0f59f95747e3b2e3e",
+  "scored_at": "2026-08-14T20:15:04.717Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriate for low-stakes interface copy. All-caps action header with concrete verb 'GET' and adjective 'INSTANT' matches the pattern of approved examples LEM-011 (action verbs in caps) and LEM-012 (reward framing). The register is consistent with low-stakes button labels.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. At low stakes, the absence of humour is acceptable, and the copy does not attempt jokes or unsupported certainty. This is consistent with the straightforward tone of approved examples like LEM-009 and LEM-011.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The copy uses direct, concrete language. 'INSTANT' is a mechanics-approved term when the experience is actually instant. 'QUOTE' is a standard insurance term customers need to recognize. No unnecessary translation or folksy substitution occurs. The approach matches LEM-012's use of concrete reward verbs and LEM-011's action-focused language.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The draft 'GET YOUR INSTANT QUOTE' has no named subject or addressee data available in the interface (no pet, person, or account name provided), so there is nothing to compare direct-address usage against, similar to how LEM-011's short action strings don't reference a named subject.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this button/header string, so fit cannot be verified against a hard limit.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "'GET' matches the concrete, established action verb style used in approved low-stakes examples like LEM-011 ('GET DISCOUNTS'), keeping the verb consistent with the surrounding product flow of acquiring a quote.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a single button label ('GET YOUR INSTANT QUOTE') using proper all-caps interface formatting. It contains no promises of paid outcomes, no removed disclaimers, no unsupported judgement claims, no contradictions of known policy, and no attributed quotes or factual public claims requiring sourcing. It is an isolated navigation/button label and per instructions should not be failed for lacking surrounding context, source, or disclaimer. The word 'instant' is acceptable per vocabulary guidance since quote generation is typically an immediate experience. No compliance prohibitions are triggered."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 279,
+      "cache_read_tokens": 1833,
+      "cache_write_tokens": 113,
+      "cost_usd": 0.003443
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1262,
+      "output_tokens": 70,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001612
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 2,
+      "output_tokens": 211,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 111,
+      "cost_usd": 0.00272
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1790,
+      "output_tokens": 264,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.00311
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 4,
+      "output_tokens": 527,
+      "cache_read_tokens": 4829,
+      "cache_write_tokens": 615,
+      "cost_usd": 0.007781
+    }
+  ],
+  "cost_usd": 0.018666
+}
