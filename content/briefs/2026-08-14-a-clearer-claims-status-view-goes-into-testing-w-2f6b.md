@@ -3,7 +3,9 @@ id: 2026-08-14-a-clearer-claims-status-view-goes-into-testing-w-2f6b
 created: '2026-08-14T06:16:57.970Z'
 source: 'slack://C0BQ0KW7PU1/1786688204.945839'
 source_id: '1786688204.945839'
-status: draft
+status: approved
+approved_by: U0BPV3QPDHB
+approved_at: '2026-08-14T06:19:08.883Z'
 api_cost_usd: 0.032023
 ---
 # A clearer claims-status view goes into testing with 200 New York renters customers
