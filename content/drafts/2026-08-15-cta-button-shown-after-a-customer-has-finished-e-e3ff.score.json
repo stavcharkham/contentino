@@ -1,0 +1,116 @@
+{
+  "piece_id": "2026-08-15-cta-button-shown-after-a-customer-has-finished-e-e3ff",
+  "source_hash": "524759e1174fc30e90ad414fedfcb60946d548ecd44ccc302367229c083186cd",
+  "scored_at": "2026-08-15T07:56:31.604Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "All-caps button label matches LEM-011 pattern exactly. The register is appropriate for low-stakes interface action.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. Low-stakes action copy correctly avoids jokes, consistent with approved low-stakes examples.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses concrete verb 'get' and avoids insurance jargon. Follows the vocabulary preference for direct language without needing translation.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The draft 'GET YOUR QUOTE' has no named subject (pet, person, car, home) available from an interface state to address directly, unlike LEM-009 which had an email or LEM-020/022 which addressed a specific reader situation. There's no neighbouring context provided showing a named addressee was available but omitted.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this string, so fit cannot be assessed against a hard limit.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "'GET YOUR QUOTE' uses a concrete action verb consistent with approved examples like 'GET DISCOUNTS' and 'FINALIZE PAYMENT', matching the pattern of short, all-caps, verb-led button labels used in the product flow.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft consists solely of the button label 'GET YOUR QUOTE', which is an isolated navigation/call-to-action element with an appropriate action verb naming what happens (getting a quote). It contains no promises of outcomes, no claims about how Lemonade judges customers, no data/price/coverage/eligibility assertions, and no attributed quotes or factual claims requiring a source. Per instructions, an isolated navigation or button label is not to be failed for lacking surrounding copy, a source, or a disclaimer. None of the compliance prohibitions (guarantee, disclaimer removal, unsupported judgement claim, contradiction, unsourced attributed claim) are triggered by this text."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 142,
+      "output_tokens": 69,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.005086
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 122,
+      "output_tokens": 220,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1833,
+      "cost_usd": 0.007026
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1260,
+      "output_tokens": 68,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.0016
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 108,
+      "output_tokens": 242,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002965
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1788,
+      "output_tokens": 138,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002478
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 612,
+      "output_tokens": 296,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2107,
+      "cost_usd": 0.009451
+    }
+  ],
+  "cost_usd": 0.028606
+}
