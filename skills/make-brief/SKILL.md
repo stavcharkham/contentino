@@ -5,10 +5,16 @@ description: Turn a transcript or sourced event into a Contentino brief. Use for
 
 # Make Brief
 
-1. Identify the transcript path or Drive source id and preserve every usable source link.
-2. Run `npm run contentino -- make-brief --source <path-or-id>`.
-3. Present the generated brief for a named person to approve or reject. Never approve it yourself.
-4. On approval, run `npm run contentino -- approve-brief --path <brief-path> --by <name>`.
+1. Read the source material and preserve every usable source link.
+2. Write the brief from the source only: headline, the story, why now, what changed, a
+   quote with attribution when the source has one, a `Not saying` list, and sources. No
+   claim the source does not support.
+3. Store it through the production gate (see the `contentino` skill for the endpoint and
+   password): `action: "submit-brief"` with the headline, the brief markdown, the source
+   and a stable `source_id`.
+4. Present the brief for a named person to approve or reject. Never approve it yourself.
+   On approval: `action: "approve-brief"` with the `brief_path` from step 3 and
+   `approved_by`.
 
-Do not write external content from a draft or rejected brief. Keep unsupported claims and anything
-the source explicitly rules out under `Not saying`.
+Do not write external content from a draft or rejected brief. Keep unsupported claims and
+anything the source explicitly rules out under `Not saying`.

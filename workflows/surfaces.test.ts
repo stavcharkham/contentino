@@ -7,7 +7,7 @@ import { parseLedger, serializeLedger } from "@/lib/ledger";
 import { LocalStorage } from "@/lib/storage";
 import type { WorkflowContext } from "./common";
 import { approveBrief, makeBrief } from "./brief";
-import { writeExternalComms } from "./generate";
+import { submitDraft, writeExternalComms } from "./generate";
 import { formatMicrocopyResult, handleSlackEnvelope, syncDriveTranscripts, syncGoogleDocReviews } from "./surfaces";
 
 const usage = { model: "mock", input_tokens: 10, output_tokens: 5, cache_read_tokens: 0, cache_write_tokens: 0, cost_usd: 0.001 };
@@ -122,6 +122,19 @@ describe("surface orchestration", () => {
     expect((await handleSlackEnvelope({ context: ctx, slack, envelope: feedback })).action).toBe("reviewed");
     expect(slack.postRevision).toHaveBeenCalledWith("4.1", expect.stringContaining("Drivers can now use a rate"), expect.stringContaining("rescored"));
     expect(await ctx.storage.list("content/corrections")).toHaveLength(1);
+  });
+
+  it("gates a Claude-submitted draft with the same scorer and ledger", async () => {
+    const ctx = await context();
+    const result = await submitDraft({ context: ctx, contentType: "product-microcopy", body: "# Product micro-copy\n\nFINISH QUOTE", triggeredBy: "Stav", request: "CTA to finish a quote" });
+    expect(result.scorecard.outcome).toBe("auto-published");
+    expect(result.path).toMatch(/^content\/published\//);
+    const rows = parseLedger((await ctx.storage.read("metrics/ledger.csv"))?.content ?? "");
+    expect(rows).toHaveLength(1);
+    expect(rows[0].trigger).toBe("claude");
+    const flagged = await submitDraft({ context: ctx, contentType: "product-microcopy", body: "# Product micro-copy\n\nCHECK YOUR PRICE", triggeredBy: "Stav", request: "Button promising everyone is approved instantly" });
+    expect(flagged.scorecard.outcome).toBe("reviewed");
+    expect(flagged.note).toContain("held for your review");
   });
 
   it("routes a plain mention to the right skill without a prefix", async () => {

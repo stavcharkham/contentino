@@ -23,6 +23,7 @@ export const configSchema = z.object({
   GOOGLE_REFRESH_TOKEN: optionalSecret,
   GOOGLE_DRIVE_FOLDER_ID: optionalSecret,
   CRON_SECRET: optionalSecret,
+  DASHBOARD_PASSWORD: optionalSecret,
   VERCEL_AUTOMATION_BYPASS_SECRET: optionalSecret,
 });
 

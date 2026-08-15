@@ -63,7 +63,7 @@ async function applyInterpretedFeedback(input: {
   who: string;
   said: string;
   externalId: string;
-}): Promise<{ mode: "replace" | "rewrite"; was: string; now: string }> {
+}): Promise<{ mode: "replace" | "rewrite"; was: string; now: string; score: number; outcome: string }> {
   const { interpreted } = input;
   const base = {
     context: input.context,
@@ -76,17 +76,17 @@ async function applyInterpretedFeedback(input: {
   };
   if (interpreted.mode === "rewrite") {
     const revisedBody = interpreted.revised_body ?? (await rewriteDraft({ models: input.context.models, draft: input.draftBody, said: input.said })).revisedBody;
-    await applyReview({ ...base, was: interpreted.was, now: interpreted.now, revisedBody });
-    return { mode: "rewrite", was: interpreted.was, now: interpreted.now };
+    const applied = await applyReview({ ...base, was: interpreted.was, now: interpreted.now, revisedBody });
+    return { mode: "rewrite", was: interpreted.was, now: interpreted.now, score: applied.score.score, outcome: applied.score.outcome };
   }
   try {
-    await applyReview({ ...base, was: interpreted.was, now: interpreted.now });
-    return { mode: "replace", was: interpreted.was, now: interpreted.now };
+    const applied = await applyReview({ ...base, was: interpreted.was, now: interpreted.now });
+    return { mode: "replace", was: interpreted.was, now: interpreted.now, score: applied.score.score, outcome: applied.score.outcome };
   } catch (error) {
     if (!(error instanceof ReviewTargetError)) throw error;
     const rewritten = await rewriteDraft({ models: input.context.models, draft: input.draftBody, said: input.said });
-    await applyReview({ ...base, was: interpreted.was, now: rewritten.summary, revisedBody: rewritten.revisedBody });
-    return { mode: "rewrite", was: interpreted.was, now: rewritten.summary };
+    const applied = await applyReview({ ...base, was: interpreted.was, now: rewritten.summary, revisedBody: rewritten.revisedBody });
+    return { mode: "rewrite", was: interpreted.was, now: rewritten.summary, score: applied.score.score, outcome: applied.score.outcome };
   }
 }
 
@@ -209,7 +209,7 @@ export async function handleSlackEnvelope(input: {
       if (!draftFile) throw new Error(`Mapped draft not found: ${draftPath}`);
       const draft = parseMarkdown(draftFile.content, draftSchema);
       const interpreted = await interpretFeedback({ models: input.context.models, draft: draft.body, said: reply });
-      await applyInterpretedFeedback({
+      const applied = await applyInterpretedFeedback({
         context: input.context,
         interpreted,
         draftBody: draft.body,
@@ -220,7 +220,10 @@ export async function handleSlackEnvelope(input: {
         externalId: `slack:${event.ts}`,
       });
       const revised = await input.context.storage.read(draftPath);
-      await input.slack.postRevision(event.thread_ts, formatMarkdownForSlack(parseMarkdown(revised?.content ?? "", draftSchema).body), "Applied your correction and rescored the draft.");
+      const verdict = applied.outcome === "blocked"
+        ? "*Blocked:* the revision tripped the compliance gate, so it stays held."
+        : "*Needs review* before it ships.";
+      await input.slack.postRevision(event.thread_ts, formatMarkdownForSlack(parseMarkdown(revised?.content ?? "", draftSchema).body), `Applied your correction and rescored the draft. Score ${applied.score.toFixed(1)} · ${verdict}`);
       return "reviewed";
     }
     return "ignored";

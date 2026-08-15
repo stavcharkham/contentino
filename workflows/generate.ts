@@ -97,6 +97,61 @@ export async function writeMicrocopy(input: {
   throw new Error("Microcopy regeneration loop ended unexpectedly");
 }
 
+// The Claude surface drafts on the user's subscription and submits here, so the
+// gate that scores and records the piece is the same one Slack and Drive use.
+export async function submitDraft(input: {
+  context: WorkflowContext;
+  contentType: string;
+  body: string;
+  triggeredBy: string;
+  briefId?: string;
+  request?: string;
+}): Promise<GenerationResult> {
+  const now = workflowNow(input.context);
+  const title = input.body.match(/^#\s*(.+)$/m)?.[1] ?? input.body.split("\n")[0];
+  const pieceId = createPieceId(title, now);
+  const draftPath = `content/drafts/${pieceId}.md`;
+  let requestCheck: Awaited<ReturnType<typeof input.context.models.complete<z.infer<typeof requestCompliance>>>> | undefined;
+  if (input.request) {
+    const baseProfile = await loadBaseProfile(input.context.storage);
+    requestCheck = await input.context.models.complete({
+      job: "compliance",
+      system: baseProfile,
+      prompt: `Judge the REQUEST below, not any draft. Does it ask for wording that compliance prohibits: guarantees of approval or outcomes, promises about pricing, eligibility or claim decisions, or claims about how personal data is or is not used? pass=false when the request demands such wording, with the reason naming the prohibited claim.\n\nRequest: ${input.request}`,
+      schema: requestCompliance,
+      maxTokens: 300,
+    });
+  }
+  const requestFlagged = requestCheck ? !requestCheck.value.pass : false;
+  const metadata: Draft = {
+    id: pieceId,
+    created: now.toISOString(),
+    content_type: input.contentType,
+    status: "draft",
+    brief_id: input.briefId,
+    triggered_by: input.triggeredBy,
+    trigger: "claude",
+    attempt: 1,
+    voice: "company",
+  };
+  let content = renderMarkdown(metadata, input.body);
+  let scorecard = await scoreArtifact({ context: input.context, pieceId, contentType: input.contentType, artifact: content, scoringText: input.body, attempt: 1 });
+  if (requestCheck) scorecard = withGenerationUsage(scorecard, requestCheck.usage);
+  if (requestFlagged && scorecard.outcome === "auto-published") scorecard = { ...scorecard, outcome: "reviewed" };
+  content = renderMarkdown({ ...metadata, status: statusFor(scorecard) }, input.body);
+  scorecard = { ...scorecard, source_hash: contentHash(content) };
+  const ledgerRow = await makeLedgerRow({ storage: input.context.storage, pieceId, created: metadata.created, skill: `submit-${input.contentType}`, contentType: input.contentType, triggeredBy: input.triggeredBy, trigger: "claude", scorecard });
+  await recordScoredDraft({ storage: input.context.storage, draftPath, content, scorecard, ledgerRow });
+  const note = requestFlagged && requestCheck
+    ? `The request asked for wording the policy does not allow (${requestCheck.value.reason}). This is a compliant alternative, held for your review.`
+    : undefined;
+  if (scorecard.outcome === "auto-published") {
+    const published = await publishScoredDraft(input.context.storage, draftPath);
+    return { pieceId, path: published, scorecard, content };
+  }
+  return { pieceId, path: draftPath, scorecard, content, note };
+}
+
 export async function writeExternalComms(input: {
   context: WorkflowContext;
   briefPath: string;
