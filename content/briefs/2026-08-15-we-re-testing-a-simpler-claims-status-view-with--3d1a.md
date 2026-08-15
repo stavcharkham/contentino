@@ -4,7 +4,9 @@ created: '2026-08-15T06:03:49.981Z'
 source: >-
   https://docs.google.com/document/d/1e1u4b0QeYHyBHMStd_VH6fHFcJRj5s-6mfhRZqFJXpc/edit?usp=drivesdk
 source_id: 1e1u4b0QeYHyBHMStd_VH6fHFcJRj5s-6mfhRZqFJXpc
-status: draft
+status: approved
+approved_by: U0BPV3QPDHB
+approved_at: '2026-08-15T07:57:10.497Z'
 api_cost_usd: 0.03769
 ---
 # We're testing a simpler claims-status view with 200 invited customers
