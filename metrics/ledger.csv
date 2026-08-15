@@ -37,3 +37,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-q2-2026-eleven-quarters-and-the-line-keeps-bendi-06a3,2026-08-15T13:57:21.693Z,submit-external-comms,external-comms,Stav,claude,0,blocked,0,0.007561,0
 2026-08-15-q2-2026-eleven-quarters-and-the-line-keeps-bendi-e77c,2026-08-15T13:57:40.824Z,submit-external-comms,external-comms,Stav,claude,5.71,blocked,0,0.023833,0
 2026-08-15-q2-2026-results-in-force-premium-reaches-1-43-bi-0b33,2026-08-15T13:58:28.830Z,submit-external-comms,external-comms,Stav,claude,9.29,reviewed,0,0.018893,37.5
+2026-08-15-product-micro-copy-edae,2026-08-15T15:39:53.626Z,submit-product-microcopy,product-microcopy,Demo reviewer,claude,10,auto-published,0,0.021228,20

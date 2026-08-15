@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-15-product-micro-copy-edae",
+  "source_hash": "d7b300300bb49b830ea62d5c75df4c0b09b67a8920a1ff68f7769d786be12660",
+  "scored_at": "2026-08-15T15:39:56.733Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "All-caps button label with concrete verb 'review' matches the approved pattern from LEM-011 (GET DISCOUNTS, FINALIZE PAYMENT). Tone is appropriate for low-stakes interface action.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. The use of the pet's name 'Rocky' follows the vocabulary guideline to use 'the person's, pet's, car's or home's name when known' and is warm without being playful in a way that would violate low-stakes constraints.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses direct, concrete verb 'review' and avoids insurance jargon. 'Quote' is a straightforward term the customer recognizes and does not require translation per the vocabulary guidelines.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "Uses the named subject 'Rocky' as provided by the interface, consistent with the audience guideline to name the person's or pet's name when known.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this button/header string, so budget compliance cannot be evaluated.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "'REVIEW' is a concrete verb consistent with approved examples like GET DISCOUNTS and FINALIZE PAYMENT, and matches a plausible surrounding flow of reviewing a quote before finalizing payment.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a single button label: 'REVIEW ROCKY'S QUOTE'. It uses all caps correctly for a button, names the action (review) plus the specific object (Rocky's quote), which satisfies the 'name the action' mechanic rather than a generic 'click here'. There is no promise of an outcome, no guarantee of claim payment, no removed disclaimer, no unsupported judgement claim about a customer, no contradiction of known policy, and no attributed quote or factual public claim requiring a source. Per instructions, an isolated navigation or button label should not fail merely because a source or disclaimer is absent. No compliance prohibition is triggered."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 163,
+      "output_tokens": 69,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.005129
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1270,
+      "output_tokens": 70,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.00162
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 123,
+      "output_tokens": 229,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002865
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1798,
+      "output_tokens": 207,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002833
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 627,
+      "output_tokens": 226,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2107,
+      "cost_usd": 0.008781
+    }
+  ],
+  "cost_usd": 0.021228
+}
