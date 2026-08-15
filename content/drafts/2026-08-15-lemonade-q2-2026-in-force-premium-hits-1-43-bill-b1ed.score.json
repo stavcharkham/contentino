@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-15-lemonade-q2-2026-in-force-premium-hits-1-43-bill-b1ed",
+  "source_hash": "c188036e826e211e51094c74c8f721e1a6e1a04a4824ee13c7eba164ae1c4283",
+  "scored_at": "2026-08-15T13:39:33.502Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone appropriately shifts between medium-stakes (introductory framing, growth narrative) and high-stakes (financial figures, loss disclosures, forward guidance). High-stakes sentences use complete, careful phrasing—'To be plain: Lemonade is not profitable' and explicit disclaimers on projections match the LEM-051 model of informal words within sourced financial explanations. The self-critical acknowledgment of losses mirrors LEM-004's bluntness without reputation-management softening.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour appears. The draft avoids jokes, dry wit and playful language throughout, which is correct for high-stakes financial disclosure. The one moment approaching personality—'To be plain'—is a clarifying device, not humour. This aligns with the covering register requirement.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Translation is selective and appropriate. Financial terms retained ('in-force premium', 'gross loss ratio', 'adjusted EBITDA') are defined inline with concrete examples ('the annualised value of all the policies our customers currently hold', 'the share of premium paid out on claims'). Pricing mechanics and loss explanation use plain language without invented substitutes. The draft does not over-translate or invent folksy alternatives to required terms.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 1,
+      "reason": "The piece opens with a reader-framed hook ('If you follow Lemonade to see whether growth and discipline can move together') and closes by translating the news into reader terms ('Nothing here changes your price, your coverage, or your eligibility'). But the bulk of the body is internal financial reporting language (in-force premium, gross loss ratio, adjusted EBITDA) presented in company-results style rather than consistently reframed around what the reader experiences, closer to LEM-051's approach but less consistently woven through each section.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 2,
+      "reason": "Every numeric and factual claim (in-force premium, revenue growth, loss ratio, EBITDA loss, guidance) is tied to a named, single, consistent source: the Q2 2026 earnings call, 7 August 2026, matching the sourcing discipline shown in LEM-050 and LEM-051.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The piece explicitly states the results were reported 'on the earnings call on 7 August 2026' and frames itself as reporting on that specific, dated event, giving a clear and immediate reason this is being said today.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft contains no attributed quotations from any named individual; it reports figures and paraphrases guidance without direct speech, so quote fidelity does not apply, consistent with the brief allowing N/A when no quote is present.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9.29,
+  "compliance": {
+    "pass": true,
+    "reason": "All factual/financial claims (in-force premium, revenue, loss ratio, EBITDA loss, guidance) are attributed to the named, traceable source (Lemonade Q2 2026 earnings call, 7 August 2026, with an added Motley Fool transcript citation). The forward-looking guidance is explicitly hedged as 'a projection... not a promise, and not a commitment,' avoiding any outcome guarantee. The piece explicitly states Lemonade is not profitable, avoiding unsupported certainty or spin. The closing line 'Nothing here changes your price, your coverage, or your eligibility' is a plain statement consistent with the content (company financial results), not a contradiction of known policy. No claim denial, coverage rejection, or renewal price-increase notice appears. No unsupported judgement claim about a customer appears. No disclaimer is removed. All compliance prohibitions are satisfied by the supplied text."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 148,
+      "output_tokens": 120,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001825
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1768,
+      "output_tokens": 168,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002608
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 773,
+      "output_tokens": 319,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.005065
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2208,
+      "output_tokens": 325,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003833
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1197,
+      "output_tokens": 499,
+      "cache_read_tokens": 2126,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.007809
+    }
+  ],
+  "cost_usd": 0.02114
+}

@@ -39,3 +39,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-product-micro-copy-23c5,2026-08-15T13:34:15.757Z,submit-product-microcopy,product-microcopy,Demo reviewer,claude,10,auto-published,0,0.021213,20
 2026-08-15-lemonade-q2-2026-in-force-premium-hits-1-43-bill-33f8,2026-08-15T13:38:24.934Z,submit-external-comms,external-comms,Stav,claude,6.43,blocked,0,0.023484,0
 2026-08-15-lemonade-q2-2026-in-force-premium-hits-1-43-bill-0811,2026-08-15T13:39:08.368Z,submit-external-comms,external-comms,Stav,claude,0,blocked,0,0.004346,0
+2026-08-15-lemonade-q2-2026-in-force-premium-hits-1-43-bill-b1ed,2026-08-15T13:39:30.007Z,submit-external-comms,external-comms,Stav,claude,9.29,reviewed,0,0.02114,37.5
