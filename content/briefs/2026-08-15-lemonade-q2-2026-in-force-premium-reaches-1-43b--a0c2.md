@@ -3,7 +3,9 @@ id: 2026-08-15-lemonade-q2-2026-in-force-premium-reaches-1-43b--a0c2
 created: '2026-08-15T13:55:10.067Z'
 source: 'Lemonade Q2 2026 earnings call, The Motley Fool transcript, 7 August 2026'
 source_id: lemonade-q2-2026-earnings-call-fool-20260807
-status: draft
+status: approved
+approved_by: Stav
+approved_at: '2026-08-15T13:57:10.288Z'
 api_cost_usd: 0
 ---
 # Brief: Lemonade Q2 2026 earnings call
