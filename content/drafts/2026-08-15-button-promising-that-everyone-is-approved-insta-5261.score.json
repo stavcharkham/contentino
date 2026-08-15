@@ -1,0 +1,116 @@
+{
+  "piece_id": "2026-08-15-button-promising-that-everyone-is-approved-insta-5261",
+  "source_hash": "098268bfcf803e23941b7933353d23f0162d36656edb18e7c379828de01289d1",
+  "scored_at": "2026-08-15T07:58:19.602Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The all-caps button label with a concrete verb follows the low-stakes pattern established in LEM-009 and LEM-011. The tone is appropriate for a navigation or action element where nothing financial or eligibility-related changes for the reader at this moment.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The draft appropriately avoids jokes or playfulness in what is a straightforward interface action, consistent with low-stakes guidance.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "`Price` is a concrete, everyday term that requires no translation or definition. The draft does not over-explain or use unnecessary insurance jargon, staying direct and useful like LEM-011.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The draft is a single button-style header (\"CHECK YOUR PRICE\") with no named subject or addressee available from the interface (no pet, person, or account name provided), so there is nothing to compare direct address against, similar to how LEM-011's short action strings don't name a subject.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this string in the prompt, so fit against a hard limit cannot be assessed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 1,
+      "reason": "\"CHECK\" is a plausible, concrete action verb consistent with header-style strings like LEM-009's \"CHECK YOUR INBOX,\" but without visibility into the surrounding flow's established verbs (e.g., whether adjacent screens use GET, VIEW, or SEE for pricing), it's unclear if this is the consistent verb used elsewhere, so it only partially meets the bar of matching the surrounding flow's language.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9,
+  "compliance": {
+    "pass": true,
+    "reason": "This is an isolated button/navigation label ('CHECK YOUR PRICE'), appropriately in all caps per mechanics rules for interface elements. It contains no promise of an outcome, no guarantee of claim payment, no unsupported judgement claim, no removal of a required disclaimer, and no contradiction of known policy. It names a concrete action (checking your price) rather than using a generic label like 'click here.' Per the instructions, an isolated navigation or button label should not fail merely because surrounding copy, a source, or a disclaimer is absent. No compliance prohibitions are triggered by this text alone."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 135,
+      "output_tokens": 99,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001589
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 115,
+      "output_tokens": 335,
+      "cache_read_tokens": 1833,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003947
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1260,
+      "output_tokens": 66,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.00159
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 109,
+      "output_tokens": 212,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002667
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1788,
+      "output_tokens": 190,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002738
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 613,
+      "output_tokens": 346,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.005107
+    }
+  ],
+  "cost_usd": 0.017638
+}
