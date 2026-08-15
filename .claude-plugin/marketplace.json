@@ -3,7 +3,7 @@
   "owner": { "name": "Stav Charkham" },
   "plugins": [
     {
-      "name": "contentino",
+      "name": "contentino-engine",
       "source": "./",
       "description": "Generate, score and review Lemonade content from Claude."
     }
