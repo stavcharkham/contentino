@@ -43,3 +43,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-product-micro-copy-d7b2,2026-08-15T13:51:29.857Z,submit-product-microcopy,product-microcopy,Stav,claude,10,auto-published,0,0.021559,20
 2026-08-15-product-micro-copy-f686,2026-08-15T13:51:53.379Z,submit-product-microcopy,product-microcopy,Stav,claude,10,auto-published,0,0.012443,20
 2026-08-15-q2-2026-eleven-quarters-and-the-line-keeps-bendi-06a3,2026-08-15T13:57:21.693Z,submit-external-comms,external-comms,Stav,claude,0,blocked,0,0.007561,0
+2026-08-15-q2-2026-eleven-quarters-and-the-line-keeps-bendi-e77c,2026-08-15T13:57:40.824Z,submit-external-comms,external-comms,Stav,claude,5.71,blocked,0,0.023833,0

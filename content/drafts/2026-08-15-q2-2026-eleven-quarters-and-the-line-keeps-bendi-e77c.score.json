@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-15-q2-2026-eleven-quarters-and-the-line-keeps-bendi-e77c",
+  "source_hash": "0f7150074384520cc033e13c1645e445f3696fd25a31119525bc0981f00c04b2",
+  "scored_at": "2026-08-15T13:57:43.934Z",
+  "content_type": "external-comms",
+  "stakes": "high",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone matches high stakes perfectly. Financial claims are presented with careful qualification ('a projection based on what we see today, not a promise'). The register shifts appropriately from conversational framing ('The line keeps bending') to precise financial language when stating results and disclaimers. Contractions are retained throughout, maintaining voice consistency while the content respects the gravity of shareholder communications.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 0,
+      "reason": "Humour is used where stakes are high and inappropriate. The opening headline uses a playful metaphor ('the line keeps bending'). The phrase 'We are not profitable. It is a smaller loss than it was' has a dry, self-aware tone that reads as humorous understatement in a financial context where shareholders are evaluating loss narrowing. The guideline permits dry jokes only in low-risk moments; financial performance reporting is high-stakes.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 1,
+      "reason": "Translation choices are mostly sound—'gross loss ratio' is retained as customers need to recognize it, and 'adjusted EBITDA' is explained functionally ('bottom line'). However, 'through-line' and 'the book' are industry jargon not explained for external readers. 'In-force premium' is a coverage term appropriately kept but stands without the inline explanation the guideline recommends for retained terms ('in-force premium—the total value of all active policies—reached...'). The draft selectively translates but misses one opportunity for concrete clarity.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 1,
+      "reason": "The piece is written in company-financial terms (in-force premium, loss ratio, adjusted EBITDA) rather than the reader's terms. It is honest and plainly worded, but it frames the story as 'our numbers' and internal metrics rather than what this means for the reader's world, unlike LEM-004's blunt reader-facing framing.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 0,
+      "reason": "No approved brief or source list is provided for these specific financial figures ($1.43 billion, 32.5%, 79%, $294 million, 60% vs 67%, 54%, $19 million, Q4 2026 projection). Per the compliance rule, a missing source for central claims fails the veto; nothing here traces these numbers to an approved brief.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The piece clearly signals timing: 'Our second quarter numbers are in,' explicit quarter-over-quarter comparisons, and forward guidance for Q4 2026, making the reason for saying this today evident.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft contains no attributed quotes from a named speaker, so quote fidelity does not apply.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 5.71,
+  "compliance": {
+    "pass": false,
+    "reason": "Fails the compliance check for attributed/factual public claims without a traceable source. This is investor-facing financial reporting with specific figures (in-force premium $1.43B/32.5% YoY, 'eleventh consecutive quarter' of accelerating growth, revenue $294M/79%, gross loss ratio 60% vs 67%, adjusted EBITDA loss narrowed 54% to $19M, Q4 2026 positive adjusted EBITDA projection) presented as factual company results with no traceable source (e.g., shareholder letter, earnings release citation) attached in the supplied text. Per compliance.md, presenting attributed quotes or factual public claims without a traceable source is a blocking condition, and stakes.md flags attributed public-company claims as automatically High stakes requiring sourcing. The piece does hedge the Q4 projection appropriately ('a projection... not a promise') and clearly states the EBITDA loss is still a loss, avoiding guarantee language and unsupported certainty, so those specific prohibitions are not violated. But the wall of unsourced hard financial figures throughout is exactly the missing-source failure this check targets."
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 151,
+      "output_tokens": 94,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001571
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1555,
+      "output_tokens": 69,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.0019
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 495,
+      "output_tokens": 392,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.005239
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1995,
+      "output_tokens": 363,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.00381
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 919,
+      "output_tokens": 416,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2126,
+      "cost_usd": 0.011313
+    }
+  ],
+  "cost_usd": 0.023833
+}
