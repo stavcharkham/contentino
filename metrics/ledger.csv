@@ -28,3 +28,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-product-micro-copy-773a,2026-08-15T12:35:53.822Z,submit-product-microcopy,product-microcopy,Demo reviewer,claude,10,auto-published,0,0.011687,20
 2026-08-15-product-micro-copy-f954,2026-08-15T12:51:34.191Z,submit-product-microcopy,product-microcopy,Lemonade reviewer,claude,8.33,reviewed,0,0.021435,10
 2026-08-15-our-q2-2026-results-growth-kept-speeding-up-6325,2026-08-15T12:59:52.704Z,submit-external-comms,external-comms,Lemonade reviewer,claude,9.29,reviewed,0,0.02678,37.5
+2026-08-15-product-micro-copy-412d,2026-08-15T13:12:07.958Z,submit-product-microcopy,product-microcopy,demo-stability-test,claude,5.83,blocked,0,0.021238,0
