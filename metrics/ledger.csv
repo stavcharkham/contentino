@@ -16,3 +16,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-a-clearer-way-to-see-claims-status-now-testing-w-eb9b,2026-08-15T08:12:42.698Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,6.25,blocked,2,0.101748,0
 2026-08-15-product-micro-copy-da58,2026-08-15T09:10:46.952Z,submit-product-microcopy,product-microcopy,Claude (gate verification),claude,10,auto-published,0,0.020796,20
 2026-08-15-product-micro-copy-5789,2026-08-15T09:11:23.340Z,submit-product-microcopy,product-microcopy,Claude (gate verification),claude,9,auto-published,0,0.012581,20
+2026-08-15-product-micro-copy-ea1c,2026-08-15T09:12:10.875Z,submit-product-microcopy,product-microcopy,Claude (gate verification),claude,9,auto-published,0,0.011542,20
