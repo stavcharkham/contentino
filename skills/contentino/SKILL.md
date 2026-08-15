@@ -52,7 +52,9 @@ Classify the request and follow the matching flow:
      changed, a quote with attribution if the source has one, a `Not saying` list, sources.
      No claim the source does not support.
   2. Submit it: `{"action":"submit-brief","headline":"...","body":"<brief markdown>","source":"<url or description>","source_id":"<stable id>"}`.
-  3. Show the user the brief and ask for approval. On approval:
+  3. Show the user the brief and ask for approval - use the ask-user-question tool with
+     options like "Approve" / "I want changes". An approval needs the person's actual
+     name on record; do not record it without one. On approval:
      `{"action":"approve-brief","brief_path":"<from the submit response>","approved_by":"<their name>"}`.
   4. Draft the post from the approved brief, respecting its `Not saying` boundaries, and
      submit with `content_type: "external-comms"` and the `brief_id`. External comms never
