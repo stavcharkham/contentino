@@ -3,7 +3,9 @@ id: 2026-08-15-a-clearer-claims-status-view-goes-to-200-renters-fb7f
 created: '2026-08-15T07:59:41.213Z'
 source: 'slack://C0BQ0KW7PU1/1786780765.504089'
 source_id: '1786780765.504089'
-status: draft
+status: approved
+approved_by: U0BPV3QPDHB
+approved_at: '2026-08-15T08:12:40.546Z'
 api_cost_usd: 0.03016
 ---
 # A clearer claims-status view goes to 200 renters in New York
