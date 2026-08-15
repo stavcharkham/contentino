@@ -6,6 +6,7 @@ import type { Brief } from "@/lib/schemas";
 import { createRuntime } from "@/workflows/runtime";
 import { approveBrief } from "@/workflows/brief";
 import { submitDraft } from "@/workflows/generate";
+import { recordSurfaceFailure } from "@/workflows/slack-support";
 
 export const maxDuration = 300;
 
@@ -39,8 +40,20 @@ export async function POST(request: Request): Promise<Response> {
   }
   const parsed = actionSchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return Response.json({ error: "Invalid action", detail: parsed.error.issues }, { status: 400 });
-  const context = await createRuntime();
   const input = parsed.data;
+  try {
+    return await handleAction(input);
+  } catch (error) {
+    console.error("Contentino gate failed", error);
+    const context = await createRuntime().catch(() => null);
+    if (context) await recordSurfaceFailure(context, "claude-gate", input.action, error);
+    const message = error instanceof Error ? error.message : String(error);
+    return Response.json({ error: "The gate could not finish this run", detail: message }, { status: 500 });
+  }
+}
+
+async function handleAction(input: z.infer<typeof actionSchema>): Promise<Response> {
+  const context = await createRuntime();
   if (input.action === "submit-draft") {
     const result = await submitDraft({
       context,
