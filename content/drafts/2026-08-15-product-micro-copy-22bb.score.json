@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-15-product-micro-copy-22bb",
+  "source_hash": "083a4dc67bcf471a9c51259f67670a66385da9a020a7cff8629852f5e9c6da47",
+  "scored_at": "2026-08-15T15:46:44.872Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "Tone is appropriate for low-stakes interface copy. All-caps action verb with concrete naming matches LEM-011 pattern of short, direct button labels.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. The copy is purely functional—naming the action and the subject without jokes or playfulness, which is correct for interface mechanics regardless of stakes.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "No translation needed. 'Review' and 'quote' are concrete, everyday words. No insurance jargon is introduced or retained, following vocabulary guidance to use direct action verbs.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft uses the named subject 'Rocky' from the interface, consistent with how LEM-009 personalizes with the actual email address provided by the interface.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared character limit is provided for this string, and there is no interface limit stated in the prompt to check against.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "REVIEW is a concrete action verb consistent with the approved GET/FINALIZE style short all-caps actions in LEM-011, and matches typical adjacent quote-flow verbs.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a single button label, 'REVIEW ROCKY'S QUOTE,' correctly in all caps per mechanics for interface elements, and it names the specific action (reviewing a named quote) rather than using a generic 'click here' label. It contains no promises of outcomes, no claim guarantees, no unsupported judgement claims, no removed disclaimers, and no factual or attributed claims requiring a source. Per instructions, an isolated navigation or button label should not be failed for lacking surrounding context, source, or disclaimer, so no compliance prohibition is triggered here."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 163,
+      "output_tokens": 67,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.005109
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1270,
+      "output_tokens": 71,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001625
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 123,
+      "output_tokens": 204,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002615
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1798,
+      "output_tokens": 167,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002633
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 627,
+      "output_tokens": 215,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2107,
+      "cost_usd": 0.008672
+    }
+  ],
+  "cost_usd": 0.020654
+}
