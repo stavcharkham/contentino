@@ -1,6 +1,0 @@
-{
-  "surface": "claude-gate",
-  "id": "submit_draft",
-  "failed_at": "2026-08-15T12:35:46.737Z",
-  "error": "Stale version for content/drafts/2026-08-15-product-micro-copy-c7b6.md\nError: Stale version for content/drafts/2026-08-15-product-micro-copy-c7b6.md\n    at tW.commitAtHead (/var/task/.next/server/chunks/[root-of-the-server]__127m0o7._.js:201:94710)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async tW.commit (/var/task/.next/server/chunks/[root-of-the-server]__127m0o7._.js:201:93719)\n    at async c (/var/task/.next/server/chunks/[root-of-the-server]__127m0o7._.js:2:855)\n    at async d (/var/task/.next/server/chunks/[root-of-the-server]__127m0o7._.js:182:1081)\n    at async n (/var/task/.next/server/chunks/[root-of-the-server]__00fnhdz._.js:1:2896)\n    at async sQ (/var/task/.next/server/chunks/_1inylx7._.js:23:12781)\n    at async /var/task/.next/server/chunks/_1inylx7._.js:7:72396\n    at async sq._invokeInputRequiredCapableHandler (/var/task/.next/server/chunks/_1inylx7._.js:7:61320)\n    at async /var/task/.next/server/chunks/_1inylx7._.js:7:60525"
-}

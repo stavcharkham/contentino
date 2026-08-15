@@ -28,14 +28,6 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-product-micro-copy-773a,2026-08-15T12:35:53.822Z,submit-product-microcopy,product-microcopy,Demo reviewer,claude,10,auto-published,0,0.011687,20
 2026-08-15-product-micro-copy-f954,2026-08-15T12:51:34.191Z,submit-product-microcopy,product-microcopy,Lemonade reviewer,claude,8.33,reviewed,0,0.021435,10
 2026-08-15-our-q2-2026-results-growth-kept-speeding-up-6325,2026-08-15T12:59:52.704Z,submit-external-comms,external-comms,Lemonade reviewer,claude,9.29,reviewed,0,0.02678,37.5
-2026-08-15-product-micro-copy-412d,2026-08-15T13:12:07.958Z,submit-product-microcopy,product-microcopy,demo-stability-test,claude,5.83,blocked,0,0.021238,0
-2026-08-15-product-micro-copy-c517,2026-08-15T13:12:37.739Z,submit-product-microcopy,product-microcopy,demo-stability-test,claude,9,auto-published,0,0.012573,20
-2026-08-15-product-micro-copy-98ce,2026-08-15T13:13:05.342Z,submit-product-microcopy,product-microcopy,demo-stability-test,claude,7.5,blocked,0,0.012748,0
-2026-08-15-product-micro-copy-5d93,2026-08-15T13:14:41.215Z,submit-product-microcopy,product-microcopy,demo-stability-test,claude,10,auto-published,0,0.012403,20
-2026-08-15-product-micro-copy-c118,2026-08-15T13:15:11.674Z,submit-product-microcopy,product-microcopy,demo-stability-test,claude,10,auto-published,0,0.012413,20
-2026-08-15-product-micro-copy-4a00,2026-08-15T13:15:36.036Z,submit-product-microcopy,product-microcopy,demo-stability-test,claude,10,auto-published,0,0.012128,20
-2026-08-15-product-micro-copy-9103,2026-08-15T13:16:08.128Z,submit-product-microcopy,product-microcopy,demo-stability-test,claude,10,auto-published,0,0.012578,20
-2026-08-15-product-micro-copy-fcdf,2026-08-15T13:16:33.281Z,submit-product-microcopy,product-microcopy,demo-stability-test,claude,10,auto-published,0,0.012903,20
 2026-08-15-product-micro-copy-23c5,2026-08-15T13:34:15.757Z,submit-product-microcopy,product-microcopy,Demo reviewer,claude,10,auto-published,0,0.021213,20
 2026-08-15-lemonade-q2-2026-in-force-premium-hits-1-43-bill-33f8,2026-08-15T13:38:24.934Z,submit-external-comms,external-comms,Stav,claude,6.43,blocked,0,0.023484,0
 2026-08-15-lemonade-q2-2026-in-force-premium-hits-1-43-bill-0811,2026-08-15T13:39:08.368Z,submit-external-comms,external-comms,Stav,claude,0,blocked,0,0.004346,0
@@ -45,5 +37,3 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-q2-2026-eleven-quarters-and-the-line-keeps-bendi-06a3,2026-08-15T13:57:21.693Z,submit-external-comms,external-comms,Stav,claude,0,blocked,0,0.007561,0
 2026-08-15-q2-2026-eleven-quarters-and-the-line-keeps-bendi-e77c,2026-08-15T13:57:40.824Z,submit-external-comms,external-comms,Stav,claude,5.71,blocked,0,0.023833,0
 2026-08-15-q2-2026-results-in-force-premium-reaches-1-43-bi-0b33,2026-08-15T13:58:28.830Z,submit-external-comms,external-comms,Stav,claude,9.29,reviewed,0,0.018893,37.5
-2026-08-15-q2-2026-results-in-force-premium-reaches-1-43-bi-ae7b,2026-08-15T14:01:40.984Z,submit-external-comms,external-comms,demo-stability-test,claude,9.29,reviewed,0,0.016602,37.5
-2026-08-15-q2-2026-results-in-force-premium-reaches-1-43-bi-0a15,2026-08-15T14:02:04.550Z,submit-external-comms,external-comms,demo-stability-test,claude,9.29,reviewed,0,0.017137,37.5
