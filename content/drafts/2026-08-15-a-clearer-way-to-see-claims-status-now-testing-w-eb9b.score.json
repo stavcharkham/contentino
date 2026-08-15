@@ -1,7 +1,7 @@
 {
   "piece_id": "2026-08-15-a-clearer-way-to-see-claims-status-now-testing-w-eb9b",
-  "source_hash": "e24137b1a922be53609af5f2add6a79a005eab90d80815d6a0779a02562c3fb2",
-  "scored_at": "2026-08-15T08:14:29.596Z",
+  "source_hash": "2ae735c15922816eeb1c8058c1335ee24544a10cc3964b7ccba2a19ff4d6dc66",
+  "scored_at": "2026-08-15T08:15:22.315Z",
   "content_type": "external-comms",
   "stakes": "medium",
   "ceiling": "none",
@@ -10,98 +10,98 @@
       "id": "register",
       "name": "Register match",
       "score": 2,
-      "reason": "The tone matches the medium-to-high stakes. The headline uses concrete language ('clearer way,' 'testing with 200 renters'). The body alternates appropriately: performing tone in the opening and measurement rationale ('knowing what happens next is most of what you want to know'), covering tone in disclaimers and scope ('do not change,' 'not available to everyone'). The attributed quote uses working tone. No register mismatches detected.",
+      "reason": "The tone appropriately shifts through stakes levels within the piece. The headline and opening use medium-stakes warmth ('clearer way,' 'testing'). The disclaimers switch to covering register with careful, complete sentences when addressing high-stakes claims eligibility and timing. This matches the switching rule: classification by what each sentence does to the reader, not by page context.",
       "model": "claude-haiku-4-5"
     },
     {
       "id": "humour",
       "name": "Humour boundary",
       "score": 2,
-      "reason": "No humour appears in the draft. This is correct: the piece involves claims, eligibility, coverage decisions and legal scope—all high-stakes content where humour is restricted. Even the headline and opening paragraph maintain directness without jokes or dry wit.",
+      "reason": "No humour appears in the draft. This is correct. The piece addresses claims status, claim decisions, and payment timing—all high-stakes territory where jokes would violate the guideline. The only quotation is a straightforward product goal, not a dry joke or wordplay.",
       "model": "claude-haiku-4-5"
     },
     {
       "id": "plain-language",
       "name": "Plain language calibration",
       "score": 2,
-      "reason": "The draft retains only necessary insurance terms: 'claim,' 'coverage,' 'eligibility,' 'renters-insurance.' These are terms customers need to recognise in this context. Explanations are concrete ('how status and next steps are explained,' 'understanding their next step'). No folksy substitutes are invented. The draft defines scope clearly without jargon ('test,' 'invited group,' 'measurement'). Translation choices align with Lemonade guidelines.",
+      "reason": "The draft retains 'claim' and 'deductible'-class terms ('claims status,' 'claim decisions,' 'claim') because customers need to recognise them in coverage and eligibility contexts. It explains the mechanics plainly: 'only how status and next steps are explained' and 'doesn't speed up claim decisions.' No folksy substitutes are invented. The disclaimer structure mirrors LEM-051's approach of informal register surviving inside sourced, measurable explanations (here, the quoted product goal from a named meeting).",
       "model": "claude-haiku-4-5"
     },
     {
       "id": "mechanics",
       "name": "Mechanics",
-      "score": 2,
-      "reason": "No mechanical violations"
+      "score": 1,
+      "reason": "em dashes used as a house style"
     },
     {
       "id": "direct-address",
       "name": "Direct address",
       "score": 2,
-      "reason": "The piece is framed around what the reader experiences ('when you're in the middle of a claim, knowing what happens next is most of what you want to know') rather than internal product language, and even the technical WHY NOW/WHAT CHANGED sections stay grounded in what stays the same for the customer (coverage, eligibility, payment timing).",
+      "reason": "The piece opens with what changes for the customer ('a clearer way to see claims status') and consistently frames scope, exclusions and impact in terms of what the reader experiences (understanding next steps, not contacting support), rather than internal team or product language.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "claim-sourced",
       "name": "Claim sourced",
-      "score": 1,
-      "reason": "The draft cites a single source (weekly claims product meeting, 12 August 2026) for all facts, including the start date, group size, location, scope and the quote, which gives a traceable path. However, unlike LEM-051 or LEM-053 which draw on richer sourcing context, this piece relies entirely on one internal Slack meeting note as the sole backing for every central claim, including a specific date and headcount, without any indication of corroborating documentation (e.g., a brief separate from the meeting record), which is a thinner sourcing chain than the approved high-stakes examples model.",
+      "score": 0,
+      "reason": "There is no visible approved brief for this draft, and the central factual claims (test start date, 200 renters, New York, the specific exclusions, the measurement goal) have no traceable source. Per the compliance rule, a missing source for a central claim fails the veto, so this cannot score above the floor.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "why-now",
       "name": "Why now",
-      "score": 2,
-      "reason": "The WHY NOW section explicitly states the fixed start date, defined scope and the meeting where the decision was recorded, giving the reader a clear, dated reason this is being communicated now, consistent with the top-loaded reasoning the guidelines require.",
+      "score": 1,
+      "reason": "The date '1 September' and framing as a live test gives a timing signal, but no reason is given for why this test is launching now (e.g., what prompted it, why New York, why renters first), so the reader can see a timestamp but not a motivated reason for the timing.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "quote-fidelity",
       "name": "Quote fidelity",
-      "score": 1,
-      "reason": "The quote is attributed to a named person and sourced to a specific meeting and date, which meets the basic sourcing bar, but the quote is generic boilerplate ('make the next step clear, not make the claim look simpler') that doesn't clearly sound like a distinct individual's voice the way LEM-050 and LEM-051's quotes carry personality and specificity, making faithfulness to the speaker harder to verify.",
+      "score": 0,
+      "reason": "The quote is attributed to a named individual and sourced to an internal weekly meeting rather than a transcript tied to an approved brief; there is no external, traceable source material establishing this is a faithful and supported statement by Maya Chen, so it fails quote fidelity rather than being N/A, since the draft does include a quote.",
       "model": "claude-sonnet-5"
     }
   ],
-  "score": 8.75,
+  "score": 6.25,
   "compliance": {
-    "pass": true,
-    "reason": "The draft satisfies all compliance prohibitions. It does not promise an outcome or guarantee a claim result; it explicitly states the team is measuring understanding, not promising fewer support contacts, and no launch decision has been made. It does not remove any required disclaimer; instead it includes an explicit 'what we're not saying' section clarifying limits. It makes no unsupported claim about how Lemonade judges customers. It does not contradict known policy on data use, price, coverage or eligibility; it explicitly states coverage, claim decisions, payment timing and eligibility are unchanged. The attributed quote from Maya Chen is sourced to a specific meeting and date, and a SOURCE line is provided (weekly claims product meeting, 12 August 2026, Slack), satisfying traceability. No claim denial, coverage rejection or renewal price-increase notice is generated. All factual claims (test population, dates, scope) are attributed to the same sourced meeting. No isolated navigation/button label issues are present to wrongly fail here."
+    "pass": false,
+    "reason": "The quote from Maya Chen is an attributed quote/factual public claim presented without a traceable, verifiable source. Citing a 'weekly claims product meeting' internal note is not a checkable, sourced reference (no link, document, or public record), so it fails the compliance rule requiring a traceable source for attributed quotes or factual public claims."
   },
   "attempt": 1,
-  "outcome": "reviewed",
+  "outcome": "blocked",
   "usage": [
     {
       "model": "claude-haiku-4-5",
-      "input_tokens": 1633,
-      "output_tokens": 154,
+      "input_tokens": 1455,
+      "output_tokens": 105,
       "cache_read_tokens": 0,
       "cache_write_tokens": 0,
-      "cost_usd": 0.002403
+      "cost_usd": 0.00198
     },
     {
       "model": "claude-sonnet-5",
-      "input_tokens": 618,
-      "output_tokens": 350,
+      "input_tokens": 369,
+      "output_tokens": 124,
       "cache_read_tokens": 1645,
       "cache_write_tokens": 0,
-      "cost_usd": 0.005065
+      "cost_usd": 0.002307
     },
     {
       "model": "claude-haiku-4-5",
-      "input_tokens": 2073,
-      "output_tokens": 314,
+      "input_tokens": 1895,
+      "output_tokens": 417,
       "cache_read_tokens": 0,
       "cache_write_tokens": 0,
-      "cost_usd": 0.003643
+      "cost_usd": 0.00398
     },
     {
       "model": "claude-sonnet-5",
-      "input_tokens": 1042,
-      "output_tokens": 596,
+      "input_tokens": 793,
+      "output_tokens": 445,
       "cache_read_tokens": 2126,
       "cache_write_tokens": 0,
-      "cost_usd": 0.008469
+      "cost_usd": 0.006461
     }
   ],
-  "cost_usd": 0.01958
+  "cost_usd": 0.014728
 }
