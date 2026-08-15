@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-15-lemonade-q2-2026-in-force-premium-hits-1-43-bill-33f8",
+  "source_hash": "05d3573abba9a3876cb7264754cfba03b0351a38bdfc7c8b811765edcd9d6894",
+  "scored_at": "2026-08-15T13:38:28.260Z",
+  "content_type": "external-comms",
+  "stakes": "high",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone matches high-stakes financial reporting. Sentences are complete and careful. Contractions are used naturally. The register shifts appropriately: playful language is absent, certainty is qualified ('projected', 'expected'), and disclaimers are explicit. This follows the Covering register for financial and legal language.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The stakes are high (financial claims, public-company results, shareholder information), so humour would be inappropriate. The absence of dry jokes or wordplay is correct for this context.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 1,
+      "reason": "The draft retains necessary financial terms ('in-force premium', 'gross loss ratio', 'adjusted EBITDA') without defining them inline. These are sector terms that external readers and investors need to recognise in earnings language. However, the draft does not translate or explain these terms with concrete examples, as the Vocabulary section recommends for terms customers need to recognise. For a public earnings statement, this is appropriate—but the guideline expects inline definition or plain-language explanation. The phrase 'Adjusted EBITDA loss narrowed by 54%' uses financial jargon without translation, and 'gross loss ratio' assumes reader familiarity. A score of 1 reflects that some translation work could strengthen clarity for external readers unfamiliar with insurance metrics, even though retention of the terms themselves is correct.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 0,
+      "reason": "The draft is written entirely in company-facing financial-report language (in-force premium, gross loss ratio, adjusted EBITDA) with no framing of what this means to a reader/customer/investor in their own terms. Unlike the approved examples, which translate ambition or launches into reader-relevant stakes, this reads like an internal earnings release repeated verbatim, not a story reframed for an external audience.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 1,
+      "reason": "All figures are attributed to a single named source (the Q2 2026 earnings call), which is good, but the source is generic ('the earnings call') rather than a traceable approved brief with an itemized source list per claim. Given the instructions to trace every central claim to the brief's source list, a single blanket citation at the bottom is weaker evidence of per-claim traceability than the approved examples imply, though it is not unsupported.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 1,
+      "reason": "The date (7 August) and quarterly cadence implicitly explain timing, but the draft never makes explicit why this specific release matters now beyond being a routine quarterly report. There's no visible framing near the top connecting to a reader's present decision or context the way 'why now' requires.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft contains no attributed quotes; only paraphrased management guidance ('Management reiterated...') without a direct quotation, so quote fidelity does not apply.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 6.43,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft attributes all factual/financial claims to a named, traceable source (Lemonade's Q2 2026 earnings call, dated 7 August 2026). Figures (in-force premium, revenue, loss ratio, EBITDA loss) are presented as reported results, not guarantees. The forward-looking guidance is explicitly hedged as 'a projection... not a commitment,' avoiding any promise of an outcome. No claim denial, coverage rejection, or renewal price-increase notice appears. No unsupported judgement claim about how Lemonade evaluates customers is present. No disclaimer appears to have been removed, and nothing contradicts known policy on data use, price, coverage, or eligibility. All compliance prohibitions are satisfied."
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 148,
+      "output_tokens": 133,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001955
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1481,
+      "output_tokens": 145,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002206
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 405,
+      "output_tokens": 259,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003729
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1921,
+      "output_tokens": 346,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003651
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 829,
+      "output_tokens": 497,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2126,
+      "cost_usd": 0.011943
+    }
+  ],
+  "cost_usd": 0.023484
+}
