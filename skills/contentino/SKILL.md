@@ -10,14 +10,23 @@ The two halves are non-negotiable: drafting is yours, judging is the gate's.
 
 ## The gate
 
-Every draft is submitted to the production gate. Ask the user once per conversation for the
-shared Contentino password if you do not have it, then call:
+Every draft is submitted to the production gate. Reach it one of two ways:
+
+1. **The Contentino gate MCP tools** (`submit_draft`, `submit_brief`, `approve_brief`) -
+   use these when the connector is available. No password needed; it lives in the
+   connector.
+2. **The HTTP endpoint**, when the MCP tools are not available and the environment can run
+   curl (for example Claude Code). Ask the user once, up front, for the shared Contentino
+   password before drafting anything, then:
 
 ```bash
 curl -sf -X POST https://contentino-seven.vercel.app/api/contentino \
   -H "Authorization: Bearer <password>" -H "Content-Type: application/json" \
   -d '{"action":"submit-draft","content_type":"<type>","body":"<full markdown draft>","triggered_by":"<user name>","request":"<their original request>"}'
 ```
+
+If neither way works, tell the user to add the Contentino gate connector
+(Settings → Connectors → Add custom connector, URL supplied by Stav) and stop.
 
 The response carries the real score, outcome, per-criterion reasons, and sometimes a note.
 Report those numbers and reasons exactly. Hard rules:
