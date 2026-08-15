@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-15-product-micro-copy-c7b6",
+  "source_hash": "47b042b0887840dcf1a71107596d3fbb8a7c3cd033d9a6f9ef0744009c8d3e5e",
+  "scored_at": "2026-08-15T12:35:28.209Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "All-caps action button is correct for low-stakes interface copy. Tone matches the mechanics guideline for buttons and section headers.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The copy is straightforward and appropriate for a low-stakes moment where nothing financial or eligibility-related changes.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses concrete verb 'get' and direct language. No insurance jargon that requires translation. Consistent with LEM-011 and LEM-012 examples of low-stakes action labels.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The draft 'GET MY PRICE' is a single button label with no named subject (person, pet, car, or home) provided by the interface to address, similar to LEM-011's generic action buttons which also don't reference a named subject.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this string, so fit cannot be assessed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "'GET' is a concrete, established action verb consistent with approved examples like LEM-011's 'GET DISCOUNTS', appropriately signaling the next step in a pricing flow.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a single button label, 'GET MY PRICE.' It contains no promise of an outcome, no guarantee of claim payment, no removal of a disclaimer, no unsupported judgement claim, no contradiction of known policy, and no attributed quote or factual public claim requiring a source. Per instructions, an isolated navigation or button label should not be failed for lacking surrounding context, a source, or a disclaimer. It also follows mechanics (all caps for a button, names the action rather than using a generic 'click here'). No compliance prohibition applies here."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 137,
+      "output_tokens": 79,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001393
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1266,
+      "output_tokens": 76,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001646
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 114,
+      "output_tokens": 195,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002507
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1794,
+      "output_tokens": 160,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002594
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1236,
+      "output_tokens": 466,
+      "cache_read_tokens": 4214,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.007974
+    }
+  ],
+  "cost_usd": 0.016114
+}
