@@ -1,0 +1,6 @@
+{
+  "surface": "claude-gate",
+  "id": "submit-draft",
+  "failed_at": "2026-08-15T09:15:48.032Z",
+  "error": "Draft and scorecard are both required to publish\nError: Draft and scorecard are both required to publish\n    at c (/var/task/.next/server/chunks/[root-of-the-server]__03l4_gu._.js:2:363)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async d (/var/task/.next/server/chunks/[root-of-the-server]__03l4_gu._.js:182:1081)\n    at async R (/var/task/.next/server/chunks/_1shg3_y._.js:1:1653)\n    at async h (/var/task/.next/server/chunks/_1shg3_y._.js:1:1252)\n    at async rW.do (/var/task/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.prod.js:5:23405)\n    at async rW.handle (/var/task/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.prod.js:5:28909)\n    at async Z (/var/task/.next/server/chunks/_1shg3_y._.js:1:5637)\n    at async rW.handleResponse (/var/task/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.prod.js:1:129362)\n    at async J (/var/task/.next/server/chunks/_1shg3_y._.js:1:6715)"
+}
