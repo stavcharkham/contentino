@@ -4,7 +4,9 @@ created: '2026-08-15T16:04:42.786Z'
 source: >-
   https://www.fool.com/earnings/call-transcripts/2026/08/07/lemonade-lmnd-q2-2026-earnings-call-transcript/
 source_id: lmnd-q2-2026-earnings-call
-status: draft
+status: approved
+approved_by: Stav
+approved_at: '2026-08-15T16:05:35.211Z'
 api_cost_usd: 0
 ---
 # Brief: Q2 2026 earnings announcement
