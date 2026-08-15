@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-15-our-q2-2026-results-growth-kept-speeding-up-6325",
+  "source_hash": "738afe692623b6c7d2c71b056446ce0b20f32b4abeb046b8880da16a8b478ab0",
+  "scored_at": "2026-08-15T12:59:56.053Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriately formal and careful throughout, matching high stakes financial disclosure. Language shifts from confident metrics to cautious qualifications (\"not a promise we can hand you today\") where appropriate. The final paragraph grounds the content in customer impact, demonstrating awareness of audience stakes.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour or wordplay appears in this high-stakes financial disclosure. The piece maintains the covering register required for earnings claims and pricing language without jokes or dry insurance wordplay.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Technical financial terms are retained appropriately as required vocabulary for this context: in-force premium, gross loss ratio, adjusted EBITDA. The draft explains mechanics in plain language (\"how the company is doing\") and clarifies distinctions (\"not a promise we can hand you today\") without inventing folksy substitutes for necessary terms. Translations are selective and sourced.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 1,
+      "reason": "The piece leans heavily on company-internal financial language (in-force premium, gross loss ratio, adjusted EBITDA) typical of an earnings report, but it does make an effort to translate stakes for the reader with the closing paragraph ('None of this changes anything about your policy, your price...'). That final framing device is good, but most of the body is written in investor/company terms rather than reader terms, unlike LEM-004's blunt reader-facing self-criticism.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 2,
+      "reason": "Every specific figure (in-force premium, growth percentage, revenue, loss ratio, EBITDA loss, quarters of accelerating growth, guidance) is attributable to the cited Q2 2026 earnings call transcript source, consistent with how LEM-051 and LEM-053 trace concrete numbers to a source list.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The piece opens with a specific date (7 August) and frames the entire piece around the fact that results were just reported, giving a clear, visible reason this is being said today, similar to how LEM-051's quote is anchored to a specific moment in the business cycle.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft contains no attributed quotation from a named speaker; all content is presented as company reporting rather than a quote, so fidelity to a speaker's voice does not apply.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9.29,
+  "compliance": {
+    "pass": true,
+    "reason": "A source is provided (Motley Fool transcript, 7 August 2026) and attributed figures are consistent with that sourcing. No outcome is guaranteed: the EBITDA loss narrowing is stated as historical fact with precise figures, and the Q4 positive-EBITDA statement is explicitly framed as a projection, not a promise ('a projection about where we expect to land, not a promise we can hand you today'). No claim is made about how Lemonade judges a customer. The piece explicitly states policy, price and coverage are unaffected, which does not contradict known policy since it draws a clear line between corporate financial results and individual customer terms. No claim denial, coverage rejection or renewal price-increase notice appears. All financial claims are attributed to the named source and quarter, satisfying the traceability requirement."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 137,
+      "output_tokens": 79,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.005176
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1568,
+      "output_tokens": 145,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002293
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 509,
+      "output_tokens": 276,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004107
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2008,
+      "output_tokens": 237,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003193
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 933,
+      "output_tokens": 483,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2126,
+      "cost_usd": 0.012011
+    }
+  ],
+  "cost_usd": 0.02678
+}
