@@ -179,6 +179,11 @@ export class LocalStorage extends StorageConvenience {
 export type GitHubApi = Pick<Octokit, "repos" | "git">;
 
 export class GitHubStorage extends StorageConvenience {
+  // GitHub's content read API is eventually consistent: a read straight after a
+  // commit can return stale or missing. Files written by this instance are served
+  // from this overlay so every read-after-write within one run sees its own writes.
+  private readonly overlay = new Map<string, StoredFile | null>();
+
   constructor(
     private readonly api: GitHubApi,
     private readonly owner: string,
@@ -188,6 +193,10 @@ export class GitHubStorage extends StorageConvenience {
 
   async read(filePath: string): Promise<StoredFile | null> {
     const storagePath = normaliseStoragePath(filePath);
+    if (this.overlay.has(storagePath)) {
+      const cached = this.overlay.get(storagePath) ?? null;
+      return cached ? { ...cached } : null;
+    }
     try {
       const response = await this.api.repos.getContent({ owner: this.owner, repo: this.repo, path: storagePath, ref: this.branch });
       if (Array.isArray(response.data) || response.data.type !== "file" || !("content" in response.data)) return null;
@@ -246,6 +255,12 @@ export class GitHubStorage extends StorageConvenience {
     const nextTree = await this.api.git.createTree({ owner: this.owner, repo: this.repo, base_tree: headCommit.data.tree.sha, tree: entries });
     const nextCommit = await this.api.git.createCommit({ owner: this.owner, repo: this.repo, message: commit.message, tree: nextTree.data.sha, parents: [head] });
     await this.api.git.updateRef({ owner: this.owner, repo: this.repo, ref: `heads/${this.branch}`, sha: nextCommit.data.sha, force: false });
+    for (let index = 0; index < changes.length; index += 1) {
+      const change = changes[index];
+      const entry = entries[index];
+      if (change.type === "write") this.overlay.set(change.path, { path: change.path, content: change.content, version: entry.sha as string });
+      else this.overlay.set(change.path, null);
+    }
     return { version: nextCommit.data.sha };
   }
 }

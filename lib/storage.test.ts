@@ -83,6 +83,29 @@ describe("GitHubStorage", () => {
     expect(api.git.updateRef).toHaveBeenCalledWith(expect.objectContaining({ force: false }));
   });
 
+  it("serves its own writes even when GitHub's read API lags behind", async () => {
+    const api = {
+      repos: { getContent: vi.fn().mockRejectedValue(Object.assign(new Error("Not Found"), { status: 404 })) },
+      git: {
+        getRef: vi.fn().mockResolvedValue({ data: { object: { sha: "head" } } }),
+        getCommit: vi.fn().mockResolvedValue({ data: { tree: { sha: "base-tree" } } }),
+        getTree: vi.fn()
+          .mockResolvedValueOnce({ data: { tree: [] } })
+          .mockResolvedValue({ data: { tree: [{ path: "content/drafts/lag.md", type: "blob", sha: "fresh-blob" }] } }),
+        createBlob: vi.fn().mockResolvedValue({ data: { sha: "fresh-blob" } }),
+        createTree: vi.fn().mockResolvedValue({ data: { sha: "next-tree" } }),
+        createCommit: vi.fn().mockResolvedValue({ data: { sha: "next-commit" } }),
+        updateRef: vi.fn().mockResolvedValue({ data: {} }),
+      },
+    } as unknown as GitHubApi;
+    const storage = new GitHubStorage(api, "owner", "repo");
+    const created = await storage.create("content/drafts/lag.md", "fresh content");
+    expect(created).toEqual({ path: "content/drafts/lag.md", content: "fresh content", version: "fresh-blob" });
+    expect(await storage.read("content/drafts/lag.md")).toEqual(created);
+    await storage.commit({ message: "Delete", changes: [{ type: "delete", path: "content/drafts/lag.md", expectedVersion: "fresh-blob" }] });
+    expect(await storage.read("content/drafts/lag.md")).toBeNull();
+  });
+
   it("rejects a create when the branch already contains the path", async () => {
     const api = {
       repos: { getContent: vi.fn() },
