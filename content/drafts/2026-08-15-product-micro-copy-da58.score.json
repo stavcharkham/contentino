@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-15-product-micro-copy-da58",
+  "source_hash": "b45b9ba145ae2ab31773fc149fa0ff292763422da6732071f88c739971754cbd",
+  "scored_at": "2026-08-15T09:10:50.080Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "All-caps button label matches low-stakes interface pattern from LEM-011. Tone is direct and action-oriented as required for low-stakes moments.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. Appropriate for a button label where nothing is at stake yet—the user is just beginning the quote process.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses concrete verb 'GET' with clear action. No insurance jargon. Matches the approved style of LEM-011 for straightforward, actionable button copy.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The interface provides no named subject or addressee (e.g., a person's, pet's, car's or home's name) for this button label to reference, so direct address cannot be evaluated.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit was provided for this button, so fit against a hard limit cannot be assessed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "GET MY QUOTE uses a concrete verb ('get') consistent with approved examples like GET DISCOUNTS and FINALIZE PAYMENT, and matches typical quote-flow action verbs used elsewhere in the product.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft consists solely of the button label \"GET MY QUOTE.\" It contains no promise of a paid outcome, no removed disclaimer, no unsupported judgement claim about how Lemonade evaluates a customer, no contradiction of known policy, and no attributed quote or public factual claim requiring a source. As an isolated navigation/button label, it is not failed for lacking surrounding context, source, or disclaimer. The label also names a concrete action (getting a quote) rather than using a generic 'click here' construction, and is properly in all caps per mechanics for interface elements. No compliance prohibitions are triggered."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 122,
+      "output_tokens": 70,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.005057
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1266,
+      "output_tokens": 56,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001546
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 115,
+      "output_tokens": 216,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002719
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1794,
+      "output_tokens": 159,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002589
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 619,
+      "output_tokens": 238,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2107,
+      "cost_usd": 0.008885
+    }
+  ],
+  "cost_usd": 0.020796
+}
