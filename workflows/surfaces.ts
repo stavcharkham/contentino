@@ -45,6 +45,7 @@ export function formatMarkdownForSlack(markdown: string): string {
   return markdown
     .replace(/^# (.+)$/gm, "*$1*")
     .replace(/^## (.+)$/gm, "*$1*")
+    .replace(/\*\*([^*\n]+)\*\*/g, "*$1*")
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1 ($2)");
 }
 
@@ -171,8 +172,9 @@ export async function handleSlackEnvelope(input: {
         }
         const created = await input.driveSync();
         await input.slack.postMessage(created.length
-          ? `Checked the Drive folder: ${created.length} new transcript${created.length === 1 ? "" : "s"} became ${created.length === 1 ? "a brief" : "briefs"}. Posting ${created.length === 1 ? "it" : "them"} here now.`
-          : "Checked the Drive folder: nothing new since the last run.", threadTs);
+          ? `Checked the Drive folder: found ${created.length} new transcript${created.length === 1 ? "" : "s"}. Posting ${created.length === 1 ? "the brief" : "the briefs"} in the channel with an approve button.`
+          : "Checked the Drive folder: nothing new since the last run. Every transcript there already has its brief.", threadTs);
+        await announceBriefs({ context: input.context, slack: input.slack, briefPaths: created });
         return "drive-sync";
       }
       await input.slack.postMessage("Tell me what you need in plain words - a button label, an error message, or an announcement to write up. If you've dropped a transcript in the Drive folder, say \"check the drive folder\".", threadTs);
@@ -218,7 +220,7 @@ export async function handleSlackEnvelope(input: {
         externalId: `slack:${event.ts}`,
       });
       const revised = await input.context.storage.read(draftPath);
-      await input.slack.postRevision(event.thread_ts, parseMarkdown(revised?.content ?? "", draftSchema).body, "Applied your correction and rescored the draft.");
+      await input.slack.postRevision(event.thread_ts, formatMarkdownForSlack(parseMarkdown(revised?.content ?? "", draftSchema).body), "Applied your correction and rescored the draft.");
       return "reviewed";
     }
     return "ignored";

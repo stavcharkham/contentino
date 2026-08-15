@@ -1,10 +1,10 @@
 import { readConfig } from "@/lib/config";
 import { createGoogleApis } from "@/lib/adapters/google";
 import { GoogleDriveSource } from "@/lib/adapters/drive";
-import { announceBriefs, syncDriveTranscripts, type SlackSurface } from "./surfaces";
+import { syncDriveTranscripts } from "./surfaces";
 import type { WorkflowContext } from "./common";
 
-export function buildDriveSync(context: WorkflowContext, slack: Pick<SlackSurface, "postBriefForApproval">): (() => Promise<string[]>) | undefined {
+export function buildDriveSync(context: WorkflowContext): (() => Promise<string[]>) | undefined {
   const config = readConfig();
   if (!config.GOOGLE_CLIENT_ID || !config.GOOGLE_CLIENT_SECRET || !config.GOOGLE_REFRESH_TOKEN || !config.GOOGLE_DRIVE_FOLDER_ID) return undefined;
   return async () => {
@@ -13,9 +13,7 @@ export function buildDriveSync(context: WorkflowContext, slack: Pick<SlackSurfac
       clientSecret: config.GOOGLE_CLIENT_SECRET as string,
       refreshToken: config.GOOGLE_REFRESH_TOKEN as string,
     });
-    const created = await syncDriveTranscripts({ context, drive: new GoogleDriveSource(api, config.GOOGLE_DRIVE_FOLDER_ID as string) });
-    await announceBriefs({ context, slack, briefPaths: created });
-    return created;
+    return syncDriveTranscripts({ context, drive: new GoogleDriveSource(api, config.GOOGLE_DRIVE_FOLDER_ID as string) });
   };
 }
 

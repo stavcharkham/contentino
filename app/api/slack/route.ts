@@ -56,7 +56,7 @@ export async function POST(request: Request): Promise<Response> {
         return threadTs;
       },
     };
-    const driveSync = buildDriveSync(context, trackedSlack);
+    const driveSync = buildDriveSync(context);
     let lastError: unknown;
     for (let attempt = 1; attempt <= 2; attempt += 1) {
       try {
