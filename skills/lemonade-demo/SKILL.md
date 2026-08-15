@@ -99,7 +99,9 @@ gate as `external-comms` with the brief id. Do not stop before the draft is subm
 and its verdict shown - this step is not done until the announcement exists and has a
 real score.
 
-Show the verdict and criteria table. Then land the key point in 2-3 sentences: whatever
+**Show the full announcement text first** - the complete post, not a summary or a quoted
+line. The reader came to see the content, not just its score. Then show the verdict and
+criteria table. Then land the key point in 2-3 sentences: whatever
 the score, the outcome is "held for review" - announcements never publish themselves.
 That ceiling belongs to the content type, set by its content owner; a high score buys a
 faster review, not a shortcut past one. Point at one sentence in the draft that exists
