@@ -1,0 +1,107 @@
+{
+  "piece_id": "2026-08-15-q2-2026-results-in-force-premium-reaches-1-43-bi-0a15",
+  "source_hash": "616b41e69fffab5ea4a2d96c94e0b493e1e7686b2ef0d41630bac11c4aa2ec0e",
+  "scored_at": "2026-08-15T14:02:04.728Z",
+  "content_type": "external-comms",
+  "stakes": "high",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "Tone is appropriately formal and direct for high-stakes financial disclosure. The register matches the audience (shareholders) and content (earnings results). Informal words like 'fabulous' are avoided where precision matters, and uncertainty is clearly stated ('projection based on what we can see today').",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is used. This is correct for high-stakes financial content where claims about price, coverage and legal obligation are being made. The approval examples show that high-stakes copy maintains professionalism without jokes.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Technical terms are translated only when necessary and with concrete explanation. 'In-force premium' is defined as 'the total annual value of all the policies we currently have active.' 'Gross loss ratio' is explained as 'the share of premium we pay out in claims' with context on what the number means. No folksy substitutes are invented for financial terms that shareholders need to recognise.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 1,
+      "reason": "The draft frames metrics helpfully for a reader ('what that means for you as a shareholder') and defines jargon like in-force premium and gross loss ratio in plain terms. But much of the piece still reads as an internal earnings recap organized by financial line item (in-force premium, revenue, EBITDA) rather than starting from a change in the reader's world, so it's only partially reframed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 2,
+      "reason": "Every figure ($1.43 billion, 32.5%, eleventh consecutive quarter, 79% revenue growth, 60%/67% loss ratio, 54% EBITDA improvement, $19 million loss) is attributed to a single named, dated source (Q2 2026 earnings call transcript published by The Motley Fool), consistent with the sourcing standard shown in LEM-051.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The piece opens by dating the earnings call precisely (7 August 2026) and frames the entire piece as a report on that specific event, making clear why this is being said today.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft contains no attributed quotes from a named speaker; it reports figures and characterizations in the company's voice, so quote fidelity does not apply.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9.29,
+  "compliance": {
+    "pass": true,
+    "reason": "All factual and financial claims are attributed to a specific, traceable source (the Q2 2026 earnings call transcript published by The Motley Fool, dated 7 August 2026), satisfying the public-company claim sourcing requirement. No outcome or claim payment is guaranteed; the projection about Q4 2026 adjusted EBITDA is explicitly qualified as 'not a promise or a guarantee.' No disclaimers appear to have been removed: the piece proactively adds clarifying language ('It is still a loss. Lemonade is not profitable today.') rather than omitting caveats. No unsupported judgement claims about how Lemonade evaluates customers are made; the loss ratio explanation describes risk-matching in general, statistical terms tied to the reported figure, not a claim about judging individuals. Nothing here contradicts known policy on data use, price, coverage or eligibility. The piece does not generate a claim denial, coverage rejection or renewal price-increase notice. All compliance prohibitions are satisfied."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1601,
+      "output_tokens": 105,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002126
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 542,
+      "output_tokens": 349,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004903
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2041,
+      "output_tokens": 250,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003291
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 966,
+      "output_tokens": 446,
+      "cache_read_tokens": 2126,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.006817
+    }
+  ],
+  "cost_usd": 0.017137
+}
