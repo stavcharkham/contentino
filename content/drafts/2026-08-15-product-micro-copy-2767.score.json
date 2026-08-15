@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-15-product-micro-copy-2767",
+  "source_hash": "3c883869a791f02c9fe9dbf3719d1a6b9a1e15348c6e9f6bfd40a78790ef39fc",
+  "scored_at": "2026-08-15T12:35:07.907Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriate for low-stakes interface copy. The imperative verb 'Get' is direct and action-focused, matching the style of approved low-stakes examples like LEM-011 and LEM-012.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The copy is straightforward and functional, appropriate for a button label at low stakes.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The phrase 'Get my price' uses simple, direct language without unnecessary jargon or untranslated insurance terminology. It names the concrete action the reader can control.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "No named subject or addressee is provided by the interface for this button label; there's no pet, home or person name to reference, so direct-address cannot be evaluated.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit was provided for this string, so fit cannot be assessed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 0,
+      "reason": "Approved low-stakes button labels use all caps with concrete verbs (e.g. 'GET DISCOUNTS', 'FINALIZE PAYMENT'). This draft uses sentence case ('Get my price') instead of the required all-caps button convention, so it doesn't match the surrounding product flow's established mechanics for interface actions.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 8,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft consists solely of the button label 'Get my price.' It contains no guarantee of an outcome, no removed disclaimer, no unsupported judgement claim about how Lemonade evaluates a customer, no contradiction of known policy, and no attributed quote or factual public claim requiring a source. Per instructions, an isolated navigation/button label is not failed for missing surrounding context. The label also names a concrete action rather than using a generic 'click here' phrasing, so it passes the compliance check."
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 137,
+      "output_tokens": 106,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001663
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1265,
+      "output_tokens": 63,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.00158
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 110,
+      "output_tokens": 175,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002299
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1793,
+      "output_tokens": 168,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002633
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 614,
+      "output_tokens": 260,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004249
+    }
+  ],
+  "cost_usd": 0.012424
+}
