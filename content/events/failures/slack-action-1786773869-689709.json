@@ -1,0 +1,6 @@
+{
+  "surface": "slack-action",
+  "id": "1786773869.689709",
+  "failed_at": "2026-08-15T07:57:13.084Z",
+  "error": "External communications require an approved brief\nError: External communications require an approved brief\n    at d (/var/task/.next/server/chunks/[root-of-the-server]__10a7sm4._.js:193:374)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async /var/task/.next/server/chunks/[root-of-the-server]__04vall0._.js:1:3800\n    at async r (/var/task/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.prod.js:1:135545)\n    at async i (/var/task/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.prod.js:1:14621)"
+}
