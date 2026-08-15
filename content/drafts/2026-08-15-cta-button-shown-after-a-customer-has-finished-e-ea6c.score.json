@@ -1,0 +1,116 @@
+{
+  "piece_id": "2026-08-15-cta-button-shown-after-a-customer-has-finished-e-ea6c",
+  "source_hash": "1a50295169cb1013ce7b4b5dfc152fe0da7930896962d00412e4704afb83566f",
+  "scored_at": "2026-08-15T07:56:59.054Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "All-caps action header matches LEM-011 pattern exactly. Tone is appropriate for low-stakes interface moment with no coverage, price or eligibility implications.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. The draft is a straightforward button label for a low-stakes action, which is correct.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses concrete verb 'see' with direct object 'quote'. No insurance jargon requiring translation. Consistent with LEM-012 and LEM-011 vocabulary patterns.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The draft 'SEE YOUR QUOTE' is a button/header label with no named subject (like a pet or person's name) available from the interface to address; 'your' is the generic possessive already used consistently in approved examples like 'GET DISCOUNTS' and 'FINALIZE PAYMENT', so there's no additional named entity to compare against.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit was provided for this string, so fit cannot be assessed against a hard limit.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 1,
+      "reason": "'SEE' is a reasonable concrete verb for viewing a quote, consistent with the all-caps short action style of LEM-011 ('GET DISCOUNTS', 'FINALIZE PAYMENT'), but it's a softer, more passive verb than the punchier ones used in approved examples, so it's adequate but not a strong match to the flow's typical verb energy.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9,
+  "compliance": {
+    "pass": true,
+    "reason": "This is a short, isolated button/navigation-style label ('SEE YOUR QUOTE') with no accompanying claims, guarantees, judgement statements, or contradictions to evaluate. It doesn't promise an outcome, remove a disclaimer, make unsupported claims about customer judgement, contradict known policy, or present an unsourced quote/factual claim. Per instructions, isolated navigation or button labels should not be failed for missing surrounding context, source, or disclaimers. No compliance prohibitions are triggered."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 142,
+      "output_tokens": 76,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001373
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 122,
+      "output_tokens": 209,
+      "cache_read_tokens": 1833,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002701
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1261,
+      "output_tokens": 60,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001561
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 109,
+      "output_tokens": 186,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002407
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1789,
+      "output_tokens": 159,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002584
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 613,
+      "output_tokens": 340,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.005047
+    }
+  ],
+  "cost_usd": 0.015673
+}
