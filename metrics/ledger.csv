@@ -13,4 +13,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-cta-button-shown-after-a-customer-has-finished-e-e3ff,2026-08-15T07:56:24.242Z,write-microcopy,product-microcopy,U0BPV3QPDHB,slack,10,auto-published,0,0.028606,20
 2026-08-15-cta-button-shown-after-a-customer-has-finished-e-ea6c,2026-08-15T07:56:51.912Z,write-microcopy,product-microcopy,U0BPV3QPDHB,slack,9,auto-published,0,0.015673,20
 2026-08-15-button-promising-that-everyone-is-approved-insta-5261,2026-08-15T07:58:09.674Z,write-microcopy,product-microcopy,U0BPV3QPDHB,slack,9,reviewed,0,0.017638,10
-2026-08-15-a-clearer-way-to-see-claims-status-now-testing-w-eb9b,2026-08-15T08:12:42.698Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,9.38,reviewed,0,0.06744,37.5
+2026-08-15-a-clearer-way-to-see-claims-status-now-testing-w-eb9b,2026-08-15T08:12:42.698Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,8.75,reviewed,1,0.08702,27.5

@@ -23,7 +23,7 @@ The test period begins on 1 September 2026 with a defined group of 200 invited c
 
 WHAT CHANGED
 
-Only the explanation of claim status and next steps changes for the invited group. Coverage, claim decisions, payment timing and customer eligibility all stay exactly as they are.
+Only the explanation of claim statuses and next steps changes for the invited group. Coverage, claim decisions, payment timing and customer eligibility all stay exactly as they are.
 
 IN THEIR WORDS
 

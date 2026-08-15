@@ -1,7 +1,7 @@
 {
   "piece_id": "2026-08-15-a-clearer-way-to-see-claims-status-now-testing-w-eb9b",
-  "source_hash": "9ec9ea423a80d9962bc8892ab26ddcf84de502886c0e011eeec7975cf5897c27",
-  "scored_at": "2026-08-15T08:12:48.346Z",
+  "source_hash": "e24137b1a922be53609af5f2add6a79a005eab90d80815d6a0779a02562c3fb2",
+  "scored_at": "2026-08-15T08:14:29.596Z",
   "content_type": "external-comms",
   "stakes": "medium",
   "ceiling": "none",
@@ -10,21 +10,21 @@
       "id": "register",
       "name": "Register match",
       "score": 2,
-      "reason": "The tone is appropriately measured and careful throughout. High-stakes claims language uses complete sentences without jokes or unsupported certainty. The headline is concrete and specific. Disclaimers and scope-setting are precise and thorough. This matches the 'Covering' register required for claims-related content.",
+      "reason": "The tone matches the medium-to-high stakes. The headline uses concrete language ('clearer way,' 'testing with 200 renters'). The body alternates appropriately: performing tone in the opening and measurement rationale ('knowing what happens next is most of what you want to know'), covering tone in disclaimers and scope ('do not change,' 'not available to everyone'). The attributed quote uses working tone. No register mismatches detected.",
       "model": "claude-haiku-4-5"
     },
     {
       "id": "humour",
       "name": "Humour boundary",
       "score": 2,
-      "reason": "No humour is present. The content concerns claims status, which is high-stakes and involves customer decisions about their claims. The tone remains serious and informative throughout, with no jokes or playful language. This is correct for the stakes level.",
+      "reason": "No humour appears in the draft. This is correct: the piece involves claims, eligibility, coverage decisions and legal scope—all high-stakes content where humour is restricted. Even the headline and opening paragraph maintain directness without jokes or dry wit.",
       "model": "claude-haiku-4-5"
     },
     {
       "id": "plain-language",
       "name": "Plain language calibration",
       "score": 2,
-      "reason": "Only necessary insurance terms are retained: 'claims', 'claim decisions', 'deductible' (not used here), and 'renters-insurance' as a product name customers must recognize. No folksy substitutes are invented. Plain language is used throughout: 'knowing what happens next is most of what you want to know' instead of technical jargon. Coverage mechanics are explained directly without unnecessary translation or circumlocution.",
+      "reason": "The draft retains only necessary insurance terms: 'claim,' 'coverage,' 'eligibility,' 'renters-insurance.' These are terms customers need to recognise in this context. Explanations are concrete ('how status and next steps are explained,' 'understanding their next step'). No folksy substitutes are invented. The draft defines scope clearly without jargon ('test,' 'invited group,' 'measurement'). Translation choices align with Lemonade guidelines.",
       "model": "claude-haiku-4-5"
     },
     {
@@ -37,79 +37,71 @@
       "id": "direct-address",
       "name": "Direct address",
       "score": 2,
-      "reason": "The piece frames the story around what the reader experiences during a claim ('knowing what happens next is most of what you want to know') and clearly states what does and doesn't change for them, avoiding internal jargon like 'rollout' or 'initiative'. It reads like LEM-004's self-critical directness rather than company-speak.",
+      "reason": "The piece is framed around what the reader experiences ('when you're in the middle of a claim, knowing what happens next is most of what you want to know') rather than internal product language, and even the technical WHY NOW/WHAT CHANGED sections stay grounded in what stays the same for the customer (coverage, eligibility, payment timing).",
       "model": "claude-sonnet-5"
     },
     {
       "id": "claim-sourced",
       "name": "Claim sourced",
-      "score": 2,
-      "reason": "Every factual claim (start date, group size, location, scope, decision date, what changed and didn't) is attributed to the single named source, the 12 August 2026 weekly claims product meeting Slack thread, consistent with how LEM-051 and LEM-053 trace specific figures to a sourced origin.",
+      "score": 1,
+      "reason": "The draft cites a single source (weekly claims product meeting, 12 August 2026) for all facts, including the start date, group size, location, scope and the quote, which gives a traceable path. However, unlike LEM-051 or LEM-053 which draw on richer sourcing context, this piece relies entirely on one internal Slack meeting note as the sole backing for every central claim, including a specific date and headcount, without any indication of corroborating documentation (e.g., a brief separate from the meeting record), which is a thinner sourcing chain than the approved high-stakes examples model.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "why-now",
       "name": "Why now",
       "score": 2,
-      "reason": "The WHY NOW section explicitly gives a concrete trigger: the test begins 1 September 2026 with a fixed group, decided in a meeting on a specific date. A reader can clearly see why this is being communicated today rather than left to infer timing.",
+      "reason": "The WHY NOW section explicitly states the fixed start date, defined scope and the meeting where the decision was recorded, giving the reader a clear, dated reason this is being communicated now, consistent with the top-loaded reasoning the guidelines require.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "quote-fidelity",
       "name": "Quote fidelity",
       "score": 1,
-      "reason": "The quote is attributed to a named person and sourced to the same meeting as other claims, giving it a traceable origin like LEM-050 and LEM-051 require. However, unlike those approved examples, this quote is generic risk-mitigation language ('not to make the claim look simpler than it is') that reads more like brand-safe boilerplate than something that sounds like a specific individual speaking, so fidelity to a real voice is only partially demonstrated.",
+      "reason": "The quote is attributed to a named person and sourced to a specific meeting and date, which meets the basic sourcing bar, but the quote is generic boilerplate ('make the next step clear, not make the claim look simpler') that doesn't clearly sound like a distinct individual's voice the way LEM-050 and LEM-051's quotes carry personality and specificity, making faithfulness to the speaker harder to verify.",
       "model": "claude-sonnet-5"
     }
   ],
-  "score": 9.38,
+  "score": 8.75,
   "compliance": {
     "pass": true,
-    "reason": "The draft attributes the quote from Maya Chen to a specific, traceable source (the weekly claims product meeting, 12 August 2026), which is also cited at the end. It explicitly disclaims guarantees ('does not guarantee fewer support contacts'), does not promise an outcome, does not remove any required disclaimer, and does not claim to judge customers in an unsupported way. It states clearly what does and does not change (coverage, claim decisions, payment timing, eligibility remain unchanged), which reads as consistent rather than contradictory. No claim denial, coverage rejection, or renewal price-increase notice is generated. All compliance prohibitions are satisfied."
+    "reason": "The draft satisfies all compliance prohibitions. It does not promise an outcome or guarantee a claim result; it explicitly states the team is measuring understanding, not promising fewer support contacts, and no launch decision has been made. It does not remove any required disclaimer; instead it includes an explicit 'what we're not saying' section clarifying limits. It makes no unsupported claim about how Lemonade judges customers. It does not contradict known policy on data use, price, coverage or eligibility; it explicitly states coverage, claim decisions, payment timing and eligibility are unchanged. The attributed quote from Maya Chen is sourced to a specific meeting and date, and a SOURCE line is provided (weekly claims product meeting, 12 August 2026, Slack), satisfying traceability. No claim denial, coverage rejection or renewal price-increase notice is generated. All factual claims (test population, dates, scope) are attributed to the same sourced meeting. No isolated navigation/button label issues are present to wrongly fail here."
   },
   "attempt": 1,
   "outcome": "reviewed",
   "usage": [
     {
-      "model": "claude-sonnet-5",
-      "input_tokens": 608,
-      "output_tokens": 577,
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1633,
+      "output_tokens": 154,
       "cache_read_tokens": 0,
-      "cache_write_tokens": 1836,
-      "cost_usd": 0.011576
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002403
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 618,
+      "output_tokens": 350,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.005065
     },
     {
       "model": "claude-haiku-4-5",
-      "input_tokens": 1632,
-      "output_tokens": 92,
+      "input_tokens": 2073,
+      "output_tokens": 314,
       "cache_read_tokens": 0,
       "cache_write_tokens": 0,
-      "cost_usd": 0.002092
+      "cost_usd": 0.003643
     },
     {
       "model": "claude-sonnet-5",
-      "input_tokens": 616,
-      "output_tokens": 232,
-      "cache_read_tokens": 0,
-      "cache_write_tokens": 1645,
-      "cost_usd": 0.007665
-    },
-    {
-      "model": "claude-haiku-4-5",
-      "input_tokens": 2072,
-      "output_tokens": 268,
-      "cache_read_tokens": 0,
+      "input_tokens": 1042,
+      "output_tokens": 596,
+      "cache_read_tokens": 2126,
       "cache_write_tokens": 0,
-      "cost_usd": 0.003412
-    },
-    {
-      "model": "claude-sonnet-5",
-      "input_tokens": 1040,
-      "output_tokens": 514,
-      "cache_read_tokens": 0,
-      "cache_write_tokens": 2126,
-      "cost_usd": 0.012535
+      "cost_usd": 0.008469
     }
   ],
-  "cost_usd": 0.06744
+  "cost_usd": 0.01958
 }
