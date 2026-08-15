@@ -39,3 +39,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-q2-2026-results-in-force-premium-reaches-1-43-bi-0b33,2026-08-15T13:58:28.830Z,submit-external-comms,external-comms,Stav,claude,9.29,reviewed,0,0.018893,37.5
 2026-08-15-product-micro-copy-edae,2026-08-15T15:39:53.626Z,submit-product-microcopy,product-microcopy,Demo reviewer,claude,10,auto-published,0,0.021228,20
 2026-08-15-product-micro-copy-68e1,2026-08-15T15:40:17.859Z,submit-product-microcopy,product-microcopy,Demo reviewer,claude,10,auto-published,0,0.012728,20
+2026-08-15-product-micro-copy-d9ab,2026-08-15T15:40:41.197Z,submit-product-microcopy,product-microcopy,Demo reviewer,claude,10,auto-published,0,0.012213,20
