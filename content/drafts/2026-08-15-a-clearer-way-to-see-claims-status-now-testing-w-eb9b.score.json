@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-15-a-clearer-way-to-see-claims-status-now-testing-w-eb9b",
+  "source_hash": "9ec9ea423a80d9962bc8892ab26ddcf84de502886c0e011eeec7975cf5897c27",
+  "scored_at": "2026-08-15T08:12:48.346Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriately measured and careful throughout. High-stakes claims language uses complete sentences without jokes or unsupported certainty. The headline is concrete and specific. Disclaimers and scope-setting are precise and thorough. This matches the 'Covering' register required for claims-related content.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The content concerns claims status, which is high-stakes and involves customer decisions about their claims. The tone remains serious and informative throughout, with no jokes or playful language. This is correct for the stakes level.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Only necessary insurance terms are retained: 'claims', 'claim decisions', 'deductible' (not used here), and 'renters-insurance' as a product name customers must recognize. No folksy substitutes are invented. Plain language is used throughout: 'knowing what happens next is most of what you want to know' instead of technical jargon. Coverage mechanics are explained directly without unnecessary translation or circumlocution.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The piece frames the story around what the reader experiences during a claim ('knowing what happens next is most of what you want to know') and clearly states what does and doesn't change for them, avoiding internal jargon like 'rollout' or 'initiative'. It reads like LEM-004's self-critical directness rather than company-speak.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 2,
+      "reason": "Every factual claim (start date, group size, location, scope, decision date, what changed and didn't) is attributed to the single named source, the 12 August 2026 weekly claims product meeting Slack thread, consistent with how LEM-051 and LEM-053 trace specific figures to a sourced origin.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The WHY NOW section explicitly gives a concrete trigger: the test begins 1 September 2026 with a fixed group, decided in a meeting on a specific date. A reader can clearly see why this is being communicated today rather than left to infer timing.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": 1,
+      "reason": "The quote is attributed to a named person and sourced to the same meeting as other claims, giving it a traceable origin like LEM-050 and LEM-051 require. However, unlike those approved examples, this quote is generic risk-mitigation language ('not to make the claim look simpler than it is') that reads more like brand-safe boilerplate than something that sounds like a specific individual speaking, so fidelity to a real voice is only partially demonstrated.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9.38,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft attributes the quote from Maya Chen to a specific, traceable source (the weekly claims product meeting, 12 August 2026), which is also cited at the end. It explicitly disclaims guarantees ('does not guarantee fewer support contacts'), does not promise an outcome, does not remove any required disclaimer, and does not claim to judge customers in an unsupported way. It states clearly what does and does not change (coverage, claim decisions, payment timing, eligibility remain unchanged), which reads as consistent rather than contradictory. No claim denial, coverage rejection, or renewal price-increase notice is generated. All compliance prohibitions are satisfied."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 608,
+      "output_tokens": 577,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1836,
+      "cost_usd": 0.011576
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1632,
+      "output_tokens": 92,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002092
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 616,
+      "output_tokens": 232,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.007665
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2072,
+      "output_tokens": 268,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003412
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1040,
+      "output_tokens": 514,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2126,
+      "cost_usd": 0.012535
+    }
+  ],
+  "cost_usd": 0.06744
+}
