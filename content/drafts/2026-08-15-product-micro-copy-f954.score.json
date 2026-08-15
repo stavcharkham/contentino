@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-15-product-micro-copy-f954",
+  "source_hash": "dbd095ed0598883280bab14e82a38d08a4b43014e5f4bd6fc2d4ba37ac329ded",
+  "scored_at": "2026-08-15T12:51:37.547Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The all-caps button label \"SEE MY QUOTE\" uses the correct register for a low-stakes interface action, matching the pattern of approved examples LEM-011 (\"GET DISCOUNTS\", \"FINALIZE PAYMENT\") with a concrete verb.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present in this low-stakes button label, which is appropriate. The draft does not attempt jokes or dry insurance wordplay in this context.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The copy uses direct, concrete language (\"see\" and \"quote\") without unnecessary translation of insurance terms. No technical terms requiring selective translation are present.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 1,
+      "reason": "Uses 'MY' as a direct address form, but the interface state gives no named subject (like a pet or specific person) to compare against, and the draft lacks context showing whether a named subject was available. It follows the pattern of LEM-011's concrete action style but doesn't clearly personalize beyond the generic 'my'.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this button label, so the fit cannot be verified against a hard limit.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 1,
+      "reason": "'SEE' is a reasonable concrete verb for viewing a quote, consistent with LEM-011's style of short, concrete action verbs, but there's no surrounding flow shown (e.g., prior or next screen verbs like GET DISCOUNTS or FINALIZE PAYMENT) to confirm verb consistency across adjacent screens.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 8.33,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft consists solely of the button label \"SEE MY QUOTE\", a properly capitalized interface action string. It contains no promises of outcomes, no guarantees of claim payment, no disclaimers being removed, no unsupported judgement claims about customers, no contradictions of known policy, and no attributed quotes or factual public claims requiring a source. Per instructions, an isolated navigation or button label is not to be failed for lacking surrounding context, source, or disclaimer. No compliance prohibition is triggered."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 138,
+      "output_tokens": 70,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.005089
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1267,
+      "output_tokens": 56,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001547
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 116,
+      "output_tokens": 182,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002381
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1795,
+      "output_tokens": 183,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.00271
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 620,
+      "output_tokens": 320,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2107,
+      "cost_usd": 0.009708
+    }
+  ],
+  "cost_usd": 0.021435
+}
