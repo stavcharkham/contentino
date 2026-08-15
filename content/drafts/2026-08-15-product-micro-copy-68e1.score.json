@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-15-product-micro-copy-68e1",
+  "source_hash": "ca62480bdc425a6aa73f3f847a8eedff56d550cc57a9887546e380e55c2a077a",
+  "scored_at": "2026-08-15T15:40:21.150Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "All-caps header for a low-stakes interface action matches LEM-009 and LEM-011 pattern. Tone is warm and specific without being playful, appropriate for a decision moment.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. The copy stays straightforward for a quote review action, which is correct even at low stakes where humour would be permitted.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses the pet's name (Rocky) as approved in vocabulary guidelines. No insurance jargon is introduced unnecessarily. 'Quote' is a term customers need to recognise and is retained appropriately.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft uses the named subject 'Rocky' as provided by the interface, consistent with LEM-009's use of the specific email address and the pattern of addressing the person or subject directly when known.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this string, so the budget cannot be evaluated.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "REVIEW is a concrete action verb consistent with the vocabulary guidance's preferred verbs and matches the pattern of short, all-caps action buttons like GET DISCOUNTS and FINALIZE PAYMENT in LEM-011.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a single button/navigation label ('REVIEW ROCKY'S QUOTE') with no accompanying claims, promises, guarantees, disclaimers, judgement statements, or factual assertions to evaluate. It names the action specifically (reviewing Rocky's quote) rather than using a generic 'click here' label, satisfying mechanics. None of the compliance prohibitions (outcome promises, disclaimer removal, unsupported judgement claims, contradictions, unsourced attributed claims) are triggered since there is no substantive claim present. Per instructions, an isolated navigation/button label should not be failed for missing surrounding context."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 163,
+      "output_tokens": 87,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001525
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1270,
+      "output_tokens": 80,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.00167
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 123,
+      "output_tokens": 226,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002835
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1798,
+      "output_tokens": 161,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002603
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 627,
+      "output_tokens": 242,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004095
+    }
+  ],
+  "cost_usd": 0.012728
+}
