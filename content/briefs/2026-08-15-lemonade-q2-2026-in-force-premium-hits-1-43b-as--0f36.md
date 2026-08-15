@@ -3,7 +3,9 @@ id: 2026-08-15-lemonade-q2-2026-in-force-premium-hits-1-43b-as--0f36
 created: '2026-08-15T13:36:29.809Z'
 source: 'Lemonade Q2 2026 earnings call, The Motley Fool transcript, 7 August 2026'
 source_id: lemonade-q2-2026-earnings-call-motleyfool-20260807
-status: draft
+status: approved
+approved_by: Stav
+approved_at: '2026-08-15T13:38:16.419Z'
 api_cost_usd: 0
 ---
 # Lemonade Q2 2026: in-force premium hits $1.43B as revenue grows 79%
