@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-15-q2-2026-results-in-force-premium-reaches-1-43-bi-0b33",
+  "source_hash": "eb2559303c2b189d35a2850aca34f54c039b1e0320df991de799983c4bef2cb0",
+  "scored_at": "2026-08-15T13:58:32.359Z",
+  "content_type": "external-comms",
+  "stakes": "high",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "Tone is appropriately formal and direct for high-stakes financial disclosure. The register matches the stakes: careful explanations of losses and projections without hype or minimization. Compare favorably to LEM-051, which uses informal language within sourced financial context—this draft maintains appropriate formality throughout.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. Correctly omitted given high stakes involving financial results, shareholder impact, and loss disclosure. The content involves eligibility-adjacent language (profitability status) and attributed claims about future performance.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Translates selectively and correctly. Retains 'gross loss ratio' and 'adjusted EBITDA' as sourced financial terms customers need to recognize, then explains each inline with concrete meaning ('share of premium we pay out in claims'; 'loss is smaller than it was'). Does not invent substitutes. Explanation of in-force premium is concrete. Follows the vocabulary principle of defining retained terms with examples.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 1,
+      "reason": "The draft addresses the shareholder directly in a few key spots ('what that means for you as a shareholder') and explains jargon like in-force premium and gross loss ratio in reader terms, but much of the piece stays in company-reporting language (revenue grew, adjusted EBITDA loss narrowed) typical of an earnings release rather than being consistently framed around what this means for the reader's world, closer to LEM-051's investor-facing register than a fully reader-centered frame.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 2,
+      "reason": "Every figure (in-force premium, growth rate, revenue, loss ratio, EBITDA loss, guidance) is attributed to the named Q2 2026 earnings call transcript published by The Motley Fool, with a clear source line at top and bottom, matching the sourcing rigor shown in LEM-051 and LEM-050.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The piece opens by naming the specific earnings call and date, making clear this is being said today because it is the just-reported quarterly results, giving the reader a clear, timely reason for the communication.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft contains no attributed quotation from a named individual; it reports figures and characterizations from the earnings call without quoting anyone directly, so quote fidelity does not apply.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9.29,
+  "compliance": {
+    "pass": true,
+    "reason": "All factual/financial claims are attributed to a traceable source (Q2 2026 earnings call, 7 August 2026, transcript published by The Motley Fool), cited both inline near the top and again at the close. No outcome is promised or guaranteed: the EBITDA projection is explicitly qualified as 'not a promise or a guarantee.' No disclaimer appears to have been removed; the piece proactively adds clarifying context ('It is still a loss. Lemonade is not profitable today.') rather than stripping caveats. No unsupported claim is made about how Lemonade judges a customer; the loss-ratio explanation describes risk-matching in aggregate, not individual judgement. Nothing here contradicts known policy on data use, price, coverage or eligibility, and the piece does not generate a claim denial, coverage rejection or renewal price-increase notice. All compliance prohibitions are satisfied."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 151,
+      "output_tokens": 101,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001641
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1601,
+      "output_tokens": 147,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002336
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 542,
+      "output_tokens": 309,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004503
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2041,
+      "output_tokens": 263,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003356
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 966,
+      "output_tokens": 470,
+      "cache_read_tokens": 2126,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.007057
+    }
+  ],
+  "cost_usd": 0.018893
+}
