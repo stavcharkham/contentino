@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-15-product-micro-copy-23f7",
+  "source_hash": "1183808d13aa35571833f71bf59f485f48ad90f7e3bb161ddad8e3a6da5ed0a6",
+  "scored_at": "2026-08-15T16:03:41.831Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "Tone is appropriate for low-stakes interface copy. All-caps header with a concrete action verb matches the approved examples (LEM-011) for button labels and section headers at this stakes level.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The copy is purely functional, which is correct for interface labeling even though stakes are low.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "No translation is attempted. 'Quote' is a standard insurance term that customers need to recognise, so it is correctly retained without explanation.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft uses the named subject 'Rocky' provided by the interface, consistent with LEM-009's use of the specific email address to personalize the header.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared character limit is provided for this interface element, so fit cannot be evaluated.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "'REVIEW' is a concrete action verb consistent with the approved examples' pattern of short, direct action verbs like 'GET' and 'FINALIZE' for all-caps headers/buttons.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a single button label ('REVIEW ROCKY'S QUOTE') with no accompanying claims, promises, guarantees, judgement statements, or factual assertions to evaluate. It uses an all-caps interface label appropriately per mechanics, names the specific action (review), and includes the pet's name per vocabulary preference. There is no promise of an outcome, no removed disclaimer, no unsupported judgement claim, no contradiction of policy, and no quote or public claim requiring a source. Per instructions, an isolated navigation or button label should not fail merely because surrounding copy or a source is absent."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 165,
+      "output_tokens": 71,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001369
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1270,
+      "output_tokens": 71,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001625
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 123,
+      "output_tokens": 213,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002705
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1798,
+      "output_tokens": 157,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002583
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 627,
+      "output_tokens": 211,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003785
+    }
+  ],
+  "cost_usd": 0.012067
+}
