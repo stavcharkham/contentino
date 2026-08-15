@@ -29,6 +29,18 @@ it has to graduate. A settings row cannot.
 `README.md`, `PRD.md`, `DECISIONS.md`, and the commit history deliverables in their own
 right. Small commits with real messages. No squashing history into one dump at the end.
 
+## Where it stands (2026-08-15)
+
+Production runs at contentino-seven.vercel.app; the runtime commits into this same repo,
+so always `git pull --rebase origin main` before pushing. All three surfaces are live and
+were verified by Stav: Slack (buttons, feedback, on-demand Drive sync), Claude (the
+`contentino-engine` plugin; drafts on the user's subscription, judged by the production
+gate over an MCP connector or the HTTP endpoint, shared password in Vercel's
+`DASHBOARD_PASSWORD`), and the password-gated dashboard. `/lemonade-demo` is a fixed
+script with pre-verified inputs. Remaining before the 2026-08-17 deadline: README (still
+unwritten, written last on purpose), making the repo public at submission, trust metrics
+on the dashboard, the recordings and the deck. `PLAN.md` has the full list.
+
 ## Constraints that bound every decision
 
 - **5 days.** Deadline is 2026-08-17. Depth on one path beats breadth across five.

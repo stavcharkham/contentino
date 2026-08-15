@@ -43,3 +43,12 @@
 - Which model does what - settled per job, recorded with an explicit caveat that the
   non-Anthropic comparison is unverified. A day 5 task re-opens it against real usage.
   In `DECISIONS.md`.
+
+Open as of 2026-08-15:
+
+- Rename the claude.ai connector from "Contentino Password" to "Contentino gate" - the
+  name shows in every demo transcript. (Settings -> Connectors, two minutes.)
+- Update the plugin to 0.5.0 and run /lemonade-demo once more; expected: button label
+  10/auto-published, announcement 9.29/held for review on the first try, full text shown.
+- Pick the submission-day moment to make the repo public (decision recorded; timing is
+  yours). README must be written first.

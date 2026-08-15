@@ -192,22 +192,28 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 > first-principles diagram and what exists, plus the presentation work. Decisions in
 > `DECISIONS.md` under 2026-08-14.
 
-- [ ] **Stav runs the operator test kit** (`TEST-PLAN.md`) end to end and reports results.
-      This is the next action; fixes come out of it before anything new is built.
-- [ ] Add the single entry point: one skill that takes a plain request, classifies it and
-      routes to the right content skill, so nobody has to know skill names.
+- [x] **Stav runs the operator test kit** end to end and reports results. Done 2026-08-15
+      via live Slack and Claude runs; every failure found was fixed and re-verified live.
+- [x] Add the single entry point: `/contentino` routes any request to the right flow and
+      submits every draft to the production gate (MCP connector or HTTP). Verified live.
 - [ ] Surface the trust metrics on the dashboard, computed from the existing ledger:
       cycles per approval and share of zero-feedback approvals.
-- [ ] Build `/lemonade-demo`: the guided, all-success, real-execution tour in the plugin.
-      Ends with the reviewer's own run visible in the dashboard ledger, then the skill menu,
-      then the bring-your-own-content option.
+- [x] Build `/lemonade-demo`: now a fixed numbered script with pre-verified inputs, ending
+      in the reviewer's own ledger rows and the bring-your-own-content option. Run live by
+      Stav three times; latest script version (0.5.0) built from those runs, not yet re-run.
 - [ ] Record the main story on real material (latest earnings call unless Stav picks
       another): transcript into Drive, brief in Slack, approval, scored draft, one feedback,
       revision, approved. Plus two short clips: the learning loop through graduation, and
       the compliance veto with narration.
 - [ ] Build the self-serve deck (read alone, not presented). Later, with Stav. The
       new-content-type flow with a domain expert is its centerpiece.
-- [ ] Clean the repo for reviewers. Later task, before submission.
+- [x] Clean the repo for reviewers, first pass (2026-08-15): history secret scan clean,
+      test artifacts and ledger junk removed, AGENTS.md now points at CLAUDE.md.
+- [ ] Flip the repo public on submission day, after the README exists.
+- [ ] Write `README.md` - the public face, first thing reviewers open. Still unwritten.
+- [ ] Stav: rename the claude.ai connector from "Contentino Password" to "Contentino gate",
+      update the plugin to 0.5.0 and run `/lemonade-demo` once more to confirm the fixed
+      announcement passes first try.
 
 ## Not doing
 

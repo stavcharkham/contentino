@@ -646,3 +646,52 @@ not presented, and gets built later.
 dismiss than a feature list. Forcing a regeneration into the main recording - included
 only if a test run produces one naturally.
 **Reversible:** yes
+
+### 2026-08-15 - Claude drafts, production judges
+**Category:** build
+**Decided:** In the Claude surface the model drafts on the user's own subscription, and every draft is submitted to a production gate that scores, stores and ledgers it. The gate is reachable two ways: an MCP connector (the URL carries the secret) and an HTTP endpoint with the shared password.
+**Rejected:** Running the scoring CLI on the user's machine (needs an API key nobody has); curl from claude.ai (its sandbox blocks all outbound requests); trusting the model to score itself (it awarded itself 10/10 and wrote no ledger row).
+**Why:** Nothing ships unscored only holds if scoring happens where the user cannot skip it. Splitting draft from judgment also keeps API cost near zero for drafting.
+**Reversible:** yes
+
+### 2026-08-15 - Requests that ask for prohibited claims get a compliant alternative, held for review
+**Category:** product
+**Decided:** When the request itself demands wording compliance forbids, the system writes a compliant alternative and always holds it for human review, with a note explaining why.
+**Rejected:** Refusing outright (unhelpful); auto-publishing the sanitized version (it scored 10 and shipped itself, which hides a policy conflict from the people who own the policy).
+**Why:** Stav's call. The conflict is the signal; a person should see it.
+**Reversible:** yes
+
+### 2026-08-15 - Feedback is applied, not interrogated
+**Category:** product
+**Decided:** Reviewer feedback like "make it shorter" is interpreted and applied directly - exact replacement when the target is unambiguous, full rewrite otherwise - then rescored.
+**Rejected:** Asking clarifying questions before touching the draft.
+**Why:** The reviewer already said what they want. Extra questions cost the exact review time the system exists to save.
+**Reversible:** yes
+
+### 2026-08-15 - The dashboard hides behind ten lines of password middleware
+**Category:** build
+**Decided:** A shared password checked in Next.js middleware protects all pages; API routes keep their own signatures and secrets. One password also serves as the gate bearer token and the connector URL secret, all rotatable from one Vercel setting.
+**Rejected:** Vercel's paid protection options; building real auth with users and sessions.
+**Why:** The $50/5-day constraints. Auth code demonstrates nothing about content systems.
+**Reversible:** yes
+
+### 2026-08-15 - The demo is a fixed script, not an improvisation
+**Category:** product
+**Decided:** `/lemonade-demo` is a numbered script with pre-verified inputs: a button label tested to 10/auto-published three times, and an announcement tested to 9.29/held-for-review twice, both against production. Checkpoints use structured questions, and no approval is recorded without a real name.
+**Rejected:** Letting the model draft freely inside the tour. Live runs produced different candidates every time; one tripped the zero-criterion block mid-demo with nobody there to explain it.
+**Why:** A reviewer sees the tour once, alone. The execution stays real - real gate, real scores, real ledger - but the inputs stop being dice rolls.
+**Reversible:** yes
+
+### 2026-08-15 - The repo goes public at submission
+**Category:** product
+**Decided:** Make the GitHub repo public on submission day so any reviewer can install the plugin without an invite. First cleanup pass done: full-history secret scan (clean, assignment folder never committed), test artifacts and debugging records removed.
+**Rejected:** A second public plugin-only repo (two copies drifting apart, and reviewers lose the commit history, which is a deliverable); inviting reviewers by GitHub username (identities unknown at submission time).
+**Why:** The submission must work for strangers. The repo is itself a deliverable.
+**Reversible:** yes
+
+### 2026-08-15 - Reads that follow writes are served from memory
+**Category:** build
+**Decided:** GitHub storage keeps an in-instance overlay of everything it just wrote, so a read straight after a write returns the new content even while GitHub's read API lags.
+**Rejected:** Retry loops around every read (treats the symptom, keeps the race).
+**Why:** GitHub's read-after-write lag was the root cause of the intermittent "couldn't finish the run" failures across every surface.
+**Reversible:** yes
