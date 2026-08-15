@@ -1,102 +1,76 @@
 ---
 name: lemonade-demo
-description: A guided tour of Contentino for reviewers. Use when someone wants to see the system work end to end without setup - it walks them through generating real content, watching the production gate score it, and finding their own run in the live ledger.
+description: A guided tour of Contentino for reviewers. Use when someone wants to see the system work end to end without setup - it walks them through generating real content, watching the evaluation loop score it, and finding their own run in the live dashboard.
 ---
 
 # Lemonade Demo
 
-You are giving a guided tour to someone evaluating Contentino. They have no context from
-any other conversation. Follow the script below step by step, in order, without skipping.
-The inputs are fixed; the execution is real - every piece goes through the actual
-production gate and lands in the actual ledger.
+You are guiding someone who is using Contentino for the first time, with no context at
+all. Keep every message short. Follow the steps in order. Never skip one.
 
-Rules for the whole tour:
+Rules:
 
-- Submit through the gate exactly as the `contentino` skill specifies (MCP tools first).
-  **Never invent a score.** If the gate is unreachable, say the demo needs the Contentino
-  connector and stop.
-- Speak plainly. No internal jargon, no storage paths, no terms the person hasn't been
-  given. Explanations are 2-3 sentences, then move on.
-- At every checkpoint marked ASK, use the ask-user-question tool with the listed options.
-  Do not continue past a checkpoint on a vague answer.
-- Do not end a step early. Each step ends only when its output has been shown.
+- Submit drafts through the gate tools exactly as the `contentino` skill specifies.
+  **Never invent a score.** If the tools are unreachable, say the demo needs the
+  Contentino connector and stop.
+- Call the scoring "the evaluation loop" when talking to the person. Never use internal
+  jargon or storage paths.
+- Where a step says PROMPT, show it as a copy-paste block and tell them to send it as
+  their next message. Wait for them to send it.
 
-## Step 1 - open
+## Step 1 - intro
 
-Say, in your own words but this briefly: Contentino writes Lemonade content from the
-company's brand profile. Every piece is scored by a production engine against a rubric
-before any person sees it, and reviewer corrections feed back into the profile. Nothing
-here is canned - the pieces made in this tour get real scores and land in the live
-records with the reviewer's name.
+Say, in about this many words: Contentino writes Lemonade content from the company's
+brand profile. Every piece goes through an evaluation loop - scored against Lemonade's
+real approved copy before any person sees it - and reviewer corrections feed back into
+the profile. Everything in this demo is real: real scores, and your runs land in the
+live dashboard.
 
-Then: the tour is three short parts - a button label, a full announcement from Lemonade's
-real Q2 2026 earnings call, and finding their own runs on the dashboard.
+Then: "First test - product copy. Send this prompt:"
 
-ASK: "Ready to start?" Options: "Yes, run part 1" / "Tell me more first".
+PROMPT:
+> Write a button label for the screen where a customer has just finished entering
+> details for a quote for their dog Rocky. The button opens the finished quote.
+> Interface character limit: 24.
 
-## Step 2 - the button label
+## Step 2 - product copy
 
-Use exactly this request (show it to them first):
+When they send it: submit exactly `REVIEW ROCKY'S QUOTE` through the gate as
+`product-microcopy` (it is pre-tested - do not rewrite it). Show the label, the score,
+the outcome, and the criteria table with reasons. Add one line: criteria are scored 0-2
+and weighted into a 10-point verdict.
 
-> A button label for the screen where a customer has just finished entering details for a
-> quote for their dog Rocky. The button opens the finished quote. Interface character
-> limit: 24.
+Explain in 3 sentences, no more: the evaluation loop compared this against real approved
+Lemonade copy. Low-stakes copy scoring 9+ publishes itself - that just happened. A
+compliance check sits on top, and any single criterion at 0 blocks the piece, no matter
+the total.
 
-Submit exactly this candidate through the gate as `product-microcopy`:
+Then: "Next test - turning a real earnings call into an announcement. Send this prompt:"
 
-> REVIEW ROCKY'S QUOTE
-
-Show the verdict: the score, the outcome, and the criteria table with each score and
-reason. Add one line: criteria are scored 0 to 2 and weighted into the 10-point verdict.
-
-Then explain, briefly: the score came from the production engine comparing this draft
-with real approved Lemonade copy. Low-stakes copy that scores 9 or higher publishes
-itself with nobody watching. A compliance check sits above all of it - a draft that
-promises outcomes or misuses data claims is blocked no matter how well it scores - and
-any single criterion at 0 also blocks. Higher-stakes content is always held for a person,
-as part 2 will show.
-
-If the outcome is anything other than auto-published, do not gloss over it: show the
-criterion that caused it and explain in one sentence what the gate caught. That is the
-system working.
-
-ASK: "Ready for part 2 - the full loop on Lemonade's real Q2 2026 earnings call?"
-Options: "Yes" / "Explain the scoring more first".
+PROMPT:
+> Write an announcement post from Lemonade's Q2 2026 earnings call:
+> https://www.fool.com/earnings/call-transcripts/2026/08/07/lemonade-lmnd-q2-2026-earnings-call-transcript/
 
 ## Step 3 - the brief
 
-Write a brief from exactly these facts and no others (Lemonade Q2 2026 earnings call,
-The Motley Fool transcript, 7 August 2026):
+When they send it: this content type starts with a brief, never a straight draft. Write
+the brief from the call's figures (in-force premium $1.43B, up 32.5%, eleventh straight
+quarter of accelerating growth; revenue $294M, up 79%; gross loss ratio 60% from 67%;
+adjusted EBITDA loss $19M, narrowed 54%; guidance reiterated, positive adjusted EBITDA
+projected for Q4 2026). It must include a "Not saying" list: not profitable yet, the Q4
+projection is not a promise, no invented quote, no claimed cause for the loss-ratio
+improvement, no link to customer prices or coverage, no added figures.
 
-- In-force premium reached $1.43 billion, up 32.5% year over year - the eleventh straight
-  quarter of accelerating growth.
-- Revenue grew 79% to $294 million.
-- Gross loss ratio improved to 60% from 67%.
-- Adjusted EBITDA loss narrowed 54% to $19 million.
-- Management reiterated full-year guidance and projected positive adjusted EBITDA in
-  Q4 2026.
-
-The brief must contain: a headline, what changed, no quote (the source excerpt has no
-attributable one - say the brief forbids inventing one), and a "Not saying" list with at
-least these boundaries: not profitable yet (it is a $19M adjusted loss); the Q4
-projection is a projection, not a promise; no invented quote; no claimed cause for the
-loss-ratio improvement; no link to customer prices, coverage, or eligibility; no added
-figures.
-
-Submit the brief through the gate, then show it to the reviewer.
-
-ASK: "This brief needs a named human approval before anything gets drafted - your name
-goes on the record. Approve it?" Options: "Approve it" / "I want changes first". If they
-approve, ask for their name in the same question or a follow-up question with a text
-answer. **Do not record the approval until you have an actual name.** If they asked for
-changes, make them and ask again.
+Submit the brief through the gate and show it. Then use the ask-user-question tool:
+"This needs a named human approval before drafting - your name goes on the record.
+Approve?" Options: "Approve" / "I want changes". Get their actual name (a follow-up
+text question if needed). **Never record an approval without a real name.**
 
 ## Step 4 - the announcement
 
-After the named approval is recorded through the gate: submit exactly the announcement
-below through the gate as `external-comms` with the brief id. Do not rewrite it - it is
-pre-tested against the gate. Do not stop before the draft is submitted and its verdict
-shown - this step is not done until the announcement exists and has a real score.
+After the named approval: submit exactly this pre-tested announcement through the gate
+as `external-comms` with the brief id. Do not rewrite it. Show the full text, then the
+score and criteria table.
 
 > # Q2 2026 results: in-force premium reaches $1.43 billion
 >
@@ -124,32 +98,24 @@ shown - this step is not done until the announcement exists and has a real score
 > Source: Lemonade Q2 2026 earnings call, 7 August 2026, transcript published by The
 > Motley Fool.
 
-**Show the full announcement text first** - the complete post, not a summary or a quoted
-line. The reader came to see the content, not just its score. Then show the verdict and
-criteria table. Then land the key point in 2-3 sentences: whatever
-the score, the outcome is "held for review" - announcements never publish themselves.
-That ceiling belongs to the content type, set by its content owner; a high score buys a
-faster review, not a shortcut past one. Point at one sentence in the draft that exists
-because of the brief's "Not saying" list.
+Land the point in 2 sentences: whatever the score, announcements are always held for a
+person - that ceiling belongs to the content type, and no score lifts it. Point at one
+sentence that exists only because of the brief's "Not saying" list.
 
-If the outcome is blocked, show which criterion or compliance reason caused it, revise
-once, and resubmit. Narrate it as the gate doing its job.
+If it comes back blocked, show the reason plainly, revise once, resubmit. That is the
+evaluation loop working, not an error.
 
-## Step 5 - the dashboard
+## Step 5 - the dashboard and the close
 
-Tell them to open the evidence dashboard (Stav provides the URL and password alongside
-this demo) and find the two pieces they just made under Recent pieces - score, outcome,
-cost in cents, and time saved. The point: every run is measured, and trust in the system
-is a number that is tracked (revisions per approval going down), not a promise.
+Tell them: open the dashboard (Stav sends the link and password with this demo) and
+find the two pieces they just made under Recent pieces - score, outcome, cost in cents.
+Every run is measured; trust in the system is a tracked number, not a promise.
 
-## Step 6 - close
+Then, one line each: Slack and Google Drive run the same loop (a transcript dropped in
+a folder becomes a brief in Slack with an approve button); corrections cluster into
+proposed profile rules a person approves; content experts add new content types
+themselves, which activate only when their real examples score 9 or higher.
 
-One line each, no more: Slack and Google Drive run this same loop (a transcript dropped
-in a folder becomes a brief in Slack with an approve button); reviewer corrections
-cluster into proposed guideline changes a person approves; a proven guideline can
-graduate into a code-level check; new content types are added by the content experts
-themselves, and only activate once their real examples score 9 or higher.
-
-Then the last line of the tour: *"Want to try a request of your own? Anything goes - and
-somewhere in Tel Aviv, Stav is hoping this isn't his blue screen of death moment."* If
-they take it, run their request through the normal `contentino` routing, gate included.
+Last line: *"Want to try a request of your own? Anything goes - and somewhere in Tel
+Aviv, Stav is hoping this isn't his blue screen of death moment."* If they take it, run
+it through the normal `contentino` routing, evaluation loop included.
