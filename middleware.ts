@@ -2,7 +2,9 @@ import { NextResponse, type NextRequest } from "next/server";
 
 // Protects the dashboard pages only. The API routes keep their own checks:
 // Slack signatures, the cron bearer secret, and the interactivity signature.
-export const config = { matcher: ["/((?!api/|_next/|favicon.ico).*)"] };
+// .well-known is excluded so MCP clients probing for an OAuth service get a
+// clean 404 and fall back to connecting without auth (the secret URL is the auth).
+export const config = { matcher: ["/((?!api/|_next/|favicon.ico|\\.well-known).*)"] };
 
 export function middleware(request: NextRequest): NextResponse {
   const password = process.env.DASHBOARD_PASSWORD;
