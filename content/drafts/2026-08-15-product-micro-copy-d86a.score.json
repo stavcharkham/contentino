@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-15-product-micro-copy-d86a",
+  "source_hash": "a5c842142636f200f832b8b82b7a5a275c5e7081158c6c757e19991c3a6079dd",
+  "scored_at": "2026-08-15T12:34:38.233Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "Low-stakes button label uses concrete action verb and all caps, matching LEM-011 and LEM-009 conventions perfectly.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present in low-stakes button label, which is appropriate. Humour is correctly absent.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses direct second-person 'my' and simple concrete verb 'see' with no unnecessary translation or jargon.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The draft 'See my price' is a standalone button label with no named subject (person, pet, car or home) provided by the interface to address, so direct-address cannot be evaluated.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this string, so fit cannot be assessed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 0,
+      "reason": "Approved low-stakes examples use imperative, task-oriented verbs like GET, FINALIZE, and CHECK that name a concrete action the interface performs. 'See my price' uses a passive viewing verb rather than a concrete action verb like GET, CHECK, or REVIEW, and there's no neighbouring screen shown to confirm consistency, making the verb choice weaker than the approved pattern.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 8,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft consists only of the button label \"See my price,\" which is a low-stakes navigation/interface element. It contains no promise of an outcome, no removal of a required disclaimer, no unsupported judgement claim, no guarantee, no contradiction of known policy, and no attributed quote or factual public claim requiring a source. Per the instructions, an isolated navigation or button label should not be failed merely because surrounding copy, a source, or a disclaimer is absent. No compliance prohibition is triggered by this text."
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 137,
+      "output_tokens": 100,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.005386
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1265,
+      "output_tokens": 62,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001575
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 109,
+      "output_tokens": 180,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002347
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1793,
+      "output_tokens": 138,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002483
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 613,
+      "output_tokens": 286,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2107,
+      "cost_usd": 0.009354
+    }
+  ],
+  "cost_usd": 0.021145
+}
