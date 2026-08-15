@@ -21,3 +21,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-product-micro-copy-2aaf,2026-08-15T09:15:08.820Z,submit-product-microcopy,product-microcopy,Claude (gate verification),claude,10,auto-published,0,0.011182,20
 2026-08-15-product-micro-copy-798e,2026-08-15T09:15:30.471Z,submit-product-microcopy,product-microcopy,Claude (gate verification),claude,10,auto-published,0,0.012217,20
 2026-08-15-product-micro-copy-b4c0,2026-08-15T09:19:44.984Z,submit-product-microcopy,product-microcopy,Claude (gate verification),claude,10,auto-published,0,0.011866,20
+2026-08-15-product-micro-copy-d931,2026-08-15T09:20:35.605Z,submit-product-microcopy,product-microcopy,Claude (gate verification),claude,8.75,reviewed,0,0.011926,10
