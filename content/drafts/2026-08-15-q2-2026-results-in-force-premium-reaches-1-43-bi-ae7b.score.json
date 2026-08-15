@@ -1,0 +1,107 @@
+{
+  "piece_id": "2026-08-15-q2-2026-results-in-force-premium-reaches-1-43-bi-ae7b",
+  "source_hash": "920c5a209b82c836f13437a357fb26729af101d1c34261389c80e98dad07202f",
+  "scored_at": "2026-08-15T14:01:41.270Z",
+  "content_type": "external-comms",
+  "stakes": "high",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriately formal and careful for high-stakes financial disclosure. It matches the approved examples (LEM-050, LEM-051) by using direct language about company performance and shareholder impact without reputation management or false certainty.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. This is correct for high-stakes financial content where nothing is at stake for humour use.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Technical terms are translated selectively and appropriately. 'In-force premium' is defined inline ('the total annual value of all the policies we currently have active'). 'Gross loss ratio' is explained plainly ('the share of premium we pay out in claims'). No folksy substitutes are invented for necessary financial terms. The draft follows the approved pattern from LEM-051 by keeping precise financial language while explaining it for non-expert shareholders.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 1,
+      "reason": "The draft explains terms like in-force premium and gross loss ratio for the reader, and directly addresses 'you as a shareholder' in one place, but most of the piece is framed as an internal financial recap (results, guidance, adjusted EBITDA) rather than consistently translated into what this means for the reader's world.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 2,
+      "reason": "Every figure (in-force premium, growth rate, revenue, loss ratio, EBITDA loss, guidance) is attributed to the named Q2 2026 earnings call and Motley Fool transcript, with a source line at the end matching the external-communications requirement to trace claims to the brief's source list.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The piece opens with a dated, specific earnings call and states this is a quarterly results report tied to a known event, making clear why this is being communicated now.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft contains no attributed quotations from a named speaker, so quote fidelity does not apply.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9.29,
+  "compliance": {
+    "pass": true,
+    "reason": "All figures are attributed to a specific, traceable source (Lemonade's Q2 2026 earnings call, 7 August 2026, transcript published by The Motley Fool), satisfying the attribution requirement for public-company claims. No disclaimer required by the source is removed; instead the draft adds explicit clarifications (e.g., 'It is still a loss. Lemonade is not profitable today.'). The forward-looking EBITDA statement is explicitly hedged as 'a projection... not a promise or a guarantee,' so no outcome is promised or guaranteed. The loss ratio explanation ('a lower number means the policies we write are better matched to the risk they carry') is a plausible, unremarkable industry-standard interpretation of a loss ratio and does not constitute an unsupported claim about how Lemonade judges a customer, a coverage/eligibility/price decision, or a contradiction of known policy. No claim denial, coverage rejection, or renewal price-increase notice is generated. All compliance prohibitions are satisfied."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1601,
+      "output_tokens": 163,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002416
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 542,
+      "output_tokens": 352,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004933
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2041,
+      "output_tokens": 233,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003206
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 966,
+      "output_tokens": 369,
+      "cache_read_tokens": 2126,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.006047
+    }
+  ],
+  "cost_usd": 0.016602
+}
