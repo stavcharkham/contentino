@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-15-product-micro-copy-9103",
+  "source_hash": "1595e5598c1e0101c37f10ba4e2c2d42c277c0fd82ec4ee5a9302927248aaa4d",
+  "scored_at": "2026-08-15T13:16:11.108Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The all-caps button label matches the approved pattern (LEM-011: GET DISCOUNTS, FINALIZE PAYMENT). The tone is appropriately warm and direct for a low-stakes interface action.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The use of the pet's name (Rocky) follows approved vocabulary guidance to use the person's, pet's, car's or home's name when known, which is appropriate for low-stakes copy.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The copy uses concrete action verb 'REVIEW' and avoids technical jargon. It follows the approved pattern of naming the action rather than generic labels, with no insurance terms requiring translation at this low-stakes moment.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft uses the pet's name 'Rocky' directly in the button, consistent with the interface providing a named subject, matching the pattern of personalization seen in approved examples like LEM-009 using the person's email/context.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this button label in the draft or prompt, so the budget cannot be evaluated.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "REVIEW is a concrete, established action verb consistent with the product flow (reviewing a quote before proceeding), similar in style to concrete verbs like GET and FINALIZE in LEM-011.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a single button/interface label ('REVIEW ROCKY'S QUOTE') in proper all-caps mechanics style, naming a specific action tied to a named entity (Rocky), consistent with the 'name the action' rule and avoiding generic 'click here' phrasing. It contains no promises of outcomes, no removed disclaimers, no unsupported judgement claims, no guarantees, and no contradictions of policy since it makes no substantive claims at all. Per the instructions, an isolated navigation or button label should not fail merely because surrounding copy, a source, or a disclaimer is absent. No compliance prohibitions are triggered."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 163,
+      "output_tokens": 67,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001325
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1270,
+      "output_tokens": 51,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001525
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 123,
+      "output_tokens": 226,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002835
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1798,
+      "output_tokens": 198,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002788
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 627,
+      "output_tokens": 243,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004105
+    }
+  ],
+  "cost_usd": 0.012578
+}
