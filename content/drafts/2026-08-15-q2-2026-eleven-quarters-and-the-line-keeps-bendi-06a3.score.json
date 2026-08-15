@@ -1,0 +1,42 @@
+{
+  "piece_id": "2026-08-15-q2-2026-eleven-quarters-and-the-line-keeps-bendi-06a3",
+  "source_hash": "88a25e729e6e6b4abcc68416869eefdca7a7459b5a3575bde5d96ba21f093844",
+  "scored_at": "2026-08-15T13:57:25.332Z",
+  "content_type": "external-comms",
+  "stakes": "high",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 0,
+      "reason": "em dashes used as a house style; sentence exceeds 28 words"
+    }
+  ],
+  "score": 0,
+  "compliance": {
+    "pass": true,
+    "reason": "Paid checks skipped after mechanical block"
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 151,
+      "output_tokens": 114,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.005555
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1556,
+      "output_tokens": 90,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002006
+    }
+  ],
+  "cost_usd": 0.007561
+}
