@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-16-we-re-testing-a-clearer-way-to-explain-claim-sta-031f",
+  "source_hash": "4ff2565b11b4093471ec94cb83aadf77cdccad675f14786a1a48e2b58bc38039",
+  "scored_at": "2026-08-16T12:46:44.041Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone appropriately matches high stakes. The draft uses careful, complete sentences with contractions, explicitly disclaims what the test doesn't do, and avoids unsupported certainty. It mirrors LEM-051's approach of explaining a concrete change in plain language without overstatement. The repeated clarifications ('That's it', 'This is a test', 'It's not') reflect the Covering register required for eligibility and claims language.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. This is appropriate because the content involves claims processes, eligibility scope and measurement claims—all high-stakes territory where the profile prohibits jokes. The draft correctly reserves tone for stakes.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The draft selectively translates insurance concepts appropriately. It retains 'claim status', 'coverage', 'eligibility' and 'claim decisions' because customers need to recognise these terms, but explains the actual change in concrete verbs: 'changes how we explain', 'describes existing claim status and next step in simpler language'. It avoids inventing folksy substitutes and defines scope with concrete examples (200 customers, New York, renters insurance, four weeks). This matches the vocabulary principle of keeping terms when customers need to recognise them while translating mechanics into plain language.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 1,
+      "reason": "sentence exceeds 28 words"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft consistently frames the change in the reader's terms: what changes for them, what doesn't, and what to expect if they weren't invited. It avoids internal jargon like 'rollout' or 'pilot cohort' in favor of plain explanation of impact on the customer's claim experience.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 0,
+      "reason": "No approved brief or source list is provided or referenced for this draft, and there is no visible attribution trail for the central factual claims (test dates, customer count, location, measurement goals). The attributed quote cites 'Meeting notes, claims-status view test brief' but no such brief is supplied for verification, so the central claims cannot be traced to an approved source as required.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The 'Why now' section explicitly ties the timing to the test window opening 1 September 2026 and explains why this is being published before invited customers see the new view, plus clarifies relevance for non-invited customers. The reason for saying this today is clear and visible near the top.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": 0,
+      "reason": "The quote is attributed only to 'Meeting notes, claims-status view test brief' rather than a named speaker, and no transcript or source material is provided to verify it sounds like a real person or is faithful to an actual statement. Without a traceable transcript source, fidelity cannot be confirmed, and this fails the requirement that attributed quotes be supported by transcript material.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 6.88,
+  "compliance": {
+    "pass": true,
+    "reason": "No compliance prohibitions are triggered. The draft makes no outcome guarantee (explicitly states results aren't known yet and reducing repeat questions is 'measured, not promised'), removes no disclaimer, and repeatedly disclaims that coverage, decisions, timing and eligibility are unchanged rather than contradicting known policy. There is no unsupported judgement claim about how Lemonade evaluates a customer; if anything it disclaims trying to make claims look simpler. The quoted line is attributed to an internal, traceable source ('Meeting notes, claims-status view test brief') rather than presented as an unsourced public factual claim, and it is not an attributed public-company claim requiring external sourcing. No claim denial, coverage rejection or renewal price-increase notice is generated. Scope, dates, numbers (200 customers, four weeks, 1 September 2026, New York, renters insurance) are internally consistent throughout with no contradictions."
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1233,
+      "output_tokens": 732,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1836,
+      "cost_usd": 0.014376
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1763,
+      "output_tokens": 121,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002368
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 772,
+      "output_tokens": 326,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.008917
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2203,
+      "output_tokens": 326,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003833
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1196,
+      "output_tokens": 500,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2126,
+      "cost_usd": 0.012707
+    }
+  ],
+  "cost_usd": 0.089838
+}
