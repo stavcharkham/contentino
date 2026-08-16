@@ -1,7 +1,7 @@
 {
   "name": "contentino-engine",
   "description": "Lemonade's content engine: generate, score and review on-brand content, and improve the profile with every correction.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "author": {
     "name": "Stav Charkham"
   }

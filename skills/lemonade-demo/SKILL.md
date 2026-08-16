@@ -64,7 +64,10 @@ spec, this one needs a named human approval before anything is drafted. Write
 the brief from the call's figures (in-force premium $1.43B, up 32.5%, eleventh straight
 quarter of accelerating growth; revenue $294M, up 79%; gross loss ratio 60% from 67%;
 adjusted EBITDA loss $19M, narrowed 54%; guidance reiterated, positive adjusted EBITDA
-projected for Q4 2026). It must include a "Not saying" list: not profitable yet, the Q4
+projected for Q4 2026). It must include this Purpose section - Serves: corporate comms
+and investor relations. Job: give shareholders the quarter's numbers with honest framing.
+Metric: zero corrections requested by the reviewer. Shelf life: stale when Q3 2026
+results land. And a "Not saying" list: not profitable yet, the Q4
 projection is not a promise, no invented quote, no claimed cause for the loss-ratio
 improvement, no link to customer prices or coverage, no added figures.
 

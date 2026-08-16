@@ -57,8 +57,9 @@ Classify the request and follow the matching flow:
 - **External comms** (announcement, blog post, news, or a pasted transcript): brief first,
   never straight to a draft.
   1. Write the brief from the source material only - headline, the story, why now, what
-     changed, a quote with attribution if the source has one, a `Not saying` list, sources.
-     No claim the source does not support.
+     changed, a quote with attribution if the source has one, a `Purpose` section (Serves:
+     which team, Job: what the piece is for, Metric: what says it worked, Shelf life: when
+     it goes stale), a `Not saying` list, sources. No claim the source does not support.
   2. Submit it: `{"action":"submit-brief","headline":"...","body":"<brief markdown>","source":"<url or description>","source_id":"<stable id>"}`.
   3. Show the user the brief and ask for approval - use the ask-user-question tool with
      options like "Approve" / "I want changes". An approval needs the person's actual

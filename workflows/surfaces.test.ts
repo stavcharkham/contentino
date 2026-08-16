@@ -25,7 +25,7 @@ class SurfaceGateway implements ModelGateway {
         : request.prompt.toLowerCase().includes("announce") || request.prompt.toLowerCase().includes("meeting") ? "announcement" : "other",
       request: request.prompt,
     };
-    else if (request.job === "brief") value = { headline: "Autonomous miles", story: "A sourced story.", why_now: "Available now.", what_changed: "Pricing changed.", not_saying: ["No guarantees."], sources: [{ label: "Source", url: "drive://one" }] };
+    else if (request.job === "brief") value = { headline: "Autonomous miles", story: "A sourced story.", why_now: "Available now.", what_changed: "Pricing changed.", not_saying: ["No guarantees."], serves: "Corporate comms", job: "Announce the change", metric: "Coverage pickups", shelf_life: "Stale next quarter", sources: [{ label: "Source", url: "drive://one" }] };
     else if (request.job === "generation") value = request.prompt.includes("one UI string") ? { copy: "FINISH QUOTE", rationale: "Specific" } : { title: "Autonomous miles", body: "Arizona drivers can now use a rate described in the approved brief." };
     else if (request.job === "stakes") value = { stakes: request.prompt.includes("Arizona") ? "high" : "low", reason: "Fixture" };
     else if (request.job === "compliance") value = request.prompt.startsWith("Judge the REQUEST")

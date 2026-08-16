@@ -213,6 +213,10 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 - [ ] Flip the repo public on submission day, after the README exists.
 - [x] Write `README.md` - rewritten 2026-08-15 as the public face: five-minute tour,
       unbypassable rules, evidence, repo map. Reviewed, not yet seen by an outside reader.
+- [x] Comms briefs now carry a Purpose section (Serves, Job, Metric, Shelf life) in all
+      surfaces - server workflow, skills, demo. Approval covers the why, not just the
+      facts. Tests green; not yet live-tested. Shelf-life automation is a next step,
+      recorded, not built. (2026-08-16)
 - [x] Product micro-copy now starts with a shown four-line spec (surface, limit, moment,
       not saying) in the same reply, no approval pause; comms briefs still need named
       approval. Demo shows the contrast. Built 2026-08-16, not yet live-tested.

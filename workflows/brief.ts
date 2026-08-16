@@ -12,12 +12,16 @@ const briefOutput = z.object({
   what_changed: z.string().min(1),
   quote: z.object({ text: z.string().min(1), attribution: z.string().min(1), source_excerpt: z.string().min(1) }).optional(),
   not_saying: z.array(z.string().min(1)).min(1),
+  serves: z.string().min(1),
+  job: z.string().min(1),
+  metric: z.string().min(1),
+  shelf_life: z.string().min(1),
   sources: z.array(z.object({ label: z.string().min(1), url: z.string().min(1) })).min(1),
 });
 
 function renderBriefBody(output: z.infer<typeof briefOutput>): string {
   const quote = output.quote ? `## Quote\n\n> ${output.quote.text}\n>\n> — ${output.quote.attribution}\n\nSource excerpt: ${output.quote.source_excerpt}\n\n` : "";
-  return `# ${output.headline}\n\n${output.story}\n\n## Why now\n\n${output.why_now}\n\n## What changed\n\n${output.what_changed}\n\n${quote}## Not saying\n\n${output.not_saying.map((item) => `- ${item}`).join("\n")}\n\n## Sources\n\n${output.sources.map((source) => `- [${source.label}](${source.url})`).join("\n")}`;
+  return `# ${output.headline}\n\n${output.story}\n\n## Why now\n\n${output.why_now}\n\n## What changed\n\n${output.what_changed}\n\n${quote}## Purpose\n\n- Serves: ${output.serves}\n- Job: ${output.job}\n- Metric: ${output.metric}\n- Shelf life: ${output.shelf_life}\n\n## Not saying\n\n${output.not_saying.map((item) => `- ${item}`).join("\n")}\n\n## Sources\n\n${output.sources.map((source) => `- [${source.label}](${source.url})`).join("\n")}`;
 }
 
 export async function makeBrief(input: {
@@ -29,7 +33,7 @@ export async function makeBrief(input: {
   const baseProfile = await loadBaseProfile(input.context.storage);
   const call = await input.context.models.complete({
     job: "brief",
-    system: `${baseProfile}\n\nBuild an evidence-carrying brief. Do not add a claim or quote absent from the transcript.`,
+    system: `${baseProfile}\n\nBuild an evidence-carrying brief. Do not add a claim or quote absent from the transcript. State the brief's purpose: who inside the company it serves, the job the piece does, the metric that says it worked, and its shelf life (when it goes stale and what would trigger a refresh).`,
     prompt: `Source: ${input.source}\n\nTranscript:\n${input.transcript}`,
     schema: briefOutput,
     maxTokens: 2200,

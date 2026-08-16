@@ -24,6 +24,10 @@ class PerfectGateway implements ModelGateway {
       what_changed: "Tesla FSD miles receive a different rate.",
       quote: { text: "This changes how risk is priced.", attribution: "Daniel Schreiber", source_excerpt: "This changes how risk is priced." },
       not_saying: ["Do not claim autonomous driving eliminates risk."],
+      serves: "Corporate comms",
+      job: "Announce the Arizona launch to press and customers",
+      metric: "Coverage pickups and branded search",
+      shelf_life: "Stale when the product expands beyond Arizona",
       sources: [{ label: "Transcript", url: "drive://call-1" }],
     };
     else if (request.job === "generation") {
@@ -89,6 +93,9 @@ describe("content workflows", () => {
   it("requires brief approval and always routes external comms to review", async () => {
     const context = await testContext();
     const brief = await makeBrief({ context, transcript: "This changes how risk is priced.", source: "drive://call-1", sourceId: "call-1" });
+    expect(brief.content).toContain("## Purpose");
+    expect(brief.content).toContain("- Serves: Corporate comms");
+    expect(brief.content).toContain("- Shelf life: Stale when the product expands beyond Arizona");
     await expect(writeExternalComms({ context, briefPath: brief.path, triggeredBy: "drive", trigger: "drive" })).rejects.toThrow("approved brief");
     await approveBrief({ storage: context.storage, path: brief.path, approvedBy: "Stav", now: new Date("2026-08-14T10:00:00.000Z") });
     const result = await writeExternalComms({ context, briefPath: brief.path, triggeredBy: "drive", trigger: "drive" });

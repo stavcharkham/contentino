@@ -7,8 +7,9 @@ description: Turn a transcript or sourced event into a Contentino brief. Use for
 
 1. Read the source material and preserve every usable source link.
 2. Write the brief from the source only: headline, the story, why now, what changed, a
-   quote with attribution when the source has one, a `Not saying` list, and sources. No
-   claim the source does not support.
+   quote with attribution when the source has one, a `Purpose` section (Serves: which
+   team, Job: what the piece is for, Metric: what says it worked, Shelf life: when it
+   goes stale), a `Not saying` list, and sources. No claim the source does not support.
 3. Store it through the production gate (see the `contentino` skill for the endpoint and
    password): `action: "submit-brief"` with the headline, the brief markdown, the source
    and a stable `source_id`.
