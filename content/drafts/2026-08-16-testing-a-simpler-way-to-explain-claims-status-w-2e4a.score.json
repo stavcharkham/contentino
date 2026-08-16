@@ -1,7 +1,7 @@
 {
   "piece_id": "2026-08-16-testing-a-simpler-way-to-explain-claims-status-w-2e4a",
-  "source_hash": "063debecb27a500a973af0ce484f05333b3758a975ef15d5e5fe4494aad76995",
-  "scored_at": "2026-08-16T13:36:05.631Z",
+  "source_hash": "ab695f44aecd18385608088553857c8d1c2de5df73e9a5fe477c063c5421e808",
+  "scored_at": "2026-08-16T13:36:37.710Z",
   "content_type": "external-comms",
   "stakes": "medium",
   "ceiling": "none",
@@ -10,21 +10,21 @@
       "id": "register",
       "name": "Register match",
       "score": 2,
-      "reason": "The tone is appropriately cautious and precise for high-stakes claims communication. It uses the 'covering' register with complete, careful sentences. Contractions are retained (we're, isn't, we've) and the language is formal without being defensive. The explicit disclaimers about what is and isn't changing match the register required when claim outcomes and customer decisions are involved.",
+      "reason": "The tone is consistently appropriate for medium-stakes content about a product test. It uses direct `you` and `we`, names the action clearly, and maintains a professional but warm voice throughout. The register does not shift inappropriately into high-stakes covering language or low-stakes performing language. The explanation is careful about what is and isn't being claimed (e.g., 'a goal we're measuring, not a result we're promising'), which shows discipline in stakes-appropriate caution without overreaching into legal register.",
       "model": "claude-haiku-4-5"
     },
     {
       "id": "humour",
       "name": "Humour boundary",
       "score": 2,
-      "reason": "No humour is used. The stakes are high (claims, eligibility, coverage decisions), and the draft correctly avoids dry jokes and playful language throughout. Even the attributed quote from Maya Chen maintains seriousness.",
+      "reason": "No humour is used in the draft. The content is medium-stakes product announcement and test explanation where humour would be inappropriate. The absence of humour is correct for this context. The draft does not attempt dry jokes or insurance wordplay, which aligns with the rule that humour belongs only in low-stakes moments.",
       "model": "claude-haiku-4-5"
     },
     {
       "id": "plain-language",
       "name": "Plain language calibration",
       "score": 2,
-      "reason": "The draft translates only what Lemonade translates per the vocabulary guide. It retains 'claim' and 'coverage' as necessary recognition terms for customers. It explains the mechanics plainly ('the way we explain the current status of a claim and the next step to take'). It avoids inventing folksy substitutes for legal or coverage terms. The language is concrete and direct without oversimplifying the actual constraints of the test or claims process.",
+      "reason": "The draft translates selectively and appropriately. It retains 'claim' and 'coverage' as necessary recognition terms for customers but explains the mechanics in plain language ('clearer wording for one specific thing: how we explain the current status of a claim'). It avoids jargon and explains the test's purpose and limitations clearly. Technical terms are defined through concrete examples of what stays the same and what changes. The draft does not invent folksy substitutes for necessary terms.",
       "model": "claude-haiku-4-5"
     },
     {
@@ -37,79 +37,79 @@
       "id": "direct-address",
       "name": "Direct address",
       "score": 2,
-      "reason": "The draft frames everything in terms of what changes and doesn't change for the reader ('for these customers and for everyone else', 'if you're one of the 200 invited customers'), avoiding internal product-launch language and instead explaining impact from the customer's vantage point.",
+      "reason": "The draft consistently frames the change in reader terms: what stays the same for the customer, what the 200 invited customers will see, and what to do if you have questions. It avoids internal jargon like 'rollout metrics' and instead speaks to coverage, payment timing and eligibility from the customer's vantage point.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "claim-sourced",
       "name": "Claim sourced",
       "score": 1,
-      "reason": "Claims about dates, scope, mechanics and what is/isn't measured are stated with confidence, and a quote is attributed to a named source (Maya Chen), but no approved brief or source list is provided in the prompt to verify traceability. Without visibility into the brief, the central claims cannot be confirmed as sourced, so this can't score a 2.",
+      "reason": "Most claims (test dates, scope, what stays the same, what's being measured) read as if traceable to an approved brief and are stated with appropriate hedging. However, no brief or source list was provided alongside the draft, so central claims like the specific customer count, dates and measurement goals cannot be verified against an actual source list, which keeps this from a top score.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "why-now",
       "name": "Why now",
       "score": 2,
-      "reason": "There is an explicit 'Why now' section that ties the announcement timing directly to the test being live and the desire for transparency during the invited-only window, giving a clear, dated rationale.",
+      "reason": "The 'Why now' section explicitly states the test is live from 1 September through the end of September 2026 and that the piece is being published while the test is running, giving a clear and immediate reason for the timing.",
       "model": "claude-sonnet-5"
     },
     {
       "id": "quote-fidelity",
       "name": "Quote fidelity",
       "score": 1,
-      "reason": "The quote from Maya Chen is plausible, consistent in tone and content with the rest of the piece, and avoids overclaiming, mirroring LEM-051's pattern of a sourced, in-character statement. However, without the underlying transcript to verify against, fidelity can't be fully confirmed, so it lands at partial credit rather than full.",
+      "reason": "The quote from Maya Chen is plausible and consistent with the surrounding careful, hedged tone (echoing 'will not prove the idea before the results exist'), which supports internal consistency. But without visibility into an actual transcript source, fidelity to a real, verifiable source cannot be fully confirmed, unlike LEM-050/051 which are explicitly tied to transcripts.",
       "model": "claude-sonnet-5"
     }
   ],
   "score": 8.13,
   "compliance": {
-    "pass": false,
-    "reason": "The piece includes an attributed quote from 'Maya Chen, Claims Product Lead' with no traceable source (no citation, interview reference, or link). Per compliance rules, presenting an attributed quote without a traceable source is a blocking violation, and per stakes.md, attributed claims of this kind are high-stakes and must carry sourcing. Aside from this, the piece is otherwise careful: it avoids guaranteeing outcomes, explicitly disclaims effects on claim decisions/payments/eligibility, and doesn't contradict known policy. But the unsourced attributed quote alone is sufficient to fail this draft."
+    "pass": true,
+    "reason": "The draft respects every compliance prohibition. It makes no outcome guarantee (explicitly disclaims speed/payment/decision effects), preserves rather than removes disclaimers (repeats 'coverage stays the same,' 'claim decisions stay the same,' etc.), makes no unsupported judgement claim about how Lemonade evaluates customers, and does not contradict known policy on data use, price, coverage or eligibility \remas unchanged. The quote from Maya Chen is attributed with a specific name, title, date and setting, giving it a traceable source. No claim denial, coverage rejection or renewal price-increase notice is generated. Nothing here promises an outcome or crosses into prohibited territory."
   },
-  "attempt": 1,
-  "outcome": "blocked",
+  "attempt": 2,
+  "outcome": "reviewed",
   "usage": [
     {
       "model": "claude-sonnet-5",
-      "input_tokens": 1332,
-      "output_tokens": 831,
-      "cache_read_tokens": 0,
-      "cache_write_tokens": 1836,
-      "cost_usd": 0.015564
+      "input_tokens": 2361,
+      "output_tokens": 750,
+      "cache_read_tokens": 1836,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.012589
     },
     {
       "model": "claude-haiku-4-5",
-      "input_tokens": 1853,
-      "output_tokens": 125,
+      "input_tokens": 1792,
+      "output_tokens": 112,
       "cache_read_tokens": 0,
       "cache_write_tokens": 0,
-      "cost_usd": 0.002478
+      "cost_usd": 0.002352
     },
     {
       "model": "claude-sonnet-5",
-      "input_tokens": 876,
-      "output_tokens": 220,
-      "cache_read_tokens": 0,
-      "cache_write_tokens": 1645,
-      "cost_usd": 0.008065
+      "input_tokens": 792,
+      "output_tokens": 246,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004373
     },
     {
       "model": "claude-haiku-4-5",
-      "input_tokens": 2293,
-      "output_tokens": 283,
+      "input_tokens": 2232,
+      "output_tokens": 325,
       "cache_read_tokens": 0,
       "cache_write_tokens": 0,
-      "cost_usd": 0.003708
+      "cost_usd": 0.003857
     },
     {
       "model": "claude-sonnet-5",
-      "input_tokens": 1300,
-      "output_tokens": 455,
-      "cache_read_tokens": 0,
-      "cache_write_tokens": 2126,
-      "cost_usd": 0.012465
+      "input_tokens": 1216,
+      "output_tokens": 486,
+      "cache_read_tokens": 2126,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.007717
     }
   ],
-  "cost_usd": 0.093532
+  "cost_usd": 0.08214
 }
