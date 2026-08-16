@@ -35,10 +35,16 @@ PROMPT:
 
 ## Step 2 - product copy
 
-When they send it: submit exactly `REVIEW ROCKY'S QUOTE` through the gate as
-`product-microcopy` (it is pre-tested - do not rewrite it). Show the label, the score,
-the outcome, and the criteria table with reasons. Add one line: criteria are scored 0-2
-and weighted into a 10-point verdict.
+When they send it: first show this spec (every piece starts with one - for product copy
+it reads like a mini spec, no approval needed):
+
+> **Surface:** button. **Limit:** 24 characters. **Moment:** quote details just entered;
+> the button opens the finished quote. **Not saying:** no price promises, no pressure.
+
+Then submit exactly `REVIEW ROCKY'S QUOTE` through the gate as `product-microcopy` (it
+is pre-tested - do not rewrite it). Show the label, the score, the outcome, and the
+criteria table with reasons. Add one line: criteria are scored 0-2 and weighted into a
+10-point verdict.
 
 Explain in 3 sentences, no more: the evaluation loop compared this against real approved
 Lemonade copy. Low-stakes copy scoring 9+ publishes itself - that just happened. A
@@ -53,7 +59,8 @@ PROMPT:
 
 ## Step 3 - the brief
 
-When they send it: this content type starts with a brief, never a straight draft. Write
+When they send it: this content type also starts with a brief - but unlike the button's
+spec, this one needs a named human approval before anything is drafted. Write
 the brief from the call's figures (in-force premium $1.43B, up 32.5%, eleventh straight
 quarter of accelerating growth; revenue $294M, up 79%; gross loss ratio 60% from 67%;
 adjusted EBITDA loss $19M, narrowed 54%; guidance reiterated, positive adjusted EBITDA

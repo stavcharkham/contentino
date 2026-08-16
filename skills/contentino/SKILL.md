@@ -41,11 +41,19 @@ Report those numbers and reasons exactly. Hard rules:
 
 Classify the request and follow the matching flow:
 
-- **Product micro-copy** (button, label, error, tooltip, CTA): draft one candidate string
-  following `${CLAUDE_PLUGIN_ROOT}/profile/base` and
-  `${CLAUDE_PLUGIN_ROOT}/profile/types/product-microcopy`, then submit with
-  `content_type: "product-microcopy"`. Body format: `# Product micro-copy` heading, then the
-  string.
+- **Product micro-copy** (button, label, error, tooltip, CTA): spec first, then the string,
+  in the same reply - no approval pause.
+  1. Write a four-line spec from the request: Surface (where it appears), Limit (the
+     character budget - ask if the request doesn't state one), Moment (what just happened
+     and what the copy leads to), Not saying (boundaries from the profile, e.g. no price
+     promises). Show it to the user above the draft.
+  2. Draft one candidate string from that spec, following
+     `${CLAUDE_PLUGIN_ROOT}/profile/base` and
+     `${CLAUDE_PLUGIN_ROOT}/profile/types/product-microcopy`, then submit with
+     `content_type: "product-microcopy"`. Body format: `# Product micro-copy` heading, then
+     the string. The spec stays in the conversation; only the copy is scored.
+  3. If the user corrects the spec rather than the string, revise the spec, redraft, and
+     resubmit.
 - **External comms** (announcement, blog post, news, or a pasted transcript): brief first,
   never straight to a draft.
   1. Write the brief from the source material only - headline, the story, why now, what
