@@ -51,7 +51,7 @@ export async function POST(request: Request): Promise<Response> {
         }
         throw error;
       }
-      const progressTs = await slack.postProgress(threadTs, "On it - writing and scoring the draft now. This takes about a minute.").catch(() => undefined);
+      const progressTs = await slack.postProgress(threadTs, "On it - writing and scoring the draft now.").catch(() => undefined);
       const generated = await writeExternalComms({ context, briefPath, triggeredBy: approvedBy, trigger: "slack" });
       const draft = parseMarkdown(generated.content, draftSchema);
       await slack.presentDraftInThread(threadTs, {

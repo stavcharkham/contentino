@@ -213,6 +213,14 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 - [ ] Flip the repo public on submission day, after the README exists.
 - [x] Write `README.md` - rewritten 2026-08-15 as the public face: five-minute tour,
       unbypassable rules, evidence, repo map. Reviewed, not yet seen by an outside reader.
+- [x] Slack fixes from Stav's live runs (2026-08-16, all verified by tests, first two also
+      verified live by Stav's screenshots): a blocked draft silently retries up to three
+      attempts with the failure reasons fed back, and a third failure is labelled held, not
+      ready for review; a bare announcement request gets asked for topic and source instead
+      of becoming a brief; the brief is built from the person's full message, never the
+      router model's paraphrase (this one not yet re-verified live with a transcript);
+      approving a brief posts "On it - writing and scoring the draft now." which the
+      finished draft replaces.
 - [x] Comms briefs now carry a Purpose section (Serves, Job, Metric, Shelf life) in all
       surfaces - server workflow, skills, demo. Approval covers the why, not just the
       facts. Tests green; not yet live-tested. Shelf-life automation is a next step,

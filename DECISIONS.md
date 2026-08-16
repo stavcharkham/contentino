@@ -702,3 +702,17 @@ only if a test run produces one naturally.
 **Rejected:** A named approval step on every content type, including button labels - it adds a human step to the lane whose pitch is "publishes itself with nobody watching". Also rejected for now: submitting the spec to the gate as a stored artifact, which would change the pre-verified demo payloads on day 5.
 **Why:** "Everything starts with a brief" is a first principle, but goal 1 is removing overhead. A shown spec gives structure and better feedback targets (correct the spec, not the string) without friction.
 **Reversible:** yes
+
+### 2026-08-16 - Blocked drafts retry silently; only the third failure reaches a person
+**Category:** product
+**Decided:** In the automated surfaces, a blocked attempt gets the same silent regeneration as a low score - up to three attempts, with the failed criteria and any compliance veto fed into the next try. A third straight failure is presented honestly as "held by the evaluation loop", never as "ready for review".
+**Rejected:** Showing the first blocked attempt to the reviewer (it surfaced a 6.9 mid-demo with nobody there to explain it); hiding the third failure and retrying forever (cost, and the cap is the rubric's own rule).
+**Why:** The user should see either good content or an honest escalation, never the loop's internals. Stav's live run exposed the gap.
+**Reversible:** yes
+
+### 2026-08-16 - Slack briefs are built from the person's words, not the router's summary
+**Category:** build
+**Decided:** The routing model classifies intent and checks for source material, but the brief itself always receives the original message text. A request with no source material is answered with a plain ask for topic and source, and never enters the brief flow.
+**Rejected:** Passing the router's `request` field to the brief writer (it sometimes compressed the message to the bare ask and dropped an attached transcript, producing a brief about missing input with an approve button and no way to answer).
+**Why:** A summarising model between the user and the content loses exactly the material the content needs.
+**Reversible:** yes
