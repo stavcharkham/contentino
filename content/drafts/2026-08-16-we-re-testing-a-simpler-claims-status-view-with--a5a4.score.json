@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-16-we-re-testing-a-simpler-claims-status-view-with--a5a4",
+  "source_hash": "064e840f65a87a13a676b704520230dab1b8613f526e8441a2beea1688d1ec2d",
+  "scored_at": "2026-08-16T13:05:06.474Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriately careful and direct for medium-to-high stakes content about a claims process change. It uses the 'working' register for process details and switches to 'covering' register when addressing claims handling, eligibility and legal boundaries. Sentences are complete and contractions are retained. The scope clarifications and explicit non-promises match the high-stakes compliance requirement to remove unsupported certainty.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is used. The content addresses claims, a high-stakes domain where dry jokes and insurance wordplay are not appropriate per the voice guidelines. The draft correctly withholds humour.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The draft retains 'claims-status view', 'claim', 'deductible' is not used here, and 'renters insurance' is used appropriately. No invented folksy substitutes replace legal or coverage terms. The mechanics—test parameters, audience, duration, measures—are explained in concrete language without jargon. The draft explains what is not changing (claims review, decision timing, payment timing) to prevent misinterpretation.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The piece is framed around what customers experience and what it means for them: what they'll see, what participating does and doesn't affect, and clear boundaries stated in reader terms rather than internal product language. It avoids company-centric framing like 'we're excited to announce' in favor of concrete effects on claim status, decisions and payments.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 2,
+      "reason": "The central facts (200 renters-insurance customers, New York, 1 September 2026 start, four-week duration, two measures, and the meeting that set these parameters) are all traced to a single named source, the 12 August 2026 weekly claims product meeting, cited both in the 'Why now' section and at the end. No claim appears to originate outside that source.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The 'Why now' section explicitly states the trigger (the 12 August meeting setting test parameters) and the reason for publishing today (giving customers and support the same description before invitations go out), which is a clear, dated, visible justification near the top of the reasoning.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft contains no attributed quotes, so quote fidelity does not apply.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft attributes its factual claims to a traceable source (the 12 August 2026 weekly claims product meeting, cited both in 'Why now' and at the end). It makes no outcome guarantees: it explicitly disclaims that participation affects claim outcome, decision timing, or payment timing, and it explicitly states it is not promising fewer support contacts, framing that as a measurement goal rather than a result. No disclaimer appears to have been removed; the piece proactively adds boundary disclaimers ('What this test is not'). It does not make any unsupported judgement claim about how Lemonade evaluates customers. It does not contradict known policy on data use, price, coverage, or eligibility; it explicitly states claims handling is unchanged and identical for all customers. It does not generate a claim denial, coverage rejection, or renewal price-increase notice. All claims present are sourced, hedged, and consistent, so no compliance prohibition is triggered."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 947,
+      "output_tokens": 638,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1836,
+      "cost_usd": 0.012864
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1697,
+      "output_tokens": 115,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002272
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 692,
+      "output_tokens": 321,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.008707
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2137,
+      "output_tokens": 285,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003562
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1116,
+      "output_tokens": 414,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2126,
+      "cost_usd": 0.011687
+    }
+  ],
+  "cost_usd": 0.07869
+}

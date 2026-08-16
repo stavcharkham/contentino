@@ -45,3 +45,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-15-product-micro-copy-23f7,2026-08-15T16:03:38.839Z,submit-product-microcopy,product-microcopy,Stav,claude,10,auto-published,0,0.012067,20
 2026-08-15-q2-2026-results-in-force-premium-reaches-1-43-bi-6c14,2026-08-15T16:05:46.149Z,submit-external-comms,external-comms,Stav,claude,9.29,reviewed,0,0.024968,37.5
 2026-08-16-we-re-testing-a-clearer-way-to-explain-claim-sta-031f,2026-08-16T12:46:34.783Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,6.88,blocked,0,0.089838,0
+2026-08-16-we-re-testing-a-simpler-claims-status-view-with--a5a4,2026-08-16T13:04:59.917Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,10,reviewed,0,0.07869,37.5
