@@ -36,10 +36,13 @@ so always `git pull --rebase origin main` before pushing. All three surfaces are
 were verified by Stav: Slack (buttons, feedback, on-demand Drive sync), Claude (the
 `contentino-engine` plugin; drafts on the user's subscription, judged by the production
 gate over an MCP connector or the HTTP endpoint, shared password in Vercel's
-`DASHBOARD_PASSWORD`), and the password-gated dashboard. `/lemonade-demo` is a fixed
-script with pre-verified inputs. Remaining before the 2026-08-17 deadline: README (still
-unwritten, written last on purpose), making the repo public at submission, trust metrics
-on the dashboard, the recordings and the deck. `PLAN.md` has the full list.
+`DASHBOARD_PASSWORD`), and the password-gated dashboard. `/lemonade-demo` is a short
+prompt-driven script with pre-verified inputs; the plugin is at 0.7.0 (micro-copy now
+shows a four-line spec before the draft, comms briefs still need named approval).
+Versions 0.6.0 and 0.7.0 are built but have not been run live - Stav's end-to-end run
+is the outstanding proof. README is written. Remaining before the 2026-08-17 deadline:
+making the repo public at submission, trust metrics on the dashboard, the recordings
+and the deck. `PLAN.md` has the full list.
 
 ## Constraints that bound every decision
 

@@ -695,3 +695,10 @@ only if a test run produces one naturally.
 **Rejected:** Retry loops around every read (treats the symptom, keeps the race).
 **Why:** GitHub's read-after-write lag was the root cause of the intermittent "couldn't finish the run" failures across every surface.
 **Reversible:** yes
+
+### 2026-08-16 - Every piece starts with a brief, but only high stakes wait for approval
+**Category:** product
+**Decided:** Product micro-copy now begins with a four-line spec (surface, character limit, moment, what not to say) shown above the draft in the same reply, with no approval pause. External comms keeps its brief plus named approval. The demo shows the contrast. Only the copy is scored; the spec stays in the conversation.
+**Rejected:** A named approval step on every content type, including button labels - it adds a human step to the lane whose pitch is "publishes itself with nobody watching". Also rejected for now: submitting the spec to the gate as a stored artifact, which would change the pre-verified demo payloads on day 5.
+**Why:** "Everything starts with a brief" is a first principle, but goal 1 is removing overhead. A shown spec gives structure and better feedback targets (correct the spec, not the string) without friction.
+**Reversible:** yes

@@ -198,9 +198,10 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
       submits every draft to the production gate (MCP connector or HTTP). Verified live.
 - [ ] Surface the trust metrics on the dashboard, computed from the existing ledger:
       cycles per approval and share of zero-feedback approvals.
-- [x] Build `/lemonade-demo`: now a fixed numbered script with pre-verified inputs, ending
-      in the reviewer's own ledger rows and the bring-your-own-content option. Run live by
-      Stav three times; latest script version (0.5.0) built from those runs, not yet re-run.
+- [x] Build `/lemonade-demo`: now a short prompt-driven script (the reviewer sends two
+      copy-paste prompts) with pre-verified inputs, ending in the reviewer's own ledger rows
+      and the bring-your-own-content option. Run live by Stav three times on 0.5.0; the
+      restructured 0.6.0 script and the 0.7.0 spec addition are built, not yet re-run live.
 - [ ] Record the main story on real material (latest earnings call unless Stav picks
       another): transcript into Drive, brief in Slack, approval, scored draft, one feedback,
       revision, approved. Plus two short clips: the learning loop through graduation, and
@@ -210,10 +211,14 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 - [x] Clean the repo for reviewers, first pass (2026-08-15): history secret scan clean,
       test artifacts and ledger junk removed, AGENTS.md now points at CLAUDE.md.
 - [ ] Flip the repo public on submission day, after the README exists.
-- [ ] Write `README.md` - the public face, first thing reviewers open. Still unwritten.
+- [x] Write `README.md` - rewritten 2026-08-15 as the public face: five-minute tour,
+      unbypassable rules, evidence, repo map. Reviewed, not yet seen by an outside reader.
+- [x] Product micro-copy now starts with a shown four-line spec (surface, limit, moment,
+      not saying) in the same reply, no approval pause; comms briefs still need named
+      approval. Demo shows the contrast. Built 2026-08-16, not yet live-tested.
 - [ ] Stav: rename the claude.ai connector from "Contentino Password" to "Contentino gate",
-      update the plugin to 0.5.0 and run `/lemonade-demo` once more to confirm the fixed
-      announcement passes first try.
+      update the plugin to 0.7.0 and run `/lemonade-demo` once end to end - the prompt-driven
+      script has never been run live.
 
 ## Not doing
 

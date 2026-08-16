@@ -48,7 +48,9 @@ Open as of 2026-08-15:
 
 - Rename the claude.ai connector from "Contentino Password" to "Contentino gate" - the
   name shows in every demo transcript. (Settings -> Connectors, two minutes.)
-- Update the plugin to 0.5.0 and run /lemonade-demo once more; expected: button label
-  10/auto-published, announcement 9.29/held for review on the first try, full text shown.
+- Update the plugin to 0.7.0 and run /lemonade-demo once end to end; expected: a four-line
+  spec, then the button label 10/auto-published, then the announcement 9.29/held for review
+  on the first try with its full text shown. The prompt-driven script has never been run
+  live, so this run is the proof before it goes to a friend.
 - Pick the submission-day moment to make the repo public (decision recorded; timing is
-  yours). README must be written first.
+  yours). The README is written, so this is now only a timing call.
