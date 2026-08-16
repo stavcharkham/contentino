@@ -3,7 +3,9 @@ id: 2026-08-16-we-re-testing-a-simpler-claims-status-view-with--4231
 created: '2026-08-16T13:35:28.687Z'
 source: 'slack://C0BQ0KW7PU1/1786887306.200019'
 source_id: '1786887306.200019'
-status: draft
+status: approved
+approved_by: U0BPV3QPDHB
+approved_at: '2026-08-16T13:35:53.192Z'
 api_cost_usd: 0.051252
 ---
 # We're testing a simpler claims-status view with 200 invited renters customers in New York
