@@ -1,0 +1,72 @@
+[
+  {
+    "id": "OURA-01",
+    "content_type": "product-microcopy",
+    "source": "https://mobbin.com/screens/ded88fa6-85b6-460f-89b9-9eb71fcd2ef9",
+    "note": "Sleep score first-run explainer",
+    "text": "Your first Sleep Score!\n\nYour Sleep Score sums up how well you've slept and looks at your previous night's sleep quality in relation to general sleep recommendations for your age group."
+  },
+  {
+    "id": "OURA-02",
+    "content_type": "product-microcopy",
+    "source": "https://mobbin.com/screens/3f85ee85-4724-4501-967f-460f6875e112",
+    "note": "Readiness score first-run explainer",
+    "text": "Your first Readiness Score!\n\nThe Readiness Score shows how ready you are for the day. It guides you to strike a balance between activity and rest."
+  },
+  {
+    "id": "OURA-03",
+    "content_type": "product-microcopy",
+    "source": "https://mobbin.com/screens/b0bc1234-3d72-4952-935f-ad061716aada",
+    "note": "Body clock sleep alignment card",
+    "text": "SLEEP ALIGNMENT\n\nAhead\n\nThe midpoint of your sleep was 43 minutes ahead of your chronotype."
+  },
+  {
+    "id": "OURA-04",
+    "content_type": "product-microcopy",
+    "source": "https://mobbin.com/screens/0cb82298-2c40-4f36-8bfe-f2666cc1d781",
+    "note": "Body temperature contributor, flagged pay attention",
+    "text": "Body Temperature\n\nYour Body Temperature contributor shows that your nighttime temperature is elevated compared to your baseline. Oura is still calibrating to your unique patterns."
+  },
+  {
+    "id": "OURA-05",
+    "content_type": "product-microcopy",
+    "source": "https://mobbin.com/screens/617fe7b4-c91a-427b-a0f2-184ee8deb1ed",
+    "note": "Sleep health summary headline",
+    "text": "LOOKING GOOD\n\nSailing steady, with room to smooth the waters\n\nYour sleep is in a good place, with just a few ripples along the way."
+  },
+  {
+    "id": "OURA-06",
+    "content_type": "product-microcopy",
+    "source": "https://mobbin.com/screens/3dedc6f3-7117-46a4-a85e-4442491f5397",
+    "note": "Sleep regularity guidance",
+    "text": "SLEEP REGULARITY\n\nFair\n\nYour sleep rhythm has been a bit inconsistent over the past two weeks. If your schedule allows, small steps towards regular bed and wake-up times can support your long-term sleep quality."
+  },
+  {
+    "id": "OURA-07",
+    "content_type": "product-microcopy",
+    "source": "https://mobbin.com/screens/bfe532d9-62fe-4246-9775-9c8934195bcb",
+    "note": "Home screen readiness message",
+    "text": "Feeling good?\n\nYour Readiness Score is very good, how are you feeling? If you're up for it, some light activity can boost your recovery. Just remember to start easy so that you don't overstrain yourself.\n\nLearn more"
+  },
+  {
+    "id": "OURA-08",
+    "content_type": "product-microcopy",
+    "source": "https://mobbin.com/screens/6b8646ec-a417-4b2a-899e-1e24e8dd6ba3",
+    "note": "Biometric sign-in opt-in",
+    "text": "Fast and secure sign-ins\n\nEnable fast and secure sign-ins using facial or touch recognition, or another screen-lock method.\n\nEnable\n\nNo thanks"
+  },
+  {
+    "id": "OURA-09",
+    "content_type": "product-microcopy",
+    "source": "https://mobbin.com/screens/d1c03e40-08c5-486b-8e9e-c40d8270330c",
+    "note": "Apple Health data permission",
+    "text": "Connect to Health\n\nKeep your personal and sleep data in sync with Apple Health. You can change these settings at any time. Please see Oura's Privacy Policy for more information.\n\nConnect to Health\n\nNo thanks"
+  },
+  {
+    "id": "OURA-10",
+    "content_type": "product-microcopy",
+    "source": "https://mobbin.com/screens/3f29d971-9e5a-4edb-ac64-fc9f4a5b4d34",
+    "note": "Health study research opt-in",
+    "text": "Receive tailored invitations to health studies\n\nOura partners with hospitals, universities, and other organizations to advance health research. With your permission, we'll invite you to participate in studies that may be relevant to you, based on your data.\n\nYou are in control of your data, and can opt out anytime in Settings.\n\nYes, opt me in\n\nNo, I'm not interested"
+  }
+]
