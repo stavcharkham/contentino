@@ -3,7 +3,9 @@ id: 2026-08-16-we-re-testing-a-simpler-claims-status-view-with--1421
 created: '2026-08-16T13:47:41.583Z'
 source: 'slack://C0BQ0KW7PU1/1786888036.881029'
 source_id: '1786888036.881029'
-status: draft
+status: approved
+approved_by: U0BPV3QPDHB
+approved_at: '2026-08-16T13:47:51.123Z'
 api_cost_usd: 0.048868
 ---
 # We're testing a simpler claims-status view with 200 invited customers
