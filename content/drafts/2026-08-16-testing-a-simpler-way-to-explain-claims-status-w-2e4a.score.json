@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-16-testing-a-simpler-way-to-explain-claims-status-w-2e4a",
+  "source_hash": "063debecb27a500a973af0ce484f05333b3758a975ef15d5e5fe4494aad76995",
+  "scored_at": "2026-08-16T13:36:05.631Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriately cautious and precise for high-stakes claims communication. It uses the 'covering' register with complete, careful sentences. Contractions are retained (we're, isn't, we've) and the language is formal without being defensive. The explicit disclaimers about what is and isn't changing match the register required when claim outcomes and customer decisions are involved.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is used. The stakes are high (claims, eligibility, coverage decisions), and the draft correctly avoids dry jokes and playful language throughout. Even the attributed quote from Maya Chen maintains seriousness.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The draft translates only what Lemonade translates per the vocabulary guide. It retains 'claim' and 'coverage' as necessary recognition terms for customers. It explains the mechanics plainly ('the way we explain the current status of a claim and the next step to take'). It avoids inventing folksy substitutes for legal or coverage terms. The language is concrete and direct without oversimplifying the actual constraints of the test or claims process.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 1,
+      "reason": "sentence exceeds 28 words"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft frames everything in terms of what changes and doesn't change for the reader ('for these customers and for everyone else', 'if you're one of the 200 invited customers'), avoiding internal product-launch language and instead explaining impact from the customer's vantage point.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 1,
+      "reason": "Claims about dates, scope, mechanics and what is/isn't measured are stated with confidence, and a quote is attributed to a named source (Maya Chen), but no approved brief or source list is provided in the prompt to verify traceability. Without visibility into the brief, the central claims cannot be confirmed as sourced, so this can't score a 2.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "There is an explicit 'Why now' section that ties the announcement timing directly to the test being live and the desire for transparency during the invited-only window, giving a clear, dated rationale.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": 1,
+      "reason": "The quote from Maya Chen is plausible, consistent in tone and content with the rest of the piece, and avoids overclaiming, mirroring LEM-051's pattern of a sourced, in-character statement. However, without the underlying transcript to verify against, fidelity can't be fully confirmed, so it lands at partial credit rather than full.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 8.13,
+  "compliance": {
+    "pass": false,
+    "reason": "The piece includes an attributed quote from 'Maya Chen, Claims Product Lead' with no traceable source (no citation, interview reference, or link). Per compliance rules, presenting an attributed quote without a traceable source is a blocking violation, and per stakes.md, attributed claims of this kind are high-stakes and must carry sourcing. Aside from this, the piece is otherwise careful: it avoids guaranteeing outcomes, explicitly disclaims effects on claim decisions/payments/eligibility, and doesn't contradict known policy. But the unsourced attributed quote alone is sufficient to fail this draft."
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1332,
+      "output_tokens": 831,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1836,
+      "cost_usd": 0.015564
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1853,
+      "output_tokens": 125,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002478
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 876,
+      "output_tokens": 220,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.008065
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2293,
+      "output_tokens": 283,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003708
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1300,
+      "output_tokens": 455,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2126,
+      "cost_usd": 0.012465
+    }
+  ],
+  "cost_usd": 0.093532
+}
