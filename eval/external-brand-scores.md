@@ -98,3 +98,69 @@ Two things this exposes about our own setup, both worth fixing:
    type needs a second format.
 2. `direct-address` should return N/A when no addressee exists, and the judge does not do
    that reliably. Same defect the rubric validation found.
+
+---
+
+# Adding Lemonade's own content to the same test
+
+> Second run, same day, same runner. 47 more items: the 35 confirmed Lemonade excerpts and 12
+> off-brand rewrites from `eval/scoring-set.md`, scored as `product-microcopy` so all four
+> populations face identical criteria. Corpus at `eval/lemonade-corpus.json`. Cost $1.12 total.
+
+The first run only showed that the gate rejects other companies. It did not show that the gate
+accepts ours. This run tests that, and the result is bad.
+
+## Voice-pass medians, all four populations
+
+| population | n | median | mean | blocked | auto-published |
+|---|---|---|---|---|---|
+| Oura | 10 | 8.00 | 7.74 | 2 | 0 |
+| **Lemonade, real copy** | 35 | **7.00** | 6.47 | 22 | 2 |
+| Off-brand rewrites | 12 | 5.42 | 4.85 | 11 | 0 |
+| Empathy | 10 | 3.57 | 3.19 | 10 | 0 |
+
+Lemonade's own confirmed copy sits below the review threshold, below Oura, and only 1.58
+points above rewrites written deliberately to fail.
+
+## Per-criterion means
+
+| population | register | plain language | direct address | humour |
+|---|---|---|---|---|
+| Oura | 1.50 | 1.30 | 1.25 | 2.00 |
+| Lemonade, real | 1.06 | 1.21 | 1.38 | 1.45 |
+| Off-brand | 1.09 | 0.73 | 0.43 | 1.80 |
+| Empathy | 0.10 | 0.40 | 0.30 | 2.00 |
+
+Register is the criterion that is supposed to carry this. It scores our own copy 1.06 and an
+intentionally off-brand rewrite of the same message 1.09. On that criterion the gate is
+guessing. It only separates at the far end, where Empathy's B2B register scores 0.10.
+
+This does not match the hand-scored rubric validation (real mean 9.49, off-brand 4.50). That
+pass was scored directly against `RUBRIC.md` with no API calls. The production gate does not
+reproduce it.
+
+## Three causes
+
+1. **Zero where it should be N/A.** Release notes have no addressee; a headline has no next
+   action. The judge scores those 0 rather than N/A, 13 times across the real items, and a
+   single 0 blocks the piece. Same defect the rubric validation named. Still open.
+2. **Stakes over-escalation.** 23 of 35 real items were classified medium or high. Above low
+   stakes our own humour becomes a violation: "Insurance policies are the ultimate word salad",
+   a blog headline, was classified medium and scored 2.50 with zeros on register and humour.
+3. **The profile contradicts itself.** LEM-022 is printed verbatim in
+   `profile/types/product-microcopy/examples.md` as an approved high-stakes example. The gate
+   scored it 5.00 and blocked it, partly on the exclamation-in-high-stakes mechanics rule. The
+   approved example and the rule had never been run against each other.
+
+## Caveat
+
+These are stripped excerpts with no screen, brief or surrounding flow, and in production the
+gate scores its own drafts, which carry that context. That softens the absolute numbers. It
+does not explain the ranking: every population was stripped the same way and ours still came
+third.
+
+## What this means for the claim we can make
+
+The gate reliably rejects a different genre of writing. It cannot yet tell our voice from a
+decent imitation of it, or from a competent product writer elsewhere. Until the three causes
+are fixed, a passing score means "not obviously corporate", not "sounds like Lemonade".

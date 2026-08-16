@@ -1,0 +1,378 @@
+[
+ {
+  "id": "S-01",
+  "content_type": "product-microcopy",
+  "source": "LEM-042",
+  "note": "Lemonade, real \u00b7 LEM-042",
+  "population": "real",
+  "text": "Quiet one this time. The kind of update that doesn't announce itself at parties."
+ },
+ {
+  "id": "S-03",
+  "content_type": "product-microcopy",
+  "source": "LEM-002",
+  "note": "Lemonade, real \u00b7 LEM-002",
+  "population": "real",
+  "text": "Renters from $5/month, homeowners from $25/month, pet from $12/month, car from $30/month, term life from $9/month."
+ },
+ {
+  "id": "S-04",
+  "content_type": "product-microcopy",
+  "source": "LEM-037",
+  "note": "Lemonade, real \u00b7 LEM-037",
+  "population": "real",
+  "text": "Zero exceptions may be unrealistic, because the price of such a policy would be unattractive"
+ },
+ {
+  "id": "S-06",
+  "content_type": "product-microcopy",
+  "source": "LEM-021",
+  "note": "Lemonade, real \u00b7 LEM-021",
+  "population": "real",
+  "text": "Hey James, I'm Maya. I'll get you insured in no time. Which would you like?"
+ },
+ {
+  "id": "S-07",
+  "content_type": "product-microcopy",
+  "source": "LEM-045",
+  "note": "Lemonade, real \u00b7 LEM-045",
+  "population": "real",
+  "text": "Rest insured, there are major changes in this release."
+ },
+ {
+  "id": "S-09",
+  "content_type": "product-microcopy",
+  "source": "LEM-013",
+  "note": "Lemonade, real \u00b7 LEM-013",
+  "population": "real",
+  "text": "Coverage for damages caused by things you can't control. For example: [list of covered events]."
+ },
+ {
+  "id": "S-10",
+  "content_type": "product-microcopy",
+  "source": "LEM-030",
+  "note": "Lemonade, real \u00b7 LEM-030",
+  "population": "real",
+  "text": "Oh no... how is Hiromi doing now? [response] Oh good! [response] Sorry to hear that... When did you first notice she was sick?"
+ },
+ {
+  "id": "S-11",
+  "content_type": "product-microcopy",
+  "source": "LEM-009",
+  "note": "Lemonade, real \u00b7 LEM-009",
+  "population": "real",
+  "text": "CHECK YOUR INBOX \u2014 Your one-time verification code was sent to jamesmobbin@gmail.com"
+ },
+ {
+  "id": "S-13",
+  "content_type": "product-microcopy",
+  "source": "LEM-046",
+  "note": "Lemonade, real \u00b7 LEM-046",
+  "population": "real",
+  "text": "We price it by how you actually drive."
+ },
+ {
+  "id": "S-14",
+  "content_type": "product-microcopy",
+  "source": "LEM-020",
+  "note": "Lemonade, real \u00b7 LEM-020",
+  "population": "real",
+  "text": "Please note, chats are not a replacement for in-person vet visits, and the team cannot prescribe, diagnose, or provide treatment. If this is an emergency, take your pet to a vet ASAP."
+ },
+ {
+  "id": "S-16",
+  "content_type": "product-microcopy",
+  "source": "LEM-004",
+  "note": "Lemonade, real \u00b7 LEM-004",
+  "population": "real",
+  "text": "We Suck, Sometimes"
+ },
+ {
+  "id": "S-17",
+  "content_type": "product-microcopy",
+  "source": "LEM-027",
+  "note": "Lemonade, real \u00b7 LEM-027",
+  "population": "real",
+  "text": "How can I help? GET A NEW LEMONADE POLICY / CONTACT OUR TEAM / ASK SOMETHING ELSE"
+ },
+ {
+  "id": "S-19",
+  "content_type": "product-microcopy",
+  "source": "LEM-036",
+  "note": "Lemonade, real \u00b7 LEM-036",
+  "population": "real",
+  "text": "Insurance policies are the ultimate word salad"
+ },
+ {
+  "id": "S-20",
+  "content_type": "product-microcopy",
+  "source": "LEM-018",
+  "note": "Lemonade, real \u00b7 LEM-018",
+  "population": "real",
+  "text": "Get up to a 10% discount if your home is insured with us"
+ },
+ {
+  "id": "S-22",
+  "content_type": "product-microcopy",
+  "source": "LEM-031",
+  "note": "Lemonade, real \u00b7 LEM-031",
+  "population": "real",
+  "text": "Nearly there! Please review your claim. That's it! Oh, before you go \u2014 how was your experience filing this claim? Amazing! Thanks so much, we really appreciate your feedback."
+ },
+ {
+  "id": "S-23",
+  "content_type": "product-microcopy",
+  "source": "LEM-008",
+  "note": "Lemonade, real \u00b7 LEM-008",
+  "population": "real",
+  "text": "Instant Everything. Sign up in seconds, get paid in minutes."
+ },
+ {
+  "id": "S-24",
+  "content_type": "product-microcopy",
+  "source": "LEM-053",
+  "note": "Lemonade, real \u00b7 LEM-053",
+  "population": "real",
+  "text": "Lemonade Unveils Autonomous Car Insurance, Slashing Rates for Tesla FSD Miles by 50%"
+ },
+ {
+  "id": "S-26",
+  "content_type": "product-microcopy",
+  "source": "LEM-023",
+  "note": "Lemonade, real \u00b7 LEM-023",
+  "population": "real",
+  "text": "Yay! Gemini rule... \ud83c\udf89\ud83c\udf8a\ud83c\udf89 Alright, let me crunch some numbers..."
+ },
+ {
+  "id": "S-27",
+  "content_type": "product-microcopy",
+  "source": "LEM-040",
+  "note": "Lemonade, real \u00b7 LEM-040",
+  "population": "real",
+  "text": "Our AI carefully analyzes these videos for signs of fraud. It can pick up non-verbal clues that traditional insurers can't, since they don't use a digital claims process."
+ },
+ {
+  "id": "S-29",
+  "content_type": "product-microcopy",
+  "source": "LEM-017",
+  "note": "Lemonade, real \u00b7 LEM-017",
+  "population": "real",
+  "text": "Base Accident & Illness Coverage \u2014 Diagnostics: Blood tests, urinalysis, x-rays, MRIs, labwork, CT scans, and ultrasounds."
+ },
+ {
+  "id": "S-30",
+  "content_type": "product-microcopy",
+  "source": "LEM-001",
+  "note": "Lemonade, real \u00b7 LEM-001",
+  "population": "real",
+  "text": "An Insurance Company Built for the 21st Century"
+ },
+ {
+  "id": "S-32",
+  "content_type": "product-microcopy",
+  "source": "LEM-028",
+  "note": "Lemonade, real \u00b7 LEM-028",
+  "population": "real",
+  "text": "Sure. I see you have 2 policies. Is this related to a specific one? ... Annnnnnd swooosh! I just sent your request to our account specialists. They'll get back to you by email soon!"
+ },
+ {
+  "id": "S-35",
+  "content_type": "product-microcopy",
+  "source": "LEM-024",
+  "note": "Lemonade, real \u00b7 LEM-024",
+  "population": "real",
+  "text": "Yay! Capricorns rule... \ud83d\udc10\ud83d\udc10 We're almost done... When is your birthday?"
+ },
+ {
+  "id": "S-36",
+  "content_type": "product-microcopy",
+  "source": "LEM-015",
+  "note": "Lemonade, real \u00b7 LEM-015",
+  "population": "real",
+  "text": "Where do I find these details?"
+ },
+ {
+  "id": "S-37",
+  "content_type": "product-microcopy",
+  "source": "LEM-049",
+  "note": "Lemonade, real \u00b7 LEM-049",
+  "population": "real",
+  "text": "Lemonade Autonomous Car insurance now live in Arizona with 50% off FSD miles"
+ },
+ {
+  "id": "S-39",
+  "content_type": "product-microcopy",
+  "source": "LEM-022",
+  "note": "Lemonade, real \u00b7 LEM-022",
+  "population": "real",
+  "text": "OK! Let's talk about Hiromi's health for a moment... Don't worry, this won't affect your price or eligibility. It's just to help you understand what will and won't be covered."
+ },
+ {
+  "id": "S-40",
+  "content_type": "product-microcopy",
+  "source": "LEM-012",
+  "note": "Lemonade, real \u00b7 LEM-012",
+  "population": "real",
+  "text": "You just unlocked $21 in savings"
+ },
+ {
+  "id": "S-41",
+  "content_type": "product-microcopy",
+  "source": "LEM-038",
+  "note": "Lemonade, real \u00b7 LEM-038",
+  "population": "real",
+  "text": "No document is 'readable' if it's so long that no one actually reads it"
+ },
+ {
+  "id": "S-42",
+  "content_type": "product-microcopy",
+  "source": "LEM-029",
+  "note": "Lemonade, real \u00b7 LEM-029",
+  "population": "real",
+  "text": "Nice to see you again, James. Just like last time, I'll need you to confirm that the info you provide will be truthful by signing our 'pledge of honor.' By signing this, I promise that the info I'll provide will be truthful and accurate."
+ },
+ {
+  "id": "S-43",
+  "content_type": "product-microcopy",
+  "source": "LEM-003",
+  "note": "Lemonade, real \u00b7 LEM-003",
+  "population": "real",
+  "text": "90 secs to get a policy through our app"
+ },
+ {
+  "id": "S-44",
+  "content_type": "product-microcopy",
+  "source": "LEM-019",
+  "note": "Lemonade, real \u00b7 LEM-019",
+  "population": "real",
+  "text": "Connect with a vet. Get veterinary advice for your pet, when you need it. Your policy now gets you access to Chewy's licensed veterinary team! With on-demand chat, they're here for your questions between 6 AM and midnight ET, every day."
+ },
+ {
+  "id": "S-45",
+  "content_type": "product-microcopy",
+  "source": "LEM-010",
+  "note": "Lemonade, real \u00b7 LEM-010",
+  "population": "real",
+  "text": "Deductible: $2,500. Hurricane Deductible: $9,500."
+ },
+ {
+  "id": "S-46",
+  "content_type": "product-microcopy",
+  "source": "LEM-043",
+  "note": "Lemonade, real \u00b7 LEM-043",
+  "population": "real",
+  "text": "We gave the app a quiet tune-up \u2014 it's tighter, faster, and smoother."
+ },
+ {
+  "id": "S-47",
+  "content_type": "product-microcopy",
+  "source": "LEM-044",
+  "note": "Lemonade, real \u00b7 LEM-044",
+  "population": "real",
+  "text": "No huge changes in this update. It's insurance still being insurance, but slightly less annoying."
+ },
+ {
+  "id": "S-48",
+  "content_type": "product-microcopy",
+  "source": "LEM-026",
+  "note": "Lemonade, real \u00b7 LEM-026",
+  "population": "real",
+  "text": "Hey James, Here's Your Quote! [struck-through higher price] You just unlocked $21 in savings"
+ },
+ {
+  "id": "S-02",
+  "content_type": "product-microcopy",
+  "source": "OFF-007",
+  "note": "Off-brand rewrite \u00b7 OFF-007",
+  "population": "off",
+  "text": "Please describe the nature of the incident being reported."
+ },
+ {
+  "id": "S-05",
+  "content_type": "product-microcopy",
+  "source": "OFF-003",
+  "note": "Off-brand rewrite \u00b7 OFF-003",
+  "population": "off",
+  "text": "Welcome to our platform. Please proceed to complete the following onboarding steps in order to obtain a personalized insurance quotation."
+ },
+ {
+  "id": "S-08",
+  "content_type": "product-microcopy",
+  "source": "OFF-010",
+  "note": "Off-brand rewrite \u00b7 OFF-010",
+  "population": "off",
+  "text": "Premiums are calculated utilizing telematics-based driving behavior data collected via a proprietary algorithm."
+ },
+ {
+  "id": "S-12",
+  "content_type": "product-microcopy",
+  "source": "OFF-001",
+  "note": "Off-brand rewrite \u00b7 OFF-001",
+  "population": "off",
+  "text": "We Are a Modern, Forward-Thinking Insurance Solutions Provider"
+ },
+ {
+  "id": "S-15",
+  "content_type": "product-microcopy",
+  "source": "OFF-005",
+  "note": "Off-brand rewrite \u00b7 OFF-005",
+  "population": "off",
+  "text": "Deductible Amount (Standard). Deductible Amount (Named Storm / Hurricane Peril)."
+ },
+ {
+  "id": "S-18",
+  "content_type": "product-microcopy",
+  "source": "OFF-011",
+  "note": "Off-brand rewrite \u00b7 OFF-011",
+  "population": "off",
+  "text": "The following section requires you to answer several questions regarding your pet's medical history. Please note that your responses may be used to determine coverage eligibility and pricing."
+ },
+ {
+  "id": "S-21",
+  "content_type": "product-microcopy",
+  "source": "OFF-002",
+  "note": "Off-brand rewrite \u00b7 OFF-002",
+  "population": "off",
+  "text": "Don't worry, our chat squad has got your back! \ud83d\udc3e They're basically vet-level experts, so you can trust whatever they tell you about your furry friend's health!"
+ },
+ {
+  "id": "S-25",
+  "content_type": "product-microcopy",
+  "source": "OFF-008",
+  "note": "Off-brand rewrite \u00b7 OFF-008",
+  "population": "off",
+  "text": "This provision indemnifies the policyholder against non-collision perils as enumerated below."
+ },
+ {
+  "id": "S-28",
+  "content_type": "product-microcopy",
+  "source": "OFF-012",
+  "note": "Off-brand rewrite \u00b7 OFF-012",
+  "population": "off",
+  "text": "Our AI is basically a lie detector \u2014 it reads your face and body language in the claim video to catch liars in real time!"
+ },
+ {
+  "id": "S-31",
+  "content_type": "product-microcopy",
+  "source": "OFF-004",
+  "note": "Off-brand rewrite \u00b7 OFF-004",
+  "population": "off",
+  "text": "Prior to proceeding, you are legally required to certify, under penalty of policy voidance, that all information submitted herein is accurate and complete."
+ },
+ {
+  "id": "S-34",
+  "content_type": "product-microcopy",
+  "source": "OFF-009",
+  "note": "Off-brand rewrite \u00b7 OFF-009",
+  "population": "off",
+  "text": "This Policy shall be subject to certain exclusions as set forth herein, the enumeration of which is deemed necessary to maintain actuarial soundness."
+ },
+ {
+  "id": "S-38",
+  "content_type": "product-microcopy",
+  "source": "OFF-006",
+  "note": "Off-brand rewrite \u00b7 OFF-006",
+  "population": "off",
+  "text": "This update contains minor bug fixes and performance enhancements. No action is required on your part."
+ }
+]
