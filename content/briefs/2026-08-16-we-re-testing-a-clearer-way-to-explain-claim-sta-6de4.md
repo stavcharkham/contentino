@@ -3,7 +3,9 @@ id: 2026-08-16-we-re-testing-a-clearer-way-to-explain-claim-sta-6de4
 created: '2026-08-16T12:44:52.955Z'
 source: 'slack://C0BQ0KW7PU1/1786884259.143699'
 source_id: '1786884259.143699'
-status: draft
+status: approved
+approved_by: U0BPV3QPDHB
+approved_at: '2026-08-16T12:46:32.351Z'
 api_cost_usd: 0.047637
 ---
 # We're testing a clearer way to explain claim status
