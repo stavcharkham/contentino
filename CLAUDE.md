@@ -37,10 +37,13 @@ were verified by Stav: Slack (buttons, feedback, on-demand Drive sync), Claude (
 `contentino-engine` plugin; drafts on the user's subscription, judged by the production
 gate over an MCP connector or the HTTP endpoint, shared password in Vercel's
 `DASHBOARD_PASSWORD`), and the password-gated dashboard. `/lemonade-demo` is a short
-prompt-driven script with pre-verified inputs; the plugin is at 0.7.0 (micro-copy now
-shows a four-line spec before the draft, comms briefs still need named approval).
-Versions 0.6.0 and 0.7.0 are built but have not been run live - Stav's end-to-end run
-is the outstanding proof. README is written. Remaining before the 2026-08-17 deadline:
+prompt-driven script with pre-verified inputs; the plugin is at 0.8.0 (micro-copy shows
+a four-line spec before the draft, comms briefs carry a Purpose section and need named
+approval). The demo script versions since 0.6.0 have not been run live - Stav's
+end-to-end run is the outstanding proof. Slack was fixed against Stav's 2026-08-16 live
+runs (blocked drafts retry silently, bare requests get asked for source material, briefs
+use the person's full message, approvals post a progress line). README is written.
+Remaining before the 2026-08-17 deadline:
 making the repo public at submission, trust metrics on the dashboard, the recordings
 and the deck. `PLAN.md` has the full list.
 
