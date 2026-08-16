@@ -104,6 +104,28 @@ describe("content workflows", () => {
     expect(result.path).toContain("content/drafts/");
   });
 
+  it("silently retries a blocked external draft and returns the passing attempt", async () => {
+    let typeJudgements = 0;
+    class BlockedOnceGateway extends PerfectGateway {
+      async complete<T>(request: ModelRequest<T>): Promise<ModelCall<T>> {
+        if (request.job === "type-criteria" && request.prompt.includes("claim-sourced")) {
+          typeJudgements += 1;
+          if (typeJudgements === 1) {
+            const value = { criteria: ["direct-address", "claim-sourced", "why-now", "quote-fidelity"].map((id) => ({ id, score: id === "claim-sourced" ? 0 : 2, reason: id === "claim-sourced" ? "No source carried into the draft" : "Matched" })) };
+            return { value: request.schema.parse(value), usage };
+          }
+        }
+        return super.complete(request);
+      }
+    }
+    const context = { ...(await testContext()), models: new BlockedOnceGateway() };
+    const brief = await makeBrief({ context, transcript: "This changes how risk is priced.", source: "drive://call-1", sourceId: "call-1" });
+    await approveBrief({ storage: context.storage, path: brief.path, approvedBy: "Stav", now: new Date("2026-08-14T10:00:00.000Z") });
+    const result = await writeExternalComms({ context, briefPath: brief.path, triggeredBy: "drive", trigger: "drive" });
+    expect(result.scorecard.attempt).toBe(2);
+    expect(result.scorecard.outcome).toBe("reviewed");
+  });
+
   it("turns an exact human edit into a correction and revised ledger row", async () => {
     const context = await testContext();
     const brief = await makeBrief({ context, transcript: "This changes how risk is priced.", source: "drive://call-1", sourceId: "call-1" });

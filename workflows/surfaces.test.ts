@@ -24,6 +24,7 @@ class SurfaceGateway implements ModelGateway {
         : request.prompt.toLowerCase().includes("button") || request.prompt.toLowerCase().includes("cta") ? "microcopy"
         : request.prompt.toLowerCase().includes("announce") || request.prompt.toLowerCase().includes("meeting") ? "announcement" : "other",
       request: request.prompt,
+      has_source_material: /meeting|transcript/i.test(request.prompt),
     };
     else if (request.job === "brief") value = { headline: "Autonomous miles", story: "A sourced story.", why_now: "Available now.", what_changed: "Pricing changed.", not_saying: ["No guarantees."], serves: "Corporate comms", job: "Announce the change", metric: "Coverage pickups", shelf_life: "Stale next quarter", sources: [{ label: "Source", url: "drive://one" }] };
     else if (request.job === "generation") value = request.prompt.includes("one UI string") ? { copy: "FINISH QUOTE", rationale: "Specific" } : { title: "Autonomous miles", body: "Arizona drivers can now use a rate described in the approved brief." };
@@ -143,6 +144,16 @@ describe("surface orchestration", () => {
     const envelope = { event: { type: "app_mention", text: "<@BOT> I need a CTA button for the end of the quote flow", user: "U1", ts: "5.1", channel: "C1" } };
     expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("microcopy");
     expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("*FINISH QUOTE*"), "5.1");
+  });
+
+  it("asks for source material instead of making a brief from a bare announcement request", async () => {
+    const ctx = await context();
+    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn(), postBriefForApproval: vi.fn(async (input: { threadTs?: string }) => input.threadTs ?? "9.9") };
+    const envelope = { event: { type: "app_mention", text: "<@BOT> write an announcement blog post", user: "U1", ts: "7.1", channel: "C1" } };
+    expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("announcement-needs-source");
+    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("source"), "7.1");
+    expect(slack.postBriefForApproval).not.toHaveBeenCalled();
+    expect(await ctx.storage.list("content/briefs")).toHaveLength(0);
   });
 
   it("holds a compliant alternative for review when the request demands prohibited claims", async () => {

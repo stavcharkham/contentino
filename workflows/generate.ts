@@ -14,6 +14,11 @@ type GenerationResult = { pieceId: string; path: string; scorecard: Scorecard; c
 
 const requestCompliance = z.object({ pass: z.boolean(), reason: z.string().min(1) });
 
+function regenerationFeedback(scorecard: Scorecard): string {
+  const compliance = scorecard.compliance.pass ? "" : `\n- Compliance veto: ${scorecard.compliance.reason}`;
+  return `\n\nThe previous attempt failed:${compliance}\n${scorecard.criteria.map((criterion) => `- ${criterion.name}: ${criterion.score} (${criterion.reason})`).join("\n")}`;
+}
+
 function statusFor(scorecard: Scorecard): Draft["status"] {
   if (scorecard.outcome === "blocked") return "blocked";
   if (scorecard.outcome === "reviewed") return "review";
@@ -91,8 +96,11 @@ export async function writeMicrocopy(input: {
       const published = await publishScoredDraft(input.context.storage, draftPath);
       return { pieceId, path: published, scorecard, content };
     }
-    if (scorecard.outcome !== "regenerated") return { pieceId, path: draftPath, scorecard, content, note };
-    feedback = `\n\nThe previous attempt failed:\n${scorecard.criteria.map((criterion) => `- ${criterion.name}: ${criterion.score} (${criterion.reason})`).join("\n")}`;
+    // A blocked attempt gets the same silent retries as a low score; only the
+    // third failure reaches a person.
+    const retryable = scorecard.outcome === "regenerated" || (scorecard.outcome === "blocked" && attempt < 3);
+    if (!retryable) return { pieceId, path: draftPath, scorecard, content, note };
+    feedback = regenerationFeedback(scorecard);
   }
   throw new Error("Microcopy regeneration loop ended unexpectedly");
 }
@@ -199,8 +207,9 @@ export async function writeExternalComms(input: {
     scorecard = { ...scorecard, source_hash: contentHash(content) };
     const ledgerRow = await makeLedgerRow({ storage: input.context.storage, pieceId, created: metadata.created, skill: "write-external-comms", contentType: metadata.content_type, triggeredBy: input.triggeredBy, trigger: input.trigger, scorecard });
     await recordScoredDraft({ storage: input.context.storage, draftPath, content, scorecard, ledgerRow });
-    if (scorecard.outcome !== "regenerated") return { pieceId, path: draftPath, scorecard, content };
-    feedback = `\n\nThe previous attempt failed:\n${scorecard.criteria.map((criterion) => `- ${criterion.name}: ${criterion.score} (${criterion.reason})`).join("\n")}`;
+    const retryable = scorecard.outcome === "regenerated" || (scorecard.outcome === "blocked" && attempt < 3);
+    if (!retryable) return { pieceId, path: draftPath, scorecard, content };
+    feedback = regenerationFeedback(scorecard);
   }
   throw new Error("External generation loop ended unexpectedly");
 }

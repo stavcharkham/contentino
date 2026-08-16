@@ -21,6 +21,7 @@ export type SlackEnvelope = {
 const mentionIntent = z.object({
   intent: z.enum(["microcopy", "announcement", "drive-sync", "other"]),
   request: z.string().min(1),
+  has_source_material: z.boolean(),
 });
 
 export function formatMicrocopyResult(copy: string, scorecard: Scorecard, note?: string): string {
@@ -158,13 +159,20 @@ export async function handleSlackEnvelope(input: {
           "- drive-sync: the user asks to check, sync or process the Drive folder or a transcript that was uploaded.",
           "- other: anything else, including questions about Contentino itself.",
           "`request` is the message with any greeting or addressing stripped, otherwise unchanged.",
+          "`has_source_material` is true only when the message itself carries the substance to write from - a transcript, meeting notes, concrete facts or a link - and false when it only names or asks for a piece of content.",
         ].join("\n"),
         prompt: text,
         schema: mentionIntent,
         maxTokens: 400,
       });
       if (routed.value.intent === "microcopy") return runMicrocopy(routed.value.request);
-      if (routed.value.intent === "announcement") return runBrief(routed.value.request);
+      if (routed.value.intent === "announcement") {
+        if (!routed.value.has_source_material) {
+          await input.slack.postMessage("Happy to write that. An announcement starts from source material, and this request doesn't carry any yet. Mention me again with the topic and the source together - paste the meeting notes or transcript, or drop a link - and I'll build the brief from it.", threadTs);
+          return "announcement-needs-source";
+        }
+        return runBrief(routed.value.request);
+      }
       if (routed.value.intent === "drive-sync") {
         if (!input.driveSync) {
           await input.slack.postMessage("Drive isn't connected on this deployment, so I can't check the folder from here.", threadTs);

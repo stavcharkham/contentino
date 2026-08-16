@@ -99,7 +99,9 @@ export class SlackReviewAdapter implements ReviewAdapter {
     await this.post({
       channel: this.channel,
       thread_ts: threadTs,
-      text: `*Draft ready for review*\nScore ${draft.score.toFixed(1)}\n*Needs review:* External communications always require approval.\n\n${draft.content}\n\nReply with feedback in this thread.`,
+      text: draft.outcome === "blocked"
+        ? `*Draft held by the evaluation loop*\nScore ${draft.score.toFixed(1)}\nThree attempts did not clear the gate, so this needs a person. The last attempt is below.\n\n${draft.content}\n\nReply with feedback in this thread and I'll revise and rescore.`
+        : `*Draft ready for review*\nScore ${draft.score.toFixed(1)}\n*Needs review:* External communications always require approval.\n\n${draft.content}\n\nReply with feedback in this thread.`,
     });
     return { surface: "slack", externalId: threadTs };
   }
