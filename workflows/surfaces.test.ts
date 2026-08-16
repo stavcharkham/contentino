@@ -13,7 +13,9 @@ import { formatMicrocopyResult, handleSlackEnvelope, syncDriveTranscripts, syncG
 const usage = { model: "mock", input_tokens: 10, output_tokens: 5, cache_read_tokens: 0, cache_write_tokens: 0, cost_usd: 0.001 };
 
 class SurfaceGateway implements ModelGateway {
+  briefPrompts: string[] = [];
   async complete<T>(request: ModelRequest<T>): Promise<ModelCall<T>> {
+    if (request.job === "brief") this.briefPrompts.push(request.prompt);
     let value: unknown;
     if (request.system.startsWith("Apply reviewer feedback")) value = request.prompt.includes("Make it shorter")
       ? { mode: "rewrite", was: "the full draft", now: "a shorter draft", revised_body: "Drivers can now use a rate described in the approved brief.", criterion: "plain-language" }
@@ -23,7 +25,7 @@ class SurfaceGateway implements ModelGateway {
       intent: request.prompt.toLowerCase().includes("drive folder") ? "drive-sync"
         : request.prompt.toLowerCase().includes("button") || request.prompt.toLowerCase().includes("cta") ? "microcopy"
         : request.prompt.toLowerCase().includes("announce") || request.prompt.toLowerCase().includes("meeting") ? "announcement" : "other",
-      request: request.prompt,
+      request: "a paraphrase that lost the transcript",
       has_source_material: /meeting|transcript/i.test(request.prompt),
     };
     else if (request.job === "brief") value = { headline: "Autonomous miles", story: "A sourced story.", why_now: "Available now.", what_changed: "Pricing changed.", not_saying: ["No guarantees."], serves: "Corporate comms", job: "Announce the change", metric: "Coverage pickups", shelf_life: "Stale next quarter", sources: [{ label: "Source", url: "drive://one" }] };
@@ -144,6 +146,17 @@ describe("surface orchestration", () => {
     const envelope = { event: { type: "app_mention", text: "<@BOT> I need a CTA button for the end of the quote flow", user: "U1", ts: "5.1", channel: "C1" } };
     expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("microcopy");
     expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("*FINISH QUOTE*"), "5.1");
+  });
+
+  it("builds the brief from the person's full message, not the router's paraphrase", async () => {
+    const ctx = await context();
+    const gateway = ctx.models as SurfaceGateway;
+    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn(), postBriefForApproval: vi.fn(async (input: { threadTs?: string }) => input.threadTs ?? "9.9") };
+    const transcript = "write an announcement blog post\n\nMeeting: Weekly claims product meeting\nMaya Chen: We will test a simpler claims-status view.";
+    const envelope = { event: { type: "app_mention", text: `<@BOT> ${transcript}`, user: "U1", ts: "8.1", channel: "C1" } };
+    expect((await handleSlackEnvelope({ context: ctx, slack, envelope })).action).toBe("brief");
+    expect(gateway.briefPrompts[0]).toContain("Maya Chen: We will test a simpler claims-status view.");
+    expect(gateway.briefPrompts[0]).not.toContain("paraphrase that lost the transcript");
   });
 
   it("asks for source material instead of making a brief from a bare announcement request", async () => {

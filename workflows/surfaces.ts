@@ -171,7 +171,9 @@ export async function handleSlackEnvelope(input: {
           await input.slack.postMessage("Happy to write that. An announcement starts from source material, and this request doesn't carry any yet. Mention me again with the topic and the source together - paste the meeting notes or transcript, or drop a link - and I'll build the brief from it.", threadTs);
           return "announcement-needs-source";
         }
-        return runBrief(routed.value.request);
+        // The brief is built from the person's own words, never the router's
+        // paraphrase - a summarised `request` once dropped the whole transcript.
+        return runBrief(text);
       }
       if (routed.value.intent === "drive-sync") {
         if (!input.driveSync) {
