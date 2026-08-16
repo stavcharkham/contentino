@@ -4,7 +4,10 @@ import type { ContentStorage } from "@/lib/storage";
 import type { PresentedReview, ReviewAdapter, ReviewDraft, ReviewFeedback } from "./types";
 
 type SlackApi = {
-  chat: { postMessage(args: Record<string, unknown>): Promise<{ ts?: string }> };
+  chat: {
+    postMessage(args: Record<string, unknown>): Promise<{ ts?: string }>;
+    update(args: Record<string, unknown>): Promise<unknown>;
+  };
   conversations: { replies(args: Record<string, unknown>): Promise<{ messages?: Array<{ ts?: string; text?: string; user?: string; bot_id?: string }> }> };
   reactions: { add(args: Record<string, unknown>): Promise<unknown> };
 };
@@ -94,15 +97,29 @@ export class SlackReviewAdapter implements ReviewAdapter {
     return { surface: "slack", externalId: message.ts };
   }
 
-  async presentDraftInThread(threadTs: string, draft: ReviewDraft): Promise<PresentedReview> {
+  async postProgress(threadTs: string, text: string): Promise<string | undefined> {
+    const message = await this.post({ channel: this.channel, thread_ts: threadTs, text });
+    return message.ts;
+  }
+
+  async presentDraftInThread(threadTs: string, draft: ReviewDraft, replaceTs?: string): Promise<PresentedReview> {
     await this.mapDraft(threadTs, draft.path);
-    await this.post({
+    const args = {
       channel: this.channel,
       thread_ts: threadTs,
       text: draft.outcome === "blocked"
         ? `*Draft held by the evaluation loop*\nScore ${draft.score.toFixed(1)}\nThree attempts did not clear the gate, so this needs a person. The last attempt is below.\n\n${draft.content}\n\nReply with feedback in this thread and I'll revise and rescore.`
         : `*Draft ready for review*\nScore ${draft.score.toFixed(1)}\n*Needs review:* External communications always require approval.\n\n${draft.content}\n\nReply with feedback in this thread.`,
-    });
+    };
+    if (replaceTs) {
+      try {
+        await this.api.chat.update({ ...args, ts: replaceTs });
+        return { surface: "slack", externalId: threadTs };
+      } catch {
+        // fall through to a fresh message when the progress line can't be edited
+      }
+    }
+    await this.post(args);
     return { surface: "slack", externalId: threadTs };
   }
 

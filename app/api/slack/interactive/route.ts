@@ -51,6 +51,7 @@ export async function POST(request: Request): Promise<Response> {
         }
         throw error;
       }
+      const progressTs = await slack.postProgress(threadTs, "On it - writing and scoring the draft now. This takes about a minute.").catch(() => undefined);
       const generated = await writeExternalComms({ context, briefPath, triggeredBy: approvedBy, trigger: "slack" });
       const draft = parseMarkdown(generated.content, draftSchema);
       await slack.presentDraftInThread(threadTs, {
@@ -59,7 +60,7 @@ export async function POST(request: Request): Promise<Response> {
         content: formatMarkdownForSlack(draft.body),
         score: generated.scorecard.score,
         outcome: generated.scorecard.outcome,
-      });
+      }, progressTs);
     } catch (error) {
       console.error("Slack approval failed", error);
       await recordSurfaceFailure(context, "slack-action", threadTs, error);

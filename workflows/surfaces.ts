@@ -201,6 +201,11 @@ export async function handleSlackEnvelope(input: {
           return "brief-awaiting-approval";
         }
         await approveBrief({ storage: input.context.storage, path: briefPath, approvedBy: event.user ?? "slack" });
+        try {
+          await input.slack.postMessage("On it - writing and scoring the draft now. This takes about a minute.", event.thread_ts);
+        } catch {
+          // a missing progress line must not stop the draft
+        }
         const generated = await writeExternalComms({ context: input.context, briefPath, triggeredBy: event.user ?? "slack", trigger: "slack" });
         const draft = parseMarkdown(generated.content, draftSchema);
         await input.slack.presentDraftInThread(event.thread_ts, {

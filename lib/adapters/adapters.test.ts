@@ -20,7 +20,7 @@ describe("Slack adapter", () => {
     const root = await mkdtemp(path.join(tmpdir(), "contentino-slack-"));
     const storage = new LocalStorage(root);
     const api = {
-      chat: { postMessage: vi.fn().mockResolvedValue({ ts: "123.456" }) },
+      chat: { postMessage: vi.fn().mockResolvedValue({ ts: "123.456" }), update: vi.fn().mockResolvedValue({}) },
       conversations: { replies: vi.fn().mockResolvedValue({ messages: [
         { ts: "123.456", text: "draft", bot_id: "bot" },
         { ts: "123.457", text: "Use finish quote", user: "U1" },
@@ -40,7 +40,7 @@ describe("Slack adapter", () => {
     const root = await mkdtemp(path.join(tmpdir(), "contentino-slack-thread-"));
     const storage = new LocalStorage(root);
     const api = {
-      chat: { postMessage: vi.fn().mockResolvedValue({ ts: "123.458" }) },
+      chat: { postMessage: vi.fn().mockResolvedValue({ ts: "123.458" }), update: vi.fn().mockResolvedValue({}) },
       conversations: { replies: vi.fn() },
       reactions: { add: vi.fn() },
     };
@@ -65,7 +65,7 @@ describe("Slack adapter", () => {
   it("never posts an eyes reply when a reaction fails", async () => {
     const root = await mkdtemp(path.join(tmpdir(), "contentino-slack-ack-"));
     const api = {
-      chat: { postMessage: vi.fn().mockResolvedValue({ ts: "123.457" }) },
+      chat: { postMessage: vi.fn().mockResolvedValue({ ts: "123.457" }), update: vi.fn().mockResolvedValue({}) },
       conversations: { replies: vi.fn() },
       reactions: { add: vi.fn().mockRejectedValue(new Error("missing_scope")) },
     };
@@ -77,7 +77,7 @@ describe("Slack adapter", () => {
   it("retries one failed Slack reply before surfacing an error", async () => {
     const root = await mkdtemp(path.join(tmpdir(), "contentino-slack-retry-"));
     const api = {
-      chat: { postMessage: vi.fn().mockRejectedValueOnce(new Error("transient")).mockResolvedValue({ ts: "123.459" }) },
+      chat: { postMessage: vi.fn().mockRejectedValueOnce(new Error("transient")).mockResolvedValue({ ts: "123.459" }), update: vi.fn().mockResolvedValue({}) },
       conversations: { replies: vi.fn() },
       reactions: { add: vi.fn() },
     };
