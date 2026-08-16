@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-16-we-re-testing-a-simpler-claims-status-view-with--8c3a",
+  "source_hash": "a4269d34e5047dfe38162fd5af05d1087a8dbd0c8f36ec383d65c516ac9f98e7",
+  "scored_at": "2026-08-16T13:48:00.737Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone appropriately shifts from cautious clarity (medium stakes in headline and opening) to careful precision (high stakes in legal boundaries). Contractions appear throughout. The voice matches the stakes: playful self-awareness in 'We Suck, Sometimes' style is absent because this involves actual claim decisions and legal framing, not reputation. The repetitive cautions ('A reduction is a goal, not a promised outcome' appears twice) are characteristic of the Covering register when fraud or claim-related language must be bulletproof.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour appears in the draft. The stakes are entirely high (coverage, claim decisions, legal boundaries, fraud risk). The only moment that might invite levity—'We're testing a simpler claims-status view'—is immediately locked down with dates, scope and legal disclaimers. This is correct for high-stakes insurance content about claims.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Technical terms are retained only where customers need to recognise them: 'deductible' is not used; 'claims-status view' is approved by Legal as the specific term replacing the rejected 'new claims experience'; 'renters-insurance' and 'eligible' are kept because they are the terms customers need. Mechanics are explained plainly ('whether invited customers can identify their next step without contacting support'). No folksy substitutes invented. The draft follows the selective translation rule.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft is framed around what changes and doesn't change for the reader (claim status clarity, no impact on coverage, decisions, or payment timing) rather than internal product language. It explicitly translates internal jargon like 'new claims experience' into reader-facing terms and centers the customer's experience throughout.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 2,
+      "reason": "Every central factual claim (dates, scope, 200 invited customers, New York, the rejected phrase, the approved phrase, the quote) is attributed to the 12 August 2026 claims product meeting, which is cited as the single source. The draft does not introduce facts beyond that source.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The 'Why now' section explicitly explains the timing: the test window is fixed and narrow, the framing is accurate now before results exist, and Legal's ruling from the 12 August meeting makes the approved language available now. This is a clear, reader-visible reason distinct from a generic launch announcement.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": 2,
+      "reason": "The quote from Priya Shah is short, procedural, and consistent with the described Legal ruling elsewhere in the draft (rejecting 'new claims experience' in favor of 'a simpler claims-status view'), and it is attributed to a named source tied to the meeting cited as the source. It reads as a plausible, faithful representation of a legal ruling rather than an invented or embellished statement.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft satisfies all compliance prohibitions. It does not promise an outcome or guarantee a claim will be paid \framof that ('a reduction is a goal, not a promised outcome'). It does not remove any required disclaimer; instead it repeatedly restates the boundaries (no change to coverage, eligibility, payment timing or claim decisions). It makes no unsupported claim about how Lemonade judges a customer. It does not contradict known policy on data use, price, coverage or eligibility; it affirmatively states those are unchanged. The attributed quote from Priya Shah, Legal, is traceable to a named source and meeting ('Weekly claims product meeting, 12 August 2026'), satisfying the sourcing requirement for attributed claims. The piece does not generate a claim denial, coverage rejection or renewal price-increase notice, so the categorical prohibition is not triggered. No isolated navigation or button label is present to raise a false failure. Overall, the draft is careful, hedged and consistent with the compliance rules as applied strictly to the text supplied."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1234,
+      "output_tokens": 825,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1836,
+      "cost_usd": 0.015308
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1810,
+      "output_tokens": 115,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002385
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 854,
+      "output_tokens": 363,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.009451
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2250,
+      "output_tokens": 511,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004805
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1278,
+      "output_tokens": 501,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2126,
+      "cost_usd": 0.012881
+    }
+  ],
+  "cost_usd": 0.093698
+}
