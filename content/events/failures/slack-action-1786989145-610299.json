@@ -1,0 +1,6 @@
+{
+  "surface": "slack-action",
+  "id": "1786989145.610299",
+  "failed_at": "2026-08-17T17:55:01.971Z",
+  "error": "GitHub branch changed during the logical commit\nError: GitHub branch changed during the logical commit\n    at tW.commit (/var/task/.next/server/chunks/[root-of-the-server]__1u0oid9._.js:206:93844)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async tW.update (/var/task/.next/server/chunks/[root-of-the-server]__1u0oid9._.js:206:89941)\n    at async m (/var/task/.next/server/chunks/[root-of-the-server]__1u0oid9._.js:158:841)\n    at async /var/task/.next/server/chunks/[root-of-the-server]__00wpulr._.js:1:3530\n    at async r (/var/task/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.prod.js:1:135545)\n    at async i (/var/task/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.prod.js:1:14621)"
+}
