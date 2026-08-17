@@ -29,7 +29,7 @@ it has to graduate. A settings row cannot.
 `README.md`, `PRD.md`, `DECISIONS.md`, and the commit history deliverables in their own
 right. Small commits with real messages. No squashing history into one dump at the end.
 
-## Where it stands (2026-08-15)
+## Where it stands (2026-08-17, submission day)
 
 Production runs at contentino-seven.vercel.app; the runtime commits into this same repo,
 so always `git pull --rebase origin main` before pushing. All three surfaces are live and

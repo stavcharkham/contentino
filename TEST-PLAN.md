@@ -1,5 +1,10 @@
 # Test Contentino
 
+> **Status:** this kit was run live against production on 2026-08-15; every failure it
+> surfaced was fixed and re-verified (the record is in `PROCESS.md`). The checkboxes below
+> are deliberately blank - this is a reusable script for the next run, not a status report.
+> What remains genuinely open at submission is listed at the bottom and in `PLAN.md`.
+
 This is the test script for Stav. You do not need a terminal, a file path or GitHub.
 
 Use the Slack channel that contains Contentino and the protected production dashboard. When a test

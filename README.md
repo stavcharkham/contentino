@@ -136,6 +136,11 @@ Drive cron carries a bearer secret, and the dashboard sits behind a shared passw
 
 ## The paper trail
 
+This project was built in five days and submitted with its open items listed, not hidden:
+the honest remainder is at the bottom of [PLAN.md](PLAN.md), and [TEST-PLAN.md](TEST-PLAN.md)
+names the three flows not yet ready to test. The verification claims above cover what was
+actually run against production, nothing more.
+
 This repo is judged on product thinking, not just code, and the thinking is a
 deliverable: every product and build decision, with the options that were rejected, is
 in [DECISIONS.md](DECISIONS.md). The build record - including what went wrong and how it
