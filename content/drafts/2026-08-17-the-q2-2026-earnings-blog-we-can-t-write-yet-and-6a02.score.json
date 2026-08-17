@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-17-the-q2-2026-earnings-blog-we-can-t-write-yet-and-6a02",
+  "source_hash": "edea214b4a419c3886a0ce1dfd3e94da4656d066764d5364233f4423b203bc67",
+  "scored_at": "2026-08-17T18:03:18.078Z",
+  "content_type": "external-comms",
+  "stakes": "high",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriately formal and cautious for high-stakes financial content. It uses complete, careful sentences and removes jokes entirely. The register matches the gravity of handling attributed earnings data and source requirements.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The piece handles earnings-call sourcing and attribution, which are high-stakes matters where nothing is at stake for the reader to lose in the moment, yet the content itself carries financial and legal weight. The absence of humour is correct.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The piece translates only what Lemonade's voice guide permits: it explains process requirements in direct terms ('traceable to the source document,' 'safe-harbour language,' 'non-GAAP labelling') while keeping necessary technical terms. It does not invent substitutes for the financial and compliance terms readers need to recognise.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 1,
+      "reason": "sentence exceeds 28 words"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 1,
+      "reason": "The piece is framed largely in internal process terms (Slack requests, sourcing workflow, IR/Legal clearance) rather than a reader's stakes, though it does explain implications for accuracy and trust. It reads more like an internal memo than reader-facing external communication, which limits how well it frames the story in the reader's terms.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 2,
+      "reason": "Every factual claim made (the Slack request, the existence and URL of the unextracted transcript, the absence of specific figures) is traceable to the two listed sources, and the piece scrupulously avoids asserting anything beyond what those sources support.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The piece explicitly states why this is being said today: earnings coverage has a short relevance window, the request just arrived without extracted content, and the Q3 call will render this stale, giving a clear, sourced reason for timing.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft contains no attributed quotes; it explicitly states no statement is being attributed to any executive, so quote fidelity does not apply.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 8.57,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft makes no unsupported claims about Q2 2026 results, does not guarantee any outcome, does not attribute quotes without a source, and explicitly disclaims any characterization of the quarter or forward guidance. It does not remove any required disclaimer\ndeclares the gap rather than filling it, and does not contradict known policy. All factual assertions (the Slack request, the linked transcript, its unextracted status) are sourced or self-evident from the situation described. No claim denial, coverage rejection, or renewal price-increase notice is generated. The two sources cited (Slack message and the Fool.com transcript link) are traceable. No compliance prohibition is triggered."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1302,
+      "output_tokens": 1063,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1836,
+      "cost_usd": 0.017824
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 3998,
+      "output_tokens": 327,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.005633
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1094,
+      "output_tokens": 232,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.00862
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2439,
+      "output_tokens": 230,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003589
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1518,
+      "output_tokens": 390,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2126,
+      "cost_usd": 0.012251
+    }
+  ],
+  "cost_usd": 0.096239
+}

@@ -55,3 +55,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-17-product-micro-copy-d7ca,2026-08-17T17:42:25.938Z,submit-product-microcopy,product-microcopy,Stav,claude,7.5,blocked,0,0.0134,0
 2026-08-17-product-micro-copy-645c,2026-08-17T17:42:53.906Z,submit-product-microcopy,product-microcopy,Stav,claude,9.17,auto-published,0,0.012786,20
 2026-08-17-product-micro-copy-408d,2026-08-17T17:51:07.752Z,submit-product-microcopy,product-microcopy,Stav,claude,10,auto-published,0,0.020761,20
+2026-08-17-the-q2-2026-earnings-blog-we-can-t-write-yet-and-6a02,2026-08-17T18:03:05.258Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,8.57,reviewed,0,0.096239,37.5
