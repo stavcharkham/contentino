@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-17-about-that-earnings-call-what-we-can-tell-you-ri-0b82",
+  "source_hash": "4e93003f3f430a217666ce017e5a724e834c86df1f3c0546140ccf262b79ec9d",
+  "scored_at": "2026-08-17T18:07:37.134Z",
+  "content_type": "external-comms",
+  "stakes": "high",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone is appropriately formal and careful for high-stakes financial and compliance content. The draft uses the covering register consistently—complete sentences, contractions preserved, no jokes—matching the gravity of attributed claims and public-company disclosures. It prioritizes transparency and precision over marketing warmth.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The draft treats earnings commentary and financial attribution as high-stakes content, which is correct. The directness and honesty of the voice (e.g., 'here's the honest state of things') convey personality without jokes or wordplay.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The draft uses technical terms only where customers and readers need to recognize them: 'earnings call', 'Q2 2026', 'revenue', 'loss ratio', 'customer count', 'profitability' are all terms the audience expects when reading financial content. It translates mechanics clearly ('before it's superseded by the next quarter's results') and avoids inventing folksy substitutes for financial or compliance language.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 1,
+      "reason": "sentence exceeds 28 words"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft is framed almost entirely around what the reader can expect and do ('what we can tell you right now', 'if you want the real numbers... read it directly'), avoiding internal process jargon except where it transparently explains the internal Slack-message origin as context, which itself serves reader trust rather than company self-description.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 2,
+      "reason": "The only central factual claims made are that the call occurred on a specific date and that a transcript exists at a linked, named source (The Motley Fool). No financial figures, quotes or characterizations are asserted, and the piece explicitly refuses to make any claim it can't source, so every claim actually made traces to a visible source.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 2,
+      "reason": "The piece explicitly and clearly explains timing: earnings commentary is most useful right after the call before the next quarter supersedes it, directly answering why this is being said today rather than later.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft deliberately contains no attributed quotes from any executive, consistent with an approved brief that would call for withholding quotes until sourced, making quote fidelity not applicable.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9.29,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft makes no claims about Lemonade's financial results, executive quotes, or performance characterizations \figthose, and explicishops it explicitly avoids attributing statements or figures. It cites a traceable source (The Motley Fool transcript with URL) for the earnings call's existence. No outcome is promised, no disclaimer is removed, no unsupported judgement claim is made about a customer, and no contradiction of known policy appears. The piece explicitly defers substantive claims to a future, sourced follow-up, consistent with compliance prohibitions against unsupported public-company claims."
+  },
+  "attempt": 1,
+  "outcome": "reviewed",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1427,
+      "output_tokens": 874,
+      "cache_read_tokens": 1836,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.011961
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1901,
+      "output_tokens": 113,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002466
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 938,
+      "output_tokens": 202,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004225
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2341,
+      "output_tokens": 271,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003696
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1362,
+      "output_tokens": 406,
+      "cache_read_tokens": 2126,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.007209
+    }
+  ],
+  "cost_usd": 0.080704
+}
