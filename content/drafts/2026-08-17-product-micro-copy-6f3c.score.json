@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-17-product-micro-copy-6f3c",
+  "source_hash": "353150280b3826a4ff06f90e209cde52d3aa1d822695a35bb484b239c7787253",
+  "scored_at": "2026-08-17T18:21:09.271Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "All-caps action label with concrete verb matches LEM-011 pattern for low-stakes interface copy. Tone is direct and appropriate.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. Possessive name use ('Mongo's') follows approved vocabulary preference for named persons/pets without crossing into jokes.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses concrete action verb 'get' and avoids insurance jargon. No translation needed; 'quote' is a term customers recognize.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The draft uses the pet's name 'Mongo' directly, consistent with the approved pattern of addressing the named subject when the interface provides one (similar to using jamesmobbin@gmail.com in LEM-009).",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit was provided for this button string, so fit cannot be assessed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "'GET' matches the concrete action-verb pattern established in approved low-stakes buttons like 'GET DISCOUNTS' in LEM-011, keeping verb usage consistent across the flow.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a single button label, \"GET MONGO'S QUOTE.\" It contains no promise of an outcome, no removal of a disclaimer, no unsupported judgement claim about a customer, no contradiction of known policy, and no attributed quote or factual public claim requiring a source. It also names a specific action (getting a quote for a pet named Mongo) rather than using a generic 'click here' label. Per the instructions, an isolated navigation or button label should not be failed for lacking surrounding copy, a source, or a disclaimer. No compliance prohibition is triggered."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 166,
+      "output_tokens": 73,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001391
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1269,
+      "output_tokens": 55,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001544
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 119,
+      "output_tokens": 202,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002587
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1797,
+      "output_tokens": 150,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002547
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 623,
+      "output_tokens": 235,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004017
+    }
+  ],
+  "cost_usd": 0.012086
+}
