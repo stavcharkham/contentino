@@ -1,0 +1,116 @@
+{
+  "piece_id": "2026-08-17-give-me-a-button-text-copy-for-when-i-m-about-to-2138",
+  "source_hash": "6fb3610e632bd864fffb856f1e19c06e9d3bb74f0b3f5acf727f0c2bbdd69d60",
+  "scored_at": "2026-08-17T17:41:22.599Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The all-caps button label with concrete action verb matches the approved low-stakes examples (LEM-011) and follows mechanics guidelines for interface headers.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. The draft is a button label at low stakes where humour would be inappropriate anyway, consistent with approved examples.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": "N/A",
+      "reason": "No specialized insurance or coverage terminology appears in the draft. Plain-language translation criteria do not apply to this button label.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The interface provides no named subject or addressee context for this button label; it's a generic confirm-and-pay action similar to LEM-011's short all-caps actions, which also don't use direct address.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit is provided for this string, so fit cannot be assessed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "\"CONFIRM AND PAY\" uses concrete, specific verbs consistent with the pattern in LEM-011 (GET DISCOUNTS, FINALIZE PAYMENT), matching the checkout/payment flow's action verb style.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft consists solely of the button label 'CONFIRM AND PAY,' an all-caps interface action label consistent with mechanics rules for buttons. There is no promised outcome, no removed disclaimer, no unsupported judgement claim, no contradiction of known policy, and no attributed quote or factual public claim requiring a source. Per instructions, an isolated navigation/button label is not to be failed for lacking surrounding context or disclaimers. No compliance prohibitions are triggered."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 141,
+      "output_tokens": 82,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001431
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 121,
+      "output_tokens": 195,
+      "cache_read_tokens": 1833,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002559
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1261,
+      "output_tokens": 79,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001656
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 108,
+      "output_tokens": 174,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002285
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1789,
+      "output_tokens": 146,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002519
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 612,
+      "output_tokens": 242,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004065
+    }
+  ],
+  "cost_usd": 0.014515
+}
