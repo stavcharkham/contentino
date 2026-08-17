@@ -3,6 +3,7 @@ import { parseMarkdown } from "@/lib/artifacts";
 import type { GoogleDocsReviewAdapter } from "@/lib/adapters/google";
 import type { GoogleDriveSource } from "@/lib/adapters/drive";
 import type { SlackReviewAdapter } from "@/lib/adapters/slack";
+import { extractUrls, fetchSourceText } from "@/lib/fetch-source";
 import { runOnce } from "@/lib/idempotency";
 import { briefSchema, draftSchema, type Scorecard } from "@/lib/schemas";
 import { parseCorrection, ReviewTargetError } from "./review";
@@ -111,7 +112,9 @@ export async function handleSlackEnvelope(input: {
   slack: SlackSurface;
   envelope: SlackEnvelope;
   driveSync?: () => Promise<string[]>;
+  fetchSource?: (url: string) => Promise<string | null>;
 }): Promise<{ duplicate?: boolean; action: string }> {
+  const fetchSource = input.fetchSource ?? fetchSourceText;
   const event = input.envelope.event;
   if (!event || event.bot_id) return { action: "ignored" };
   const isThreadReply = (event.type === "message" || event.type === "app_mention")
@@ -159,7 +162,7 @@ export async function handleSlackEnvelope(input: {
           "- drive-sync: the user asks to check, sync or process the Drive folder or a transcript that was uploaded.",
           "- other: anything else, including questions about Contentino itself.",
           "`request` is the message with any greeting or addressing stripped, otherwise unchanged.",
-          "`has_source_material` is true only when the message itself carries the substance to write from - a transcript, meeting notes, concrete facts or a link - and false when it only names or asks for a piece of content.",
+          "`has_source_material` is true only when the message text itself carries the substance to write from - a transcript, meeting notes or concrete facts. A bare link does not count: links are fetched separately.",
         ].join("\n"),
         prompt: text,
         schema: mentionIntent,
@@ -167,13 +170,25 @@ export async function handleSlackEnvelope(input: {
       });
       if (routed.value.intent === "microcopy") return runMicrocopy(routed.value.request);
       if (routed.value.intent === "announcement") {
-        if (!routed.value.has_source_material) {
+        // A linked page is fetched and briefed from its actual content - the
+        // link text alone carries no facts to write from.
+        const urls = extractUrls(event.text ?? "");
+        let fetched = "";
+        for (const url of urls.slice(0, 3)) {
+          const sourceText = await fetchSource(url);
+          if (sourceText) fetched += `\n\n--- Source: ${url} ---\n\n${sourceText}`;
+        }
+        if (urls.length && !fetched && !routed.value.has_source_material) {
+          await input.slack.postMessage("I couldn't read that link from here. Paste the text itself - the transcript, notes or article - and I'll build the brief from it.", threadTs);
+          return "announcement-source-unreadable";
+        }
+        if (!urls.length && !routed.value.has_source_material) {
           await input.slack.postMessage("Happy to write that. An announcement starts from source material, and this request doesn't carry any yet. Mention me again with the topic and the source together - paste the meeting notes or transcript, or drop a link - and I'll build the brief from it.", threadTs);
           return "announcement-needs-source";
         }
         // The brief is built from the person's own words, never the router's
         // paraphrase - a summarised `request` once dropped the whole transcript.
-        return runBrief(text);
+        return runBrief(`${text}${fetched}`);
       }
       if (routed.value.intent === "drive-sync") {
         if (!input.driveSync) {

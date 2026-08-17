@@ -159,6 +159,27 @@ describe("surface orchestration", () => {
     expect(gateway.briefPrompts[0]).not.toContain("paraphrase that lost the transcript");
   });
 
+  it("fetches a linked source and briefs from its content", async () => {
+    const ctx = await context();
+    const gateway = ctx.models as SurfaceGateway;
+    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn(), postBriefForApproval: vi.fn(async (input: { threadTs?: string }) => input.threadTs ?? "9.9") };
+    const envelope = { event: { type: "app_mention", text: "<@BOT> write an announcement blog about this: <https://example.com/call|fool.com>", user: "U1", ts: "9.1", channel: "C1" } };
+    const fetchSource = vi.fn().mockResolvedValue("In-force premium reached $1.43 billion in the quarter.");
+    expect((await handleSlackEnvelope({ context: ctx, slack, envelope, fetchSource })).action).toBe("brief");
+    expect(fetchSource).toHaveBeenCalledWith("https://example.com/call");
+    expect(gateway.briefPrompts.at(-1)).toContain("In-force premium reached $1.43 billion");
+  });
+
+  it("asks for the text when a linked source cannot be fetched", async () => {
+    const ctx = await context();
+    const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn(), postBriefForApproval: vi.fn(async (input: { threadTs?: string }) => input.threadTs ?? "9.9") };
+    const envelope = { event: { type: "app_mention", text: "<@BOT> write an announcement blog about this: <https://example.com/blocked>", user: "U1", ts: "9.2", channel: "C1" } };
+    const fetchSource = vi.fn().mockResolvedValue(null);
+    expect((await handleSlackEnvelope({ context: ctx, slack, envelope, fetchSource })).action).toBe("announcement-source-unreadable");
+    expect(slack.postMessage).toHaveBeenCalledWith(expect.stringContaining("couldn't read that link"), "9.2");
+    expect(slack.postBriefForApproval).not.toHaveBeenCalled();
+  });
+
   it("asks for source material instead of making a brief from a bare announcement request", async () => {
     const ctx = await context();
     const slack = { acknowledge: vi.fn().mockResolvedValue(undefined), mapBrief: vi.fn(), mapDraft: vi.fn(), postMessage: vi.fn(), presentDraft: vi.fn(), presentDraftInThread: vi.fn(), postRevision: vi.fn(), postBriefForApproval: vi.fn(async (input: { threadTs?: string }) => input.threadTs ?? "9.9") };
