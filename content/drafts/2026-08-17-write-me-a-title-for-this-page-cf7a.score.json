@@ -1,0 +1,116 @@
+{
+  "piece_id": "2026-08-17-write-me-a-title-for-this-page-cf7a",
+  "source_hash": "384e2b08f1dc03d87bc43c7281757b2d4aad3b6185773a1baf0137780179e741",
+  "scored_at": "2026-08-17T17:17:23.311Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The all-caps header uses the correct register for a low-stakes interface moment, consistent with LEM-009 and LEM-011 which show all-caps headers for confirmations and actions.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present in this low-stakes confirmation, which is appropriate. The tone is warm and direct without jokes or wordplay.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The phrase 'quote is ready' uses everyday language without unnecessary jargon. No insurance terminology requiring translation appears in this brief header.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The interface state (quote ready) provides no named subject (e.g., pet or person name) to address; 'your' is the only available direct address and is already used, so there's no named addressee to compare against.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared character limit is provided for this header string, and no interface limit is stated in the prompt to check against.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 1,
+      "reason": "The header uses 'ready' as a state descriptor rather than a concrete action verb like 'GET DISCOUNTS' or 'FINALIZE PAYMENT' seen in LEM-011, making it less consistent with the concrete-verb pattern established in adjacent low-stakes headers, though it still clearly communicates status.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft consists solely of a button/navigation-style label ('YOUR QUOTE IS READY') with no accompanying claims, promises, disclaimers, or judgements. There is no promise of an outcome, no removal of a disclaimer, no unsupported judgement claim about a customer, no contradiction of known policy, and no unattributed quote or factual claim. Per the instructions, an isolated navigation or button label should not be failed for missing surrounding context. No compliance prohibitions are triggered by the text provided."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 120,
+      "output_tokens": 65,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.005003
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 100,
+      "output_tokens": 213,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1833,
+      "cost_usd": 0.006913
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1262,
+      "output_tokens": 81,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001667
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 110,
+      "output_tokens": 181,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002359
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1790,
+      "output_tokens": 160,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.00259
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 614,
+      "output_tokens": 272,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2107,
+      "cost_usd": 0.009215
+    }
+  ],
+  "cost_usd": 0.027747
+}
