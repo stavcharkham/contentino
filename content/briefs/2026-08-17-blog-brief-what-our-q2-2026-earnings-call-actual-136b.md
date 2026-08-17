@@ -3,7 +3,9 @@ id: 2026-08-17-blog-brief-what-our-q2-2026-earnings-call-actual-136b
 created: '2026-08-17T18:06:55.160Z'
 source: 'slack://C0BQ0KW7PU1/1786989985.148229'
 source_id: '1786989985.148229'
-status: draft
+status: approved
+approved_by: U0BPV3QPDHB
+approved_at: '2026-08-17T18:07:21.506Z'
 api_cost_usd: 0.051147
 ---
 # Blog brief: what our Q2 2026 earnings call actually gives us to write about
