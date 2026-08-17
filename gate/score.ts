@@ -76,10 +76,6 @@ export async function scoreDraft(input: {
   attempt: number;
   models: ModelGateway;
   now?: Date;
-  // "core" scores the shared rubric only (core criteria, mechanics, compliance)
-  // for standalone text with no brief behind it, like the dashboard demo. The
-  // type criteria assume a generated draft and would zero pasted copy unfairly.
-  criteriaScope?: "full" | "core";
 }): Promise<Scorecard> {
   const scoringText = input.scoringText ?? input.content;
   const stakesCall = await input.models.complete({
@@ -122,7 +118,7 @@ export async function scoreDraft(input: {
     schema: criteriaResult,
     maxTokens: 600,
   });
-  const typeCall = input.criteriaScope === "core" ? null : await input.models.complete({
+  const typeCall = await input.models.complete({
     job: "type-criteria",
     system: `${input.baseProfile}\n\n${input.type.guidelineBody}\n\n${input.type.criteriaBody}`,
     prompt: criteriaPrompt(scoringText, input.type.examples, input.type.criteria),
@@ -132,10 +128,10 @@ export async function scoreDraft(input: {
   const criteria = [
     ...requireExactCriteria(coreCriteria, coreCall.value.criteria, coreCall.usage.model),
     mechanics,
-    ...(typeCall ? requireExactCriteria(input.type.criteria, typeCall.value.criteria, typeCall.usage.model) : []),
+    ...requireExactCriteria(input.type.criteria, typeCall.value.criteria, typeCall.usage.model),
   ];
   const score = normalizeScore(criteria);
-  const usage = [stakesCall.usage, complianceCall.usage, coreCall.usage, ...(typeCall ? [typeCall.usage] : [])];
+  const usage = [stakesCall.usage, complianceCall.usage, coreCall.usage, typeCall.usage];
   return scorecardSchema.parse({
     piece_id: input.pieceId,
     source_hash: contentHash(input.content),

@@ -66,9 +66,6 @@ export async function buildDashboardData(storage: ContentStorage, now = new Date
   if (!rubricFile) throw new Error("The rubric evaluation is missing");
 
   const rows = parseLedger(ledgerFile.content);
-  // Dashboard demo scores stay in the ledger for cost and audit, but they are
-  // not production runs: they carry no draft and never claim saved minutes.
-  const workRows = rows.filter((row) => row.skill !== "gate-demo");
   const scorecards = [...drafts, ...published]
     .filter((file) => file.path.endsWith(".score.json"))
     .map((file) => scorecardSchema.parse(JSON.parse(file.content)));
@@ -92,14 +89,14 @@ export async function buildDashboardData(storage: ContentStorage, now = new Date
 
   const outcomeLabels = ["auto-published", "reviewed", "regenerated", "blocked"] as const;
   const outcomes = outcomeLabels.map((label) => {
-    const count = workRows.filter((row) => row.outcome === label).length;
-    return { label, count, percentage: percentage(count, workRows.length) };
+    const count = rows.filter((row) => row.outcome === label).length;
+    return { label, count, percentage: percentage(count, rows.length) };
   });
   const scoreBands = [
-    { label: "8–10", count: workRows.filter((row) => row.score >= 8).length },
-    { label: "5–7.9", count: workRows.filter((row) => row.score >= 5 && row.score < 8).length },
-    { label: "0–4.9", count: workRows.filter((row) => row.score < 5).length },
-  ].map((band) => ({ ...band, percentage: percentage(band.count, workRows.length) }));
+    { label: "8–10", count: rows.filter((row) => row.score >= 8).length },
+    { label: "5–7.9", count: rows.filter((row) => row.score >= 5 && row.score < 8).length },
+    { label: "0–4.9", count: rows.filter((row) => row.score < 5).length },
+  ].map((band) => ({ ...band, percentage: percentage(band.count, rows.length) }));
   const rubricSource = rubricFile.content;
   const rubric = {
     realMean: rubricNumber(rubricSource, /Real Lemonade mean[^\n]*\*\*(\d+\.\d+)\*\*/, "the real-content mean"),
@@ -108,8 +105,8 @@ export async function buildDashboardData(storage: ContentStorage, now = new Date
     sampleSize: rubricNumber(rubricSource, /(\d+) of \d+ match/, "the reproduced sample size"),
     disclosure: "Same 47-item set; human calibration and live model scoring remain outstanding.",
   };
-  const reviewCount = workRows.filter((row) => row.outcome === "reviewed").length;
-  const publishCount = workRows.filter((row) => row.outcome === "auto-published").length;
+  const reviewCount = rows.filter((row) => row.outcome === "reviewed").length;
+  const publishCount = rows.filter((row) => row.outcome === "auto-published").length;
   const evidence: DashboardEvidence[] = [
     { id: "source-count", stage: "source", eyebrow: "Source intake", title: `${briefs.length} source-backed brief${briefs.length === 1 ? "" : "s"}`, detail: briefs.length ? "Each brief retains its source id for Drive idempotency." : "No transcript has entered the live ledger yet.", value: String(briefs.length), tone: "ink" },
     { id: "brief-gate", stage: "brief", eyebrow: "Human gate", title: "Named approval required", detail: "External comms cannot start from a transcript or an unapproved brief.", value: "Hard gate", tone: "amber" },
@@ -125,17 +122,17 @@ export async function buildDashboardData(storage: ContentStorage, now = new Date
     generatedAt: now.toISOString(),
     generatedLabel: new Intl.DateTimeFormat("en-GB", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Jerusalem" }).format(now),
     kpis: {
-      runs: workRows.length,
-      averageScore: workRows.length ? Number((workRows.reduce((sum, row) => sum + row.score, 0) / workRows.length).toFixed(2)) : null,
+      runs: rows.length,
+      averageScore: rows.length ? Number((rows.reduce((sum, row) => sum + row.score, 0) / rows.length).toFixed(2)) : null,
       blocks: scorecards.filter((score) => !score.compliance.pass).length,
-      revisions: workRows.reduce((sum, row) => sum + row.revisions, 0),
+      revisions: rows.reduce((sum, row) => sum + row.revisions, 0),
       costUsd: Number(rows.reduce((sum, row) => sum + row.api_cost_usd, 0).toFixed(6)),
-      minutesSaved: workRows.reduce((sum, row) => sum + row.minutes_saved, 0),
+      minutesSaved: rows.reduce((sum, row) => sum + row.minutes_saved, 0),
     },
     flow: [
       { id: "source", label: "Source", count: briefs.length, note: "Drive or Claude" },
       { id: "brief", label: "Brief", count: briefs.length, note: "Named approval" },
-      { id: "draft", label: "Draft", count: workRows.length, note: "Type + voice" },
+      { id: "draft", label: "Draft", count: rows.length, note: "Type + voice" },
       { id: "gate", label: "Gate", count: scorecards.length, note: "Score + veto" },
       { id: "review", label: "Review / publish", count: reviewCount + publishCount, note: "Git, Slack, Docs" },
       { id: "correction", label: "Correction", count: corrections.length, note: "Exact before / after" },

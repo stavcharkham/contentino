@@ -84,7 +84,7 @@ export const ledgerRowSchema = z.object({
   skill: z.string().min(1),
   content_type: contentTypeSchema,
   triggered_by: z.string().min(1),
-  trigger: z.enum(["claude", "slack", "drive", "cli", "dashboard"]),
+  trigger: z.enum(["claude", "slack", "drive", "cli"]),
   score: z.number().min(0).max(10),
   outcome: ledgerOutcomeSchema,
   revisions: z.number().int().nonnegative(),

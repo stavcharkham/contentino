@@ -22,7 +22,6 @@ export async function scoreArtifact(input: {
   artifact: string;
   scoringText: string;
   attempt: number;
-  criteriaScope?: "full" | "core";
 }): Promise<Scorecard> {
   const [baseProfile, type] = await Promise.all([
     loadBaseProfile(input.context.storage),
@@ -37,7 +36,6 @@ export async function scoreArtifact(input: {
     attempt: input.attempt,
     models: input.context.models,
     now: workflowNow(input.context),
-    criteriaScope: input.criteriaScope,
   });
 }
 
