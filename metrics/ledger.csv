@@ -49,3 +49,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-16-testing-a-simpler-way-to-explain-claims-status-w-2e4a,2026-08-16T13:35:55.172Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,8.13,reviewed,0,0.08214,37.5
 2026-08-16-we-re-testing-a-simpler-claims-status-view-with--8c3a,2026-08-16T13:47:53.417Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,10,reviewed,0,0.093698,37.5
 2026-08-17-write-me-a-title-for-this-page-cf7a,2026-08-17T17:17:15.042Z,write-microcopy,product-microcopy,U0BPV3QPDHB,slack,9,auto-published,0,0.027747,20
+2026-08-17-product-micro-copy-43e8,2026-08-17T17:22:17.393Z,submit-product-microcopy,product-microcopy,Stav,claude,9,auto-published,0,0.013129,20

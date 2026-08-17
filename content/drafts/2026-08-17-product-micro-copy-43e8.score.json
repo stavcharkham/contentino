@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-17-product-micro-copy-43e8",
+  "source_hash": "827d611e6c215eafd3e89858296832a31c6fd07d8bf97d94ae27d569ab3db89b",
+  "scored_at": "2026-08-17T17:22:22.977Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The all-caps action verb matches low-stakes interface patterns (LEM-011). The tone is appropriate for a button label where nothing financial or eligibility-related changes in this moment.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is present. The draft is a straightforward button label at low stakes, which is the only appropriate place for any playful tone per guidelines.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "The draft uses a concrete verb ('PAY') and direct address ('MY'). It names the action clearly without jargon or evasive phrasing, following the vocabulary preference for direct language and named actions.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": "N/A",
+      "reason": "The interface provides no named subject or person to address here (unlike LEM-009's use of the customer's email); the string is a generic action label with no addressee context available to compare against.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit was provided for this string, so fit cannot be assessed.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 1,
+      "reason": "'PAY' is a concrete, understandable verb similar in style to 'GET' and 'FINALIZE' in LEM-011, but 'PAY FOR MY CAR INSURANCE' is longer and uses first-person phrasing ('MY') unlike the terser, second-person-neutral approved buttons, making it only partially consistent with the established flow verbs.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a single button-style navigation label, 'PAY FOR MY CAR INSURANCE.' It names a concrete action (paying for car insurance) rather than using a generic 'click here' label, and it is presented in all caps consistent with button/interface conventions. There is no promise of an outcome, no removed disclaimer, no unsupported judgement claim about the customer, no contradiction of known policy, and no attributed quote or factual public claim requiring a source. Per instructions, an isolated navigation or button label should not be failed merely because surrounding copy, a source, or a disclaimer is absent. No compliance prohibitions are triggered by this text."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 141,
+      "output_tokens": 94,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001551
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1270,
+      "output_tokens": 80,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.00167
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 123,
+      "output_tokens": 226,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002835
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1798,
+      "output_tokens": 178,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002688
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 627,
+      "output_tokens": 271,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004385
+    }
+  ],
+  "cost_usd": 0.013129
+}
