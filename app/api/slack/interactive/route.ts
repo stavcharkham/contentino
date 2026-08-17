@@ -46,10 +46,17 @@ export async function POST(request: Request): Promise<Response> {
         await approveBrief({ storage: context.storage, path: briefPath, approvedBy });
       } catch (error) {
         if (error instanceof Error && error.message.includes("Only draft briefs")) {
-          await slack.postMessage("This brief is already approved - the draft is on its way or in the thread above.", threadTs);
-          return;
+          // Already approved. If the draft exists the click is a duplicate; if it
+          // doesn't, an earlier run died between approval and draft - write it now.
+          const mapping = await context.storage.read(`content/surfaces/slack/${threadTs.replaceAll(".", "-")}.json`);
+          const draftPath = mapping ? (JSON.parse(mapping.content) as { draft_path?: string }).draft_path : undefined;
+          if (draftPath) {
+            await slack.postMessage("This brief is already approved - the draft is in the thread above.", threadTs);
+            return;
+          }
+        } else {
+          throw error;
         }
-        throw error;
       }
       const progressTs = await slack.postProgress(threadTs, "On it - writing and scoring the draft now.").catch(() => undefined);
       const generated = await writeExternalComms({ context, briefPath, triggeredBy: approvedBy, trigger: "slack" });

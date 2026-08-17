@@ -220,15 +220,18 @@ export class GitHubStorage extends StorageConvenience {
   }
 
   async commit(commit: StorageCommit): Promise<{ version: string }> {
-    for (let attempt = 1; attempt <= 4; attempt += 1) {
+    // Approving a brief bursts several commits from two functions at once, so a
+    // fast-forward failure can repeat for seconds; back off long enough to outlive it.
+    const attempts = 8;
+    for (let attempt = 1; attempt <= attempts; attempt += 1) {
       try {
         return await this.commitAtHead(commit);
       } catch (error) {
         const status = (error as { status?: number }).status;
         const retryable = status === 409 || status === 422 || (typeof status === "number" && status >= 500);
         if (!retryable) throw error;
-        if (attempt === 4) throw new StorageConflictError("GitHub branch changed during the logical commit");
-        await delay(200 * attempt + Math.floor(Math.random() * 150));
+        if (attempt === attempts) throw new StorageConflictError("GitHub branch changed during the logical commit");
+        await delay(Math.min(400 * attempt, 2000) + Math.floor(Math.random() * 400));
       }
     }
     throw new StorageConflictError("GitHub branch changed during the logical commit");
