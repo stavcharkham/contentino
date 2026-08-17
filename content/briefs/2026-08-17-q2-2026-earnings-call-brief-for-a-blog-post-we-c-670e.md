@@ -3,7 +3,9 @@ id: 2026-08-17-q2-2026-earnings-call-brief-for-a-blog-post-we-c-670e
 created: '2026-08-17T17:52:57.906Z'
 source: 'slack://C0BQ0KW7PU1/1786989145.610299'
 source_id: '1786989145.610299'
-status: draft
+status: approved
+approved_by: U0BPV3QPDHB
+approved_at: '2026-08-17T18:02:42.770Z'
 api_cost_usd: 0.048322
 ---
 # Q2 2026 earnings call: brief for a blog post we can't write yet
