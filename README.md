@@ -18,7 +18,15 @@ product micro-copy and external communications.
 
 ## Try it in five minutes
 
-The plugin ships a guided tour. In Claude (web or desktop):
+The plugin ships a guided tour. The quickest path is Claude Code - it works on any
+account, including managed team accounts where custom connectors are locked:
+
+1. `claude` in any terminal, then `/plugin marketplace add stavcharkham/contentino`
+   and install **Contentino engine**.
+2. Type `/lemonade-demo`. It asks once for the shared Contentino password (provided
+   with the submission), then talks to the production gate directly.
+
+In Claude web or desktop, if your account allows custom connectors:
 
 1. Settings → Plugins → add this repository as a marketplace, install **Contentino engine**.
 2. Settings → Connectors → Add custom connector, paste the Contentino gate URL

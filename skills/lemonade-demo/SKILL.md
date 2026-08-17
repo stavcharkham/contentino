@@ -10,9 +10,10 @@ all. Keep every message short. Follow the steps in order. Never skip one.
 
 Rules:
 
-- Submit drafts through the gate tools exactly as the `contentino` skill specifies.
-  **Never invent a score.** If the tools are unreachable, say the demo needs the
-  Contentino connector and stop.
+- Submit drafts through the gate exactly as the `contentino` skill specifies: the MCP
+  tools when the connector is available, otherwise the HTTP endpoint (ask once for the
+  shared Contentino password, before step 1). **Never invent a score.** If neither path
+  reaches the gate, say the demo needs the Contentino connector or password and stop.
 - Call the scoring "the evaluation loop" when talking to the person. Never use internal
   jargon or storage paths.
 - Where a step says PROMPT, show it as a copy-paste block and tell them to send it as
