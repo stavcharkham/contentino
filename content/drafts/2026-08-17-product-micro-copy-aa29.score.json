@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-17-product-micro-copy-aa29",
+  "source_hash": "7f28c84ac0d617854b7ada6bb63925be2908a86887a65cd1dd2588a38ae4bcae",
+  "scored_at": "2026-08-17T18:17:24.336Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "All-caps button label using a concrete action verb ('GET') is appropriate for low-stakes interface copy, matching the approved pattern in LEM-011.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. The straightforward action label is suitable for low-stakes context where playfulness would not be inappropriate.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 2,
+      "reason": "Uses direct, concrete verb ('GET') and names the thing being acted upon ('MONGO COVERED'). No technical insurance terms requiring translation are present. Follows the approved mechanics for button labels.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The interface provides the pet's name (Mongo), and the draft uses it directly, consistent with how LEM-009 uses the person's known email/name context.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": 2,
+      "reason": "The declared limit is 24 characters and the string 'GET MONGO COVERED' is 17 characters, fitting comfortably within budget.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 1,
+      "reason": "‘Get’ is a concrete, approved verb consistent with LEM-011's action-verb style, but there's no neighbouring screen shown to confirm it matches an established verb chain in this specific flow, so full confidence in flow-consistency can't be verified.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 9.29,
+  "compliance": {
+    "pass": true,
+    "reason": "This is a low-stakes button/navigation label of 17 characters (within the 24-character interface limit). It contains no financial, legal, medical, or eligibility claims, no guarantee, no judgement claim, and no factual assertion requiring a source. Per instructions, an isolated navigation or button label should not be failed for lacking surrounding context, a source, or a disclaimer. It also follows mechanics: all caps is appropriate for a button label, no punctuation issues, and it names the action ('get... covered') rather than using a generic 'click here' label."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 166,
+      "output_tokens": 91,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001571
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1283,
+      "output_tokens": 74,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001653
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 137,
+      "output_tokens": 191,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002513
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1811,
+      "output_tokens": 159,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002606
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 641,
+      "output_tokens": 246,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004163
+    }
+  ],
+  "cost_usd": 0.012506
+}

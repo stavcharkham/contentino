@@ -59,3 +59,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-17-about-that-earnings-call-what-we-can-tell-you-ri-0b82,2026-08-17T18:07:23.756Z,write-external-comms,external-comms,U0BPV3QPDHB,slack,9.29,reviewed,0,0.080704,37.5
 2026-08-17-product-micro-copy-d6f3,2026-08-17T18:13:45.363Z,submit-product-microcopy,product-microcopy,Stav,claude,8,blocked,0,0.020901,0
 2026-08-17-product-micro-copy-a7cb,2026-08-17T18:16:48.454Z,submit-product-microcopy,product-microcopy,Stav,claude,8.33,blocked,0,0.012911,0
+2026-08-17-product-micro-copy-aa29,2026-08-17T18:17:19.607Z,submit-product-microcopy,product-microcopy,Stav,claude,9.29,auto-published,0,0.012506,20
