@@ -10,6 +10,121 @@ const outcomeLabels: Record<string, string> = {
   blocked: "Blocked",
 };
 
+const demoVerdicts: Record<string, string> = {
+  "auto-published": "Passes. Low stakes, so it would auto-publish.",
+  reviewed: "Passes the bar. It would go to human review.",
+  regenerated: "Below the bar. The engine would regenerate it.",
+  blocked: "Blocked. A compliance veto or a zero criterion.",
+};
+
+const demoMaxChars = 12000;
+
+const demoExamples = [
+  { label: "Real Lemonade copy", text: "Quiet one this time. The kind of update that doesn't announce itself at parties." },
+  { label: "Off-brand jargon", text: "Premiums are calculated utilizing telematics-based driving behavior data collected via a proprietary algorithm." },
+  { label: "Overpromise (veto)", text: "Our AI is basically a lie detector — it reads your face and body language in the claim video to catch liars in real time!" },
+];
+
+type DemoResult = {
+  piece_id: string;
+  content_type: string;
+  score: number;
+  outcome: string;
+  stakes: string;
+  compliance: { pass: boolean; reason: string };
+  criteria: Array<{ name: string; score: number | "N/A"; reason: string }>;
+  runs_today: number;
+  daily_limit: number;
+};
+
+function TryTheGate() {
+  const [text, setText] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<DemoResult | null>(null);
+
+  async function score() {
+    setBusy(true);
+    setError(null);
+    setResult(null);
+    try {
+      const response = await fetch("/api/demo/score", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error ?? "The gate could not score this text");
+      setResult(payload as DemoResult);
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : String(caught));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <section className="flow-section demo-section" aria-labelledby="demo-title">
+      <div className="section-heading">
+        <div><p className="section-index">02 / TRY THE GATE</p><h2 id="demo-title">How Lemonade is it?</h2></div>
+        <p>Paste any copy and the production gate scores it against the shared Lemonade rubric: the core voice criteria, the mechanics check and the compliance veto its own drafts pass. Every run lands in the ledger below.</p>
+      </div>
+      <div className="demo-grid">
+        <div className="demo-input">
+          <textarea
+            value={text}
+            maxLength={demoMaxChars}
+            onChange={(event) => setText(event.target.value)}
+            placeholder="Paste a headline, a button label, an email, a blog post…"
+            aria-label="Copy to score"
+            rows={8}
+            disabled={busy}
+          />
+          <div className="demo-controls">
+            <div className="demo-examples">
+              {demoExamples.map((example) => (
+                <button key={example.label} type="button" className="demo-example" disabled={busy} onClick={() => { setText(example.text); setResult(null); setError(null); }}>
+                  {example.label}
+                </button>
+              ))}
+            </div>
+            <span className="demo-count">{text.trim().length.toLocaleString("en-US")} / {demoMaxChars.toLocaleString("en-US")}</span>
+            <button type="button" className="demo-submit" onClick={score} disabled={busy || text.trim().length < 12}>
+              {busy ? "Scoring…" : "Score it"}
+            </button>
+          </div>
+          <p className="demo-note">Text only, up to blog length. Capped at 100 scores a day. Nothing you paste is published anywhere.</p>
+        </div>
+        <div className="demo-output" aria-live="polite">
+          {busy && <div className="empty-state compact demo-wait"><strong>The gate is scoring…</strong><span>Stakes, compliance, then every rubric criterion.</span></div>}
+          {!busy && error && <div className="empty-state compact demo-error"><strong>No score this time.</strong><span>{error}</span></div>}
+          {!busy && !error && !result && <div className="empty-state compact"><strong>No text scored yet.</strong><span>Paste copy or pick an example, then score it.</span></div>}
+          {!busy && result && (
+            <div className="demo-result">
+              <div className="demo-headline">
+                <strong>{result.score.toFixed(2)}</strong>
+                <div>
+                  <span className={`demo-band band-${result.outcome}`}>{demoVerdicts[result.outcome] ?? result.outcome}</span>
+                  <small>Scored as {result.content_type.replaceAll("-", " ")} · {result.stakes} stakes · {result.compliance.pass ? "compliance passed" : `compliance veto: ${result.compliance.reason}`}</small>
+                </div>
+              </div>
+              <ul className="demo-criteria">
+                {result.criteria.map((criterion) => (
+                  <li key={criterion.name}>
+                    <span className={`criterion-score value-${String(criterion.score).toLowerCase().replace("/", "")}`}>{criterion.score}</span>
+                    <div><strong>{criterion.name}</strong><small>{criterion.reason}</small></div>
+                  </li>
+                ))}
+              </ul>
+              <p className="demo-ledger-note">Recorded in the ledger as <strong>{result.piece_id}</strong> · demo score {result.runs_today} of {result.daily_limit} today</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function formatMoney(value: number): string {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 4 }).format(value);
 }
@@ -36,7 +151,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
           <span className="brand-mark" aria-hidden="true">C</span>
           <span>CONTENTINO</span>
         </a>
-        <div className="masthead-status"><span className="status-dot" /> READ-ONLY EVIDENCE</div>
+        <div className="masthead-status"><span className="status-dot" /> LIVE EVIDENCE</div>
         <div className="timestamp">UPDATED {data.generatedLabel}</div>
       </header>
 
@@ -91,9 +206,11 @@ export function Dashboard({ data }: { data: DashboardData }) {
         </div>
       </section>
 
+      <TryTheGate />
+
       <section className="report-grid" aria-label="Evidence report">
         <div className="report-panel rubric-panel">
-          <div className="panel-title"><span>02</span><div><p>Rubric evaluation</p><h2>Does the gate separate?</h2></div></div>
+          <div className="panel-title"><span>03</span><div><p>Rubric evaluation</p><h2>Does the gate separate?</h2></div></div>
           <div className="separation">
             <div className="score-block real"><strong>{data.rubric.realMean.toFixed(2)}</strong><span>Real Lemonade</span></div>
             <div className="gap-marker"><span>{data.rubric.gap.toFixed(2)}</span><small>POINT GAP</small></div>
@@ -103,7 +220,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
         </div>
 
         <div className="report-panel distribution-panel">
-          <div className="panel-title"><span>03</span><div><p>Live outcomes</p><h2>What happened</h2></div></div>
+          <div className="panel-title"><span>04</span><div><p>Live outcomes</p><h2>What happened</h2></div></div>
           {data.kpis.runs ? data.outcomes.map((outcome) => (
             <div className="bar-row" key={outcome.label}>
               <div><span>{outcomeLabels[outcome.label]}</span><strong>{outcome.count}</strong></div>
@@ -114,7 +231,7 @@ export function Dashboard({ data }: { data: DashboardData }) {
       </section>
 
       <section className="table-section" aria-labelledby="recent-title">
-        <div className="section-heading compact-heading"><div><p className="section-index">04 / RUN LEDGER</p><h2 id="recent-title">Recent pieces</h2></div><span>{data.kpis.revisions} revisions recorded</span></div>
+        <div className="section-heading compact-heading"><div><p className="section-index">05 / RUN LEDGER</p><h2 id="recent-title">Recent pieces</h2></div><span>{data.kpis.revisions} revisions recorded</span></div>
         {data.pieces.length ? (
           <div className="table-wrap"><table><thead><tr><th>Piece</th><th>Type</th><th>Score</th><th>Route</th><th>Surface</th><th>Cost</th><th>Saved</th></tr></thead><tbody>
             {data.pieces.map((piece) => <tr key={piece.piece_id}><td><strong>{piece.piece_id}</strong><small>{piece.createdLabel}</small></td><td>{piece.content_type}</td><td><span className="score-pill">{piece.score.toFixed(1)}</span></td><td>{outcomeLabels[piece.outcome]}</td><td>{piece.trigger}</td><td>{formatMoney(piece.api_cost_usd)}</td><td>{piece.minutes_saved}m</td></tr>)}
@@ -124,18 +241,18 @@ export function Dashboard({ data }: { data: DashboardData }) {
 
       <section className="lower-grid">
         <div className="profile-panel">
-          <div className="panel-title"><span>05</span><div><p>Versioned profile</p><h2>Active content types</h2></div></div>
+          <div className="panel-title"><span>06</span><div><p>Versioned profile</p><h2>Active content types</h2></div></div>
           <div className="profile-list">{data.profiles.map((profile) => (
             <article key={profile.name}><div><span className="active-dot" /><strong>{profile.name}</strong></div><dl><div><dt>Status</dt><dd>{profile.status}</dd></div><div><dt>Ceiling</dt><dd>{profile.ceiling}</dd></div><div><dt>Criteria</dt><dd>{profile.criteria}</dd></div><div><dt>Version</dt><dd>{profile.version}</dd></div></dl></article>
           ))}</div>
         </div>
         <div className="corrections-panel">
-          <div className="panel-title"><span>06</span><div><p>Learning loop</p><h2>Recent corrections</h2></div></div>
+          <div className="panel-title"><span>07</span><div><p>Learning loop</p><h2>Recent corrections</h2></div></div>
           {data.corrections.length ? <div className="correction-list">{data.corrections.map((correction) => <article key={correction.id}><div><span>{correction.surface}</span><strong>{correction.criterion}</strong></div><small>{correction.type} · {correction.who} · {correction.status}</small></article>)}</div> : <div className="empty-state compact"><strong>No live corrections yet.</strong><span>Four matching open corrections are required before a rule can be proposed.</span></div>}
         </div>
       </section>
 
-      <footer><span>CONTENTINO / EVIDENCE REPORT</span><p>Git is the system of record. This dashboard cannot change it.</p><span>BUILD 0.1</span></footer>
+      <footer><span>CONTENTINO / EVIDENCE REPORT</span><p>Git is the system of record. This page only reads it, except the gate demo, which writes its ledger row.</p><span>BUILD 0.1</span></footer>
     </main>
   );
 }
