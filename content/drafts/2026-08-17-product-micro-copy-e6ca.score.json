@@ -1,0 +1,108 @@
+{
+  "piece_id": "2026-08-17-product-micro-copy-e6ca",
+  "source_hash": "e19ca40f77118cc1b582e1490788c5c6e0c0c5bac909e9ada46c0700248ad413",
+  "scored_at": "2026-08-17T18:25:13.318Z",
+  "content_type": "product-microcopy",
+  "stakes": "low",
+  "ceiling": "low",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The all-caps action header with possessive pet name matches the approved low-stakes pattern (LEM-011, LEM-009). Tone is appropriately warm and specific for a marketing moment with no financial consequences.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour present. The possessive pet name ('Mongo's') adds personality without jokes, appropriate for low-stakes copy where nothing is at stake for the reader.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": "N/A",
+      "reason": "No specialized insurance terms appear in this micro-copy to evaluate. The vocabulary is straightforward and requires no translation or selective retention of technical terms.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 2,
+      "reason": "The interface provides a named subject (the pet 'Mongo'), and the draft directly addresses that context by naming Mongo in the button, consistent with approved examples like LEM-009 which uses the known recipient's context (email) when available.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "character-budget",
+      "name": "Character budget",
+      "score": "N/A",
+      "reason": "No declared interface character limit was provided for this button string, so the budget cannot be checked.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "action-verb",
+      "name": "Action verb consistency",
+      "score": 2,
+      "reason": "'GET' matches the concrete action-verb pattern established in approved examples such as 'GET DISCOUNTS' and aligns with the vocabulary guidance preferring verbs like 'get', making it consistent with the surrounding product flow.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 10,
+  "compliance": {
+    "pass": true,
+    "reason": "The draft is a single button label, 'GET MONGO'S QUOTE.' It names a specific action (getting a quote for a pet named Mongo) rather than using a generic label like 'click here,' and appropriately uses all caps per interface conventions for buttons. It contains no promises of outcomes, no claims about claim payment, no removal of disclaimers, no unsupported judgement claims about customers, no contradictions of known policy, and no attributed quotes or factual public claims requiring a source. As an isolated navigation/button label, it should not be failed for lacking surrounding context, source, or disclaimers per the instructions."
+  },
+  "attempt": 1,
+  "outcome": "auto-published",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 166,
+      "output_tokens": 85,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001511
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1269,
+      "output_tokens": 75,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001644
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 119,
+      "output_tokens": 215,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002717
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1797,
+      "output_tokens": 159,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002592
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 623,
+      "output_tokens": 251,
+      "cache_read_tokens": 2107,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004177
+    }
+  ],
+  "cost_usd": 0.012641
+}
