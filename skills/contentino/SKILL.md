@@ -68,6 +68,9 @@ Classify the request and follow the matching flow:
   4. Draft the post from the approved brief, respecting its `Not saying` boundaries, and
      submit with `content_type: "external-comms"` and the `brief_id`. External comms never
      auto-publishes; tell the user it is held for review at any score.
+- **Existing content** (a published post, a screenshot of the product, a competitor's copy,
+  "how does this score"): this is an audit, not a draft. Follow the `audit` skill; it scores
+  voice only and never publishes or blocks.
 - **Anything else** (questions about the system, a content type we don't have): answer
   plainly, and say which content types exist today.
 
