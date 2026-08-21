@@ -232,6 +232,27 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
       update the plugin to 0.7.0 and run `/lemonade-demo` once end to end - the prompt-driven
       script has never been run live.
 
+## Audit mode (2026-08-21)
+
+> Score existing content - real Lemonade posts, product screenshots, non-Lemonade copy - on
+> voice criteria only. Spec agreed with Stav 2026-08-21: Claude surface only, audits get their
+> own dashboard section, provenance criteria (claim sourced, why now, quote fidelity) and the
+> missing-source compliance rule do not apply to content that never had a brief. Score reasons
+> written plainly: one factual sentence, no praise words.
+
+- [ ] Mark each profile criterion as audit-applicable or pipeline-only in the type's
+      criteria file, so the profile owns the distinction, not the code
+- [ ] Add "audited" as an outcome and an audit path through scoring: voice criteria only,
+      compliance reported as a flag with the missing-source rule dropped, never publishes
+- [ ] Audit workflow and storage: results land in content/audits/ plus a ledger row, and
+      the publish/review stats exclude audited rows
+- [ ] Expose audit through the gate: HTTP action and MCP tool
+- [ ] Plugin: an audit skill that takes pasted text, a URL or a screenshot, extracts the
+      copy, submits it, and reports the scorecard plainly; bump plugin version
+- [ ] Dashboard: an Audits section showing what was audited, its score and verdict
+- [ ] Evidence: the Giveback post scores in the review band on voice, an off-brand twin
+      scores clearly lower, a screenshot's copy gets extracted and scored
+
 ## Not doing
 
 Cut on 2026-08-12 after the prior-art research. These are the features the market sells to

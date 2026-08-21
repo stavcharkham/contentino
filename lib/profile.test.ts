@@ -18,6 +18,19 @@ describe("profile", () => {
     expect(type.guideline.max_autopublish_stakes).toBe("none");
   });
 
+  it("marks provenance criteria as pipeline-only and voice criteria as auditable", async () => {
+    const comms = await loadContentType(profileRoot, "external-comms");
+    const auditFlags = Object.fromEntries(comms.criteria.map((criterion) => [criterion.id, criterion.audit]));
+    expect(auditFlags).toEqual({
+      "direct-address": true,
+      "claim-sourced": false,
+      "why-now": false,
+      "quote-fidelity": false,
+    });
+    const microcopy = await loadContentType(profileRoot, "product-microcopy");
+    expect(microcopy.criteria.every((criterion) => criterion.audit)).toBe(true);
+  });
+
   it("rejects a content type with too few approved examples", async () => {
     const root = await mkdtemp(path.join(tmpdir(), "contentino-profile-"));
     const typeRoot = path.join(root, "types", "test-type");

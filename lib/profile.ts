@@ -10,6 +10,9 @@ export const criterionSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),
   name: z.string().min(1),
   question: z.string().min(1),
+  // Whether the criterion applies when auditing existing content that never had a
+  // brief. Provenance checks (claim tracing, why-now, quote fidelity) set false.
+  audit: z.boolean().default(true),
 });
 
 export const guidelineSchema = z.object({
