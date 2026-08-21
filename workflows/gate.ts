@@ -2,6 +2,7 @@ import { renderMarkdown } from "@/lib/artifacts";
 import { createPieceId } from "@/lib/ids";
 import type { Brief } from "@/lib/schemas";
 import { createRuntime } from "./runtime";
+import { auditContent } from "./audit";
 import { approveBrief } from "./brief";
 import { submitDraft } from "./generate";
 import { recordSurfaceFailure } from "./slack-support";
@@ -37,6 +38,33 @@ export async function gateSubmitDraft(input: GateDraftInput): Promise<Record<str
     criteria: result.scorecard.criteria.map((criterion) => ({ name: criterion.name, score: criterion.score, reason: criterion.reason })),
     note: result.note,
     draft_path: result.path,
+  };
+}
+
+export type GateAuditInput = {
+  content_type: string;
+  body: string;
+  source: string;
+  triggered_by: string;
+};
+
+export async function gateAuditContent(input: GateAuditInput): Promise<Record<string, unknown>> {
+  const context = await createRuntime();
+  const result = await auditContent({
+    context,
+    contentType: input.content_type,
+    body: input.body,
+    source: input.source,
+    triggeredBy: input.triggered_by,
+  });
+  return {
+    piece_id: result.pieceId,
+    score: result.scorecard.score,
+    outcome: result.scorecard.outcome,
+    stakes: result.scorecard.stakes,
+    compliance: result.scorecard.compliance,
+    criteria: result.scorecard.criteria.map((criterion) => ({ name: criterion.name, score: criterion.score, reason: criterion.reason })),
+    audit_path: result.path,
   };
 }
 

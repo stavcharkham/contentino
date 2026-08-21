@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { readConfig } from "@/lib/config";
-import { gateApproveBrief, gateSubmitBrief, gateSubmitDraft, recordGateFailure } from "@/workflows/gate";
+import { gateApproveBrief, gateAuditContent, gateSubmitBrief, gateSubmitDraft, recordGateFailure } from "@/workflows/gate";
 
 export const maxDuration = 300;
 
@@ -19,12 +19,19 @@ const submitBriefAction = z.object({
   source: z.string().min(1),
   source_id: z.string().min(1),
 });
+const auditAction = z.object({
+  action: z.literal("audit"),
+  content_type: z.string().min(1),
+  body: z.string().min(1),
+  source: z.string().min(1),
+  triggered_by: z.string().min(1),
+});
 const approveBriefAction = z.object({
   action: z.literal("approve-brief"),
   brief_path: z.string().regex(/^content\/briefs\/[a-z0-9-]+\.md$/),
   approved_by: z.string().min(1),
 });
-const actionSchema = z.discriminatedUnion("action", [submitDraftAction, submitBriefAction, approveBriefAction]);
+const actionSchema = z.discriminatedUnion("action", [submitDraftAction, submitBriefAction, auditAction, approveBriefAction]);
 
 export async function POST(request: Request): Promise<Response> {
   const config = readConfig();
@@ -38,6 +45,7 @@ export async function POST(request: Request): Promise<Response> {
   try {
     if (input.action === "submit-draft") return Response.json(await gateSubmitDraft(input));
     if (input.action === "submit-brief") return Response.json(await gateSubmitBrief(input));
+    if (input.action === "audit") return Response.json(await gateAuditContent(input));
     return Response.json(await gateApproveBrief(input));
   } catch (error) {
     await recordGateFailure(input.action, error);
