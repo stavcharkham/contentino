@@ -240,18 +240,22 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 > missing-source compliance rule do not apply to content that never had a brief. Score reasons
 > written plainly: one factual sentence, no praise words.
 
-- [ ] Mark each profile criterion as audit-applicable or pipeline-only in the type's
+- [x] Mark each profile criterion as audit-applicable or pipeline-only in the type's
       criteria file, so the profile owns the distinction, not the code
-- [ ] Add "audited" as an outcome and an audit path through scoring: voice criteria only,
+- [x] Add "audited" as an outcome and an audit path through scoring: voice criteria only,
       compliance reported as a flag with the missing-source rule dropped, never publishes
-- [ ] Audit workflow and storage: results land in content/audits/ plus a ledger row, and
+- [x] Audit workflow and storage: results land in content/audits/ plus a ledger row, and
       the publish/review stats exclude audited rows
-- [ ] Expose audit through the gate: HTTP action and MCP tool
-- [ ] Plugin: an audit skill that takes pasted text, a URL or a screenshot, extracts the
-      copy, submits it, and reports the scorecard plainly; bump plugin version
-- [ ] Dashboard: an Audits section showing what was audited, its score and verdict
-- [ ] Evidence: the Giveback post scores in the review band on voice, an off-brand twin
-      scores clearly lower, a screenshot's copy gets extracted and scored
+- [x] Expose audit through the gate: HTTP action and MCP tool
+- [x] Plugin: an audit skill (0.9.0) that takes pasted text, a URL or a screenshot, extracts
+      the copy, submits it, and reports the scorecard plainly
+- [x] Dashboard: an Audits section showing what was audited, its score and verdict
+- [x] Evidence, real models against temp storage (2026-08-21): the Giveback text scored 7,
+      audited, compliance clear (was 5, blocked) - held down by direct-address 0, a fair read
+      of that report-style rewrite; the off-brand twin scored 0 with a flagged guarantee.
+      Caveat: the input was the gate's stored 08-21 rewrite, not the verbatim blog post.
+- [ ] Live after deploy: audit a verbatim lemonade.com post and a product screenshot
+      through the plugin (Stav)
 
 ## Not doing
 
