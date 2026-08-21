@@ -31,6 +31,7 @@ export type DashboardData = {
   outcomes: Array<{ label: string; count: number; percentage: number }>;
   scoreBands: Array<{ label: string; count: number; percentage: number }>;
   pieces: Array<LedgerRow & { createdLabel: string }>;
+  audits: Array<{ pieceId: string; createdLabel: string; type: string; source: string; score: number; compliancePass: boolean }>;
   profiles: Array<{ name: string; status: string; ceiling: string; version: string; criteria: number }>;
   corrections: Array<{ id: string; type: string; criterion: string; surface: string; status: string; who: string }>;
   rubric: { realMean: number; offBrandMean: number; gap: number; sampleSize: number; disclosure: string };
@@ -52,11 +53,12 @@ function rubricNumber(source: string, expression: RegExp, label: string): number
 }
 
 export async function buildDashboardData(storage: ContentStorage, now = new Date()): Promise<DashboardData> {
-  const [ledgerFile, briefs, drafts, published, correctionFiles, guidelineFiles, typeFiles, rubricFile] = await Promise.all([
+  const [ledgerFile, briefs, drafts, published, auditFiles, correctionFiles, guidelineFiles, typeFiles, rubricFile] = await Promise.all([
     storage.read("metrics/ledger.csv"),
     storage.list("content/briefs"),
     storage.list("content/drafts"),
     storage.list("content/published"),
+    storage.list("content/audits"),
     storage.list("content/corrections"),
     storage.list("content/guidelines"),
     storage.list("profile/types"),
@@ -65,7 +67,26 @@ export async function buildDashboardData(storage: ContentStorage, now = new Date
   if (!ledgerFile) throw new Error("The evidence ledger is missing");
   if (!rubricFile) throw new Error("The rubric evaluation is missing");
 
-  const rows = parseLedger(ledgerFile.content);
+  // Audits score existing content and never publish, so they stay out of the
+  // gate stats and get their own listing.
+  const allRows = parseLedger(ledgerFile.content);
+  const rows = allRows.filter((row) => row.outcome !== "audited");
+  const auditSources = new Map(auditFiles.filter((file) => file.path.endsWith(".md")).map((file) => {
+    const data = matter(file.content).data as { id: string; source?: string };
+    return [data.id, data.source ?? "unknown"] as const;
+  }));
+  const auditCompliance = new Map(auditFiles.filter((file) => file.path.endsWith(".score.json")).map((file) => {
+    const scorecard = scorecardSchema.parse(JSON.parse(file.content));
+    return [scorecard.piece_id, scorecard.compliance.pass] as const;
+  }));
+  const audits = allRows.filter((row) => row.outcome === "audited").reverse().map((row) => ({
+    pieceId: row.piece_id,
+    createdLabel: new Date(row.created).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" }),
+    type: titleCase(row.content_type),
+    source: auditSources.get(row.piece_id) ?? "unknown",
+    score: row.score,
+    compliancePass: auditCompliance.get(row.piece_id) ?? true,
+  }));
   const scorecards = [...drafts, ...published]
     .filter((file) => file.path.endsWith(".score.json"))
     .map((file) => scorecardSchema.parse(JSON.parse(file.content)));
@@ -141,6 +162,7 @@ export async function buildDashboardData(storage: ContentStorage, now = new Date
     outcomes,
     scoreBands,
     pieces: [...rows].reverse().slice(0, 8).map((row) => ({ ...row, createdLabel: new Date(row.created).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" }) })),
+    audits: audits.slice(0, 8),
     profiles,
     corrections: corrections.slice(0, 8).map((correction) => ({ id: correction.id, type: titleCase(correction.content_type), criterion: titleCase(correction.criterion), surface: correction.surface, status: correction.status, who: correction.who })),
     rubric,

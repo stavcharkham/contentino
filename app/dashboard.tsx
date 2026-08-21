@@ -122,15 +122,24 @@ export function Dashboard({ data }: { data: DashboardData }) {
         ) : <div className="empty-state table-empty"><strong>No run data to display.</strong><span>Fixture tests prove the flow without writing demonstration data into the live ledger.</span></div>}
       </section>
 
+      <section className="table-section" aria-labelledby="audits-title">
+        <div className="section-heading compact-heading"><div><p className="section-index">05 / VOICE AUDITS</p><h2 id="audits-title">Audited content</h2></div><span>Existing content scored on voice only. Never published or blocked.</span></div>
+        {data.audits.length ? (
+          <div className="table-wrap"><table><thead><tr><th>Piece</th><th>Source</th><th>Type</th><th>Score</th><th>Compliance</th></tr></thead><tbody>
+            {data.audits.map((audit) => <tr key={audit.pieceId}><td><strong>{audit.pieceId}</strong><small>{audit.createdLabel}</small></td><td>{audit.source}</td><td>{audit.type}</td><td><span className="score-pill">{audit.score.toFixed(1)}</span></td><td>{audit.compliancePass ? "Clear" : "Flagged"}</td></tr>)}
+          </tbody></table></div>
+        ) : <div className="empty-state table-empty"><strong>Nothing audited yet.</strong><span>Bring a published post or a product screenshot to the audit skill to score it against the voice rubric.</span></div>}
+      </section>
+
       <section className="lower-grid">
         <div className="profile-panel">
-          <div className="panel-title"><span>05</span><div><p>Versioned profile</p><h2>Active content types</h2></div></div>
+          <div className="panel-title"><span>06</span><div><p>Versioned profile</p><h2>Active content types</h2></div></div>
           <div className="profile-list">{data.profiles.map((profile) => (
             <article key={profile.name}><div><span className="active-dot" /><strong>{profile.name}</strong></div><dl><div><dt>Status</dt><dd>{profile.status}</dd></div><div><dt>Ceiling</dt><dd>{profile.ceiling}</dd></div><div><dt>Criteria</dt><dd>{profile.criteria}</dd></div><div><dt>Version</dt><dd>{profile.version}</dd></div></dl></article>
           ))}</div>
         </div>
         <div className="corrections-panel">
-          <div className="panel-title"><span>06</span><div><p>Learning loop</p><h2>Recent corrections</h2></div></div>
+          <div className="panel-title"><span>07</span><div><p>Learning loop</p><h2>Recent corrections</h2></div></div>
           {data.corrections.length ? <div className="correction-list">{data.corrections.map((correction) => <article key={correction.id}><div><span>{correction.surface}</span><strong>{correction.criterion}</strong></div><small>{correction.type} · {correction.who} · {correction.status}</small></article>)}</div> : <div className="empty-state compact"><strong>No live corrections yet.</strong><span>Four matching open corrections are required before a rule can be proposed.</span></div>}
         </div>
       </section>
