@@ -7,6 +7,7 @@ import { parseLedger, serializeLedger } from "@/lib/ledger";
 import { LocalStorage } from "@/lib/storage";
 import { approveBrief, makeBrief } from "./brief";
 import { addContentType, validateContentType } from "./content-type";
+import { auditContent } from "./audit";
 import { writeExternalComms, writeMicrocopy } from "./generate";
 import { approveGuideline, clusterCorrections } from "./learning";
 import { applyReview, renderCorrection } from "./review";
@@ -61,7 +62,9 @@ class PerfectGateway implements ModelGateway {
         ? ["direct-address", "claim-sourced", "why-now", "quote-fidelity"]
         : request.prompt.includes("character-budget")
           ? ["direct-address", "character-budget", "action-verb"]
-          : ["audience-fit"];
+          : request.prompt.includes("direct-address")
+            ? ["direct-address"]
+            : ["audience-fit"];
       value = { criteria: ids.map((id) => ({ id, score: 2, reason: "Matched" })) };
     } else if (request.job === "clustering") {
       const ids = [...request.prompt.matchAll(/^([a-f0-9]+):/gm)].map((match) => match[1]);
@@ -88,6 +91,27 @@ describe("content workflows", () => {
     expect((await context.storage.read(result.path))?.content).toContain("status: published");
     const ledger = await context.storage.read("metrics/ledger.csv");
     expect(parseLedger(ledger?.content ?? "")).toEqual([expect.objectContaining({ minutes_saved: 20 })]);
+  });
+
+  it("audits existing content into content/audits with an audited ledger row", async () => {
+    const context = await testContext();
+    const result = await auditContent({
+      context,
+      contentType: "external-comms",
+      body: "# A Review of Lemonade's 2023 Giveback\n\nOur community helped donate over $2 million to 58 charities.",
+      source: "lemonade.com blog",
+      triggeredBy: "Stav",
+    });
+    expect(result.path).toContain("content/audits/");
+    expect(result.scorecard.outcome).toBe("audited");
+    const ids = result.scorecard.criteria.map((criterion) => criterion.id);
+    expect(ids).not.toContain("claim-sourced");
+    expect(ids).toContain("direct-address");
+    const stored = await context.storage.read(result.path);
+    expect(stored?.content).toContain("status: audited");
+    expect(stored?.content).toContain("source: lemonade.com blog");
+    const ledger = parseLedger((await context.storage.read("metrics/ledger.csv"))?.content ?? "");
+    expect(ledger).toEqual([expect.objectContaining({ skill: "audit", outcome: "audited", minutes_saved: 0 })]);
   });
 
   it("requires brief approval and always routes external comms to review", async () => {
