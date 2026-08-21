@@ -1,0 +1,115 @@
+{
+  "piece_id": "2026-08-21-a-review-of-lemonade-s-2023-giveback-62d8",
+  "source_hash": "607e6378db26575b65701df78d69b97d13217d06356637e7539d645459345611",
+  "scored_at": "2026-08-21T07:34:04.346Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The tone appropriately matches medium stakes. The draft uses confident, direct language suitable for celebrating community impact and philanthropic work. It avoids insurance jargon and stays focused on what matters to readers: the tangible difference donations made. The voice is warm and specific without being playful, matching the gravity of charitable work.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "No humour is used in the draft. This is appropriate because the content involves real charitable impact, vulnerable populations, and humanitarian crises—contexts where humour would be disrespectful. The absence of jokes shows good judgment about stakes.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 1,
+      "reason": "The draft mostly uses plain language but makes one selective translation error. Terms like 'giveback,' 'philanthropic impact,' and 'allocation' are acceptable—these describe what readers actually see. However, 'telematics' is notably absent (correctly), and coverage terms are not present. The issue: the draft uses 'vulnerable families' and 'humanitarian crises' which, while clear, could be more concrete. More importantly, the structure prioritizes organization names and dollar amounts over plain explanation of what each donation actually does for people, which would better serve external readers looking for sourced reasons this matters now.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 2,
+      "reason": "No mechanical violations"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 0,
+      "reason": "The draft reads as an internal report or press summary ('Our community helped donate...', category breakdowns with dollar figures and organization names) rather than framing the story in terms of what this means to the reader. There's no 'you' address, no explanation of what this means for the customer reading it, and no connection to the reader's own experience of choosing a charity at signup. It's structured like an annual report, not a communication to a person.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "claim-sourced",
+      "name": "Claim sourced",
+      "score": 0,
+      "reason": "None of the specific dollar figures, organization names, country assignments, or aggregate totals are traced to any approved brief or source list. The draft presents highly specific figures ($429,588, $109,941, 60,000 trees, 7,000 kits, etc.) with no indication these come from a vetted source. Per the external communications rules, every central factual claim must trace to the brief's source list, and this draft shows no evidence of that lineage.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "why-now",
+      "name": "Why now",
+      "score": 0,
+      "reason": "There is no indication of why this review is being published now (e.g., anniversary, program relaunch, timing relative to the 2023 giving cycle, or a triggering event). It reads as a static report with no visible occasion or urgency.",
+      "model": "claude-sonnet-5"
+    },
+    {
+      "id": "quote-fidelity",
+      "name": "Quote fidelity",
+      "score": "N/A",
+      "reason": "The draft contains no attributed quotes from a named person; the quotation marks around organization names and dollar amounts (e.g., \"Charity: water: $109,941\") are not speaker attributions, so quote fidelity does not apply.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 5,
+  "compliance": {
+    "pass": false,
+    "reason": "The draft presents specific attributed quotes/factual public claims (e.g., quoted dollar figures for Charity: water, 350.org, UNICEF USA, To Write Love On Her Arms, the 60,000 trees figure, 6,500 meals, 7,000 kits, and the overall $2,008,847/58 nonprofits total) with no traceable source cited anywhere in the piece. Per compliance rules, presenting attributed quotes or factual public claims without a traceable source must be blocked. This is a factual, data-heavy 'Review of Giveback' report where sourcing is required, not an isolated low-stakes label, so it fails compliance."
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 157,
+      "output_tokens": 92,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.005346
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 1669,
+      "output_tokens": 100,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002169
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 722,
+      "output_tokens": 227,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004043
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2109,
+      "output_tokens": 306,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003639
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1146,
+      "output_tokens": 505,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2126,
+      "cost_usd": 0.012657
+    }
+  ],
+  "cost_usd": 0.027854
+}
