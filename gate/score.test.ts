@@ -71,6 +71,69 @@ describe("score gate", () => {
     expect(models.requests[1].prompt).toContain("Do not fail an isolated navigation or button label");
   });
 
+  it("audits without provenance criteria, never blocks and never publishes", async () => {
+    const type = await loadContentType(path.join(process.cwd(), "profile"), "external-comms");
+    const models = new QueueGateway([
+      { stakes: "medium", reason: "public claims" },
+      { pass: false, reason: "guarantees a payout" },
+      { criteria: [
+        { id: "register", score: 2, reason: "holds" },
+        { id: "humour", score: 2, reason: "none where stakes are high" },
+        { id: "plain-language", score: 1, reason: "one jargon term left standing" },
+      ] },
+      { criteria: [
+        { id: "direct-address", score: 0, reason: "no reader in the frame" },
+      ] },
+    ]);
+    const result = await scoreDraft({
+      pieceId: "2026-08-21-giveback-review-62d8",
+      content: "# Giveback\n\nWe donated $2m to 58 charities.",
+      type,
+      baseProfile: "profile",
+      attempt: 1,
+      models,
+      mode: "audit",
+    });
+    expect(result.outcome).toBe("audited");
+    const ids = result.criteria.map((criterion) => criterion.id);
+    expect(ids).toEqual(["register", "humour", "plain-language", "mechanics", "direct-address"]);
+    expect(ids).not.toContain("claim-sourced");
+    expect(result.compliance.pass).toBe(false);
+    expect(models.requests[1].prompt).toContain("do not fail it for a missing source");
+    expect(models.requests[2].prompt).toContain("one plain factual sentence");
+    expect(models.requests[3].prompt).not.toContain("claim-sourced");
+  });
+
+  it("audits mechanics violations without the free short-circuit", async () => {
+    const type = await loadContentType(path.join(process.cwd(), "profile"), "product-microcopy");
+    const models = new QueueGateway([
+      { stakes: "high", reason: "eligibility" },
+      { pass: true, reason: "no prohibited claim" },
+      { criteria: [
+        { id: "register", score: 0, reason: "celebratory register on an eligibility decision" },
+        { id: "humour", score: 0, reason: "joke on a claim outcome" },
+        { id: "plain-language", score: 1, reason: "mixed" },
+      ] },
+      { criteria: [
+        { id: "direct-address", score: 1, reason: "generic you" },
+        { id: "character-budget", score: 0, reason: "over the limit" },
+        { id: "action-verb", score: "N/A", reason: "no neighbouring action" },
+      ] },
+    ]);
+    const result = await scoreDraft({
+      pieceId: "2026-08-21-shouty-button-a1b2",
+      content: "YOUR CLAIM IS GUARANTEED!! 🎉🎉 This sentence keeps going far beyond the interface limit and should never auto-publish.",
+      type,
+      baseProfile: "profile",
+      attempt: 1,
+      models,
+      mode: "audit",
+    });
+    expect(result.outcome).toBe("audited");
+    expect(result.usage).toHaveLength(4);
+    expect(result.criteria.map((criterion) => criterion.id)).toContain("mechanics");
+  });
+
   it("stops after the free mechanics check blocks the draft", async () => {
     const type = await loadContentType(path.join(process.cwd(), "profile"), "product-microcopy");
     const models = new QueueGateway([{ stakes: "high", reason: "eligibility" }]);

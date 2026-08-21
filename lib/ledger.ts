@@ -62,7 +62,7 @@ export function minutesSaved(
   outcome: LedgerRow["outcome"],
   revisions: number,
 ): number {
-  if (outcome === "blocked" || outcome === "regenerated") return 0;
+  if (outcome === "blocked" || outcome === "regenerated" || outcome === "audited") return 0;
   const gross = outcome === "auto-published" ? baseline.baseline_minutes : baseline.baseline_minutes * baseline.reviewed_multiplier;
   return Math.max(0, gross - revisions * baseline.minutes_per_revision);
 }

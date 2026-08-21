@@ -56,7 +56,7 @@ export const scorecardSchema = z.object({
   score: z.number().min(0).max(10),
   compliance: z.object({ pass: z.boolean(), reason: z.string().min(1) }),
   attempt: z.number().int().min(1).max(3),
-  outcome: z.enum(["auto-published", "reviewed", "regenerated", "blocked"]),
+  outcome: z.enum(["auto-published", "reviewed", "regenerated", "blocked", "audited"]),
   usage: z.array(usageSchema),
   cost_usd: z.number().nonnegative(),
 });
@@ -77,7 +77,18 @@ export const correctionSchema = z.object({
   external_id: z.string().min(1).optional(),
 });
 
-export const ledgerOutcomeSchema = z.enum(["auto-published", "reviewed", "regenerated", "blocked"]);
+// Existing content submitted for a voice audit. Never published, never a draft.
+export const auditRecordSchema = z.object({
+  id: pieceIdSchema,
+  created: isoDateSchema,
+  content_type: contentTypeSchema,
+  status: z.literal("audited"),
+  source: z.string().min(1),
+  triggered_by: z.string().min(1),
+  trigger: z.enum(["claude", "slack", "drive", "cli"]),
+});
+
+export const ledgerOutcomeSchema = z.enum(["auto-published", "reviewed", "regenerated", "blocked", "audited"]);
 export const ledgerRowSchema = z.object({
   piece_id: pieceIdSchema,
   created: isoDateSchema,
@@ -105,6 +116,7 @@ export const guidelineProposalSchema = z.object({
 });
 
 export type Brief = z.infer<typeof briefSchema>;
+export type AuditRecord = z.infer<typeof auditRecordSchema>;
 export type Draft = z.infer<typeof draftSchema>;
 export type Scorecard = z.infer<typeof scorecardSchema>;
 export type Correction = z.infer<typeof correctionSchema>;

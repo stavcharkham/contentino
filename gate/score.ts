@@ -50,8 +50,12 @@ function criteriaPrompt(
   draft: string,
   examples: string,
   criteria: Array<{ id: string; name: string; question: string }>,
+  audit = false,
 ): string {
-  return `Compare the draft with the approved examples at the same stakes level. Score only the listed criteria 0, 1, 2 or N/A.\n\nCriteria:\n${criteria.map((criterion) => `- ${criterion.id}: ${criterion.question}`).join("\n")}\n\nApproved examples:\n${examples}\n\nDraft:\n${draft}`;
+  const style = audit
+    ? "\n\nWrite each reason as one plain factual sentence naming what the text does. No praise adjectives, no hedging, no summary phrases."
+    : "";
+  return `Compare the draft with the approved examples at the same stakes level. Score only the listed criteria 0, 1, 2 or N/A.${style}\n\nCriteria:\n${criteria.map((criterion) => `- ${criterion.id}: ${criterion.question}`).join("\n")}\n\nApproved examples:\n${examples}\n\nDraft:\n${draft}`;
 }
 
 function requireExactCriteria(
@@ -76,7 +80,12 @@ export async function scoreDraft(input: {
   attempt: number;
   models: ModelGateway;
   now?: Date;
+  // "audit" scores existing content that never had a brief: pipeline-only
+  // criteria drop out, the missing-source compliance rule does not apply,
+  // and nothing blocks or publishes - the outcome is always "audited".
+  mode?: "gate" | "audit";
 }): Promise<Scorecard> {
+  const audit = input.mode === "audit";
   const scoringText = input.scoringText ?? input.content;
   const stakesCall = await input.models.complete({
     job: "stakes",
@@ -86,7 +95,7 @@ export async function scoreDraft(input: {
     maxTokens: 180,
   });
   const mechanics = checkMechanics(scoringText, input.type.guideline, stakesCall.value.stakes);
-  if (mechanics.score === 0) {
+  if (mechanics.score === 0 && !audit) {
     const score = normalizeScore([mechanics]);
     return scorecardSchema.parse({
       piece_id: input.pieceId,
@@ -104,34 +113,40 @@ export async function scoreDraft(input: {
       cost_usd: stakesCall.usage.cost_usd,
     });
   }
+  const compliancePrompt = audit
+    ? `Apply the compliance prohibitions to this existing content: a guarantee of an outcome or claim payment, an unsupported claim about how the company judges a customer, or a contradiction of what Lemonade tells customers about data use, pricing or eligibility. This content never had a brief, so do not fail it for a missing source or missing disclaimer. Judge only claims present in the supplied text. State the reason as one plain factual sentence.\n\n${scoringText}`
+    : `Apply every compliance prohibition to this draft. A missing source, unsupported judgement claim, guarantee or contradiction fails. Judge only claims present in the supplied text. Do not fail an isolated navigation or button label because surrounding copy, a source or a disclaimer is not included.\n\n${scoringText}`;
   const complianceCall = await input.models.complete({
     job: "compliance",
     system: input.baseProfile,
-    prompt: `Apply every compliance prohibition to this draft. A missing source, unsupported judgement claim, guarantee or contradiction fails. Judge only claims present in the supplied text. Do not fail an isolated navigation or button label because surrounding copy, a source or a disclaimer is not included.\n\n${scoringText}`,
+    prompt: compliancePrompt,
     schema: complianceResult,
     maxTokens: 600,
   });
   const coreCall = await input.models.complete({
     job: "judge",
     system: input.baseProfile,
-    prompt: criteriaPrompt(scoringText, input.type.examples, coreCriteria),
+    prompt: criteriaPrompt(scoringText, input.type.examples, coreCriteria, audit),
     schema: criteriaResult,
     maxTokens: 600,
   });
-  const typeCall = await input.models.complete({
-    job: "type-criteria",
-    system: `${input.baseProfile}\n\n${input.type.guidelineBody}\n\n${input.type.criteriaBody}`,
-    prompt: criteriaPrompt(scoringText, input.type.examples, input.type.criteria),
-    schema: criteriaResult,
-    maxTokens: 700,
-  });
+  const typeCriteria = audit ? input.type.criteria.filter((criterion) => criterion.audit) : input.type.criteria;
+  const typeCall = typeCriteria.length
+    ? await input.models.complete({
+        job: "type-criteria",
+        system: `${input.baseProfile}\n\n${input.type.guidelineBody}\n\n${input.type.criteriaBody}`,
+        prompt: criteriaPrompt(scoringText, input.type.examples, typeCriteria, audit),
+        schema: criteriaResult,
+        maxTokens: 700,
+      })
+    : null;
   const criteria = [
     ...requireExactCriteria(coreCriteria, coreCall.value.criteria, coreCall.usage.model),
     mechanics,
-    ...requireExactCriteria(input.type.criteria, typeCall.value.criteria, typeCall.usage.model),
+    ...(typeCall ? requireExactCriteria(typeCriteria, typeCall.value.criteria, typeCall.usage.model) : []),
   ];
   const score = normalizeScore(criteria);
-  const usage = [stakesCall.usage, complianceCall.usage, coreCall.usage, typeCall.usage];
+  const usage = [stakesCall.usage, complianceCall.usage, coreCall.usage, ...(typeCall ? [typeCall.usage] : [])];
   return scorecardSchema.parse({
     piece_id: input.pieceId,
     source_hash: contentHash(input.content),
@@ -143,14 +158,16 @@ export async function scoreDraft(input: {
     score,
     compliance: complianceCall.value,
     attempt: input.attempt,
-    outcome: routeScore({
-      score,
-      criteria,
-      compliancePass: complianceCall.value.pass,
-      stakes: stakesCall.value.stakes,
-      ceiling: input.type.guideline.max_autopublish_stakes,
-      attempt: input.attempt,
-    }),
+    outcome: audit
+      ? "audited"
+      : routeScore({
+          score,
+          criteria,
+          compliancePass: complianceCall.value.pass,
+          stakes: stakesCall.value.stakes,
+          ceiling: input.type.guideline.max_autopublish_stakes,
+          attempt: input.attempt,
+        }),
     usage,
     cost_usd: Number(usage.reduce((sum, item) => sum + item.cost_usd, 0).toFixed(6)),
   });
