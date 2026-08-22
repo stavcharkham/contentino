@@ -42,7 +42,7 @@ const handler = createMcpHandler(
       {
         description: "Audit existing content - a published Lemonade post, copy extracted from a product screenshot, or someone else's writing - against the Lemonade voice rubric. Scores voice criteria only; brief-tracing criteria do not apply because audited content never had a brief. Never publishes or blocks anything. Returns the score, per-criterion reasons and a compliance flag.",
         inputSchema: z.object({
-          content_type: z.string().describe("The closest content type slug: external-comms for posts and announcements, product-microcopy for UI copy"),
+          content_type: z.string().describe("The closest content type slug: founder-essays for long-form thought leadership (CEO essays, strategy pieces with analogies and em dashes), external-comms for announcements and news posts, product-microcopy for UI copy"),
           body: z.string().describe("The content to audit, verbatim. For screenshots, the extracted copy"),
           source: z.string().describe("Where the content came from, e.g. lemonade.com blog, app screenshot, competitor site"),
           triggered_by: z.string().describe("Name of the person asking for the audit"),

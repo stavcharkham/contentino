@@ -26,8 +26,13 @@ about how the company judges a customer, or contradicts known policy.
   headers, body copy, error text. List the extracted strings back to the user above the
   result so they can spot a misread.
 
-Pick the content type: `product-microcopy` for UI copy from screenshots or the product,
-`external-comms` for posts, announcements and articles.
+Pick the content type - this decides which rules apply, and a wrong pick costs 2-3 points:
+
+- `founder-essays`: long-form thought leadership - CEO essays, strategy and industry
+  argument pieces. Signals: first-person, extended analogies, em dashes, competitor
+  analysis. The ten-year and incumbents essays are this type.
+- `external-comms`: announcements, giveback reports, news and campaign posts.
+- `product-microcopy`: UI copy from screenshots or the product.
 
 ## Submitting
 
