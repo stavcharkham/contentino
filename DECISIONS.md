@@ -716,3 +716,24 @@ only if a test run produces one naturally.
 **Rejected:** Passing the router's `request` field to the brief writer (it sometimes compressed the message to the bare ask and dropped an attached transcript, producing a brief about missing input with an approve button and no way to answer).
 **Why:** A summarising model between the user and the content loses exactly the material the content needs.
 **Reversible:** yes
+
+### 2026-08-21 - Audit mode: existing content is scored on voice, not provenance
+**Category:** product
+**Decided:** A separate audit path for content the system did not generate - published posts, screenshot copy, competitor writing. It scores the voice criteria only; the brief-tracing criteria (claim sourced, why now, quote fidelity) are marked pipeline-only in each type's criteria file and drop out, and the missing-source compliance rule does not apply. Compliance is reported as a flag, never a block, and nothing auto-publishes. Audits get their own outcome, their own dashboard section, and are excluded from every gate stat. Reached via /audit in the plugin, an audit gate action, and a CLI command.
+**Rejected:** Making the provenance criteria N/A inside the normal draft path when no brief is present - it would blur the one gate that must stay strict; a reviewer could then pass content that skipped the brief. Also rejected: loosening the compliance veto for generated drafts.
+**Why:** Stav fed real Lemonade blog posts to the gate and they blocked at 5/10 on criteria they could never meet: a published post has no approved brief. The rubric was silently mixing writing-quality questions with process-integrity questions.
+**Reversible:** yes
+
+### 2026-08-22 - The profile is calibrated against the real blog, and to today's voice only
+**Category:** product
+**Decided:** Auditing 19 real lemonade.com posts drove a two-pass calibration: a founder-essays content type built from the actual essays (em dashes, long sentences and several exclamation marks as house style via per-type mechanics limits; criteria: the analogy carries the argument, hostile claims are sourced, confidence pairs with candour); strategy and ambition commentary classified medium stakes in the performing register; the veto told that forward-looking company statements are not customer outcome guarantees; recognised insurance terms may stand undefined. Result: founder essays moved from 1-with-veto to ~8, givebacks sit 7-9 (two 9s), and no real post triggers a false compliance flag. Calibration stopped there: the remaining low scores are 2021-era posts (a different brand era - the profile deliberately describes today's voice) and the interview series (all four Benevolent Bots pieces at exactly 6, a coherent voice lane the profile does not model yet).
+**Rejected:** Tuning the rubric until all 19 posts pass - the stable flags left are calls a compliance reviewer might genuinely make ("automatically paid without the need to file a claim", "best in class" as fact), and erasing them would be overfitting. Also rejected: adding an interviews type unilaterally - it needs Stav's call as a product choice.
+**Why:** The original blog rules were written from search snippets because lemonade.com returned 403 during research week. The audit tool's first real use exposed exactly that debt, which PLAN.md had flagged ("the five per-type criteria are untested").
+**Reversible:** yes
+
+### 2026-08-22 - Scores are read in bands, not decimals
+**Category:** product
+**Decided:** Rerunning the same three posts showed about plus-or-minus one point of run-to-run variance in the model judge (a Giveback scored 7 then 9; an essay 8.57 then 7.86). The rubric's bands with a human above 8 absorb this; exact decimals are not treated as meaningful. Recorded as a known property, with multi-pass averaging noted as the option if repeatability ever matters (at multiplied cost).
+**Rejected:** Averaging multiple scoring passes per audit now - triples cost per run for a precision nothing currently depends on.
+**Why:** Honest characterisation of the instrument beats false precision.
+**Reversible:** yes

@@ -254,8 +254,9 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
       audited, compliance clear (was 5, blocked) - held down by direct-address 0, a fair read
       of that report-style rewrite; the off-brand twin scored 0 with a flagged guarantee.
       Caveat: the input was the gate's stored 08-21 rewrite, not the verbatim blog post.
-- [ ] Live after deploy: audit a verbatim lemonade.com post and a product screenshot
-      through the plugin (Stav)
+- [x] Live after deploy: 19 verbatim lemonade.com posts audited 2026-08-22 with real models
+      (via the CLI path locally, since Stav's plugin cannot update - see below). Screenshot
+      audit through the plugin remains unproven (Stav)
 
 ## Calibration against the real blog (2026-08-22)
 
@@ -280,6 +281,21 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
       audit gate action live (app-level 401 verified), Voice audits dashboard section
       verified on the branch preview. Stav's live run through the 0.9.0 plugin is the
       remaining proof.
+
+## After the blog calibration (2026-08-22)
+
+- [ ] **Needs Stav:** an interviews/conversations content type. All four Benevolent Bots
+      posts audited at exactly 6 and the actuary interview at 2 - a consistent, unmodeled
+      voice lane (Q&A format, guest tone, occasional profanity). Same fix that took the
+      founder essays from 1 to ~8. About an hour once approved.
+- [ ] **Needs Stav:** the Claude Code plugin update bug - installed copies stick at 0.8.x
+      (9 skills, no /audit). 0.10.0 is pushed; once an update works, run /audit live with a
+      post, a screenshot and competitor copy.
+- [ ] Decide the stance on 2021-2022 posts in the profile docs: the profile describes
+      today's voice; old-era copy scoring low is the tool working, not a bug. One paragraph
+      in the profile README or base voice file.
+- [ ] Note for the writeup: run-to-run score variance is about one point; bands, not
+      decimals (decision recorded 2026-08-22).
 
 ## Not doing
 

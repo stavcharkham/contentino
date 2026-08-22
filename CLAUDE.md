@@ -29,23 +29,31 @@ it has to graduate. A settings row cannot.
 `README.md`, `PRD.md`, `DECISIONS.md`, and the commit history deliverables in their own
 right. Small commits with real messages. No squashing history into one dump at the end.
 
-## Where it stands (2026-08-17, submission day)
+## Where it stands (2026-08-22, post-submission)
 
 Production runs at contentino-seven.vercel.app; the runtime commits into this same repo,
-so always `git pull --rebase origin main` before pushing. All three surfaces are live and
-were verified by Stav: Slack (buttons, feedback, on-demand Drive sync), Claude (the
-`contentino-engine` plugin; drafts on the user's subscription, judged by the production
-gate over an MCP connector or the HTTP endpoint, shared password in Vercel's
-`DASHBOARD_PASSWORD`), and the password-gated dashboard. `/lemonade-demo` is a short
-prompt-driven script with pre-verified inputs; the plugin is at 0.8.0 (micro-copy shows
-a four-line spec before the draft, comms briefs carry a Purpose section and need named
-approval). The demo script versions since 0.6.0 have not been run live - Stav's
-end-to-end run is the outstanding proof. Slack was fixed against Stav's 2026-08-16 live
-runs (blocked drafts retry silently, bare requests get asked for source material, briefs
-use the person's full message, approvals post a progress line). README is written.
-Remaining before the 2026-08-17 deadline:
-making the repo public at submission, trust metrics on the dashboard, the recordings
-and the deck. `PLAN.md` has the full list.
+so always `git pull --rebase origin main` before pushing. All three surfaces are live:
+Slack, Claude (the `contentino-engine` plugin, drafts on the user's subscription, judged
+by the production gate over MCP or HTTP with the shared password in Vercel's
+`DASHBOARD_PASSWORD`), and the password-gated dashboard.
+
+New since submission: **audit mode** - existing content (published posts, screenshot copy,
+competitor writing) is scored on voice criteria only, never blocked or published, with its
+own dashboard section and ledger outcome, reachable via the /audit plugin skill, the gate's
+`audit` action and the CLI. Its first real use exposed that the blog rules were written from
+search snippets (lemonade.com 403'd during research), which drove a calibration against 19
+real posts: a founder-essays content type, per-type em-dash/exclamation limits, strategy
+commentary as medium stakes, and a veto that distinguishes company ambition from customer
+guarantees. Real posts now score 7-9 in their lanes; the model judge has about one point of
+run-to-run variance, so read bands, not decimals.
+
+Traps for the next session: Stav's installed plugin is stuck at 0.8.x by a Claude Code
+update bug (0.10.0 is pushed; /audit is invisible to him until an update works), the
+dashboard and gate need the Vercel-held password so smoke tests from this machine can only
+verify auth boundaries, and the interviews voice lane (Benevolent Bots posts, all scoring 6)
+is deliberately unmodeled pending Stav's call. Open items live in `PLAN.md` and
+`QUESTIONS.md`; trust metrics on the dashboard and Stav's blind 20-item scoring are still
+outstanding from before submission.
 
 ## Constraints that bound every decision
 

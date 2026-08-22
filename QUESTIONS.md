@@ -6,6 +6,20 @@
 
 ## Waiting on an answer
 
+- **Add an interviews content type?** Four Benevolent Bots posts audited at exactly 6, the
+  actuary interview at 2: a real voice lane (Q&A, guest tone, profanity allowed) the profile
+  does not model. Adding it follows the founder-essays pattern and should move them into the
+  review band. Yes/no is a product call.
+
+- **The plugin update bug in Claude Code.** Your installed contentino-engine is stuck at
+  0.8.x and cannot be removed or updated, so /audit is invisible to you. The plugin is at
+  0.10.0 on GitHub. Retry the update when Claude Code lets you; then run /audit live with a
+  real post, a product screenshot and competitor copy - that is the remaining live proof.
+
+- **API budget state.** The key ran dry mid-run on 2026-08-22 and you added funds; today's
+  19-post audit spend was roughly $0.60. Worth checking the console balance and deciding how
+  much of the original $50 framing still applies post-submission.
+
 - **Three real, approved internal-comms examples for the live extension demo.** The extension
   workflow is built to reject invented or unapproved examples, so internal comms cannot become an
   active third type until a content owner supplies at least three examples, their sources and the
