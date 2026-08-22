@@ -10,7 +10,9 @@
 ## Translate selectively
 
 - Keep `deductible`, `claim` and named coverage terms when customers need to recognise them.
-- Define a retained term inline with concrete examples.
+  Terms customers already recognise - `premium`, `claim`, `renters insurance` - may stand
+  undefined.
+- Define a retained term inline only when the piece leans on it to make a decision.
 - Explain pricing mechanics in plain language. Prefer `how you actually drive` to `telematics`.
 
 Do not invent folksy substitutes for legal or coverage terms.

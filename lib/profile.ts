@@ -26,6 +26,7 @@ export const guidelineSchema = z.object({
     // Em dashes above this count are a violation. Default keeps them rare;
     // founder essays raise it because they are house style there.
     em_dash_limit: z.number().int().positive().default(1),
+    exclamation_limit: z.number().int().positive().default(1),
   }),
 });
 

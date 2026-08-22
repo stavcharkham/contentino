@@ -13,7 +13,7 @@ export function checkMechanics(
   const exclamations = (text.match(/!/g) ?? []).length;
   const emoji = text.match(emojiPattern) ?? [];
   const emDashes = (text.match(/—/g) ?? []).length;
-  if (exclamations > 1) violations.push("more than one exclamation mark");
+  if (exclamations > guideline.mechanics.exclamation_limit) violations.push("more exclamation marks than the content type allows");
   if (stakes === "high" && exclamations > 0) violations.push("exclamation mark in high-stakes copy");
   if (emoji.length > 1) violations.push("more than one emoji");
   if (emDashes > guideline.mechanics.em_dash_limit) violations.push("more em dashes than the content type allows");

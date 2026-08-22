@@ -18,5 +18,9 @@ The copy makes or explains a decision about a specific customer's price, eligibi
 claim, fraud finding, data use, or medical or legal responsibility. Reported financial results
 presented as fact are also high; strategy and ambition commentary about them is medium.
 
+Narrating or celebrating outcomes that already happened to third parties - a paid claim in a
+case study, a donation report - takes the stakes of the narration, not of the underlying
+event. It is medium unless it promises future outcomes.
+
 Choose the highest level touched by any sentence. A model may move a piece upward toward review,
 never below the content type's human-owned auto-publish ceiling.

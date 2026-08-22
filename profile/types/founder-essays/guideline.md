@@ -7,6 +7,7 @@ mechanics:
   max_chars: 30000
   sentence_band: [4, 60]
   em_dash_limit: 40
+  exclamation_limit: 6
 ---
 
 # Founder essays
