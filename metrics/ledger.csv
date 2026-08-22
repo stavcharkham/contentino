@@ -67,3 +67,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-22-lemonade-turns-10-9eaa,2026-08-22T10:12:30.892Z,submit-external-comms,external-comms,Stav,claude,0,blocked,0,0.006674,0
 2026-08-22-lemonade-turns-10-d986,2026-08-22T10:20:20.508Z,audit,external-comms,Stav,claude,4,audited,0,0.040658,0
 2026-08-22-why-incumbents-won-t-catch-up-c85a,2026-08-22T11:53:54.502Z,audit,external-comms,Stav,claude,5,audited,0,0.042228,0
+2026-08-22-standing-with-bereaved-parents-now-and-always-cc36,2026-08-22T11:54:09.134Z,audit,external-comms,Stav,claude,7,audited,0,0.014497,0

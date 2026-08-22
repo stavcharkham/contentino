@@ -1,0 +1,86 @@
+{
+  "piece_id": "2026-08-22-standing-with-bereaved-parents-now-and-always-cc36",
+  "source_hash": "28f8061dc3f1251fb4c8dad110a07132745f817a83148f0bd7dd44998d43b1fa",
+  "scored_at": "2026-08-22T11:54:09.295Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The text uses a serious, respectful tone throughout that matches the high emotional and existential stakes of child loss and grief support, with no tonal breaks or mismatches.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "The text contains no humour, which is appropriate because every sentence concerns grief, loss, eligibility for support, or organizational mission tied to customer outcomes.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 1,
+      "reason": "The text introduces organisational and programmatic concepts like 'ecosystem' and 'complementary work' without translation, and uses 'informal infrastructure' as a metaphor for social support systems rather than explaining the practical gap in plain terms.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 1,
+      "reason": "sentence exceeds 40 words"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 1,
+      "reason": "The piece opens with parents' lived experience of grief but shifts into company self-description with phrases like 'our name has been the compass for our mission, product development, and reach' and 'What we choose to build for' before returning to the reader at the end.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 7,
+  "compliance": {
+    "pass": true,
+    "reason": "The text makes no explicit guarantee of a customer outcome or claim payment, no unsupported claim about how the company judges a customer, and no contradiction of Lemonade's stated policies on data use, pricing or eligibility."
+  },
+  "attempt": 1,
+  "outcome": "audited",
+  "usage": [
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2236,
+      "output_tokens": 114,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.002806
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1154,
+      "output_tokens": 86,
+      "cache_read_tokens": 1996,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003567
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 2705,
+      "output_tokens": 178,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.003595
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 1497,
+      "output_tokens": 103,
+      "cache_read_tokens": 2527,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004529
+    }
+  ],
+  "cost_usd": 0.014497
+}
