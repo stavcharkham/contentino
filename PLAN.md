@@ -264,14 +264,22 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 > landed at 6-7; founder essays at 1 with compliance flags. Approved by Stav: deploy audit,
 > then calibrate.
 
-- [ ] Add a founder-essays content type with real-essay examples, long-form mechanics and
+- [x] Add a founder-essays content type with real-essay examples, long-form mechanics and
       essay-fit criteria
-- [ ] Make the em-dash limit per content type instead of hardcoded
-- [ ] Stakes and voice: company strategy and ambition commentary is medium stakes in the
+- [x] Make the em-dash and exclamation limits per content type instead of hardcoded
+- [x] Stakes and voice: company strategy and ambition commentary is medium stakes in the
       performing register; high stays reserved for a customer's money, coverage, eligibility
-      or claim
-- [ ] Compliance: forward-looking company statements are not customer outcome guarantees
-- [ ] Rerun the eight posts; essays and givebacks should reach the review band
+      or claim; narrating an already-paid third-party claim takes the narration's stakes
+- [x] Compliance: forward-looking company statements are not customer outcome guarantees
+- [x] Rerun the eight posts (2026-08-22, third run): essays 8.57 and 8.57 clear (were 1,
+      flagged), givebacks 8 / 8 / 7, B-Corp explainer 6, LCCC 3 with the veto firing on
+      "automatically paid" claims language - a call a compliance reviewer might genuinely
+      make. Mean moved from 3.75 to about 7.1. Stopped here rather than tune the rubric
+      until everything passes.
+- [x] Deployed to production 2026-08-22 (commit 0e7cb80, GitHub deployment status success):
+      audit gate action live (app-level 401 verified), Voice audits dashboard section
+      verified on the branch preview. Stav's live run through the 0.9.0 plugin is the
+      remaining proof.
 
 ## Not doing
 
