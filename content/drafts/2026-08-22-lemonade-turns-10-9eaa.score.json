@@ -1,0 +1,42 @@
+{
+  "piece_id": "2026-08-22-lemonade-turns-10-9eaa",
+  "source_hash": "94b2861993475347b0d21a724c8f9126eb69ff9895757541a8041057cb6a3cdb",
+  "scored_at": "2026-08-22T10:12:33.718Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 0,
+      "reason": "more than one exclamation mark; em dashes used as a house style; sentence exceeds 28 words"
+    }
+  ],
+  "score": 0,
+  "compliance": {
+    "pass": true,
+    "reason": "Paid checks skipped after mechanical block"
+  },
+  "attempt": 1,
+  "outcome": "blocked",
+  "usage": [
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 177,
+      "output_tokens": 86,
+      "cache_read_tokens": 1645,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.001543
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 4366,
+      "output_tokens": 153,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.005131
+    }
+  ],
+  "cost_usd": 0.006674
+}

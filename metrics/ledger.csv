@@ -63,3 +63,4 @@ piece_id,created,skill,content_type,triggered_by,trigger,score,outcome,revisions
 2026-08-17-product-micro-copy-6f3c,2026-08-17T18:21:03.168Z,submit-product-microcopy,product-microcopy,Stav,claude,10,auto-published,0,0.012086,20
 2026-08-17-product-micro-copy-e6ca,2026-08-17T18:25:08.415Z,submit-product-microcopy,product-microcopy,Stav,claude,10,auto-published,0,0.012641,20
 2026-08-21-a-review-of-lemonade-s-2023-giveback-62d8,2026-08-21T07:34:00.259Z,submit-external-comms,external-comms,Stav,claude,5,blocked,0,0.027854,0
+2026-08-22-lemonade-turns-10-9eaa,2026-08-22T10:12:30.892Z,submit-external-comms,external-comms,Stav,claude,0,blocked,0,0.006674,0
