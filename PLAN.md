@@ -257,6 +257,22 @@ surface also has a hook, but the Claude Agent SDK is not embedded in an ordinary
 - [ ] Live after deploy: audit a verbatim lemonade.com post and a product screenshot
       through the plugin (Stav)
 
+## Calibration against the real blog (2026-08-22)
+
+> Auditing eight real lemonade.com posts scored none above 7: the profile was built when
+> lemonade.com blocked fetching, so blog rules came from snippets. Announcement-style posts
+> landed at 6-7; founder essays at 1 with compliance flags. Approved by Stav: deploy audit,
+> then calibrate.
+
+- [ ] Add a founder-essays content type with real-essay examples, long-form mechanics and
+      essay-fit criteria
+- [ ] Make the em-dash limit per content type instead of hardcoded
+- [ ] Stakes and voice: company strategy and ambition commentary is medium stakes in the
+      performing register; high stays reserved for a customer's money, coverage, eligibility
+      or claim
+- [ ] Compliance: forward-looking company statements are not customer outcome guarantees
+- [ ] Rerun the eight posts; essays and givebacks should reach the review band
+
 ## Not doing
 
 Cut on 2026-08-12 after the prior-art research. These are the features the market sells to

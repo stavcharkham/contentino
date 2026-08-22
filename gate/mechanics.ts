@@ -16,7 +16,7 @@ export function checkMechanics(
   if (exclamations > 1) violations.push("more than one exclamation mark");
   if (stakes === "high" && exclamations > 0) violations.push("exclamation mark in high-stakes copy");
   if (emoji.length > 1) violations.push("more than one emoji");
-  if (emDashes > 1) violations.push("em dashes used as a house style");
+  if (emDashes > guideline.mechanics.em_dash_limit) violations.push("more em dashes than the content type allows");
 
   const plainLines = text.split("\n").map((line) => line.trim()).filter((line) => line && !line.startsWith("#") && !line.startsWith("---"));
   if (guideline.content_type === "product-microcopy" && plainLines.some((line) => line.length > guideline.mechanics.max_chars)) {

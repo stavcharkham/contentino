@@ -5,7 +5,8 @@ owner: corporate-communications
 max_autopublish_stakes: none
 mechanics:
   max_chars: 12000
-  sentence_band: [4, 28]
+  sentence_band: [4, 40]
+  em_dash_limit: 8
 ---
 
 # External communications

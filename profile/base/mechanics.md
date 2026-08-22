@@ -4,7 +4,8 @@
 - Use contractions in every register.
 - Use at most one exclamation mark per message and none on bad news.
 - Use at most one emoji. Never stack emoji.
-- Prefer commas, colons and full stops to em dashes.
+- Prefer commas, colons and full stops to em dashes, except where the content type allows
+  them; founder essays use them as house style.
 - Ellipses mark a thought or process in progress, not general friendliness.
 - Use numerals for money and percentages.
 - Name the action. Never use a generic `click here` label. This guideline has been promoted into

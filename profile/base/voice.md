@@ -5,8 +5,11 @@ what the reader has at stake, including between adjacent sentences.
 
 ## Performing
 
-Use for marketing, celebrations and low-risk process moments. Be warm, confident and specific.
-Dry jokes and insurance wordplay are welcome when nobody is being judged or losing anything.
+Use for marketing, celebrations, low-risk process moments and thought leadership. Be warm,
+confident and specific. Dry jokes and insurance wordplay are welcome when nobody is being
+judged or losing anything. Strategy, competition and industry commentary from named leadership
+stays performing even when it discusses financials, as long as no customer outcome is being
+decided.
 
 ## Working
 

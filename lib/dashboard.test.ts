@@ -13,7 +13,7 @@ describe("evidence dashboard data", () => {
     await writeFile(path.join(root, "metrics/ledger.csv"), serializeLedger([]));
     const data = await buildDashboardData(new LocalStorage(root), new Date("2026-08-14T08:00:00.000Z"));
     expect(data.kpis).toMatchObject({ runs: 0, averageScore: null, costUsd: 0, minutesSaved: 0 });
-    expect(data.profiles.map((profile) => profile.name)).toEqual(["External Comms", "Product Microcopy"]);
+    expect(data.profiles.map((profile) => profile.name)).toEqual(["External Comms", "Founder Essays", "Product Microcopy"]);
     expect(data.rubric).toMatchObject({ realMean: 9.49, offBrandMean: 4.5, gap: 4.99, sampleSize: 47 });
     expect(data.evidence.find((item) => item.id === "source-count")?.title).toBe("0 source-backed briefs");
   });

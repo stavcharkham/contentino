@@ -34,7 +34,7 @@ async function main() {
       types.set(
         item.content_type,
         relaxed
-          ? { ...type, guideline: { ...type.guideline, mechanics: { max_chars: 100000, sentence_band: [1, 1000] } } }
+          ? { ...type, guideline: { ...type.guideline, mechanics: { max_chars: 100000, sentence_band: [1, 1000], em_dash_limit: 1000 } } }
           : type,
       );
     }

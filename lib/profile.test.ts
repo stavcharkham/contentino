@@ -9,7 +9,7 @@ const profileRoot = path.join(process.cwd(), "profile");
 describe("profile", () => {
   it("loads both active content types", async () => {
     const types = await validateProfile(profileRoot);
-    expect(types.map((type) => type.slug)).toEqual(["external-comms", "product-microcopy"]);
+    expect(types.map((type) => type.slug)).toEqual(["external-comms", "founder-essays", "product-microcopy"]);
     expect(types.every((type) => type.guideline.status === "active")).toBe(true);
   });
 
