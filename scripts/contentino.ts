@@ -6,6 +6,7 @@ import { draftSchema } from "@/lib/schemas";
 import { publishScoredDraft, recordScoredDraft } from "@/gate/publish";
 import { makeLedgerRow, scoreArtifact } from "@/workflows/common";
 import { approveBrief, makeBrief } from "@/workflows/brief";
+import { auditContent } from "@/workflows/audit";
 import { addContentType, validateContentType } from "@/workflows/content-type";
 import { writeExternalComms, writeMicrocopy } from "@/workflows/generate";
 import { approveGuideline, clusterCorrections } from "@/workflows/learning";
@@ -78,6 +79,16 @@ async function main() {
       was: required(flags, "was"),
       now: required(flags, "now"),
       said: required(flags, "said"),
+    });
+  }
+  if (command === "audit") {
+    const source = required(flags, "source");
+    return auditContent({
+      context,
+      contentType: required(flags, "type"),
+      body: await readFile(required(flags, "body"), "utf8"),
+      source,
+      triggeredBy: flags.by ?? "cli",
     });
   }
   if (command === "cluster-corrections") return clusterCorrections(context);

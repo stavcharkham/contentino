@@ -1,0 +1,86 @@
+{
+  "piece_id": "2026-08-22-lemonade-turns-10-4bfd",
+  "source_hash": "3495ce858d55c82189928a983544ec2b3bb7a3e25b5f81ee28f7198e134c08db",
+  "scored_at": "2026-08-22T10:08:55.069Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 0,
+      "reason": "The text uses informal, conversational language including colloquialisms like 'kinda says it all,' 'cool,' and 'vibe-code' alongside high-stakes financial claims about competitive advantage and business strategy that require formal, careful register.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 0,
+      "reason": "The text uses humour extensively throughout medium and high-stakes content, including jokes about airport walkways, the Orwell paraphrase, and 'vibe-coding,' when humour should appear only in low-stakes moments like button labels or empty states.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 1,
+      "reason": "The text retains insurance and technical terms like 'exposure features,' 'underwriting,' 'premiums,' and 'P&L' appropriately, but invents folksy substitutes such as 'moving walkway' as extended metaphor for AI-native capability and 'school of hard knocks' for claims data accumulation instead of explaining mechanics plainly.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 0,
+      "reason": "more than one exclamation mark; em dashes used as a house style; sentence exceeds 28 words"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 0,
+      "reason": "The piece is framed almost entirely around Lemonade's internal metrics, strategy, executive quotes, and competitive positioning rather than the reader's situation or stakes as a customer.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 1,
+  "compliance": {
+    "pass": false,
+    "reason": "The piece guarantees a future outcome by stating the company 'expects' to '10x our business while barely growing our expense base' and asserts it will 'exactly how we plan to win,' which promises specific future results rather than describing present facts."
+  },
+  "attempt": 1,
+  "outcome": "audited",
+  "usage": [
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 4373,
+      "output_tokens": 106,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.004903
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 4382,
+      "output_tokens": 87,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1645,
+      "cost_usd": 0.013747
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 4842,
+      "output_tokens": 249,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.006087
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 4725,
+      "output_tokens": 89,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2176,
+      "cost_usd": 0.01578
+    }
+  ],
+  "cost_usd": 0.040517
+}
