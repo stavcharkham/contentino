@@ -1,0 +1,86 @@
+{
+  "piece_id": "2026-08-22-why-incumbents-won-t-catch-up-c85a",
+  "source_hash": "6066a4216a7f108e663bbca6344c30b07c5e82194c47ac065a2a3d403ce57f1e",
+  "scored_at": "2026-08-22T11:53:54.738Z",
+  "content_type": "external-comms",
+  "stakes": "medium",
+  "ceiling": "none",
+  "criteria": [
+    {
+      "id": "register",
+      "name": "Register match",
+      "score": 2,
+      "reason": "The piece uses confident, analytical language appropriate for addressing investors about market competition and technology strategy, with informal elements like 'fabulous' in quoted material preserved from sourced examples.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "humour",
+      "name": "Humour boundary",
+      "score": 2,
+      "reason": "Humour appears only in low-stakes moments: the AMAZON.BOMB reference, the hoverfly mimicry analogy, and the LEMONADE.BOMB closing, all supporting the strategic argument rather than undermining serious financial or eligibility claims.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "plain-language",
+      "name": "Plain language calibration",
+      "score": 1,
+      "reason": "The piece retains insurance terms like 'Loss Adjustment Expense,' 'Exposure,' and 'Gross Earned Premium' with inline explanation of their mechanics, but also introduces technical acronyms like 'LAE' and 'WYSIATI' that carry their weight in the argument without full translation of their operational meaning.",
+      "model": "claude-haiku-4-5"
+    },
+    {
+      "id": "mechanics",
+      "name": "Mechanics",
+      "score": 0,
+      "reason": "more em dashes than the content type allows; sentence exceeds 40 words"
+    },
+    {
+      "id": "direct-address",
+      "name": "Direct address",
+      "score": 0,
+      "reason": "The draft is written from Lemonade's competitive and investor vantage point using internal metrics, industry jargon, and leadership commentary rather than framing the piece around what a reader personally experiences or decides.",
+      "model": "claude-sonnet-5"
+    }
+  ],
+  "score": 5,
+  "compliance": {
+    "pass": false,
+    "reason": "The piece states plainly that Lemonade's complaint rate sits materially below the largest incumbents and frames this as proof that AI cuts cost 'without service degradation,' an unsupported claim about comparative customer treatment/quality that goes beyond the data actually cited."
+  },
+  "attempt": 1,
+  "outcome": "audited",
+  "usage": [
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 4404,
+      "output_tokens": 168,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.005244
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 4278,
+      "output_tokens": 101,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 1996,
+      "cost_usd": 0.014556
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "input_tokens": 4873,
+      "output_tokens": 211,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 0,
+      "cost_usd": 0.005928
+    },
+    {
+      "model": "claude-sonnet-5",
+      "input_tokens": 4621,
+      "output_tokens": 94,
+      "cache_read_tokens": 0,
+      "cache_write_tokens": 2527,
+      "cost_usd": 0.0165
+    }
+  ],
+  "cost_usd": 0.042228
+}
